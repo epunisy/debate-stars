@@ -1,0 +1,82 @@
+{
+ "id": "t42",
+ "motion": "This house would give every school a daily nap time.",
+ "ko": "모든 학교에 낮잠 시간 도입",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that [every school should have a daily nap time.]", "오늘 저희는 모든 학교에 매일 낮잠 시간이 있어야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By nap time, we mean [twenty minutes] right after lunch.", "낮잠 시간이란 점심 직후 20분을 뜻합니다."],
+    ["Students can [sleep at their desks,] close their eyes, or just rest quietly.", "학생들은 책상에서 자거나, 눈을 감거나, 그냥 조용히 쉴 수 있습니다."],
+    ["The lights go down, and [phones go away.]", "불은 어두워지고 휴대폰은 치웁니다."],
+    ["Nobody is [forced to sleep,] but everyone must [stay quiet.]", "아무도 억지로 잘 필요는 없지만, 모두 조용히 해야 합니다."],
+    ["So the real question is whether [twenty minutes of rest] makes the school day better.", "그러니 진짜 질문은 20분의 휴식이 학교생활을 더 낫게 만드는지입니다."],
+    ["Our stance is clear: [it does.]", "저희 입장은 분명합니다. 그렇습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] a short nap helps students [learn better.]", "첫째, 짧은 낮잠은 학생들이 더 잘 배우도록 돕습니다."],
+    ["[Second,] it makes students [calmer and kinder.]", "둘째, 학생들을 더 차분하고 친절하게 만듭니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Learning better",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] a short nap helps students [learn better.]", "첫째, 짧은 낮잠은 학생들이 더 잘 배우도록 돕습니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Many Korean students [don't get enough sleep] at night.", "많은 한국 학생들은 밤에 잠을 충분히 자지 못합니다."],
+    ["And after lunch, our bodies naturally [feel heavy and sleepy.]", "그리고 점심 후에는 몸이 자연스럽게 무겁고 졸립니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Think about [fifth period math class.]", "5교시 수학 시간을 떠올려 보세요."],
+    ["The teacher is explaining something important, but [half the class is nodding off.]", "선생님은 중요한 걸 설명하시지만, 반 학생 절반이 꾸벅꾸벅 졸고 있습니다."],
+    ["Their eyes are open, but [their brains are closed.]", "눈은 떠 있지만 뇌는 닫혀 있습니다."],
+    ["The teacher has to [repeat the same thing] the next day.", "선생님은 다음 날 같은 내용을 반복해야 합니다."],
+    ["Now imagine those students had [a twenty-minute rest] first.", "이제 그 학생들이 먼저 20분 동안 쉬었다고 상상해 보세요."],
+    ["They come back [awake and ready,] and they actually [remember the lesson.]", "그들은 정신이 맑고 준비된 상태로 돌아와 실제로 수업 내용을 기억합니다."],
+    ["This matters because [twenty minutes of rest] can save [hours of wasted class time.]", "20분의 휴식이 낭비되는 수업 시간 몇 시간을 아낄 수 있기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Calmer and kinder",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, nap time makes students [calmer and kinder.]", "다음 논점으로 넘어가서, 낮잠 시간은 학생들을 더 차분하고 친절하게 만듭니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["When we are tired, we get [angry more easily.]", "피곤하면 우리는 더 쉽게 화를 냅니다."],
+    ["Small things, like a friend [bumping your desk,] can turn into a fight.", "친구가 책상을 툭 치는 것 같은 작은 일도 싸움이 될 수 있습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a noisy lunch break with [shouting, running, and arguments] in the hallway.", "복도에서 소리 지르고, 뛰어다니고, 다투는 시끄러운 점심시간을 상상해 보세요."],
+    ["Then the bell rings, the lights go down, and the whole school becomes [quiet for twenty minutes.]", "그때 종이 울리고 불이 꺼지면 학교 전체가 20분 동안 조용해집니다."],
+    ["Students [reset their minds.]", "학생들은 마음을 새로 고칩니다."],
+    ["When they wake up, they are [more patient] with their classmates and teachers.", "깨어나면 반 친구와 선생님들에게 더 인내심을 보입니다."],
+    ["This matters because [a calm school] is [a safer and happier school] for everyone.", "차분한 학교가 모두에게 더 안전하고 행복한 학교이기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [we don't have time] — the school day is already full.", "상대측은 '시간이 없다, 학교 일과가 이미 꽉 찼다'고 할 것입니다."],
+    ["[Even if we accept that] the timetable is busy, [twenty minutes is very small.]", "설령 시간표가 바쁘다는 걸 인정하더라도, 20분은 아주 짧습니다."],
+    ["Schools can simply [shorten lunch] or each break by a few minutes.", "학교는 점심시간이나 쉬는 시간을 몇 분씩 줄이기만 하면 됩니다."],
+    ["And remember, a sleepy student in class is [not really learning] anyway.", "그리고 기억하세요, 수업 중에 조는 학생은 어차피 제대로 배우지 못합니다."],
+    ["So we don't [lose time,] we [use time better.]", "그러니 우리는 시간을 잃는 게 아니라 시간을 더 잘 쓰는 것입니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side cares about [students' health and feelings,] not just their scores.", "더 중요한 것은, 저희 측은 점수만이 아니라 학생들의 건강과 감정을 생각한다는 점입니다."],
+    ["[This outweighs their concern,] because losing a few minutes of break is much less important than [a whole afternoon of real learning.]", "쉬는 시간 몇 분을 잃는 것보다 오후 내내 제대로 배우는 것이 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] nap time helps students [learn better,] and it makes them [calmer and kinder.]", "요약하면, 낮잠 시간은 학생들이 더 잘 배우게 하고 더 차분하고 친절하게 만듭니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

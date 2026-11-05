@@ -1,0 +1,81 @@
+{
+ "id": "t24",
+ "motion": "This house would ban cars from city centers.",
+ "ko": "도심 차량 통행 금지",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose the motion that [cars should be banned] from city centers.", "오늘 저희는 도심에서 자동차를 금지해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By city center, we mean [the busy downtown area,] with shops, offices, and big squares.", "도심이란 상점, 사무실, 큰 광장이 있는 붐비는 시내 중심가를 뜻합니다."],
+    ["By ban, we mean [private cars cannot drive there.]", "금지란 개인 자동차가 그곳을 달릴 수 없다는 뜻입니다."],
+    ["But buses, ambulances, fire trucks, and [delivery vans early in the morning] can still come in.", "하지만 버스, 구급차, 소방차, 이른 아침 배달 차량은 여전히 들어올 수 있습니다."],
+    ["So the real question is [not whether cars are useful.]", "그러니 진짜 질문은 자동차가 쓸모 있느냐가 아닙니다."],
+    ["The real question is whether [a city center for people] is better than [a city center for cars.]", "사람을 위한 도심이 자동차를 위한 도심보다 나으냐가 진짜 질문입니다."],
+    ["Our stance is clear: [it is much better.]", "저희 입장은 분명합니다. 훨씬 낫습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] a car-free center is [safer and cleaner.]", "첫째, 차 없는 도심은 더 안전하고 깨끗합니다."],
+    ["[Second,] it brings [life and business] back to the streets.", "둘째, 거리에 활기와 장사를 되살립니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Safer and cleaner",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] a car-free center is [safer and cleaner.]", "첫째, 차 없는 도심은 더 안전하고 깨끗합니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["[No cars] means [no car accidents] with people walking.", "차가 없으면 보행자와의 교통사고도 없습니다."],
+    ["It also means [no smoke] coming out of thousands of engines.", "수천 대 엔진에서 나오는 매연도 없다는 뜻입니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine you are [a twelve-year-old] going to the library downtown after school.", "방과 후 시내 도서관에 가는 열두 살이라고 상상해 보세요."],
+    ["Today, your parents worry about [every crossing] and [every fast taxi.]", "지금은 부모님이 모든 횡단보도와 빠른 택시를 걱정합니다."],
+    ["In a car-free center, you can [walk freely] and even [ride your bike safely.]", "차 없는 도심에서는 마음껏 걷고 자전거도 안전하게 탈 수 있습니다."],
+    ["And when you breathe, the air smells like [bread from the bakery,] not exhaust.", "그리고 숨을 쉬면 매연이 아니라 빵집의 빵 냄새가 납니다."],
+    ["This matters because [clean air and safe streets] are basic needs, especially for children.", "깨끗한 공기와 안전한 거리는 특히 아이들에게 기본적인 필요이기 때문에 이것이 중요합니다."],
+    ["This clearly shows that [our side protects people's health and lives.]", "이는 저희 측이 사람들의 건강과 생명을 지킨다는 걸 분명히 보여줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Life on the streets",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, a car-free center brings [life and business] back to the streets.", "다음 논점으로 넘어가서, 차 없는 도심은 거리에 활기와 장사를 되살립니다."],
+    ["Right now, [huge parts of the city] are just roads and parking lots.", "지금은 도시의 아주 넓은 부분이 그저 도로와 주차장입니다."],
+    ["[That space belongs to cars,] not to people.", "그 공간은 사람이 아니라 차의 것입니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a four-lane road turned into [a wide street with trees,] benches, and food stalls.", "4차선 도로가 나무, 벤치, 노점이 있는 넓은 거리로 바뀌었다고 상상해 보세요."],
+    ["On weekends, there could be [street music] and [a small market.]", "주말에는 거리 음악과 작은 장터가 열릴 수 있습니다."],
+    ["People walk slowly, so they [look into shop windows] and [stop for ice cream.]", "사람들이 천천히 걸으니 진열장을 들여다보고 아이스크림을 사러 멈춥니다."],
+    ["A driver just [passes by] at forty kilometers an hour.", "운전자는 시속 40킬로미터로 그냥 지나쳐 갑니다."],
+    ["So small shops get [more customers,] not fewer.", "그래서 작은 가게는 손님이 줄지 않고 오히려 늘어납니다."],
+    ["This matters because a city center should be [a place to meet,] not [a place to drive through.]", "도심은 지나가는 곳이 아니라 만나는 곳이어야 하기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [it will be hard for old people and disabled people] to get downtown.", "상대측은 '노인과 장애인이 시내에 오기 힘들 것'이라고 할 것입니다."],
+    ["[Even if we accept that] this is a real worry, remember our definition.", "설령 그것이 실제 걱정임을 인정하더라도, 저희 정의를 기억해 주세요."],
+    ["[Buses and special taxis] can still come in.", "버스와 특별 택시는 여전히 들어올 수 있습니다."],
+    ["In fact, with no traffic jams, buses become [faster and more reliable] for everyone.", "사실 교통 체증이 없으니 버스는 모두에게 더 빠르고 믿을 만해집니다."],
+    ["So the risk is [very small,] but the benefit is [very big.]", "그러니 위험은 아주 작고, 이익은 아주 큽니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side protects [people's lungs and lives.]", "더 중요한 것은, 저희 측은 사람들의 폐와 생명을 지킨다는 점입니다."],
+    ["[This outweighs their concern,] because a slightly longer trip is much less important than [a child's safety.]", "조금 더 긴 이동보다 아이의 안전이 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] a car-free center is [safer and cleaner,] and it is [full of life.]", "요약하면, 차 없는 도심은 더 안전하고 깨끗하며 활기로 가득합니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

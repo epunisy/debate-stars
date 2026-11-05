@@ -1,0 +1,567 @@
+<!doctype html><html lang="ko"><head><meta charset=utf8><title>디베이트 스타즈</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#F2F4F1"><meta name="description" content="영어 디베이트 쉐도잉 연습 — 핵심 문구, 4분 스피치 50개 주제, 디베이트 무대"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Noto+Sans+KR:wght@800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a speaker's script on a lectern — logo + competition banners on top, one reading column, a compact control rail fixed at the bottom */
+:root{
+  --bg:#F2F4F1; --surface:#FFFFFF; --fg:#18212C; --muted:#5F6875; --line:#DCE1DA;
+  --accent:#1F3E8F; --accent-ink:#FFFFFF; --cue:#FFE47A; --cue-ink:#18212C; --shadow:#2BA36B; --sky:#CFE8FB;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12171E; --surface:#1A212B; --fg:#E7ECF2; --muted:#9AA4B1; --line:#2A3340;
+  --accent:#8FB0FF; --accent-ink:#0E1420; --cue:#3F3510; --cue-ink:#FFF3C4; --shadow:#4CC98E; --sky:#1E3350; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171E; --surface:#1A212B; --fg:#E7ECF2; --muted:#9AA4B1; --line:#2A3340;
+  --accent:#8FB0FF; --accent-ink:#0E1420; --cue:#3F3510; --cue-ink:#FFF3C4; --shadow:#4CC98E; --sky:#1E3350; color-scheme:dark}
+*{box-sizing:border-box}
+/* 앱 바탕: 아주 옅은 물결무늬 */
+/* 앱 바탕: 화면 아래쪽에 아주 옅은 물결 면 (글자 뒤에 무늬가 겹치지 않게 선 없이) */
+:root{--wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23EAF0F7' d='M0 150 C240 90 420 210 720 150 S1200 80 1440 140 V320 H0Z'/%3E%3Cpath fill='%23E2EAF4' d='M0 220 C300 170 520 270 820 215 S1260 170 1440 205 V320 H0Z'/%3E%3C/svg%3E")}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23161D27' d='M0 150 C240 90 420 210 720 150 S1200 80 1440 140 V320 H0Z'/%3E%3Cpath fill='%2319212D' d='M0 220 C300 170 520 270 820 215 S1260 170 1440 205 V320 H0Z'/%3E%3C/svg%3E")}}
+:root[data-theme="dark"]{--wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23161D27' d='M0 150 C240 90 420 210 720 150 S1200 80 1440 140 V320 H0Z'/%3E%3Cpath fill='%2319212D' d='M0 220 C300 170 520 270 820 215 S1260 170 1440 205 V320 H0Z'/%3E%3C/svg%3E")}
+html{background:var(--bg)}
+body::before{content:"";position:absolute;left:0;right:0;bottom:0;height:160px;background:var(--wave) no-repeat bottom/100% 100%;pointer-events:none;z-index:-1}
+body::after{content:"";position:absolute;left:0;right:0;top:0;height:180px;background:var(--wave) no-repeat bottom/100% 100%;transform:scale(-1,-1);pointer-events:none;z-index:-1}
+body{position:relative;min-height:100vh;background:transparent;color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:720px;margin:0 auto;padding-block:20px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header .logo{display:inline-block}
+.headrow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.spk{display:none;flex-direction:column;align-items:flex-end;gap:3px;min-width:0;text-align:right}
+body.stage-live .spk.on{display:flex}
+.spk b{display:inline-block;background:var(--team);color:#fff;font-size:14px;font-weight:700;line-height:1.15;padding:1px 5px;border-radius:3px;max-width:52vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.spk small{font-size:11px;line-height:1.1;color:var(--muted);white-space:nowrap}
+header .logo img{display:block;height:46px;width:auto}
+.banners{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:12px 0 0;scrollbar-width:none}
+.banners::-webkit-scrollbar{display:none}
+.dots{display:flex;justify-content:center;gap:2px;margin-top:4px}
+.dots button{width:24px;height:24px;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center}
+.dots button::before{content:"";width:7px;height:7px;border-radius:999px;background:var(--line);transition:width .2s,background .2s}
+.dots button[aria-current="true"]::before{width:20px;background:var(--accent)}
+.dots button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:6px}
+.banner{flex:0 0 100%;scroll-snap-align:start;aspect-ratio:3/1;border-radius:0;overflow:hidden;display:block;background:var(--surface);border:1px solid var(--line);color:inherit;text-decoration:none}
+.banner img{width:100%;height:100%;object-fit:contain;display:block}
+.banner.card{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:10px 18px;color:#fff;border:0;position:relative}
+.banner.card b{font-family:var(--display);font-weight:800;font-size:clamp(17px,4.6vw,22px);line-height:1.15}
+.banner.card .sub{font:500 11px var(--mono);letter-spacing:.06em;opacity:.85}
+.banner.card .desc{font-size:12px;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.banner.card .go{font-size:11px;font-weight:700;margin-top:4px;opacity:.95}
+.tone-a{background:linear-gradient(120deg,#1F3E8F,#3E78D6)}
+.tone-b{background:linear-gradient(120deg,#163172,#3C6FD1)}
+.tone-c{background:linear-gradient(120deg,#1D5850,#3B8A7C)}
+.banner.empty{border:1.5px dashed var(--line);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;background:linear-gradient(135deg,var(--sky),transparent 70%);text-align:center;padding:8px}
+.banner.empty b{font-family:var(--display);font-size:17px}
+.banner.empty span{font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:0;margin:14px 0 8px;border-bottom:1px solid var(--line)}
+.tabs button{flex:1 1 0;min-width:0;text-align:center;font:600 clamp(12px,3.6vw,14.5px) var(--body);letter-spacing:-.02em;background:none;border:0;color:var(--muted);padding:9px 2px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
+:is(.tabs button,.ctl button,.ctl select,.topic select,.line):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.topic{margin:12px 0 4px}
+.topicpick{position:relative;display:flex;align-items:flex-start;gap:10px;margin-top:10px;background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:9px 12px}
+.topicpick .motion{margin:0;flex:1;min-width:0}
+/* 주제 문장: 글자 높이에 딱 맞는 색 블록 (줄이 바뀌어도 줄마다 블록) */
+/* 주제 박스 전체를 색칠: 안의 글씨는 흰색 */
+.topicpick .motion{color:var(--accent-ink)}
+.topicpick .motion .mk{display:block;margin-top:3px;font:500 13px var(--body);opacity:.85}
+.topicpick .motion small{color:var(--accent-ink)!important;opacity:.75}
+.topicpick .caret{flex:none;color:var(--accent-ink);font-size:12px;line-height:1;opacity:.9;margin-top:2px} /* 맨 윗줄(MOTION 줄) 오른쪽 */
+.topicpick select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px;border:0}
+.topicpick:has(select:focus-visible){outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
+.topic select{width:100%;font:600 13px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px 8px;min-height:30px}
+.motion{margin:10px 0 0;font-family:var(--display);font-weight:600;color:var(--accent);font-size:clamp(19px,4.6vw,24px);line-height:1.25;text-wrap:balance}
+.motion small{display:block;color:var(--muted)!important;font:500 12px var(--mono);letter-spacing:.08em;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+.section{margin-top:12px;border-radius:12px}
+.section.now{background:color-mix(in oklab,var(--cue) 35%,transparent)}
+.sec-head{display:flex;align-items:baseline;gap:10px;margin:0 0 2px;flex-wrap:wrap;padding:4px 8px 0}
+.sec-head .tag{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.06em}
+.sec-head h2{font-family:var(--display);font-weight:600;font-size:17px;margin:0}
+.line{display:grid;grid-template-columns:22px 1fr;gap:8px;padding:4px 8px;border-radius:8px;cursor:pointer;border:1px solid transparent}
+.line:hover{border-color:var(--line);background:var(--surface)}
+.line .n{font-family:var(--mono);font-size:11px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.line .en{font-size:16px;font-weight:500;line-height:1.4;min-width:0}
+.line .ko{font-size:13px;line-height:1.35;color:var(--muted)}
+.line.now{background:var(--cue);color:var(--cue-ink)}
+.line.now .ko,.line.now .n{color:var(--cue-ink);opacity:.8}
+.line.done .n{color:var(--shadow)}
+.w.em{font-weight:700}
+.w.cur{box-shadow:inset 0 -2px 0 currentColor}
+body.dict .w{cursor:pointer;text-decoration:underline dotted;text-decoration-color:var(--muted);text-underline-offset:5px}
+body.dict .w:hover{background:var(--cue);color:var(--cue-ink);border-radius:3px}
+body.hide-en .line .en{display:none}
+body.hide-ko .line .ko{display:none}
+.rail{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);z-index:5;
+  padding:8px max(12px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.rail-in{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:6px}
+.status{display:flex;align-items:center;gap:8px;font-size:12px}
+.pill{font:500 10px var(--mono);letter-spacing:.06em;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.speak{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.pill.you{background:var(--shadow);color:#fff;border-color:var(--shadow)}
+#pos{font-variant-numeric:tabular-nums;color:var(--muted)}
+.bar{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--shadow)}
+.ctl{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.ctl button{font:600 12px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:3px 9px;cursor:pointer;min-height:26px}
+.ctl button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);min-width:40px}
+.ctl button{min-width:30px}
+.ctl.main{justify-content:center;align-items:center;gap:8px}
+.ctl .round.sym{font-size:12px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ctl .repico{width:24px;height:24px;display:block}
+.ctl .round.sym sub{font-size:9px;vertical-align:baseline;position:relative;top:3px;margin-left:1px}
+.ctl .pillbtn{font:600 12px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:2px 10px;min-height:30px;min-width:0;cursor:pointer;font-variant-numeric:tabular-nums}
+.ctl .pillsel{font:600 12px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:2px 8px;min-height:30px}
+.ctl .round{width:38px;height:38px;min-width:0;border-radius:50%;padding:0;display:grid;place-items:center;font-size:15px;line-height:1}
+.ctl #play.round{width:46px;height:46px;font-size:17px}
+.ctl #more[aria-expanded="true"]{border-color:var(--fg);color:var(--surface);background:var(--fg)}
+.more-panel{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 10px;align-items:center;padding:4px 2px 8px;border-bottom:1px solid var(--line)}
+.more-panel .lab{font-size:11.5px;color:var(--muted)}
+.more-panel select{font:500 12px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:2px 4px;min-height:26px;justify-self:start;max-width:100%}
+.more-panel .tg{display:flex;gap:5px;flex-wrap:wrap}
+.more-panel button{font:600 12px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:3px 9px;cursor:pointer;min-height:26px}
+.more-panel button[aria-pressed="true"]{border-color:var(--fg);color:var(--surface);background:var(--fg)}
+.more-panel :is(button,select):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ctl button[aria-pressed="true"]{border-color:var(--fg);color:var(--surface);background:var(--fg)}
+.ctl label{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:3px}
+.ctl select{font:500 12px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:2px 4px;min-height:26px}
+/* 디베이트 무대 진행 중: 로고만 남기고 무대가 화면을 채움 */
+body.stage-live :is(.banners,.dots,.tabs,#warn){display:none!important}
+body.stage-live .wrap{padding-bottom:0}
+body.stage-live header{margin-bottom:4px}
+body.stage-live .wrap{padding-top:8px}
+/* 대회 소식 */
+/* 메뉴 4개가 한 화면에: 칸을 똑같이 나누고 줄바꿈 없이 */
+.tabs button{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.news{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;margin-top:10px}
+.news .upd{font-size:11px;color:var(--muted);margin:0 0 2px}
+.nc{display:block;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:inherit;text-decoration:none;overflow-wrap:anywhere}
+.nc:hover{border-color:var(--accent)}
+.nc .meta{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--muted);margin-bottom:2px;min-width:0}
+.nc .tg{flex:none;font-weight:700;color:#fff;border-radius:3px;padding:0 4px;line-height:1.5}
+.nc .tg.국내{background:#2F6FD0}.nc .tg.해외{background:#2A7A6C}.nc .tg.예정{background:#D2604F}
+.nc .src{margin-left:auto;color:var(--accent);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.nc b{display:block;font-size:13px;line-height:1.35}
+.nc p{margin:2px 0 0;font-size:11.5px;line-height:1.4;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* 시작 화면 */
+.splash{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:linear-gradient(#f3f7fc,#e6eef8);cursor:pointer;transition:opacity .45s}
+.splash.out{opacity:0;pointer-events:none}
+.splash .sp{width:min(100%,420px);container-type:inline-size;display:flex;flex-direction:column;align-items:center;gap:6cqw}
+.splash .mk{width:36cqw}
+.splash .wm{font:900 12cqw "Nunito","Noto Sans KR",system-ui,sans-serif;letter-spacing:-.01em;line-height:1;color:#1b2f63;white-space:nowrap;min-height:1.05em}
+.splash .wm .s{color:#4f90d6}
+.splash .kr{font:800 5.2cqw "Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;letter-spacing:.08em;color:#1b2f63;min-height:1.3em;margin-top:-5.6cqw}
+.splash .lb{width:44cqw;height:1.4cqw;border-radius:2cqw;overflow:hidden;background:#dfe9f6;margin-top:4cqw;visibility:hidden}
+.splash .lb i{display:block;height:100%;width:0;border-radius:2cqw;background:#1b2f63;transition:width .15s linear}
+.splash .ch{display:inline-block;animation:spink .16s ease-out both}
+@keyframes spink{from{opacity:0;transform:translateY(.14em)}}
+@media (prefers-reduced-motion:reduce){.splash .ch{animation:none}}
+.warn{background:var(--cue);color:var(--cue-ink);padding:10px 12px;border-radius:8px;margin-top:14px;font-size:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="splash" id="splash" aria-label="Debate Stars 디베이트스타즈" role="img"><div class="sp">
+  <svg class="mk" viewBox="0 0 150 132" style="overflow:visible" aria-hidden="true">
+   <path class="bk" d="M111 81 L127 101 L125 67 A38 38 0 1 0 111 81 Z" fill="#1b2f63" stroke="#1b2f63" stroke-width="9" stroke-linejoin="round"/>
+   <path class="fr" d="M38 111 L20 125 L23 96 A40 40 0 1 1 38 111 Z" fill="#ffffff" stroke="#1b2f63" stroke-width="9" stroke-linejoin="round"/>
+   <path class="st" d="M58.0 58.0 L63.0 70.1 L76.1 71.1 L66.1 79.6 L69.2 92.4 L58.0 85.5 L46.8 92.4 L49.9 79.6 L39.9 71.1 L53.0 70.1Z" fill="#1b2f63" stroke="#1b2f63" stroke-width="3" stroke-linejoin="round"/></svg>
+  <div class="wm" id="spW"></div><div class="kr" id="spK"></div><div class="lb" id="spL"><i></i></div></div></div>
+<div class="wrap">
+  <header>
+    <div class="headrow"><a class="logo" href="#" aria-label="Debate Stars 디베이트 스타즈"><picture><source srcset="logo-dark.png" media="(prefers-color-scheme: dark)"><img src="logo.png" alt="Debate Stars 디베이트 스타즈"></picture></a>
+    <div class="spk" id="spk" aria-live="polite"><b></b><small></small></div></div>
+    <div class="banners" id="banners" aria-label="영어 디베이트 대회"></div>
+    <div class="dots" id="dots" role="group" aria-label="배너 넘기기"></div>
+  </header>
+  <div id="warn" class="warn" hidden></div>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="phrases">핵심 문구</button>
+    <button role="tab" aria-selected="false" data-tab="speech">4분 스피치</button>
+    <button role="tab" aria-selected="false" data-tab="stage">디베이트 무대</button>
+    <button role="tab" aria-selected="false" data-tab="news">대회 소식</button>
+  </div>
+  <div class="topicpick" id="topicBox" hidden>
+    <p class="motion" id="motion"></p><span class="caret" aria-hidden="true">▼</span>
+    <select id="topic" aria-label="스피치 주제 고르기"></select>
+  </div>
+  <main id="list"></main>
+  <section id="newsBox" class="news" hidden aria-label="토론 대회 소식"></section>
+  <div id="stageBox" hidden><iframe id="stageFrame" title="디베이트 무대" allow="autoplay" style="width:100%;height:360px;border:0;display:block;background:transparent"></iframe></div>
+</div>
+
+<div class="rail" id="rail">
+  <div class="rail-in">
+    <div class="status"><span id="pill" class="pill">대기</span><span id="pos">0 / 0</span><div class="bar"><i id="barfill"></i></div></div>
+    <div class="more-panel" id="morePanel" hidden>
+      <span class="lab">듣기 단위</span><select id="unit"><option value="line">한 줄씩</option><option value="sec">문단별</option></select>
+      <span class="lab">목소리</span><select id="voice"><option value="f">여성</option><option value="m">남성</option></select>
+      <span class="lab">따라 말하기</span><select id="gap"><option value="0">시간 없음</option><option value="1.2" selected>보통</option><option value="1.8">넉넉히</option></select>
+      <span class="lab">켜고 끄기</span><div class="tg">
+        <button id="hideKo" aria-pressed="true">한글</button>
+        <button id="hideEn" aria-pressed="true">영어</button>
+        <button id="dict" aria-pressed="false">단어 사전</button></div>
+    </div>
+    <div class="ctl main">
+      <button id="prev" class="round" aria-label="이전" title="이전">⏮</button>
+      <button id="play" class="round primary" aria-label="재생" title="재생">▶</button>
+      <button id="next" class="round" aria-label="다음" title="다음">⏭</button>
+      <button id="rateBtn" class="round sym" aria-label="속도" title="속도 (누를 때마다 바뀌어요)"></button>
+      <button id="repBtn" class="round sym" aria-label="반복" title="반복 횟수 (누를 때마다 바뀌어요)"></button>
+      <span hidden><select id="rate" aria-label="속도" title="속도"><option value="0.7">속도 0.7×</option><option value="0.85">속도 0.85×</option><option value="1" selected>속도 1×</option><option value="1.15">속도 1.15×</option></select>
+      <select id="rep" class="pillsel" aria-label="반복" title="반복"><option value="1">반복 1번</option><option value="2" selected>반복 2번</option><option value="3">반복 3번</option></select></span>
+      <button id="more" class="round" aria-label="더보기" aria-expanded="false" title="더보기 (속도·반복·목소리 등)">⋯</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* 대회 배너: {img:"banner1.jpg", href:"https://…", title:"…"} 를 넣으면 그 자리에 보여요. 비어 있으면 자리 표시만 나와요. */
+const BANNERS = [
+  {img:"banners/speak-your-mind.jpg", title:"Speak your mind. Make your case. — 디베이트 무대로 가기", tab:"stage"},
+  {img:"banners/ytn-hufs-wide.jpg", title:"YTN·한국외대 청소년 영어토론대회"},
+  {img:"banners/wsdc.jpg", title:"WSDC 세계학교토론대회", href:"https://wsdcdebating.org"},
+  {img:"banners/harvard.jpg", title:"하버드 토론·스피치 대회"},
+  {img:"banners/wsc.jpg", title:"월드 스칼라스 컵 World Scholar's Cup"},
+  {title:"Debate Korea Tournaments", sub:"디베이트 코리아 · 국내 영어 토론 대회", desc:"국내에서 열리는 영어 디베이트 대회 일정과 정보", href:"https://www.debatekorea.org/debate", tone:"b"},
+  {title:"National Speech & Debate Association", sub:"NSDA · 미국 스피치·디베이트 협회", desc:"스피치와 디베이트 대회, 연습 자료", href:"https://www.speechanddebate.org", tone:"c"}
+];
+const TOPICS = [["t01","AI를 학생회 임원으로","This house would make AI a member of the school student council.","AI를 학교 학생회 임원으로 두어야 한다."],["t02","초등학교 숙제 금지","This house would ban homework in elementary school.","초등학교에서 숙제를 금지해야 한다."],["t03","학생이 선생님을 평가하기","This house would let students grade their teachers.","학생들이 선생님을 평가할 수 있게 해야 한다."],["t04","종이 교과서 대신 태블릿","This house would replace paper textbooks with tablets.","종이 교과서를 태블릿으로 바꿔야 한다."],["t05","오전 10시 등교","This house would start school at 10 a.m.","학교 수업을 오전 10시에 시작해야 한다."],["t06","교복 자율화","This house would make school uniforms optional.","교복 착용을 자율로 해야 한다."],["t07","교실 내 스마트폰 금지","This house would ban smartphones in classrooms.","교실에서 스마트폰 사용을 금지해야 한다."],["t08","주 1일 자유 학습의 날","This house would give students one day a week to learn anything they want.","학생들에게 일주일에 하루, 배우고 싶은 것을 자유롭게 배우는 날을 주어야 한다."],["t09","제2외국어 대신 코딩 교육","This house would teach coding instead of a second foreign language.","제2외국어 대신 코딩을 가르쳐야 한다."],["t10","요리를 필수 과목으로","This house would make cooking a required school subject.","요리를 학교 필수 과목으로 정해야 한다."],["t11","모든 학생에게 AI 튜터를","This house would give every student an AI tutor.","모든 학생에게 AI 튜터를 제공해야 한다."],["t12","학교 급식실 일회용 플라스틱 금지","This house would ban single-use plastic in school cafeterias.","학교 급식실에서 일회용 플라스틱을 금지해야 한다."],["t13","모든 학교 옥상을 정원으로","This house would turn every school roof into a garden.","모든 학교 옥상을 정원으로 만들어야 한다."],["t14","좋은 성적에 돈으로 보상","This house would pay students for good grades.","좋은 성적을 받은 학생에게 돈으로 보상해야 한다."],["t15","선거 연령을 16세로","This house would lower the voting age to 16.","선거 연령을 16세로 낮춰야 한다."],["t16","동물원 금지","This house would ban zoos.","동물원을 금지해야 한다."],["t17","비디오 게임을 올림픽 종목으로","This house would make video games an Olympic sport.","비디오 게임을 올림픽 정식 종목으로 만들어야 한다."],["t18","모든 교실에 반려동물 허용","This house would allow class pets in every classroom.","모든 교실에서 반려동물을 기를 수 있게 해야 한다."],["t19","시험 대신 포트폴리오로","This house would replace school exams with portfolios.","학교 시험을 포트폴리오 평가로 바꿔야 한다."],["t20","모든 박물관 무료화","This house would make all museums free.","모든 박물관을 무료로 운영해야 한다."],["t21","어린이 대상 패스트푸드 광고 금지","This house would ban fast-food advertising aimed at children.","어린이를 대상으로 한 패스트푸드 광고를 금지해야 한다."],["t22","주 4일 등교제","This house would move to a four-day school week.","학교를 주 4일제로 운영해야 한다."],["t23","학생이 직접 짜는 급식 메뉴","This house would let students design the school lunch menu.","학생들이 직접 학교 급식 메뉴를 짤 수 있게 해야 한다."],["t24","도심 차량 통행 금지","This house would ban cars from city centers.","도심에서 자동차 통행을 금지해야 한다."],["t25","인류의 화성 이주","This house would send humans to live on Mars.","인류를 화성에 보내 살게 해야 한다."],["t26","모든 학생 악기 배우기 의무화","This house would require every student to learn a musical instrument.","모든 학생이 악기 하나를 배우도록 의무화해야 한다."],["t27","인플루언서의 어린이 대상 광고 금지","This house would ban influencers from advertising to children.","인플루언서가 어린이를 대상으로 광고하는 것을 금지해야 한다."],["t28","봉사활동을 졸업 요건으로","This house would make volunteering a graduation requirement.","봉사활동을 졸업 요건으로 정해야 한다."],["t29","현금을 디지털 화폐로 대체","This house would replace cash with digital money.","현금을 디지털 화폐로 대체해야 한다."],["t30","에세이 작성에 AI 도움 허용","This house would let students use AI to help write their essays.","학생들이 에세이를 쓸 때 AI의 도움을 받을 수 있게 해야 한다."],["t31","모든 교실에 CCTV 설치","This house would put cameras in every classroom.","모든 교실에 카메라를 설치해야 한다."],["t32","모든 학교에서 직접 식재료 재배","This house would make every school grow its own food.","모든 학교가 먹을거리를 직접 길러야 한다."],["t33","모든 학교를 탄소 중립으로","This house would make every school carbon-neutral.","모든 학교를 탄소 중립으로 만들어야 한다."],["t34","매주 하루 스크린 없는 날","This house would have one screen-free day every week.","매주 하루는 화면 없이 지내는 날로 정해야 한다."],["t35","고등학교 입학 전 갭이어 허용","This house would let students take a gap year before high school.","학생들이 고등학교에 들어가기 전에 갭이어를 가질 수 있게 해야 한다."],["t36","다른 나이 학생들을 같은 반에","This house would put students of different ages in the same class.","나이가 다른 학생들을 같은 반에서 함께 공부하게 해야 한다."],["t37","밤 9시 이후 학원 운영 금지","This house would close private academies (hagwons) after 9 p.m.","밤 9시 이후에는 학원 운영을 금지해야 한다."],["t38","15세 아르바이트 허용","This house would let 15-year-olds have part-time jobs.","15세 청소년의 아르바이트를 허용해야 한다."],["t39","e스포츠를 정식 동아리로","This house would make e-sports an official school club.","e스포츠를 학교 정식 동아리로 인정해야 한다."],["t40","초등학교부터 경제 교육","This house would teach money skills from elementary school.","초등학교부터 돈 관리 교육을 해야 한다."],["t41","학생 대중교통 무료화","This house would make public transport free for students.","학생들의 대중교통 이용을 무료로 해야 한다."],["t42","모든 학교에 낮잠 시간 도입","This house would give every school a daily nap time.","모든 학교에 매일 낮잠 시간을 두어야 한다."],["t43","손글씨 수업을 타자 수업으로","This house would replace handwriting lessons with typing lessons.","손글씨 수업을 타자 수업으로 바꿔야 한다."],["t44","매주 한 수업은 야외에서","This house would hold one class outdoors every week.","매주 한 수업은 야외에서 해야 한다."],["t45","학교 급식에 배양육을","This house would serve lab-grown meat in school lunches.","학교 급식에 배양육을 제공해야 한다."],["t46","아기 한 명당 나무 한 그루","This house would plant a tree for every baby born.","아기가 한 명 태어날 때마다 나무 한 그루를 심어야 한다."],["t47","학생이 직접 뽑는 교장","This house would let students elect their school principal.","학생들이 교장 선생님을 직접 뽑을 수 있게 해야 한다."],["t48","영어 토론을 필수 과목으로","This house would make English debate a required class.","영어 토론을 필수 과목으로 정해야 한다."],["t49","14세 미만 SNS 금지","This house would ban social media for children under 14.","14세 미만 어린이의 SNS 사용을 금지해야 한다."],["t50","학교 종소리 대신 음악을","This house would replace school bells with music.","학교 종소리를 음악으로 바꿔야 한다."]];
+
+const $ = id => document.getElementById(id);
+const player = new Audio(); player.preload = "auto";
+let tab = "phrases", topic = "t01", doc = null, timing = null, flat = [], secs = [], idx = 0;
+let playing = false, single = false, runId = 0, gapTimer = null, barTimer = null, raf = 0;
+const cache = {};
+
+function store(k,v){try{localStorage.setItem("dbs_"+k,v)}catch(e){}}
+function load(k){try{return localStorage.getItem("dbs_"+k)}catch(e){return null}}
+function getJSON(path){ return cache[path] || (cache[path] = fetch(path).then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })); }
+function docId(){ return tab==="speech" ? topic : "p00"; }
+function voice(){ return $("voice").value; }
+
+function renderBanners(){
+  const box = $("banners"); box.innerHTML = "";
+  if(!BANNERS.length){
+    for(let i=1;i<=3;i++){
+      const d=document.createElement("div"); d.className="banner empty";
+      d.innerHTML=`<b>English Debate Competition</b><span>영어 디베이트 대회 배너 자리 ${i}</span>`; box.appendChild(d);
+    }
+    return;
+  }
+  BANNERS.forEach(b=>{
+    const a=document.createElement(b.href?"a":b.tab?"button":"div"); a.className="banner";
+    if(b.href){ a.href=b.href; a.target="_blank"; a.rel="noopener"; }
+    if(b.tab){ a.type="button"; a.setAttribute("aria-label",b.title); a.style.cssText="padding:0;border:0;cursor:pointer"; a.onclick=()=>document.querySelector(`.tabs button[data-tab="${b.tab}"]`).click(); }
+    if(b.img){ const im=document.createElement("img"); im.src=b.img; im.alt=b.title||"영어 디베이트 대회"; a.appendChild(im); }
+    else { a.classList.add("card","tone-"+(b.tone||"a")); a.innerHTML='<span class="sub"></span><b></b><span class="desc"></span><span class="go">공식 사이트 보기 →</span>';
+      a.querySelector(".sub").textContent=b.sub||""; a.querySelector("b").textContent=b.title; a.querySelector(".desc").textContent=b.desc||""; }
+    box.appendChild(a);
+  });
+  setupDots();
+}
+
+/* 배너는 한 장씩 보여 주고 아래 점으로 넘김 — 5초마다 자동으로 다음 장, 손으로 밀어도 넘어감 */
+function setupDots(){
+  const box=$("banners"), dots=$("dots"), n=box.children.length;
+  dots.innerHTML=""; dots.hidden = n<2;
+  let cur=0, timer=null;
+  const go=(i,smooth=true)=>{ cur=(i+n)%n; box.scrollTo({left:cur*box.clientWidth,behavior:smooth&&!matchMedia("(prefers-reduced-motion: reduce)").matches?"smooth":"auto"}); paint(); };
+  const paint=()=>[...dots.children].forEach((d,j)=>d.setAttribute("aria-current", j===cur ? "true" : "false"));
+  const auto=()=>{ clearInterval(timer); if(!matchMedia("(prefers-reduced-motion: reduce)").matches) timer=setInterval(()=>{ if(!document.hidden) go(cur+1); },5000); };
+  for(let i=0;i<n;i++){
+    const b=document.createElement("button"); b.setAttribute("aria-label",`배너 ${i+1}`);
+    b.onclick=()=>{ go(i); auto(); }; dots.appendChild(b);
+  }
+  let t=null;
+  box.addEventListener("scroll",()=>{ clearTimeout(t); t=setTimeout(()=>{ const i=Math.round(box.scrollLeft/box.clientWidth); if(i!==cur){ cur=i; paint(); } },80); },{passive:true});
+  box.addEventListener("pointerdown",auto);
+  addEventListener("resize",()=>go(cur,false));
+  paint(); auto();
+}
+
+/* [대괄호] = 힘주어 말할 단어 */
+function parseWords(raw){
+  const out=[], re=/\[([^\]]+)\]|([^\[]+)/g; let m;
+  while((m=re.exec(raw))){ const em=m[1]!=null; (m[1]??m[2]).trim().split(/\s+/).filter(Boolean).forEach(t=>out.push({t,em})); }
+  return out;
+}
+
+async function openDoc(){
+  stop();
+  const id = docId();
+  $("list").innerHTML = '<p style="color:var(--muted)">불러오는 중…</p>';
+  try{
+    doc = await getJSON(`data/${id}.json`);
+    if(id!==docId()) return;
+    render();
+    loadAudio();
+  }catch(e){ $("list").innerHTML = '<p class="warn">대본을 불러오지 못했어요. 새로고침해 주세요.</p>'; }
+}
+
+async function loadAudio(){
+  const id = docId(), v = voice();
+  timing = null;
+  player.src = `audio/${v}/${id}.mp3`; player.load();
+  try{ const t = await getJSON(`timing/${id}.${v}.json`); if(id===docId() && v===voice()) timing = t; }
+  catch(e){ showWarn("음성 정보를 불러오지 못했어요. 새로고침해 주세요."); }
+}
+
+function render(){
+  const list=$("list"); list.innerHTML=""; flat=[]; secs=[];
+  const done = new Set(JSON.parse(load("done_"+docId())||"[]"));
+  const sp = tab==="speech";
+  $("topicBox").hidden = !sp;
+  if(sp){ const n=TOPICS.findIndex(x=>x[0]===topic), tp=TOPICS[n]; $("motion").innerHTML = `<small></small>`; $("motion").querySelector("small").textContent=`Motion · ${String(n+1).padStart(2,"0")}/${TOPICS.length}`; $("motion").append(Object.assign(document.createElement("span"),{className:"mt",textContent:doc.motion})); const mk=document.createElement("span"); mk.className="mk"; mk.textContent=tp?tp[3]:""; $("motion").append(mk); }
+  doc.sections.forEach((sec,si)=>{
+    const s=document.createElement("section"); s.className="section";
+    s.innerHTML=`<div class="sec-head"><h2></h2><span class="tag"></span></div><div class="lines"></div>`;
+    s.querySelector("h2").textContent=sec.h; s.querySelector(".tag").textContent=sec.t;
+    const box=s.querySelector(".lines"), first=flat.length;
+    sec.l.forEach(([raw,ko])=>{
+      const i=flat.length, words=parseWords(raw);
+      const d=document.createElement("div"); d.className="line"+(done.has(i)?" done":""); d.tabIndex=0; d.setAttribute("role","button");
+      d.innerHTML=`<span class="n">${String(i+1).padStart(2,"0")}</span><div style="min-width:0"><div class="en" lang="en"></div><div class="ko"></div></div>`;
+      const en=d.querySelector(".en");
+      words.forEach((w,wi)=>{
+        if(wi) en.appendChild(document.createTextNode(" "));
+        const x=document.createElement("span"); x.className=w.em?"w em":"w"; x.textContent=w.t;
+        x.addEventListener("click",e=>{ if(document.body.classList.contains("dict")){ e.stopPropagation(); openDict(w.t); } });
+        en.appendChild(x); w.el=x;
+      });
+      d.querySelector(".ko").textContent=ko;
+      const go=()=>{ stop(); idx=i; single=true; start(); };
+      d.addEventListener("click",go);
+      d.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } });
+      box.appendChild(d);
+      flat.push({words,el:d,sec:si});
+    });
+    secs.push({el:s,from:first,to:flat.length-1});
+    list.appendChild(s);
+  });
+  idx=Math.min(parseInt(load("idx_"+docId())||"0",10)||0, flat.length-1);
+  mark(); updatePos();
+}
+
+function mark(){
+  flat.forEach((f,i)=>f.el.classList.toggle("now", playing && i===idx));
+  secs.forEach((s,si)=>s.el.classList.toggle("now", playing && unit()==="sec" && flat[idx]?.sec===si));
+}
+function unit(){ return $("unit").value; }
+function updatePos(){
+  if(unit()==="sec" && flat[idx]) $("pos").textContent=`문단 ${flat[idx].sec+1} / ${secs.length}`;
+  else $("pos").textContent=`${Math.min(idx+1,flat.length)} / ${flat.length}`;
+}
+function setPill(t,c){ const p=$("pill"); p.textContent=t; p.className="pill"+(c?" "+c:""); }
+function setBar(f){ $("barfill").style.width=Math.max(0,Math.min(1,f))*100+"%"; }
+function setCur(i,wi){ flat.forEach((f,j)=>f.words.forEach((w,k)=>w.el.classList.toggle("cur", j===i && k===wi))); }
+function showWarn(t){ const w=$("warn"); w.textContent=t; w.hidden=false; }
+function scrollToEl(el){ el.scrollIntoView({block:"center",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); }
+
+function ready(){ return player.readyState>=1 ? Promise.resolve() : new Promise(r=>player.addEventListener("loadedmetadata",r,{once:true})); }
+
+/* from~to 줄을 한 번에 이어서 재생 — 지금 읽는 줄과 단어를 따라 표시 */
+function playRange(from,to,id){
+  return new Promise(async res=>{
+    if(!timing){ try{ timing = await getJSON(`timing/${docId()}.${voice()}.json`); }catch(e){ res(0); return; } }
+    const a=timing[from][0], b=timing[to][0]+timing[to][1], t0=performance.now();
+    let finished=false;
+    const end=()=>{ if(finished) return; finished=true; cancelAnimationFrame(raf); player.pause(); setCur(-1,-1); res(performance.now()-t0); };
+    const tick=()=>{
+      if(id!==runId){ end(); return; }
+      const t=player.currentTime;
+      if(t>=b-0.02 || player.ended){ end(); return; }
+      let li=from; while(li<to && t>=timing[li+1][0]) li++;
+      if(li!==idx && unit()==="sec"){ idx=li; mark(); scrollToEl(flat[li].el); }
+      const rel=t-timing[li][0], ms=timing[li][2]; let wi=-1;
+      for(let k=0;k<ms.length && ms[k]<=rel+0.05;k++) wi=k;
+      setCur(li, Math.min(wi, flat[li].words.length-1));
+      raf=requestAnimationFrame(tick);
+    };
+    player.playbackRate=parseFloat($("rate").value); player.preservesPitch=true;
+    const early = player.readyState>=1;
+    if(early) player.currentTime=a;
+    const p=player.play();
+    if(p) p.catch(e=>{ if(e && e.name==="NotAllowedError") showWarn("재생 버튼을 한 번 더 눌러 주세요."); else showWarn("음성을 재생하지 못했어요. 새로고침해 주세요."); stop(); end(); });
+    await ready();
+    if(id!==runId){ end(); return; }
+    if(!early) player.currentTime=a;
+    raf=requestAnimationFrame(tick);
+  });
+}
+
+function wait(ms,id){
+  return new Promise(res=>{
+    const t0=performance.now(); clearInterval(barTimer);
+    barTimer=setInterval(()=>{ if(id!==runId){ clearInterval(barTimer); return; } setBar((performance.now()-t0)/ms); },50);
+    gapTimer=setTimeout(()=>{ clearInterval(barTimer); setBar(1); res(); },ms);
+  });
+}
+
+async function start(){
+  if(!flat.length) return;
+  playing=true; const id=++runId; $("play").textContent="❚❚"; $("play").setAttribute("aria-label","멈춤"); $("warn").hidden=true;
+  while(playing && id===runId && idx<flat.length){
+    const bySec = unit()==="sec";
+    const s = secs[flat[idx].sec];
+    const from = bySec ? s.from : idx, to = bySec ? s.to : idx;
+    idx=from; mark(); updatePos(); scrollToEl(bySec ? s.el : flat[idx].el); store("idx_"+docId(),idx);
+    const reps=parseInt($("rep").value,10), gapF=parseFloat($("gap").value);
+    for(let r=0;r<reps;r++){
+      if(id!==runId) return;
+      idx=from; mark(); setBar(0); setPill(reps>1?`듣기 ${r+1}/${reps}`:"듣기","speak");
+      const dur=await playRange(from,to,id);
+      if(id!==runId) return;
+      if(gapF>0){ setPill("따라 말하기","you"); await wait(Math.max(900,dur*gapF),id); }
+    }
+    if(id!==runId) return;
+    const doneSet=new Set(JSON.parse(load("done_"+docId())||"[]"));
+    for(let i=from;i<=to;i++){ flat[i].el.classList.add("done"); doneSet.add(i); }
+    store("done_"+docId(),JSON.stringify([...doneSet]));
+    idx=to;
+    if(single) break;
+    idx++;
+  }
+  if(id===runId){ playing=false; single=false; idx=Math.min(idx,flat.length-1); $("play").textContent="▶"; $("play").setAttribute("aria-label","재생"); setPill("끝",""); setBar(0); mark(); updatePos(); }
+}
+
+function stop(){
+  runId++; playing=false; clearTimeout(gapTimer); clearInterval(barTimer); cancelAnimationFrame(raf);
+  player.pause(); setCur(-1,-1);
+  $("play").textContent="▶"; $("play").setAttribute("aria-label","재생"); setPill("대기",""); setBar(0); mark();
+}
+
+function step(d){
+  const was=playing; stop();
+  if(unit()==="sec"){ const si=Math.max(0,Math.min(secs.length-1,(flat[idx]?.sec||0)+d)); idx=secs[si].from; }
+  else idx=Math.max(0,Math.min(flat.length-1,idx+d));
+  updatePos(); if(flat[idx]) scrollToEl(flat[idx].el);
+  if(was){ single=false; start(); }
+}
+
+$("play").onclick=()=>{ if(playing) stop(); else { single=false; if(idx>=flat.length-1 && flat[idx]?.el.classList.contains("done")) idx=0; start(); } };
+/* 로고를 누르면 첫 화면(토론 핵심 문구 탭, 맨 위)으로 새로고침 */
+document.querySelector("header .logo").addEventListener("click",e=>{ e.preventDefault(); stop(); store("tab","phrases"); store("idx_p00","0"); try{sessionStorage.setItem("dbs_nosplash","1")}catch(_){} scrollTo(0,0); location.reload(); });
+$("prev").onclick=()=>step(-1);
+$("next").onclick=()=>step(1);
+function cycle(sel){ const o=[...$(sel).options], i=o.findIndex(x=>x.value===$(sel).value); $(sel).value=o[(i+1)%o.length].value; $(sel).dispatchEvent(new Event("change")); syncCycle(); }
+/* 글자 없이: 속도는 1×, 반복은 ↻ 옆에 횟수 */
+function syncCycle(){ $("rateBtn").textContent=$("rate").value+"×"; $("repBtn").innerHTML=`<svg class="repico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M18.6 2.8v4.4h-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="12" y="12.3" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="800" fill="currentColor">${$("rep").value}</text></svg>`; /* 동그란 화살표 안에 반복 횟수 */
+  $("rateBtn").setAttribute("aria-label","속도 "+$("rate").value+"배"); $("repBtn").setAttribute("aria-label","반복 "+$("rep").value+"번"); }
+$("rateBtn").onclick=()=>cycle("rate"); $("repBtn").onclick=()=>cycle("rep");
+$("more").onclick=()=>{ const open=$("morePanel").hidden; $("morePanel").hidden=!open; $("more").setAttribute("aria-expanded",open); padForRail(); };
+
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+  if(b.dataset.tab===tab) return;
+  tab=b.dataset.tab; store("tab",tab);
+  document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x===b?"true":"false"));
+  showTab();
+});
+
+/* 디베이트 무대는 별도 페이지(stage.html)를 탭 안에 띄움 — 쉐도잉 목록과 아래 버튼 줄은 숨김 */
+/* 대회 소식: data/news.json을 하루에 한 번만 받아 와서 휴대폰에 저장해 두고, 같은 날엔 저장본을 씀 */
+function today(){ const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+async function getNews(){
+  try{ const c=JSON.parse(load("news")||"null"); if(c && c.day===today() && c.data) return c.data; }catch(e){}
+  try{ const r=await fetch("data/news.json",{cache:"no-store"}); if(!r.ok) throw 0; const data=await r.json(); store("news",JSON.stringify({day:today(),data})); return data; }
+  catch(e){ try{ const c=JSON.parse(load("news")||"null"); if(c&&c.data) return c.data; }catch(_){} return null; }
+}
+async function renderNews(){
+  const box=$("newsBox"); if(box.dataset.done) return; box.dataset.done=1;
+  box.innerHTML='<p class="upd">불러오는 중…</p>';
+  const data=await getNews();
+  if(!data){ box.querySelector('.upd').textContent="소식을 불러오지 못했어요. 인터넷 연결을 확인해 주세요."; delete box.dataset.done; return; }
+  box.querySelector('.upd').textContent=`기사로 확인한 소식만 모았어요 · 마지막 정리 ${data.updated}`;
+  [...data.items].sort((a,b)=>b.d.localeCompare(a.d)).forEach(n=>{
+    const a=document.createElement('a'); a.className="nc"; a.href=n.u; a.target="_blank"; a.rel="noopener";
+    a.innerHTML='<span class="meta"><span class="tg"></span><span class="dt"></span><span class="src"></span></span><b></b><p></p>';
+    a.querySelector('.tg').textContent=n.tag; a.querySelector('.tg').classList.add(n.tag); a.querySelector('.dt').textContent=n.d.replace(/-/g,".");
+    a.querySelector('b').textContent=n.t; a.querySelector('p').textContent=n.s; a.querySelector('.src').textContent=n.src+" ↗";
+    box.appendChild(a);
+  });
+}
+/* 디베이트 무대는 별도 페이지(stage.html), 대회 소식은 기사 목록 — 쉐도잉 목록과 아래 버튼 줄은 숨김 */
+/* 아래 여백은 고정 버튼 줄 높이만큼만 (버튼 줄이 없는 탭에서는 거의 없음) */
+function padForRail(){ const r=$("rail"); document.querySelector(".wrap").style.paddingBottom=(r.hidden?24:r.offsetHeight+16)+"px"; }
+addEventListener("resize",padForRail);
+function showTab(){
+  const st = tab==="stage", nw = tab==="news", other = st||nw;
+  $("stageBox").hidden=!st; $("newsBox").hidden=!nw; $("list").hidden=other; $("rail").hidden=other;
+  if(other){ stop(); $("topicBox").hidden=true; }
+  if(st && !$("stageFrame").getAttribute("src")) $("stageFrame").src="stage.html";
+  if(nw) renderNews();
+  if(!other) openDoc();
+  requestAnimationFrame(padForRail);
+}
+let stageLive=false;
+/* 휴대폰 화면 높이(바깥 창이 내용만큼 늘어나는 경우도 대비해 화면 크기로 제한)에서 로고 아래 남은 만큼 */
+function fitStage(){ const f=$("stageFrame"); const vh=Math.min(innerHeight, (window.visualViewport&&visualViewport.height)||innerHeight, screen.availHeight||innerHeight);
+  f.style.height=Math.max(320, vh-f.getBoundingClientRect().top-2)+"px"; }
+addEventListener("message",e=>{
+  if(e.source!==$("stageFrame").contentWindow || !e.data) return;
+  if(typeof e.data.stageLive==="boolean"){
+    stageLive=e.data.stageLive; document.body.classList.toggle("stage-live",stageLive);
+    if(stageLive){ scrollTo(0,0); requestAnimationFrame(fitStage); }
+  }
+  if("speaker" in e.data){ const sp=$("spk"), v=e.data.speaker; sp.classList.toggle("on",!!v);
+    if(v){ sp.querySelector("b").textContent=v.name; sp.querySelector("b").style.setProperty("--team",v.color); sp.querySelector("small").textContent=v.label; } }
+  if(!stageLive && e.data.stageHeight) $("stageFrame").style.height=Math.ceil(e.data.stageHeight)+"px";
+});
+addEventListener("resize",()=>{ if(stageLive) fitStage(); });
+
+function toggle(btn,cls,inv){ const on=!document.body.classList.contains(cls); document.body.classList.toggle(cls,on); btn.setAttribute("aria-pressed",inv?!on:on); store(cls,on?"1":"0"); }
+$("hideKo").onclick=()=>toggle($("hideKo"),"hide-ko",true); /* 채워짐 = 한글 보임 */
+$("hideEn").onclick=()=>toggle($("hideEn"),"hide-en",true); /* 채워짐 = 영어 보임 */
+$("dict").onclick=()=>toggle($("dict"),"dict");
+
+/* 단어 사전이 켜져 있으면 단어를 눌렀을 때 네이버 영어사전을 새 탭으로 열어요 */
+function openDict(word){
+  const q=word.toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9'-]/g,"").replace(/'s$/,"").replace(/^'+|'+$/g,"");
+  if(!q) return;
+  const a=document.createElement("a"); a.href="https://en.dict.naver.com/#/search?query="+encodeURIComponent(q); a.target="_blank"; a.rel="noopener";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+["rate","rep","gap","unit"].forEach(k=>$(k).addEventListener("change",()=>{ store(k,$(k).value); if(k==="unit"){ updatePos(); mark(); } }));
+$("voice").addEventListener("change",()=>{ stop(); store("voice2",voice()); loadAudio(); });
+$("topic").addEventListener("change",()=>{ topic=$("topic").value; store("topic",topic); openDoc(); window.scrollTo({top:$("topicBox").offsetTop-8}); });
+
+/* 시작 화면 재생 */
+(function splash(){
+  const el=$("splash"); let skip=false;
+  try{ if(sessionStorage.getItem("dbs_nosplash")){ sessionStorage.removeItem("dbs_nosplash"); el.remove(); return; } }catch(e){}
+  const done=()=>{ if(skip) return; skip=true; el.classList.add("out"); setTimeout(()=>el.remove(),500); };
+  el.addEventListener("click",done); setTimeout(done,4500);
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  const parts=["bk","fr","st"].map(c=>el.querySelector("."+c));
+  parts.forEach(p=>{ p.style.transformBox="fill-box"; p.style.transformOrigin="50% 70%"; p.style.transform="scale(0)"; });
+  const grow=p=>p.animate?p.animate([{transform:"scale(0)"},{transform:"scale(1.12)"},{transform:"scale(1)"}],{duration:420,easing:"ease-out",fill:"forwards"}):(p.style.transform="none");
+  const spin=p=>p.animate?p.animate([{transform:"scale(0) rotate(-200deg)"},{transform:"scale(1) rotate(0)"}],{duration:600,easing:"cubic-bezier(.3,1.5,.5,1)",fill:"forwards"}):(p.style.transform="none");
+  async function type(box,segs,speed){ for(const [txt,cls] of segs){ const h=document.createElement("span"); if(cls) h.className=cls; box.appendChild(h);
+    for(const ch of txt){ if(skip) return; const s=document.createElement("span"); s.className="ch"; s.textContent=ch===" "?"\u00a0":ch; h.appendChild(s); await wait(speed+Math.random()*25); } } }
+  (async()=>{
+    await wait(150); grow(parts[0]); await wait(180); grow(parts[1]); await wait(260); spin(parts[2]); await wait(450);
+    await type($("spW"),[["Debate "],["Stars","s"]],55); await wait(80); await type($("spK"),[["디베이트스타즈"]],50);
+    if(skip) return; const lb=$("spL"); lb.style.visibility="visible";
+    for(let p=0;p<=100;p+=5){ if(skip) return; lb.firstChild.style.width=p+"%"; await wait(40); }
+    await wait(200); done();
+  })();
+})();
+(function init(){
+  /* 주제 목록: 한글 제목 · 영어 (논제에서 'This house would' 뺀 짧은 형태) */
+  const shortEn=en=>{ const s=en.replace(/^This house (would|believes that)\s+/i,"").replace(/\.$/,""); return s[0].toUpperCase()+s.slice(1); };
+  TOPICS.forEach(([id,ko,en],i)=>{ const o=document.createElement("option"); o.value=id; o.textContent=`${String(i+1).padStart(2,"0")}. ${ko} · ${shortEn(en)}`; o.title=en; $("topic").appendChild(o); });
+  const sv=load("topic"); if(TOPICS.some(t=>t[0]===sv)) topic=sv; $("topic").value=topic;
+  for(const [k,key] of [["rate","rate"],["rep","rep"],["gap","gap"],["unit","unit"],["voice","voice2"]]){ const v=load(key); if(v && [...$(k).options].some(o=>o.value===v)) $(k).value=v; }
+  for(const [id,cls,inv] of [["hideKo","hide-ko",1],["hideEn","hide-en",1],["dict","dict",0]]) if(load(cls)==="1"){ document.body.classList.add(cls); $(id).setAttribute("aria-pressed",inv?"false":"true"); }
+  const savedTab=load("tab"); if(["speech","stage","news"].includes(savedTab)){ tab=savedTab; document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x.dataset.tab===tab?"true":"false")); }
+  renderBanners();
+  syncCycle();
+  showTab();
+})();
+</script>
+
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
+</body></html>

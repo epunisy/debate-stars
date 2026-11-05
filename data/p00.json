@@ -1,0 +1,169 @@
+{
+ "id": "p00",
+ "motion": "Key phrases",
+ "ko": "토론 핵심 문구",
+ "sections": [
+  {
+   "h": "시작·인사",
+   "t": "Opening",
+   "l": [
+    [
+     "Thank you, [Madam Speaker.]",
+     "의장님, 감사합니다."
+    ],
+    [
+     "Today, we are [proud to propose] the motion.",
+     "오늘 저희는 이 논제에 자신 있게 찬성합니다."
+    ],
+    [
+     "Today, we are [proud to oppose] the motion.",
+     "오늘 저희는 이 논제에 자신 있게 반대합니다."
+    ],
+    [
+     "Let me begin by [defining the key terms.]",
+     "먼저 핵심 용어를 정의하겠습니다."
+    ],
+    [
+     "Our stance is [clear.]",
+     "저희 입장은 분명합니다."
+    ]
+   ]
+  },
+  {
+   "h": "구조 안내",
+   "t": "Signposting",
+   "l": [
+    [
+     "I will present [two main arguments.]",
+     "두 가지 주요 논거를 제시하겠습니다."
+    ],
+    [
+     "[First, second, and finally.]",
+     "첫째, 둘째, 그리고 마지막으로."
+    ],
+    [
+     "Moving on to [my next point,]",
+     "다음 논점으로 넘어가서,"
+    ],
+    [
+     "Let me now turn to [the opposition's case.]",
+     "이제 상대측 주장을 다루겠습니다."
+    ]
+   ]
+  },
+  {
+   "h": "주장·근거",
+   "t": "Arguments",
+   "l": [
+    [
+     "The reason is [simple.]",
+     "이유는 간단합니다."
+    ],
+    [
+     "Let me give you [an example.]",
+     "예를 하나 들겠습니다."
+    ],
+    [
+     "According to [recent studies,]",
+     "최근 연구에 따르면,"
+    ],
+    [
+     "This clearly shows that [we are right.]",
+     "이는 저희가 옳다는 것을 분명히 보여줍니다."
+    ],
+    [
+     "This matters because it affects [every student.]",
+     "이것이 중요한 이유는 모든 학생에게 영향을 주기 때문입니다."
+    ]
+   ]
+  },
+  {
+   "h": "반박",
+   "t": "Rebuttal",
+   "l": [
+    [
+     "The opposition claimed that it is too risky. [However,]",
+     "상대측은 너무 위험하다고 했지만,"
+    ],
+    [
+     "That argument has [a serious flaw.]",
+     "그 주장에는 심각한 허점이 있습니다."
+    ],
+    [
+     "This is [simply not true.]",
+     "이건 사실이 아닙니다."
+    ],
+    [
+     "[Even if] we accept that,",
+     "설령 그걸 인정하더라도,"
+    ],
+    [
+     "They failed to [explain why.]",
+     "상대측은 그 이유를 설명하지 못했습니다."
+    ]
+   ]
+  },
+  {
+   "h": "비교·강조",
+   "t": "Weighing",
+   "l": [
+    [
+     "[Even more importantly,]",
+     "더 중요한 것은,"
+    ],
+    [
+     "On balance, our side brings [greater benefits.]",
+     "종합하면 저희 측이 더 큰 이익을 가져옵니다."
+    ],
+    [
+     "[The real question] is this.",
+     "진짜 핵심 질문은 이것입니다."
+    ],
+    [
+     "[This outweighs] their concern.",
+     "이것이 상대측 우려보다 더 중요합니다."
+    ]
+   ]
+  },
+  {
+   "h": "질문 주고받기",
+   "t": "POI",
+   "l": [
+    [
+     "[Point of information,] please.",
+     "질문 있습니다."
+    ],
+    [
+     "Yes, I'll take [your point.]",
+     "네, 질문 받겠습니다."
+    ],
+    [
+     "[No, thank you.] Maybe later.",
+     "지금은 사양하겠습니다."
+    ],
+    [
+     "Thank you for that question, [but,]",
+     "좋은 질문 감사합니다만,"
+    ]
+   ]
+  },
+  {
+   "h": "마무리",
+   "t": "Closing",
+   "l": [
+    [
+     "[To sum up,]",
+     "요약하면,"
+    ],
+    [
+     "For all [these reasons,]",
+     "이러한 모든 이유로,"
+    ],
+    [
+     "We are [proud to propose.] Thank you.",
+     "자신 있게 찬성합니다. 감사합니다."
+    ]
+   ]
+  }
+ ]
+}

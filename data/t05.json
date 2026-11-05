@@ -1,0 +1,82 @@
+{
+ "id": "t05",
+ "motion": "This house would start school at 10 a.m.",
+ "ko": "오전 10시 등교",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that [school should start at 10 a.m.]", "오늘 저희는 학교가 오전 10시에 시작해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By starting at 10 a.m., we mean [the first class begins at ten.]", "오전 10시 시작이란 첫 수업이 10시에 시작한다는 뜻입니다."],
+    ["The school day [moves later,] so it also ends later.", "학교 일과가 뒤로 밀리므로 끝나는 시간도 늦어집니다."],
+    ["We are [not cutting any classes.]", "저희는 수업을 하나도 줄이지 않습니다."],
+    ["And the school library stays open early for students who [need to come in early,] for example because their parents work.", "그리고 부모님 출근 등으로 일찍 와야 하는 학생을 위해 학교 도서관은 일찍 문을 엽니다."],
+    ["So the real question is whether students learn better [with more sleep] or [with an early start.]", "그러니 진짜 질문은 학생들이 잠을 더 잘 때 더 잘 배우는지, 일찍 시작할 때 더 잘 배우는지입니다."],
+    ["Our stance is clear: [more sleep wins.]", "저희 입장은 분명합니다. 더 많은 잠이 이깁니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] teenagers [need more sleep] to learn well.", "첫째, 십 대는 잘 배우기 위해 잠이 더 필요합니다."],
+    ["[Second,] calmer mornings make students [healthier and happier.]", "둘째, 여유로운 아침은 학생들을 더 건강하고 행복하게 만듭니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Sleep helps learning",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] teenagers [need more sleep] to learn well.", "첫째, 십 대는 잘 배우기 위해 잠이 더 필요합니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["When we become teenagers, our bodies [naturally want to sleep later] and wake up later.", "십 대가 되면 우리 몸은 자연스럽게 더 늦게 자고 더 늦게 일어나고 싶어 합니다."],
+    ["This is [not laziness.] It is how a growing body works.", "이것은 게으름이 아닙니다. 자라는 몸이 원래 그렇게 작동합니다."],
+    ["But school asks us to [wake up at seven,] when our brains are still asleep.", "하지만 학교는 뇌가 아직 자고 있는 일곱 시에 일어나라고 합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Look around a classroom during [first period math.]", "1교시 수학 시간에 교실을 둘러보세요."],
+    ["You will see students [yawning,] resting their heads on the desk, and staring at the clock.", "하품하고, 책상에 머리를 대고, 시계만 쳐다보는 학생들이 보일 것입니다."],
+    ["The teacher explains [a new formula,] but half the class misses it.", "선생님이 새 공식을 설명하지만 반 정도는 놓칩니다."],
+    ["Now imagine the same class [at ten o'clock,] after two more hours of sleep.", "이제 두 시간 더 자고 난 뒤 10시에 같은 수업을 상상해 보세요."],
+    ["Students are [awake, curious,] and ready to ask questions.", "학생들은 깨어 있고, 호기심이 있고, 질문할 준비가 되어 있습니다."],
+    ["This matters because sleep is [when the brain saves what we learned.]", "잠은 뇌가 배운 것을 저장하는 시간이기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Calmer, healthier mornings",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, calmer mornings make students [healthier and happier.]", "다음 논점으로 넘어가서, 여유로운 아침은 학생들을 더 건강하고 행복하게 만듭니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Right now, many mornings are [a race.]", "지금 많은 아침은 경주와 같습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine Seojun, who wakes up late, [skips breakfast,] and runs to the bus stop.", "늦게 일어나 아침을 거르고 버스 정류장으로 뛰어가는 서준이를 상상해 보세요."],
+    ["He arrives [hungry and stressed,] and he feels grumpy all morning.", "그는 배고프고 스트레스받은 채 도착해서 오전 내내 짜증이 납니다."],
+    ["With a 10 a.m. start, Seojun can [eat breakfast with his family.]", "10시 등교라면 서준이는 가족과 함께 아침을 먹을 수 있습니다."],
+    ["Students who sleep well are also [less tired, less angry,] and get sick less often.", "잘 자는 학생들은 덜 피곤하고, 덜 화내고, 덜 아픕니다."],
+    ["That means [fewer fights] in the hallway and [fewer empty seats] in class.", "이는 복도에서의 다툼이 줄고 교실의 빈자리가 줄어든다는 뜻입니다."],
+    ["This matters because a [healthy, happy student] is a student who can actually learn.", "건강하고 행복한 학생이야말로 실제로 배울 수 있는 학생이기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, students will just [stay up even later] on their phones.", "상대측은 학생들이 휴대폰을 하며 더 늦게까지 깨어 있을 거라고 할 것입니다."],
+    ["[Even if we accept that] some students do this, [most students will still sleep more.]", "설령 일부 학생이 그런다고 인정하더라도, 대부분의 학생은 여전히 더 많이 잘 것입니다."],
+    ["Our bodies get sleepy at about the same time [no matter when school starts.]", "우리 몸은 학교가 언제 시작하든 비슷한 시간에 졸려집니다."],
+    ["So a later start gives us [extra sleep in the morning,] not extra phone time at night.", "그러니 늦은 등교는 밤의 추가 휴대폰 시간이 아니라 아침의 추가 수면을 줍니다."],
+    ["And the early library means [no student is left alone outside.]", "그리고 일찍 여는 도서관 덕분에 밖에 혼자 남겨지는 학생은 없습니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side helps [every student,] every morning, all year long.", "더 중요한 것은, 저희 측은 1년 내내 매일 아침 모든 학생을 돕는다는 점입니다."],
+    ["[This outweighs their concern,] because a few students using phones is much less important than [thousands of tired brains] getting the rest they need.", "몇몇 학생의 휴대폰 사용보다 수천 개의 지친 뇌가 필요한 휴식을 얻는 게 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] a 10 a.m. start helps students [learn better,] and it gives them [healthier, happier mornings.]", "요약하면, 10시 등교는 학생들이 더 잘 배우게 하고 더 건강하고 행복한 아침을 줍니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

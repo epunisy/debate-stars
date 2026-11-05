@@ -1,0 +1,82 @@
+{
+ "id": "t29",
+ "motion": "This house would replace cash with digital money.",
+ "ko": "현금을 디지털 화폐로 대체",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose the motion that [cash should be replaced with digital money.]", "오늘 저희는 현금을 디지털 화폐로 대체해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By digital money, we mean paying with [cards, phones, or a simple payment band] instead of coins and paper bills.", "디지털 화폐란 동전과 지폐 대신 카드, 휴대폰, 간단한 결제 밴드로 지불하는 걸 뜻합니다."],
+    ["The government would give [a free card to every citizen,] including children and older people.", "정부는 어린이와 노인을 포함한 모든 국민에게 무료 카드를 줍니다."],
+    ["The change would happen [slowly, over several years.]", "변화는 몇 년에 걸쳐 천천히 이루어집니다."],
+    ["So the real question is [not whether cash feels familiar.]", "그러니 진짜 질문은 현금이 익숙하냐가 아닙니다."],
+    ["The real question is whether [digital money makes life safer and easier.]", "디지털 화폐가 삶을 더 안전하고 편하게 만드느냐가 진짜 질문입니다."],
+    ["Our stance is clear: [it does.]", "저희 입장은 분명합니다. 그렇습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] digital money is [harder to steal and lose.]", "첫째, 디지털 화폐는 훔치거나 잃어버리기 더 어렵습니다."],
+    ["[Second,] it helps us [manage our money better.]", "둘째, 디지털 화폐는 돈을 더 잘 관리하도록 돕습니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Safer money",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] digital money is [harder to steal and lose.]", "첫째, 디지털 화폐는 훔치거나 잃어버리기 더 어렵습니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["When cash is gone, [it's gone forever.]", "현금은 사라지면 영원히 사라집니다."],
+    ["Nobody can [find it] or [give it back.]", "누구도 그걸 찾거나 돌려줄 수 없습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine you bring [50,000 won] to buy a birthday present for your friend.", "친구 생일 선물을 사려고 5만 원을 가져왔다고 상상해 보세요."],
+    ["On the bus, it [falls out of your pocket.]", "버스에서 그 돈이 주머니에서 떨어집니다."],
+    ["With cash, that money is [lost for good.]", "현금이라면 그 돈은 완전히 잃어버린 겁니다."],
+    ["But if you lose your card, you just [block it with one click] and get a new one. [Your money is still safe.]", "하지만 카드를 잃어버리면 클릭 한 번으로 정지하고 새 카드를 받으면 됩니다. 돈은 여전히 안전합니다."],
+    ["Also, thieves and criminals love cash because [it leaves no record.]", "또 도둑과 범죄자들은 기록이 남지 않아 현금을 좋아합니다."],
+    ["This matters because [everyone deserves to keep their money safe,] especially children.", "모두가, 특히 아이들이 자기 돈을 안전하게 지킬 권리가 있기 때문에 이것이 중요합니다."],
+    ["This clearly shows that [digital money protects people.]", "이는 디지털 화폐가 사람들을 지켜 준다는 걸 분명히 보여줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Smarter spending",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, digital money helps us [manage our money better.]", "다음 논점으로 넘어가서, 디지털 화폐는 돈을 더 잘 관리하도록 돕습니다."],
+    ["With cash, it's easy to [forget where your money went.]", "현금은 돈이 어디로 갔는지 잊어버리기 쉽습니다."],
+    ["You open your wallet on Friday and think, [wait, where did it all go?]", "금요일에 지갑을 열고 '어, 다 어디 갔지?'라고 생각합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Maybe a student gets [10,000 won of pocket money] every week.", "어떤 학생이 매주 용돈으로 1만 원을 받는다고 해 봅시다."],
+    ["With a digital app, she can see, [I spent 7,000 won on snacks this week.]", "디지털 앱으로 '이번 주에 간식에 7천 원을 썼구나'라고 확인할 수 있습니다."],
+    ["She can [set a goal] and save for new headphones.", "목표를 세우고 새 헤드폰을 위해 저축할 수 있습니다."],
+    ["She is learning [real money skills] at a young age.", "그 학생은 어린 나이에 진짜 돈 관리 기술을 배우고 있습니다."],
+    ["And shops save time too, because [no one needs to count coins] or worry about fake bills.", "그리고 가게도 동전을 세거나 위조지폐를 걱정할 필요가 없어 시간을 아낍니다."],
+    ["This matters because [smart money habits] last a lifetime.", "현명한 돈 습관은 평생 가기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [older people and poor people] might not have phones or bank accounts.", "상대측은 '노인과 가난한 사람들은 휴대폰이나 은행 계좌가 없을 수 있다'고 할 것입니다."],
+    ["[Even if we accept that] this is a real problem, remember our definition.", "설령 그것이 실제 문제임을 인정하더라도, 저희 정의를 기억해 주세요."],
+    ["[Every citizen gets a free card,] and you don't need a smartphone to use it.", "모든 국민이 무료 카드를 받고, 그걸 쓰는 데 스마트폰은 필요 없습니다."],
+    ["And because the change is slow, there is [plenty of time] to teach everyone.", "그리고 변화가 천천히 이뤄지니 모두에게 가르칠 시간이 충분합니다."],
+    ["So the risk is [very small,] but the benefit is [very big.]", "그러니 위험은 아주 작고, 이익은 아주 큽니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side protects people from [losing money forever.]", "더 중요한 것은, 저희 측은 사람들이 돈을 영원히 잃지 않도록 지켜 준다는 점입니다."],
+    ["[This outweighs their concern,] because a short time of learning is much less important than [safe money for everyone.]", "잠깐의 배우는 시간보다 모두의 안전한 돈이 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] digital money is [safer,] and it helps us [spend smarter.]", "요약하면, 디지털 화폐는 더 안전하고 더 현명하게 쓰도록 돕습니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

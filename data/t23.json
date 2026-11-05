@@ -1,0 +1,83 @@
+{
+ "id": "t23",
+ "motion": "This house would let students design the school lunch menu.",
+ "ko": "학생이 직접 짜는 급식 메뉴",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose the motion that [students should design] the school lunch menu.", "오늘 저희는 학생이 학교 급식 메뉴를 짜야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By students, we mean [a lunch committee] with two students from every grade.", "학생이란 학년마다 두 명씩 뽑힌 급식 위원회를 뜻합니다."],
+    ["They would plan the menu [once a month] together with the school nutritionist.", "이들은 한 달에 한 번 영양사 선생님과 함께 식단을 짭니다."],
+    ["The nutritionist still checks that every meal is [healthy and safe.]", "영양사 선생님은 여전히 모든 식사가 건강하고 안전한지 확인합니다."],
+    ["So the real question is [not whether students know about vitamins.]", "그러니 진짜 질문은 학생이 비타민을 잘 아느냐가 아닙니다."],
+    ["The real question is whether [lunch gets better] when students have a say.", "학생이 의견을 낼 때 급식이 더 나아지느냐가 진짜 질문입니다."],
+    ["Our stance is clear: [it does.]", "저희 입장은 분명합니다. 나아집니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] students will [waste much less food.]", "첫째, 학생들은 음식을 훨씬 덜 버리게 됩니다."],
+    ["[Second,] students will learn [real-life skills.]", "둘째, 학생들은 실생활 기술을 배우게 됩니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Less food waste",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] students will [waste much less food.]", "첫째, 학생들은 음식을 훨씬 덜 버리게 됩니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["People eat food that [they actually like.]", "사람은 자기가 정말 좋아하는 음식을 먹습니다."],
+    ["Right now, adults choose the menu, and they often [guess wrong.]", "지금은 어른들이 메뉴를 고르는데, 자주 잘못 짐작합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine the cafeteria serves [bitter vegetable soup] every Tuesday.", "급식실에서 매주 화요일 쓴 채소국이 나온다고 상상해 보세요."],
+    ["Maybe half the students [pour it straight into the bin.]", "아마 학생 절반은 그걸 바로 잔반통에 붓습니다."],
+    ["That is wasted food, [wasted money,] and hungry students in fifth period.", "그것은 버려진 음식이고, 버려진 돈이며, 5교시에 배고픈 학생들입니다."],
+    ["But a student committee might say, [let's make it a vegetable curry instead.]", "하지만 학생 위원회는 '대신 채소 카레로 바꾸자'고 말할 수 있습니다."],
+    ["The vegetables are [the same,] but now students [actually eat them.]", "채소는 같지만 이제 학생들이 실제로 먹습니다."],
+    ["This matters because [a healthy meal in the bin] is not healthy at all.", "잔반통에 버려진 건강한 식사는 전혀 건강하지 않기 때문에 이것이 중요합니다."],
+    ["This clearly shows that [student choice makes lunch healthier,] not less healthy.", "이는 학생의 선택이 급식을 덜 건강하게가 아니라 더 건강하게 만든다는 걸 분명히 보여줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Real-life skills",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, students will learn [real-life skills.]", "다음 논점으로 넘어가서, 학생들은 실생활 기술을 배우게 됩니다."],
+    ["Planning a menu is [harder than it looks.]", "식단을 짜는 건 보기보다 어렵습니다."],
+    ["You need to think about [money,] [nutrition,] and [what other people want.]", "돈, 영양, 그리고 다른 사람이 원하는 것을 모두 생각해야 합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Maybe the committee wants [fried chicken every Friday.]", "위원회가 매주 금요일 치킨을 원한다고 해 봅시다."],
+    ["The nutritionist shows them [the budget and the fat content.]", "영양사 선생님이 예산과 지방 함량을 보여줍니다."],
+    ["So they decide, [chicken once a month,] and grilled fish on the other Fridays.", "그래서 그들은 치킨은 한 달에 한 번, 다른 금요일엔 생선구이로 정합니다."],
+    ["They just learned [math,] [health,] and [teamwork] in one meeting.", "그들은 회의 한 번으로 수학, 건강, 협동을 배웠습니다."],
+    ["And they will explain the choice to their friends, so [everyone learns a little.]", "그리고 친구들에게 그 선택을 설명하니 모두가 조금씩 배웁니다."],
+    ["This matters because one day, every student will have to [feed themselves.]", "언젠가 모든 학생은 스스로 끼니를 챙겨야 하기 때문에 이것이 중요합니다."],
+    ["School is the [perfect, safe place] to practise.", "학교는 그것을 연습하기에 완벽하고 안전한 곳입니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [students will only choose pizza and ramen.]", "상대측은 '학생들은 피자와 라면만 고를 것'이라고 할 것입니다."],
+    ["[Even if we accept that] some students want junk food, remember our definition.", "설령 일부 학생이 정크푸드를 원한다는 걸 인정하더라도, 저희 정의를 기억해 주세요."],
+    ["[The nutritionist still has the final check.]", "최종 확인은 여전히 영양사 선생님이 합니다."],
+    ["Students choose [inside healthy rules,] not outside them.", "학생들은 건강 규칙 밖이 아니라 그 안에서 고릅니다."],
+    ["So the risk is [very small,] but the benefit is [very big.]", "그러니 위험은 아주 작고, 이익은 아주 큽니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side makes sure students [actually eat] the healthy food.", "더 중요한 것은, 저희 측은 학생들이 건강한 음식을 실제로 먹게 만든다는 점입니다."],
+    ["[This outweighs their concern,] because a perfect menu that nobody eats [helps nobody.]", "아무도 먹지 않는 완벽한 식단은 누구에게도 도움이 안 되므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] student menus mean [less waste] and [real-life skills.]", "요약하면, 학생이 짠 식단은 낭비를 줄이고 실생활 기술을 길러 줍니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

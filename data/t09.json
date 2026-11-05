@@ -1,0 +1,82 @@
+{
+ "id": "t09",
+ "motion": "This house would teach coding instead of a second foreign language.",
+ "ko": "제2외국어 대신 코딩 교육",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that schools should [teach coding instead of a second foreign language.]", "오늘 저희는 학교가 제2외국어 대신 코딩을 가르쳐야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By a second foreign language, we mean the [extra language class] after English, like Japanese, Chinese, or French.", "제2외국어란 영어 다음에 배우는 일본어, 중국어, 프랑스어 같은 추가 언어 수업을 뜻합니다."],
+    ["We are [not touching English or Korean.]", "영어나 국어는 건드리지 않습니다."],
+    ["By coding, we mean learning to [give clear instructions to a computer,] from simple blocks to real apps.", "코딩이란 간단한 블록부터 실제 앱까지, 컴퓨터에 명확한 명령을 내리는 법을 배우는 것입니다."],
+    ["Students who love languages can [still learn them] in clubs or after school.", "언어를 좋아하는 학생은 동아리나 방과 후에 여전히 배울 수 있습니다."],
+    ["So the real question is: which class gives [most students] the [most useful skill?]", "그러니 진짜 질문은, 어떤 수업이 가장 많은 학생에게 가장 쓸모 있는 기술을 주느냐입니다."],
+    ["Our answer is clear: [coding.]", "저희 답은 분명합니다. 코딩입니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] coding teaches students [how to think.]", "첫째, 코딩은 학생들에게 생각하는 법을 가르칩니다."],
+    ["[Second,] coding lets students [build real things right now.]", "둘째, 코딩은 학생들이 지금 당장 진짜 무언가를 만들게 해 줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Learning how to think",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] coding teaches students [how to think.]", "첫째, 코딩은 학생들에게 생각하는 법을 가르칩니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["A computer does [exactly what you tell it,] nothing more.", "컴퓨터는 시킨 것만 정확히 하고, 그 이상은 하지 않습니다."],
+    ["So you must break a big problem into [small, clear steps.]", "그래서 큰 문제를 작고 명확한 단계로 나눠야 합니다."],
+    ["And when it fails, you must [find the mistake] and try again.", "그리고 실패하면 실수를 찾아서 다시 시도해야 합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a student makes a simple game where [a cat catches falling fish.]", "한 학생이 고양이가 떨어지는 물고기를 잡는 간단한 게임을 만든다고 상상해 보세요."],
+    ["At first, the fish [fall through the floor] and never stop.", "처음에는 물고기가 바닥을 뚫고 끝없이 떨어집니다."],
+    ["She checks each line, [finds the bug,] and fixes it.", "그 학생은 한 줄씩 확인하고, 버그를 찾아서 고칩니다."],
+    ["That is [patience, logic, and problem-solving] in one lesson.", "한 수업 안에 인내심, 논리, 문제 해결력이 다 들어 있습니다."],
+    ["These skills help in [math, science,] and even in planning a group project.", "이런 기술은 수학, 과학, 심지어 모둠 과제를 계획할 때도 도움이 됩니다."],
+    ["This matters because school should teach [skills that work everywhere,] not just in one subject.", "학교는 한 과목에서만이 아니라 어디서나 통하는 기술을 가르쳐야 하기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Building real things",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, coding lets students [build real things right now.]", "다음 논점으로 넘어가서, 코딩은 학생들이 지금 당장 진짜 무언가를 만들게 해 줍니다."],
+    ["Be honest: after two years of a second language, how many students can [really talk to someone?]", "솔직히, 제2외국어를 2년 배운 뒤 실제로 대화할 수 있는 학생이 몇 명이나 될까요?"],
+    ["Most of us only remember [hello and thank you.]", "대부분은 '안녕하세요'와 '감사합니다'만 기억합니다."],
+    ["But with coding, even beginners can [make something useful] in a few weeks.", "하지만 코딩은 초보자도 몇 주 만에 쓸모 있는 것을 만들 수 있습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a class builds a small website that shows [today's lunch menu] and [which clubs meet after school.]", "한 반이 오늘 급식 메뉴와 방과 후 동아리 일정을 보여 주는 작은 웹사이트를 만든다고 상상해 보세요."],
+    ["Suddenly, [the whole school uses it] every morning.", "갑자기 전교생이 매일 아침 그것을 씁니다."],
+    ["Those students feel proud, and they see that [their skill really matters.]", "그 학생들은 뿌듯함을 느끼고, 자기 기술이 정말 중요하다는 걸 알게 됩니다."],
+    ["Also, almost every future job, from doctor to farmer, will [use computers.]", "또한 의사부터 농부까지 거의 모든 미래 직업이 컴퓨터를 사용할 것입니다."],
+    ["This matters because students learn best when they can [see real results.]", "학생들은 진짜 결과를 볼 수 있을 때 가장 잘 배우기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [languages help us understand other cultures.]", "상대측은 '언어는 다른 문화를 이해하게 해 준다'고 할 것입니다."],
+    ["[Even if we accept that,] a few hours a week rarely makes anyone [fluent.]", "설령 그걸 인정하더라도, 일주일에 몇 시간으로는 유창해지기 어렵습니다."],
+    ["And today, [translation apps] can help us talk to people across the world.", "그리고 요즘은 번역 앱이 전 세계 사람과 대화하도록 도와줍니다."],
+    ["Remember, students who love languages [can still choose them] in clubs.", "기억해 주세요. 언어를 좋아하는 학생은 동아리에서 여전히 선택할 수 있습니다."],
+    ["So we lose [very little,] but we gain [a lot.]", "그러니 잃는 건 아주 적고, 얻는 건 아주 많습니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] coding helps [every student,] not only those who want to travel or live abroad.", "더 중요한 것은, 코딩은 여행이나 해외 생활을 원하는 학생만이 아니라 모든 학생을 돕는다는 점입니다."],
+    ["[This outweighs their concern,] because a [skill students actually use] is worth more than a few words they will forget.", "학생들이 실제로 쓰는 기술이 곧 잊어버릴 몇 단어보다 가치 있으므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] coding teaches students [how to think,] and it lets them [build real things.]", "요약하면, 코딩은 생각하는 법을 가르치고 진짜 무언가를 만들게 해 줍니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

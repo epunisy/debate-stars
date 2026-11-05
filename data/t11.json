@@ -1,0 +1,79 @@
+{
+ "id": "t11",
+ "motion": "This house would give every student an AI tutor.",
+ "ko": "모든 학생에게 AI 튜터를",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that we should [give every student an AI tutor.]", "오늘 저희는 모든 학생에게 AI 튜터를 주어야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By an AI tutor, we mean a [free learning program] on a school tablet or laptop.", "AI 튜터란 학교 태블릿이나 노트북에 있는 무료 학습 프로그램을 뜻합니다."],
+    ["It [explains, asks questions,] and gives hints, but it [does not do your homework] for you.", "설명하고, 질문하고, 힌트를 주지만, 숙제를 대신 해 주지는 않습니다."],
+    ["By every student, we mean [all students,] paid for by the school, not by parents.", "모든 학생이란 부모가 아니라 학교가 비용을 내는, 전체 학생을 뜻합니다."],
+    ["And teachers [stay in the classroom.] The AI is a helper, not a replacement.", "그리고 선생님은 교실에 그대로 계십니다. AI는 대체가 아니라 도우미입니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] an AI tutor lets every student [learn at their own speed.]", "첫째, AI 튜터는 모든 학생이 자기 속도로 배우게 해 줍니다."],
+    ["[Second,] it makes learning [fairer] for students who can't afford private academies.", "둘째, 학원비를 감당할 수 없는 학생들에게 배움을 더 공정하게 만듭니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Learning at your own speed",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] an AI tutor lets every student [learn at their own speed.]", "첫째, AI 튜터는 모든 학생이 자기 속도로 배우게 해 줍니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["One teacher has [thirty students,] but only [one speed.]", "선생님 한 분에게 학생은 서른 명인데, 수업 속도는 하나뿐입니다."],
+    ["Fast students get [bored,] and slow students get [lost.]", "빠른 학생은 지루해하고, 느린 학생은 길을 잃습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a girl named Jiwoo who [doesn't understand fractions.]", "분수를 이해하지 못하는 지우라는 학생을 상상해 보세요."],
+    ["She is [too shy] to raise her hand in front of the whole class.", "반 친구들 앞에서 손을 들기에는 너무 수줍습니다."],
+    ["So she [stays quiet,] and next week, the class moves on to decimals.", "그래서 조용히 있고, 다음 주에 수업은 소수로 넘어갑니다."],
+    ["But at home, she can ask her AI tutor [the same question five times.]", "하지만 집에서는 AI 튜터에게 같은 질문을 다섯 번 물어볼 수 있습니다."],
+    ["It [never gets tired,] and it [never laughs at her.]", "AI는 절대 지치지 않고, 그녀를 비웃지도 않습니다."],
+    ["It might even explain fractions with [pizza slices] until she finally gets it.", "마침내 이해할 때까지 피자 조각으로 분수를 설명해 줄 수도 있습니다."],
+    ["This matters because [no student should be left behind] just because they are shy.", "수줍다는 이유만으로 뒤처지는 학생이 있어서는 안 되기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Fairer learning",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, an AI tutor makes learning [fairer.]", "다음 논점으로 넘어가서, AI 튜터는 배움을 더 공정하게 만듭니다."],
+    ["Right now, some families pay [a lot of money] for private tutors and academies.", "지금은 어떤 가정은 과외와 학원에 많은 돈을 씁니다."],
+    ["Other families [simply can't.]", "다른 가정은 그냥 그럴 수 없습니다."],
+    ["So rich students get [help every night,] and others get [none.]", "그래서 부유한 학생은 매일 밤 도움을 받고, 다른 학생은 전혀 받지 못합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine two friends with the [same science test] next week.", "다음 주에 똑같은 과학 시험을 보는 두 친구를 상상해 보세요."],
+    ["One goes to an academy [three times a week.]", "한 명은 일주일에 세 번 학원에 갑니다."],
+    ["The other [studies alone] with only a textbook.", "다른 한 명은 교과서 하나로 혼자 공부합니다."],
+    ["With an AI tutor, the second friend can also [practise questions] and get [instant feedback] at midnight.", "AI 튜터가 있으면 두 번째 친구도 자정에 문제를 연습하고 즉시 피드백을 받을 수 있습니다."],
+    ["This matters because [your talent,] not your parents' wallet, should decide how well you do.", "부모님의 지갑이 아니라 자신의 재능이 성적을 결정해야 하기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [students will just use AI to cheat.]", "상대측은 '학생들이 AI로 부정행위만 할 것'이라고 할 것입니다."],
+    ["[Even if we accept that,] remember our definition: this tutor gives [hints, not answers.]", "설령 그걸 인정하더라도, 저희 정의를 기억해 주세요. 이 튜터는 답이 아니라 힌트를 줍니다."],
+    ["And students who want to cheat [already can,] with or without a school tutor.", "그리고 부정행위를 하려는 학생은 학교 튜터가 있든 없든 이미 할 수 있습니다."],
+    ["So the motion [doesn't create the problem.] It gives honest students [a better tool.]", "그러니 이 논제가 문제를 만드는 것이 아닙니다. 정직한 학생에게 더 좋은 도구를 줍니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side helps [the students who need help the most.]", "더 중요한 것은, 저희 측은 도움이 가장 필요한 학생들을 돕는다는 점입니다."],
+    ["[This outweighs their concern,] because a few students cheating is much less important than [thousands of students finally getting help.]", "몇몇 학생의 부정행위보다 수천 명의 학생이 마침내 도움을 받는 게 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] an AI tutor lets students [learn at their own speed,] and it makes learning [fairer.]", "요약하면, AI 튜터는 학생들이 자기 속도로 배우게 하고, 배움을 더 공정하게 만듭니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

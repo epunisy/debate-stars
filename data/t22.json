@@ -1,0 +1,82 @@
+{
+ "id": "t22",
+ "motion": "This house would move to a four-day school week.",
+ "ko": "주 4일 등교제",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose the motion that [schools should move to a four-day week.]", "오늘 저희는 학교가 주 4일제로 바뀌어야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By a four-day school week, we mean students go to school [from Monday to Thursday.]", "주 4일 등교제란 학생들이 월요일부터 목요일까지 등교한다는 뜻입니다."],
+    ["Each school day becomes [about one hour longer,] so we don't lose important lessons.", "중요한 수업을 잃지 않도록 하루 수업이 약 한 시간 길어집니다."],
+    ["On Fridays, schools stay open for students who need [extra help or a safe place to stay.]", "금요일에는 추가 도움이나 안전한 공간이 필요한 학생을 위해 학교가 문을 엽니다."],
+    ["So the real question is [not whether students like holidays.]", "그러니 진짜 질문은 학생들이 휴일을 좋아하는지가 아닙니다."],
+    ["It is whether a four-day week helps us [learn and live better.]", "주 4일제가 더 잘 배우고 더 잘 살도록 돕는지가 진짜 질문입니다."],
+    ["Our answer is clear: [it does.]", "저희 답은 분명합니다. 그렇습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] rested students [learn better.]", "첫째, 충분히 쉰 학생이 더 잘 배웁니다."],
+    ["[Second,] a free Friday gives time for [life skills and family.]", "둘째, 쉬는 금요일은 생활 기술과 가족을 위한 시간을 줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Rested students learn better",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] rested students [learn better.]", "첫째, 충분히 쉰 학생이 더 잘 배웁니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Many Korean students are [tired all the time.]", "많은 한국 학생은 늘 피곤합니다."],
+    ["After school, we go to [academies,] do homework, and sleep late.", "방과 후 학원에 가고, 숙제를 하고, 늦게 잡니다."],
+    ["By Friday, [our brains are empty.]", "금요일쯤이면 머리가 텅 비어 있습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Look around a classroom on a Friday afternoon.", "금요일 오후의 교실을 둘러보세요."],
+    ["Half the class is [yawning,] and some students are [sleeping on their desks.]", "반은 하품을 하고, 몇몇은 책상에 엎드려 잡니다."],
+    ["The teacher is talking, but [nobody is really learning.]", "선생님은 말하고 있지만 아무도 제대로 배우지 않습니다."],
+    ["Now imagine a Monday after [a three-day weekend.]", "이제 사흘 주말 뒤의 월요일을 상상해 보세요."],
+    ["Students come in [fresh, awake, and ready] to focus.", "학생들은 상쾌하고, 깨어 있고, 집중할 준비가 된 채 들어옵니다."],
+    ["This matters because [four strong days] are better than [five tired days.]", "피곤한 5일보다 힘찬 4일이 낫기 때문에 이것이 중요합니다."],
+    ["This clearly shows that [more rest means better learning.]", "이는 더 많은 휴식이 더 나은 배움을 뜻한다는 걸 분명히 보여줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Time for life skills and family",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, a free Friday gives time for [life skills and family.]", "다음 논점으로 넘어가서, 쉬는 금요일은 생활 기술과 가족을 위한 시간을 줍니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["School teaches math and science, but [not everything we need] in life.", "학교는 수학과 과학을 가르치지만 삶에 필요한 모든 것을 가르치진 않습니다."],
+    ["We also need to learn how to [cook, exercise, help others,] and rest.", "요리하고, 운동하고, 남을 돕고, 쉬는 법도 배워야 합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a student who uses Friday to [volunteer at an animal shelter.]", "금요일에 유기동물 보호소에서 봉사하는 학생을 상상해 보세요."],
+    ["Another student [learns to cook dinner] with her grandmother.", "다른 학생은 할머니와 함께 저녁 요리를 배웁니다."],
+    ["Another one finally has time for [a hospital or dentist visit] without missing class.", "또 다른 학생은 드디어 결석 없이 병원이나 치과에 갈 시간이 생깁니다."],
+    ["These are things we [never have time for] in a busy five-day week.", "바쁜 주 5일에는 절대 시간이 나지 않는 일들입니다."],
+    ["This matters because school should help us grow into [happy, healthy people,] not just good test-takers.", "학교는 시험 잘 보는 사람이 아니라 행복하고 건강한 사람으로 자라도록 도와야 하기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [working parents can't look after their kids] on Friday.", "상대측은 '맞벌이 부모는 금요일에 아이를 돌볼 수 없다'고 할 것입니다."],
+    ["[Even if we accept that,] remember our definition: [schools stay open on Friday] for students who need it.", "설령 그걸 인정하더라도, 저희 정의를 기억해 주세요. 필요한 학생을 위해 금요일에도 학교는 문을 엽니다."],
+    ["Those students can join [clubs, sports, or reading programs] in a safe place.", "그 학생들은 안전한 곳에서 동아리, 운동, 독서 프로그램에 참여할 수 있습니다."],
+    ["So [no child is left alone,] and every child gets the benefit.", "그러니 혼자 남는 아이는 없고, 모든 아이가 혜택을 받습니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side cares about [students' health,] not just their schedules.", "더 중요한 것은, 저희 측은 일정만이 아니라 학생들의 건강을 생각한다는 점입니다."],
+    ["[This outweighs their concern,] because a small change in planning is much less important than [millions of tired students] every single week.", "약간의 계획 변경보다 매주 수많은 학생이 지쳐 있는 문제가 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] rested students [learn better,] and a free Friday gives time for [life skills and family.]", "요약하면, 충분히 쉰 학생이 더 잘 배우고, 쉬는 금요일은 생활 기술과 가족을 위한 시간을 줍니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

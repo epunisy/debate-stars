@@ -1,0 +1,233 @@
+{
+ "id": "t01",
+ "motion": "This house would make AI a member of the school student council.",
+ "ko": "AI를 학생회 임원으로",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    [
+     "Thank you, [Madam Speaker.]",
+     "의장님, 감사합니다."
+    ],
+    [
+     "Today, we are proud to propose the motion that [AI should be a member] of the school student council.",
+     "오늘 저희는 AI가 학생회 임원이 되어야 한다는 논제에 자신 있게 찬성합니다."
+    ],
+    [
+     "Let me begin by [defining the key terms.]",
+     "먼저 핵심 용어를 정의하겠습니다."
+    ],
+    [
+     "By AI, we mean [one AI member] that can listen, give ideas, and make suggestions.",
+     "AI란 듣고, 아이디어를 내고, 제안할 수 있는 AI 임원 한 명을 뜻합니다."
+    ],
+    [
+     "It has [one seat,] just like one student.",
+     "학생 한 명처럼 자리는 하나뿐입니다."
+    ],
+    [
+     "The other members are still students, so [students always make up the majority.]",
+     "나머지 임원은 모두 학생이라 항상 학생이 다수입니다."
+    ],
+    [
+     "Also, the motion says [would.]",
+     "또한 논제에는 'would'라고 되어 있습니다."
+    ],
+    [
+     "So the real question is [not whether AI is perfect.]",
+     "그러니 진짜 질문은 AI가 완벽한지가 아닙니다."
+    ],
+    [
+     "The real question is whether [a council with AI] is better than [a council without AI.]",
+     "AI가 있는 학생회가 없는 학생회보다 나은지가 진짜 질문입니다."
+    ],
+    [
+     "Our stance is clear: [it is better.]",
+     "저희 입장은 분명합니다. 더 낫습니다."
+    ],
+    [
+     "I will present [two main arguments.]",
+     "두 가지 주요 논거를 제시하겠습니다."
+    ],
+    [
+     "[First,] AI helps [every student's voice] be heard.",
+     "첫째, AI는 모든 학생의 목소리가 들리게 돕습니다."
+    ],
+    [
+     "[Second,] AI helps the council make [better decisions.]",
+     "둘째, AI는 학생회가 더 나은 결정을 하도록 돕습니다."
+    ]
+   ]
+  },
+  {
+   "h": "Argument 1 · Every voice is heard",
+   "t": "0:40–1:40",
+   "l": [
+    [
+     "[First,] AI helps [every student's voice] be heard.",
+     "첫째, AI는 모든 학생의 목소리가 들리게 돕습니다."
+    ],
+    [
+     "The reason is [simple.]",
+     "이유는 간단합니다."
+    ],
+    [
+     "Student council members are [busy students, too.]",
+     "학생회 임원도 바쁜 학생입니다."
+    ],
+    [
+     "They cannot read [hundreds of ideas] from the suggestion box.",
+     "건의함의 수백 개 아이디어를 다 읽을 수 없습니다."
+    ],
+    [
+     "So they usually listen to [the loudest students] or their close friends.",
+     "그래서 보통 목소리 큰 학생이나 친한 친구 말을 듣게 됩니다."
+    ],
+    [
+     "This is [not because they are bad people.]",
+     "그들이 나쁜 사람이라서가 아닙니다."
+    ],
+    [
+     "It is because [the system is too hard] for humans alone.",
+     "사람만으로는 감당하기 어려운 제도이기 때문입니다."
+    ],
+    [
+     "Let me give you [an example.]",
+     "예를 하나 들겠습니다."
+    ],
+    [
+     "Imagine [300 students] write ideas on a survey.",
+     "학생 300명이 설문에 아이디어를 썼다고 상상해 보세요."
+    ],
+    [
+     "A quiet student writes, [please fix the broken water fountain] on the third floor.",
+     "조용한 학생이 '3층 고장 난 정수기를 고쳐 주세요'라고 씁니다."
+    ],
+    [
+     "Humans [might miss it.]",
+     "사람은 놓칠 수 있습니다."
+    ],
+    [
+     "But AI can read [all 300 ideas in one minute] and say, [twenty students asked about the water fountain.]",
+     "하지만 AI는 1분 만에 300개를 다 읽고 '20명이 정수기를 요청했어요'라고 말할 수 있습니다."
+    ],
+    [
+     "This matters because a student council exists [for all students,] not only the popular ones.",
+     "이것이 중요한 이유는 학생회가 인기 있는 학생만이 아닌 모든 학생을 위해 있기 때문입니다."
+    ],
+    [
+     "This clearly shows that [AI makes the council fairer.]",
+     "이는 AI가 학생회를 더 공정하게 만든다는 걸 분명히 보여줍니다."
+    ]
+   ]
+  },
+  {
+   "h": "Argument 2 · Better decisions",
+   "t": "1:40–2:40",
+   "l": [
+    [
+     "Moving on to my next point, AI helps the council make [better decisions.]",
+     "다음 논점으로 넘어가서, AI는 학생회가 더 나은 결정을 하도록 돕습니다."
+    ],
+    [
+     "The reason is [simple.]",
+     "이유는 간단합니다."
+    ],
+    [
+     "Every year, council members graduate, and [new members start from zero.]",
+     "매년 임원은 졸업하고 새 임원은 처음부터 시작합니다."
+    ],
+    [
+     "They forget [what worked] and [what failed.]",
+     "무엇이 잘됐고 무엇이 실패했는지 잊어버립니다."
+    ],
+    [
+     "[But AI remembers.]",
+     "하지만 AI는 기억합니다."
+    ],
+    [
+     "Let me give you [an example.]",
+     "예를 하나 들겠습니다."
+    ],
+    [
+     "Last year, maybe the school festival [ran out of food in thirty minutes.]",
+     "작년 학교 축제에서 30분 만에 음식이 떨어졌다고 해 봅시다."
+    ],
+    [
+     "New members might make [the same mistake.]",
+     "새 임원은 같은 실수를 할 수 있습니다."
+    ],
+    [
+     "AI can say, [last year, we needed twice as much food.]",
+     "AI는 '작년엔 음식이 두 배 필요했어요'라고 말할 수 있습니다."
+    ],
+    [
+     "It can also [check the budget] so the council does not spend too much money.",
+     "예산도 확인해서 돈을 너무 많이 쓰지 않게 할 수 있습니다."
+    ],
+    [
+     "This matters because [good memory and good data] mean [fewer mistakes,] [less wasted money,] and [happier students.]",
+     "좋은 기억과 자료는 실수를 줄이고, 낭비를 줄이고, 학생들을 더 행복하게 하기 때문에 중요합니다."
+    ]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    [
+     "Let me now turn to [what the opposition will probably say.]",
+     "이제 상대측이 할 말을 다뤄보겠습니다."
+    ],
+    [
+     "They will say, [AI can make mistakes.]",
+     "상대측은 'AI도 실수한다'고 할 것입니다."
+    ],
+    [
+     "[Even if we accept that,] humans make mistakes too.",
+     "설령 그걸 인정하더라도, 사람도 실수합니다."
+    ],
+    [
+     "And remember our definition: [AI has only one seat.]",
+     "저희 정의를 기억해 주세요. AI는 한 자리뿐입니다."
+    ],
+    [
+     "If AI gives a bad idea, [the students can simply vote no.]",
+     "AI가 나쁜 아이디어를 내면 학생들이 반대표를 던지면 됩니다."
+    ],
+    [
+     "So the risk is [very small,] but the benefit is [very big.]",
+     "그러니 위험은 아주 작고, 이익은 아주 큽니다."
+    ]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    [
+     "[Even more importantly,] our side protects [the students who are usually forgotten.]",
+     "더 중요한 것은, 저희 측은 보통 잊히는 학생들을 지켜 준다는 점입니다."
+    ],
+    [
+     "[This outweighs their concern,] because a small risk of a bad idea is much less important than [hundreds of students not being heard.]",
+     "나쁜 아이디어의 작은 위험보다 수백 명의 목소리가 묻히는 게 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."
+    ],
+    [
+     "[To sum up,] AI helps [every voice be heard,] and AI helps the council make [better decisions.]",
+     "요약하면, AI는 모든 목소리가 들리게 하고 더 나은 결정을 돕습니다."
+    ],
+    [
+     "On balance, [our side brings greater benefits.]",
+     "종합하면 저희 측이 더 큰 이익을 가져옵니다."
+    ],
+    [
+     "For all these reasons, [we are proud to propose.] Thank you.",
+     "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."
+    ]
+   ]
+  }
+ ]
+}

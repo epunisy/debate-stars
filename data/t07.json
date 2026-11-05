@@ -1,0 +1,83 @@
+{
+ "id": "t07",
+ "motion": "This house would ban smartphones in classrooms.",
+ "ko": "교실 내 스마트폰 금지",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that [smartphones should be banned] in classrooms.", "오늘 저희는 교실에서 스마트폰을 금지해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By banning smartphones, we mean students put their phones in [a phone box] when class starts.", "스마트폰 금지란 수업이 시작될 때 학생들이 휴대폰을 휴대폰 보관함에 넣는다는 뜻입니다."],
+    ["They get them back at [lunchtime] and [after school.]", "점심시간과 방과 후에 돌려받습니다."],
+    ["Students can still [bring phones to school,] so parents can reach them on the way home.", "학생들은 여전히 휴대폰을 학교에 가져올 수 있어서, 하교길에 부모님이 연락할 수 있습니다."],
+    ["In an emergency, [the school office phone] is always there.", "비상시에는 교무실 전화가 항상 있습니다."],
+    ["So the real question is whether a class is better [with phones on desks] or [with phones in a box.]", "그러니 진짜 질문은 휴대폰이 책상 위에 있는 수업과 보관함에 있는 수업 중 무엇이 나은지입니다."],
+    ["Our stance is clear: [the box is better.]", "저희 입장은 분명합니다. 보관함이 더 낫습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] a phone-free class helps students [focus and learn.]", "첫째, 휴대폰 없는 수업은 학생들이 집중하고 배우도록 돕습니다."],
+    ["[Second,] it makes the classroom [kinder and safer.]", "둘째, 교실을 더 친절하고 안전하게 만듭니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Focus and learning",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] a phone-free class helps students [focus and learn.]", "첫째, 휴대폰 없는 수업은 학생들이 집중하고 배우도록 돕습니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Phones are designed to [grab our attention.]", "휴대폰은 우리의 관심을 끌도록 만들어졌습니다."],
+    ["Every buzz and every red dot says, [look at me!]", "모든 진동과 빨간 알림 점은 '나를 봐!'라고 말합니다."],
+    ["Even when we don't touch the phone, part of our brain is [waiting for the next message.]", "휴대폰을 만지지 않을 때도 우리 뇌의 일부는 다음 메시지를 기다리고 있습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine the teacher is explaining [how to solve an equation.]", "선생님이 방정식 푸는 법을 설명하고 있다고 상상해 보세요."],
+    ["Your phone buzzes, and you see [a funny video] from your group chat.", "휴대폰이 울리고, 단체 채팅방에 올라온 웃긴 영상이 보입니다."],
+    ["You watch it for [just ten seconds.]", "딱 10초만 봅니다."],
+    ["But when you look up, the teacher is already on [step three,] and you are lost.", "하지만 고개를 들면 선생님은 벌써 세 번째 단계에 있고, 여러분은 길을 잃습니다."],
+    ["Now imagine the same lesson with the phone [safely in the box.]", "이제 휴대폰이 보관함에 안전히 들어 있는 같은 수업을 상상해 보세요."],
+    ["Nothing pulls you away, so you [follow every step.]", "아무것도 여러분을 끌어당기지 않으니 모든 단계를 따라갑니다."],
+    ["This matters because [fifty minutes of real attention] is worth more than [fifty minutes of half attention.]", "50분의 진짜 집중이 50분의 반쪽 집중보다 가치 있기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · A kinder, safer classroom",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, a phone ban makes the classroom [kinder and safer.]", "다음 논점으로 넘어가서, 휴대폰 금지는 교실을 더 친절하고 안전하게 만듭니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["When phones are on desks, students can [take photos and videos] of each other.", "휴대폰이 책상 위에 있으면 학생들은 서로의 사진과 영상을 찍을 수 있습니다."],
+    ["Sometimes these photos are used to [make fun of someone.]", "때때로 이런 사진은 누군가를 놀리는 데 쓰입니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["A student trips over a bag, and someone [secretly films it.]", "한 학생이 가방에 걸려 넘어지고, 누군가 몰래 그걸 찍습니다."],
+    ["By lunchtime, the video is in [five group chats,] and everyone is laughing.", "점심시간이 되자 영상은 다섯 개의 단체 채팅방에 퍼지고, 모두가 웃습니다."],
+    ["That student may feel [scared to speak] in class for weeks.", "그 학생은 몇 주 동안 수업 중 말하기가 두려울 수도 있습니다."],
+    ["Without phones, a mistake in class stays [a small moment,] not a viral joke.", "휴대폰이 없으면 수업 중 실수는 퍼지는 농담이 아니라 작은 순간으로 남습니다."],
+    ["Students can [answer questions, make mistakes,] and try again without fear.", "학생들은 두려움 없이 질문에 답하고, 실수하고, 다시 시도할 수 있습니다."],
+    ["This matters because students only learn well when they [feel safe.]", "학생들은 안전하다고 느낄 때만 잘 배우기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, phones are [useful learning tools,] like dictionaries and calculators.", "상대측은 휴대폰이 사전이나 계산기 같은 유용한 학습 도구라고 할 것입니다."],
+    ["[Even if we accept that,] schools already have [tablets and computers] for learning.", "설령 그걸 인정하더라도, 학교에는 이미 학습용 태블릿과 컴퓨터가 있습니다."],
+    ["Those devices [don't have group chats] or games.", "그런 기기에는 단체 채팅방이나 게임이 없습니다."],
+    ["So we [keep the useful tools] and remove [the distraction.]", "그러니 저희는 유용한 도구는 지키고 방해 요소만 없앱니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side protects [students' attention and feelings.]", "더 중요한 것은, 저희 측은 학생들의 집중력과 감정을 지켜 준다는 점입니다."],
+    ["[This outweighs their concern,] because looking up one word on a phone is much less important than [a whole class that can focus] and [a student who isn't laughed at.]", "휴대폰으로 단어 하나 찾는 것보다 집중할 수 있는 반 전체와 놀림받지 않는 학생이 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] a phone ban helps students [focus and learn,] and it makes classrooms [kinder and safer.]", "요약하면, 휴대폰 금지는 학생들이 집중하고 배우게 하고, 교실을 더 친절하고 안전하게 만듭니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

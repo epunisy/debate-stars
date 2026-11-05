@@ -1,0 +1,83 @@
+{
+ "id": "t37",
+ "motion": "This house would close private academies (hagwons) after 9 p.m.",
+ "ko": "밤 9시 이후 학원 운영 금지",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that [hagwons should close after 9 p.m.]", "오늘 저희는 학원이 밤 9시 이후에 문을 닫아야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By hagwons, we mean [private academies] for school subjects, like math, English, and science.", "학원이란 수학, 영어, 과학 같은 교과목을 가르치는 사설 학원을 뜻합니다."],
+    ["Closing means [no classes and no self-study rooms] after nine o'clock.", "문을 닫는다는 것은 9시 이후에는 수업도, 자습실도 없다는 뜻입니다."],
+    ["Students can still [study at home] if they want to.", "학생들은 원한다면 여전히 집에서 공부할 수 있습니다."],
+    ["So the real question is [not whether studying is good.]", "그러니 진짜 질문은 공부가 좋은지가 아닙니다."],
+    ["The real question is whether [studying until midnight] in a building full of tired kids is healthy.", "진짜 질문은 지친 아이들로 가득한 건물에서 자정까지 공부하는 것이 건강한지입니다."],
+    ["Our stance is clear: [it is not.]", "저희 입장은 분명합니다. 건강하지 않습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] students need [sleep and rest.]", "첫째, 학생들에게는 잠과 휴식이 필요합니다."],
+    ["[Second,] this rule makes the competition [fairer for everyone.]", "둘째, 이 규칙은 경쟁을 모두에게 더 공정하게 만듭니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Sleep and rest",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] students need [sleep and rest.]", "첫째, 학생들에게는 잠과 휴식이 필요합니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Our bodies and brains are [still growing.]", "우리의 몸과 뇌는 아직 자라고 있습니다."],
+    ["Doctors often say teenagers need about [eight or nine hours] of sleep.", "의사들은 흔히 청소년에게 8~9시간의 잠이 필요하다고 말합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a student named Minji who leaves her hagwon at [eleven p.m.]", "밤 11시에 학원에서 나오는 민지라는 학생을 상상해 보세요."],
+    ["She gets home, eats a late snack, and finishes her homework at [one a.m.]", "집에 와서 늦은 간식을 먹고 새벽 1시에 숙제를 끝냅니다."],
+    ["Then she wakes up at [seven] for school.", "그리고 7시에 일어나 학교에 갑니다."],
+    ["In first period, she [falls asleep on her desk.]", "1교시에 그녀는 책상에 엎드려 잠이 듭니다."],
+    ["So she paid for extra lessons, but [lost her real lessons.]", "추가 수업에 돈을 냈지만, 진짜 수업을 잃어버린 셈입니다."],
+    ["This matters because tired students [learn less,] [get sick more,] and feel [more stressed.]", "이것이 중요한 이유는 지친 학생은 덜 배우고, 더 자주 아프고, 더 스트레스를 받기 때문입니다."],
+    ["A 9 p.m. rule gives every student [time to breathe.]", "밤 9시 규칙은 모든 학생에게 숨 쉴 시간을 줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Fairer competition",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, this rule makes the competition [fairer for everyone.]", "다음 논점으로 넘어가서, 이 규칙은 경쟁을 모두에게 더 공정하게 만듭니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Right now, studying is like [a race with no finish line.]", "지금 공부는 결승선 없는 경주와 같습니다."],
+    ["If my friend studies until ten, I feel I must [study until eleven.]", "친구가 10시까지 공부하면, 저는 11시까지 해야 할 것 같은 기분이 듭니다."],
+    ["Then he studies until midnight, and [nobody can stop.]", "그러면 친구는 자정까지 하고, 아무도 멈출 수 없습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Think about families who [cannot pay] for late-night classes.", "늦은 밤 수업비를 낼 수 없는 가정을 생각해 보세요."],
+    ["Their children feel they are [falling behind] every single night.", "그 아이들은 매일 밤 뒤처지고 있다고 느낍니다."],
+    ["But with a clear closing time, [everyone stops at the same line.]", "하지만 분명한 마감 시간이 있으면 모두가 같은 선에서 멈춥니다."],
+    ["Nobody gets ahead just because [their parents have more money.]", "부모가 돈이 더 많다는 이유만으로 앞서가는 사람은 없습니다."],
+    ["This matters because school success should depend on [effort and talent,] not on [who stays up the latest.]", "학교에서의 성공은 누가 가장 늦게까지 버티느냐가 아니라 노력과 재능에 달려야 하기 때문에 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [students will just study in secret] or online.", "상대측은 '학생들이 몰래 혹은 온라인으로 공부할 것'이라고 할 것입니다."],
+    ["[Even if we accept that,] some students will, [but most will not.]", "설령 그걸 인정하더라도, 일부는 그러겠지만 대부분은 그러지 않을 것입니다."],
+    ["When there is [no class to go to,] most kids will go home and rest.", "갈 수업이 없으면 대부분의 아이들은 집에 가서 쉴 것입니다."],
+    ["And the pressure to [stay out late] becomes much weaker.", "그리고 늦게까지 밖에 있어야 한다는 압박도 훨씬 약해집니다."],
+    ["So even [a partly working rule] helps thousands of students.", "그러니 부분적으로만 작동하는 규칙이라도 수많은 학생을 돕습니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side protects [students' health,] and health comes first.", "더 중요한 것은, 저희 측은 학생들의 건강을 지키며, 건강이 가장 먼저라는 점입니다."],
+    ["[This outweighs their concern,] because a few extra hours of study are worth much less than [a healthy, rested mind.]", "몇 시간의 추가 공부는 건강하고 잘 쉰 정신보다 훨씬 가치가 작으므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] the rule gives students [sleep and rest,] and it makes the competition [fairer.]", "요약하면, 이 규칙은 학생들에게 잠과 휴식을 주고 경쟁을 더 공정하게 만듭니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

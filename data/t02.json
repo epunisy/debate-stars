@@ -1,0 +1,85 @@
+{
+ "id": "t02",
+ "motion": "This house would ban homework in elementary school.",
+ "ko": "초등학교 숙제 금지",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that [homework should be banned] in elementary school.", "오늘 저희는 초등학교에서 숙제를 금지해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By homework, we mean [worksheets and tasks] that teachers give children to finish at home.", "숙제란 선생님이 아이들에게 집에서 끝내라고 주는 학습지와 과제를 뜻합니다."],
+    ["By elementary school, we mean children from [about seven to twelve years old.]", "초등학교란 대략 일곱 살에서 열두 살 사이의 아이들을 뜻합니다."],
+    ["We are [not banning learning at home.]", "저희는 집에서 배우는 것 자체를 금지하는 것이 아닙니다."],
+    ["Children can still [read books,] play games, and ask questions.", "아이들은 여전히 책을 읽고, 놀이를 하고, 질문할 수 있습니다."],
+    ["We are only removing [required work] with a deadline.", "저희는 마감이 있는 의무 과제만 없애는 것입니다."],
+    ["So the real question is whether children are better off [with free evenings] or [with homework.]", "그러니 진짜 질문은 아이들이 자유로운 저녁을 보내는 게 나은지, 숙제를 하는 게 나은지입니다."],
+    ["Our stance is clear: [free evenings are better.]", "저희 입장은 분명합니다. 자유로운 저녁이 더 낫습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] children need time to [play and rest.]", "첫째, 아이들은 놀고 쉴 시간이 필요합니다."],
+    ["[Second,] homework makes the gap between children [bigger, not smaller.]", "둘째, 숙제는 아이들 사이의 격차를 줄이는 게 아니라 더 키웁니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Time to play and rest",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] children need time to [play and rest.]", "첫째, 아이들은 놀고 쉴 시간이 필요합니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Young children already sit in class for [five or six hours] a day.", "어린아이들은 이미 하루에 대여섯 시간을 교실에 앉아 있습니다."],
+    ["When they finally get home, they are [tired.]", "마침내 집에 오면 아이들은 지쳐 있습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a nine-year-old named Minji who gets home at [six o'clock.]", "여섯 시에 집에 오는 아홉 살 민지를 상상해 보세요."],
+    ["She has [two pages of math] and a diary to write.", "민지에게는 수학 두 쪽과 일기 쓰기가 남아 있습니다."],
+    ["She cries at the table, and her mom [gets angry.]", "민지는 식탁에서 울고, 엄마는 화를 냅니다."],
+    ["Now imagine the same evening [without homework.]", "이제 숙제가 없는 같은 저녁을 상상해 보세요."],
+    ["Minji rides her bike, [helps cook dinner,] and reads a comic book in bed.", "민지는 자전거를 타고, 저녁 준비를 돕고, 침대에서 만화책을 읽습니다."],
+    ["This matters because play is [how young children learn] to solve problems and make friends.", "이것이 중요한 이유는 놀이가 어린아이들이 문제를 해결하고 친구를 사귀는 방법이기 때문입니다."],
+    ["A happy, rested child comes to school the next day [ready to learn.]", "행복하고 푹 쉰 아이는 다음 날 배울 준비가 된 채로 학교에 옵니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · A fairer start",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, homework makes the gap between children [bigger.]", "다음 논점으로 넘어가서, 숙제는 아이들 사이의 격차를 더 키웁니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Homework is [not done alone.]", "숙제는 혼자 하는 것이 아닙니다."],
+    ["Young children usually need [an adult to help them.]", "어린아이들은 보통 도와줄 어른이 필요합니다."],
+    ["But not every family has [the same time.]", "하지만 모든 가정이 같은 시간을 가진 것은 아닙니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Junho's parents work until [ten at night,] so he does his homework alone and gets many answers wrong.", "준호의 부모님은 밤 열 시까지 일해서, 준호는 혼자 숙제를 하고 많이 틀립니다."],
+    ["His classmate has a parent at home who [checks every answer.]", "그의 반 친구는 집에서 모든 답을 확인해 주는 부모님이 있습니다."],
+    ["The next morning, the teacher sees [one perfect page] and [one messy page.]", "다음 날 아침, 선생님은 완벽한 한 장과 엉망인 한 장을 봅니다."],
+    ["But that is [not a difference in ability.] It is a difference in [family situation.]", "하지만 그것은 능력의 차이가 아닙니다. 가정 환경의 차이입니다."],
+    ["When all learning happens [at school,] every child gets [the same teacher and the same help.]", "모든 배움이 학교에서 이루어지면, 모든 아이가 같은 선생님과 같은 도움을 받습니다."],
+    ["This matters because school should be [a fair starting line] for everyone.", "학교는 모두에게 공정한 출발선이어야 하기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [homework builds good study habits.]", "상대측은 '숙제가 좋은 공부 습관을 만든다'고 할 것입니다."],
+    ["[Even if we accept that,] a habit built [with tears] does not last.", "설령 그걸 인정하더라도, 눈물로 만든 습관은 오래가지 않습니다."],
+    ["Many children learn only one thing from homework: [I hate studying.]", "많은 아이들이 숙제에서 배우는 것은 단 하나, '공부가 싫다'입니다."],
+    ["Good habits can start in [middle school,] when children are older and more independent.", "좋은 습관은 아이들이 더 크고 독립적인 중학교 때 시작해도 됩니다."],
+    ["And reading for fun at home is a habit too, [a much happier one.]", "그리고 집에서 재미로 책을 읽는 것도 습관입니다. 훨씬 더 행복한 습관이죠."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side protects [children's health and happiness.]", "더 중요한 것은, 저희 측은 아이들의 건강과 행복을 지켜 준다는 점입니다."],
+    ["[This outweighs their concern,] because a ten-year-old's love of learning is worth much more than [a few extra worksheets.]", "열 살 아이의 배움에 대한 사랑이 학습지 몇 장보다 훨씬 가치 있으므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] banning homework gives children [time to play and rest,] and it gives them [a fairer start.]", "요약하면, 숙제 금지는 아이들에게 놀고 쉴 시간과 더 공정한 출발을 줍니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

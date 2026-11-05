@@ -1,0 +1,19 @@
+{
+  "name": "디베이트 스타즈 - 영어 토론 쉐도잉",
+  "short_name": "디베이트 스타즈",
+  "description": "영어 디베이트 쉐도잉 연습 — 핵심 문구, 4분 스피치 50개 주제, 디베이트 무대",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2F4F1",
+  "theme_color": "#F2F4F1",
+  "lang": "ko",
+  "categories": ["education"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

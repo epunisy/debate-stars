@@ -1,0 +1,84 @@
+{
+ "id": "t03",
+ "motion": "This house would let students grade their teachers.",
+ "ko": "학생이 선생님을 평가하기",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that [students should grade their teachers.]", "오늘 저희는 학생이 선생님을 평가해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By grading, we mean [a short survey] at the end of each semester.", "평가란 매 학기 말에 하는 짧은 설문을 뜻합니다."],
+    ["Students score things like [clear explanations,] fairness, and kindness.", "학생들은 명확한 설명, 공정함, 친절함 같은 항목에 점수를 매깁니다."],
+    ["The survey is [anonymous,] so no one knows who wrote what.", "설문은 익명이라 누가 무엇을 썼는지 아무도 모릅니다."],
+    ["And the results are used [to help teachers improve,] not to fire them.", "그리고 결과는 선생님을 해고하는 게 아니라 발전을 돕는 데 쓰입니다."],
+    ["So the real question is [not whether students are experts.]", "그러니 진짜 질문은 학생이 전문가인지가 아닙니다."],
+    ["The real question is whether [teachers can learn something useful] from the people in their classroom.", "진짜 질문은 선생님이 교실에 있는 사람들에게서 유용한 것을 배울 수 있는지입니다."],
+    ["Our stance is clear: [they can.]", "저희 입장은 분명합니다. 배울 수 있습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] students give teachers [honest, everyday feedback.]", "첫째, 학생들은 선생님께 솔직한 일상의 피드백을 줍니다."],
+    ["[Second,] grading teachers teaches students [responsibility and respect.]", "둘째, 선생님을 평가하는 일은 학생들에게 책임감과 존중을 가르칩니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Honest feedback",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] students give teachers [honest, everyday feedback.]", "첫째, 학생들은 선생님께 솔직한 일상의 피드백을 줍니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["A principal might watch a class [once or twice a year.]", "교장 선생님은 1년에 한두 번 수업을 볼지도 모릅니다."],
+    ["On that day, everyone is [on their best behavior.]", "그날은 모두가 가장 모범적으로 행동합니다."],
+    ["But students sit in that class [every single day.]", "하지만 학생들은 매일 그 수업에 앉아 있습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a science teacher who talks [very fast] and writes in tiny letters.", "아주 빠르게 말하고 글씨를 아주 작게 쓰는 과학 선생님을 상상해 보세요."],
+    ["Students in the back row [cannot read the board,] but they are too shy to say it.", "뒷줄 학생들은 칠판을 읽을 수 없지만, 너무 부끄러워 말하지 못합니다."],
+    ["In an anonymous survey, maybe [fifteen students] write, please write bigger.", "익명 설문에서 아마 열다섯 명이 '글씨를 크게 써 주세요'라고 쓸 것입니다."],
+    ["The teacher is surprised, [changes one small habit,] and the whole class understands better.", "선생님은 놀라서 작은 습관 하나를 바꾸고, 반 전체가 더 잘 이해하게 됩니다."],
+    ["This matters because teachers [want to do well,] but they cannot fix a problem they cannot see.", "이것이 중요한 이유는 선생님도 잘하고 싶지만, 보이지 않는 문제는 고칠 수 없기 때문입니다."],
+    ["Students are [the best mirror] a teacher can have.", "학생들은 선생님이 가질 수 있는 최고의 거울입니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Responsibility and respect",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, grading teachers teaches students [responsibility and respect.]", "다음 논점으로 넘어가서, 선생님 평가는 학생들에게 책임감과 존중을 가르칩니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Right now, students [only receive grades.]", "지금 학생들은 점수를 받기만 합니다."],
+    ["They never practice [giving fair feedback] to someone else.", "다른 사람에게 공정한 피드백을 주는 연습은 한 번도 하지 않습니다."],
+    ["But in real life, adults give feedback [at work, at home, and in their towns.]", "하지만 실제 삶에서 어른들은 직장에서, 집에서, 동네에서 피드백을 줍니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Before the survey, a class can learn [how to write good feedback.]", "설문 전에 학생들은 좋은 피드백을 쓰는 법을 배울 수 있습니다."],
+    ["Instead of writing, [this class is boring,] a student learns to write, [more group activities would help me focus.]", "'이 수업은 지루해요' 대신 '모둠 활동이 더 있으면 집중이 잘될 것 같아요'라고 쓰는 법을 배웁니다."],
+    ["That is a [polite, useful] sentence.", "그것은 예의 바르고 유용한 문장입니다."],
+    ["When students know [their voice really counts,] they also take it more seriously.", "학생들은 자신의 목소리가 정말 반영된다는 걸 알면 더 진지하게 임합니다."],
+    ["This matters because school should prepare us to be [fair and thoughtful citizens.]", "학교는 우리가 공정하고 사려 깊은 시민이 되도록 준비시켜야 하기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, students will give [low scores to strict teachers] for revenge.", "상대측은 학생들이 복수하려고 엄격한 선생님께 낮은 점수를 줄 거라고 할 것입니다."],
+    ["[Even if we accept that,] one or two angry answers [do not change the average.]", "설령 그걸 인정하더라도, 화난 답 한두 개는 평균을 바꾸지 못합니다."],
+    ["If thirty students all say a teacher is unclear, [that is a real pattern.]", "서른 명이 모두 설명이 불분명하다고 하면, 그건 진짜 패턴입니다."],
+    ["And remember our definition: the results are [for improvement, not punishment.]", "저희 정의를 기억해 주세요. 결과는 처벌이 아니라 발전을 위한 것입니다."],
+    ["So a strict but fair teacher [has nothing to fear.]", "그러니 엄격하지만 공정한 선생님은 두려워할 것이 없습니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side helps [every student in every class,] every year.", "더 중요한 것은, 저희 측은 매년 모든 반의 모든 학생을 돕는다는 점입니다."],
+    ["[This outweighs their concern,] because a few unfair comments are much smaller than [years of teaching that never gets better.]", "몇 개의 불공정한 의견은 전혀 나아지지 않는 수년간의 수업보다 훨씬 작으므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] student grading gives teachers [honest feedback,] and it teaches students [responsibility and respect.]", "요약하면, 학생 평가는 선생님께 솔직한 피드백을 주고, 학생들에게 책임감과 존중을 가르칩니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

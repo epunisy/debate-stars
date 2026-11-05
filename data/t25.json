@@ -1,0 +1,82 @@
+{
+ "id": "t25",
+ "motion": "This house would send humans to live on Mars.",
+ "ko": "인류의 화성 이주",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose the motion that [humans should be sent to live on Mars.]", "오늘 저희는 인류를 화성에 보내 살게 해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By live on Mars, we mean [a small base] where scientists and engineers stay for years.", "화성에서 산다는 건 과학자와 기술자가 몇 년씩 머무는 작은 기지를 뜻합니다."],
+    ["We do not mean moving [everyone on Earth] there tomorrow.", "내일 당장 지구의 모든 사람을 옮긴다는 뜻이 아닙니다."],
+    ["It starts with [a few brave volunteers,] step by step.", "몇 명의 용감한 지원자부터 한 걸음씩 시작합니다."],
+    ["So the real question is [not whether Mars is easy.]", "그러니 진짜 질문은 화성이 쉬운 곳이냐가 아닙니다."],
+    ["The real question is whether [trying is worth it.]", "도전할 가치가 있느냐가 진짜 질문입니다."],
+    ["Our stance is clear: [it is.]", "저희 입장은 분명합니다. 가치가 있습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] a Mars base [protects the future] of humanity.", "첫째, 화성 기지는 인류의 미래를 지킵니다."],
+    ["[Second,] the journey creates [new technology] that helps us here on Earth.", "둘째, 그 여정은 이곳 지구에서도 우리를 돕는 새로운 기술을 만들어 냅니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · A backup for humanity",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] a Mars base [protects the future] of humanity.", "첫째, 화성 기지는 인류의 미래를 지킵니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Right now, [every human lives on one planet.]", "지금은 모든 인류가 한 행성에 살고 있습니다."],
+    ["If something terrible happens to Earth, [there is no plan B.]", "지구에 끔찍한 일이 생기면 대안이 없습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Think about [your school project] saved on just one USB stick.", "USB 하나에만 저장된 학교 과제를 생각해 보세요."],
+    ["If you [lose that stick,] you lose everything.", "그 USB를 잃어버리면 모든 걸 잃습니다."],
+    ["So smart students [save a backup copy] somewhere else.", "그래서 똑똑한 학생은 다른 곳에 백업을 저장합니다."],
+    ["Long ago, [a giant asteroid] wiped out the dinosaurs.", "오래전 거대한 소행성이 공룡을 멸종시켰습니다."],
+    ["The dinosaurs [had no backup.] We can have one.", "공룡에게는 백업이 없었습니다. 우리는 가질 수 있습니다."],
+    ["This matters because we are not only protecting ourselves, but [every future generation.]", "우리 자신뿐 아니라 모든 미래 세대를 지키는 것이기 때문에 이것이 중요합니다."],
+    ["This clearly shows that [a Mars base is a smart insurance policy] for humanity.", "이는 화성 기지가 인류를 위한 현명한 보험이라는 걸 분명히 보여줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Technology for Earth",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, the journey creates [new technology] that helps us on Earth.", "다음 논점으로 넘어가서, 그 여정은 지구에서도 우리를 돕는 새로운 기술을 만듭니다."],
+    ["Mars is [cold, dry, and has almost no air.]", "화성은 춥고 건조하며 공기가 거의 없습니다."],
+    ["To survive there, scientists must solve [very hard problems.]", "그곳에서 살아남으려면 과학자들은 아주 어려운 문제들을 풀어야 합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["On Mars, people need to grow food with [very little water.]", "화성에서는 아주 적은 물로 식량을 길러야 합니다."],
+    ["Imagine that same farming method used in [dry countries] on Earth.", "그 농사 방법이 지구의 건조한 나라에서 쓰인다고 상상해 보세요."],
+    ["Families there could grow [more food] with [less water.]", "그곳 가족들은 더 적은 물로 더 많은 식량을 기를 수 있습니다."],
+    ["The same is true for [recycling air and water,] and making clean energy from sunlight.", "공기와 물의 재활용, 햇빛으로 깨끗한 에너지를 만드는 것도 마찬가지입니다."],
+    ["Space missions have always given us [surprising inventions] for daily life.", "우주 탐사는 늘 일상생활을 위한 놀라운 발명품을 안겨 주었습니다."],
+    ["This matters because [solving Mars problems] also means [solving Earth problems.]", "화성의 문제를 푸는 것이 곧 지구의 문제를 푸는 것이기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [we should fix Earth first] and not waste money on space.", "상대측은 '지구부터 고쳐야 하고 우주에 돈을 낭비하면 안 된다'고 할 것입니다."],
+    ["[Even if we accept that] Earth has big problems, this is [not a choice between the two.]", "설령 지구에 큰 문제가 있다는 걸 인정하더라도, 이건 둘 중 하나를 고르는 문제가 아닙니다."],
+    ["As I just showed, Mars research [gives us tools] to fix Earth.", "방금 보여드렸듯, 화성 연구는 지구를 고칠 도구를 줍니다."],
+    ["And space budgets are [only a small part] of what countries spend.", "그리고 우주 예산은 나라들이 쓰는 돈의 작은 일부일 뿐입니다."],
+    ["So the cost is [small,] but the benefit is [very big.]", "그러니 비용은 작고, 이익은 아주 큽니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side thinks about [the next thousand years,] not just the next ten.", "더 중요한 것은, 저희 측은 다음 10년이 아니라 다음 천 년을 생각한다는 점입니다."],
+    ["[This outweighs their concern,] because some money today is much less important than [the survival of humanity.]", "오늘의 약간의 돈보다 인류의 생존이 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] Mars gives us [a backup for humanity] and [new technology for Earth.]", "요약하면, 화성은 인류의 백업과 지구를 위한 새로운 기술을 줍니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

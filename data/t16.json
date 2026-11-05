@@ -1,0 +1,85 @@
+{
+ "id": "t16",
+ "motion": "This house would ban zoos.",
+ "ko": "동물원 금지",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose the motion that [we should ban zoos.]", "오늘 저희는 동물원을 금지해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By zoos, we mean places that keep wild animals in cages [mainly so people can look at them.]", "동물원이란 주로 사람들이 구경하도록 야생 동물을 우리에 가두는 곳을 뜻합니다."],
+    ["We do [not] mean animal hospitals or [wildlife sanctuaries.]", "동물 병원이나 야생 동물 보호구역을 말하는 것은 아닙니다."],
+    ["Sanctuaries rescue hurt animals and give them [lots of space,] and they can stay.", "보호구역은 다친 동물을 구조해 넓은 공간을 주며, 계속 운영될 수 있습니다."],
+    ["Animals in today's zoos would slowly [move to these sanctuaries.]", "지금 동물원에 있는 동물들은 천천히 이런 보호구역으로 옮겨집니다."],
+    ["So the real question is [not whether we love animals.]", "그러니 진짜 질문은 우리가 동물을 사랑하는지가 아닙니다."],
+    ["It is whether animals should live [for our fun.]", "동물이 우리의 재미를 위해 살아야 하는지가 진짜 질문입니다."],
+    ["Our answer is clear: [they should not.]", "저희 답은 분명합니다. 그래서는 안 됩니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] zoos make animals [suffer.]", "첫째, 동물원은 동물을 고통스럽게 합니다."],
+    ["[Second,] zoos teach children [the wrong lesson.]", "둘째, 동물원은 아이들에게 잘못된 교훈을 가르칩니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Animals suffer",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] zoos make animals [suffer.]", "첫째, 동물원은 동물을 고통스럽게 합니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Wild animals are built to [run, hunt, and explore.]", "야생 동물은 달리고, 사냥하고, 탐험하도록 태어났습니다."],
+    ["In the wild, an elephant may walk [many kilometers every day.]", "야생에서 코끼리는 매일 몇 킬로미터씩 걸을 수 있습니다."],
+    ["In a zoo, it lives in a space [smaller than our school field.]", "동물원에서는 우리 학교 운동장보다 작은 공간에서 삽니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Have you ever seen a polar bear [walking in the same circle] again and again?", "북극곰이 같은 원을 계속 빙빙 도는 걸 본 적 있나요?"],
+    ["Many visitors think [it is just playing.]", "많은 관람객은 그냥 노는 거라고 생각합니다."],
+    ["But this kind of repeated movement is often a sign of [stress and boredom.]", "하지만 이런 반복 행동은 흔히 스트레스와 지루함의 신호입니다."],
+    ["Imagine being locked in [one classroom for your whole life,] with people tapping on the window.", "평생 교실 하나에 갇혀 있고 사람들이 창문을 두드린다고 상상해 보세요."],
+    ["You would go crazy too.", "여러분도 미쳐 버릴 겁니다."],
+    ["This matters because animals [feel pain and fear] just like us.", "이것이 중요한 이유는 동물도 우리처럼 고통과 두려움을 느끼기 때문입니다."],
+    ["This clearly shows that [zoos are unkind,] even when the keepers are kind.", "이는 사육사가 친절하더라도 동물원 자체는 잔인하다는 걸 분명히 보여줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · The wrong lesson",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, zoos teach children [the wrong lesson.]", "다음 논점으로 넘어가서, 동물원은 아이들에게 잘못된 교훈을 가르칩니다."],
+    ["Zoos say they exist [for education.]", "동물원은 교육을 위해 존재한다고 말합니다."],
+    ["But think about [what children really learn] there.", "하지만 아이들이 거기서 실제로 무엇을 배우는지 생각해 보세요."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["On a school trip, most students spend [two minutes] at the tiger and [twenty minutes] at the snack shop.", "현장 학습에서 대부분의 학생은 호랑이 앞에서 2분, 매점에서 20분을 보냅니다."],
+    ["They see a sleepy tiger [behind glass,] not a real hunter in the forest.", "숲속의 진짜 사냥꾼이 아니라 유리 뒤의 졸린 호랑이를 봅니다."],
+    ["The hidden message is: [animals are here for us to watch.]", "숨은 메시지는 '동물은 우리가 구경하라고 있는 것'이라는 겁니다."],
+    ["[That is the wrong lesson.]", "그것은 잘못된 교훈입니다."],
+    ["Today, we have [nature documentaries,] VR, and live cameras in real forests.", "오늘날엔 자연 다큐멘터리, VR, 실제 숲의 실시간 카메라가 있습니다."],
+    ["Children can see animals [hunting, swimming, and raising babies] in their real homes.", "아이들은 동물이 진짜 서식지에서 사냥하고, 헤엄치고, 새끼를 키우는 모습을 볼 수 있습니다."],
+    ["This matters because we want the next generation to [respect animals,] not [collect them.]", "다음 세대가 동물을 수집하는 게 아니라 존중하길 바라기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [zoos protect endangered animals.]", "상대측은 '동물원이 멸종 위기 동물을 보호한다'고 할 것입니다."],
+    ["[Even if we accept that,] most zoo animals are [not endangered at all.]", "설령 그걸 인정하더라도, 동물원 동물 대부분은 전혀 멸종 위기가 아닙니다."],
+    ["And remember our definition: [sanctuaries and breeding centers can stay.]", "저희 정의를 기억해 주세요. 보호구역과 번식 센터는 남습니다."],
+    ["They can protect rare animals [without selling tickets] to crowds.", "그곳들은 관람권을 팔지 않고도 희귀 동물을 보호할 수 있습니다."],
+    ["So we keep [the good part] and remove [the cruel part.]", "그러니 좋은 부분은 지키고 잔인한 부분만 없애는 것입니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side speaks for [those who cannot speak.]", "더 중요한 것은, 저희 측은 말할 수 없는 존재를 대변한다는 점입니다."],
+    ["[This outweighs their concern,] because a fun day out for us is much less important than [a whole lifetime of suffering] for an animal.", "우리의 즐거운 하루보다 동물의 평생 고통이 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] zoos make animals [suffer,] and zoos teach children [the wrong lesson.]", "요약하면, 동물원은 동물을 고통스럽게 하고 아이들에게 잘못된 교훈을 가르칩니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

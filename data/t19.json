@@ -1,0 +1,84 @@
+{
+ "id": "t19",
+ "motion": "This house would replace school exams with portfolios.",
+ "ko": "시험 대신 포트폴리오로",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose the motion that [school exams should be replaced with portfolios.]", "오늘 저희는 학교 시험을 포트폴리오로 대체해야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By exams, we mean the big [midterm and final tests] where one day decides your grade.", "시험이란 하루가 성적을 결정하는 중간고사와 기말고사를 뜻합니다."],
+    ["By portfolios, we mean [a collection of your best work] over the whole semester.", "포트폴리오란 한 학기 동안 모은 자신의 가장 좋은 결과물 모음을 뜻합니다."],
+    ["It can include essays, projects, [lab reports,] and short quizzes, too.", "에세이, 프로젝트, 실험 보고서, 짧은 퀴즈도 들어갈 수 있습니다."],
+    ["Teachers still [grade every piece] with clear rules.", "교사는 여전히 명확한 기준으로 모든 결과물을 채점합니다."],
+    ["So the real question is [not whether we should check learning.]", "그러니 진짜 질문은 배움을 확인해야 하는지가 아닙니다."],
+    ["It is [which way checks it better.]", "어떤 방식이 더 잘 확인하는지가 진짜 질문입니다."],
+    ["Our answer is clear: [portfolios do.]", "저희 답은 분명합니다. 포트폴리오입니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] portfolios show [real learning,] not memorizing.", "첫째, 포트폴리오는 암기가 아니라 진짜 배움을 보여줍니다."],
+    ["[Second,] portfolios are [fairer and less stressful.]", "둘째, 포트폴리오는 더 공정하고 스트레스가 적습니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Real learning",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] portfolios show [real learning,] not memorizing.", "첫째, 포트폴리오는 암기가 아니라 진짜 배움을 보여줍니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Many students study for exams by [cramming the night before.]", "많은 학생이 전날 밤 벼락치기로 시험공부를 합니다."],
+    ["They write the answers, and [one week later, they forget everything.]", "답을 쓰고 나서 일주일 뒤면 다 잊어버립니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a science class [learning about plants.]", "식물에 대해 배우는 과학 수업을 상상해 보세요."],
+    ["With an exam, you memorize the word [photosynthesis] and its meaning.", "시험이라면 '광합성'이라는 단어와 뜻을 외웁니다."],
+    ["With a portfolio, you [grow two bean plants,] one in the sun and one in the dark.", "포트폴리오라면 콩 두 개를 하나는 햇빛에, 하나는 어둠 속에 키웁니다."],
+    ["You take photos [every day,] write what you see, and explain why.", "매일 사진을 찍고, 관찰한 것을 쓰고, 이유를 설명합니다."],
+    ["[Which student really understands plants?]", "어느 학생이 식물을 정말 이해하고 있을까요?"],
+    ["This matters because school should prepare us for [real life,] and in real life, nobody gives you a multiple-choice test.", "학교는 실제 삶을 준비시켜야 하고, 실제 삶에선 아무도 객관식 시험을 내지 않기 때문에 이것이 중요합니다."],
+    ["This clearly shows that [portfolios measure deeper learning.]", "이는 포트폴리오가 더 깊은 배움을 측정한다는 걸 분명히 보여줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Fairer and less stressful",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, portfolios are [fairer and less stressful.]", "다음 논점으로 넘어가서, 포트폴리오는 더 공정하고 스트레스가 적습니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["An exam judges you on [one single day.]", "시험은 단 하루로 여러분을 평가합니다."],
+    ["But everyone has [bad days.]", "하지만 누구에게나 안 좋은 날이 있습니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a hard-working student who [studies every day] for three months.", "석 달 동안 매일 공부한 성실한 학생을 상상해 보세요."],
+    ["On exam morning, she [has a terrible headache.]", "시험 날 아침, 그 학생은 머리가 심하게 아픕니다."],
+    ["She gets a low score, and [three months of effort] disappear in one hour.", "낮은 점수를 받고, 석 달의 노력이 한 시간 만에 사라집니다."],
+    ["With a portfolio, [one bad day is just one piece] of the picture.", "포트폴리오라면 안 좋은 하루는 전체 그림의 한 조각일 뿐입니다."],
+    ["Also, many students [freeze under time pressure,] even when they know the answer.", "또한 많은 학생은 답을 알아도 시간 압박 속에서 얼어붙습니다."],
+    ["This matters because grades should show [what you know,] not [how nervous you are.]", "성적은 얼마나 긴장했는지가 아니라 무엇을 아는지 보여줘야 하기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [students can copy or get help] from parents on portfolios.", "상대측은 '포트폴리오는 베끼거나 부모 도움을 받을 수 있다'고 할 것입니다."],
+    ["[Even if we accept that,] remember: our portfolios include [work done in class.]", "설령 그걸 인정하더라도 기억해 주세요. 저희 포트폴리오에는 수업 시간에 한 과제도 들어갑니다."],
+    ["Teachers can also ask each student to [explain their work out loud.]", "교사는 각 학생에게 자기 결과물을 말로 설명해 보라고 할 수도 있습니다."],
+    ["If you copied it, [you can't explain it.]", "베꼈다면 설명할 수 없습니다."],
+    ["So cheating is [harder to hide,] not easier.", "그러니 부정행위는 숨기기 더 쉬운 게 아니라 더 어렵습니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side protects [students who work hard every day] but struggle on test day.", "더 중요한 것은, 저희 측은 매일 열심히 하지만 시험 날 힘들어하는 학생들을 지켜 준다는 점입니다."],
+    ["[This outweighs their concern,] because a small risk of copying is much less important than [a whole system that rewards cramming.]", "베낄 수 있는 작은 위험보다 벼락치기를 보상하는 제도 전체가 훨씬 중요하므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] portfolios show [real learning,] and they are [fairer and less stressful.]", "요약하면, 포트폴리오는 진짜 배움을 보여주고 더 공정하며 스트레스가 적습니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}

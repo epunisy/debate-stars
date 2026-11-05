@@ -1,0 +1,83 @@
+{
+ "id": "t41",
+ "motion": "This house would make public transport free for students.",
+ "ko": "학생 대중교통 무료화",
+ "sections": [
+  {
+   "h": "Opening & Definition",
+   "t": "0:00–0:40",
+   "l": [
+    ["Thank you, [Madam Speaker.]", "의장님, 감사합니다."],
+    ["Today, we are proud to propose that [public transport should be free for students.]", "오늘 저희는 학생들에게 대중교통이 무료여야 한다는 논제에 자신 있게 찬성합니다."],
+    ["Let me begin by [defining the key terms.]", "먼저 핵심 용어를 정의하겠습니다."],
+    ["By public transport, we mean [city buses and subways.]", "대중교통이란 시내버스와 지하철을 뜻합니다."],
+    ["By students, we mean [elementary, middle, and high school students] with a student card.", "학생이란 학생증이 있는 초등학생, 중학생, 고등학생을 뜻합니다."],
+    ["The money would come from [the city or national budget,] not from the bus drivers.", "그 비용은 버스 기사가 아니라 시나 국가 예산에서 나옵니다."],
+    ["So the real question is [not whether it costs money.]", "그러니 진짜 질문은 돈이 드는지가 아닙니다."],
+    ["The real question is whether [it is worth the money.]", "진짜 질문은 그만한 가치가 있는지입니다."],
+    ["Our stance is clear: [it is.]", "저희 입장은 분명합니다. 가치가 있습니다."],
+    ["I will present [two main arguments.]", "두 가지 주요 논거를 제시하겠습니다."],
+    ["[First,] free transport gives every student [equal opportunities.]", "첫째, 무료 교통은 모든 학생에게 동등한 기회를 줍니다."],
+    ["[Second,] it builds [green habits] for the future.", "둘째, 미래를 위한 친환경 습관을 길러 줍니다."]
+   ]
+  },
+  {
+   "h": "Argument 1 · Equal opportunities",
+   "t": "0:40–1:40",
+   "l": [
+    ["[First,] free transport gives every student [equal opportunities.]", "첫째, 무료 교통은 모든 학생에게 동등한 기회를 줍니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Learning doesn't only happen [inside the classroom.]", "배움은 교실 안에서만 일어나지 않습니다."],
+    ["It happens at [libraries, museums, sports centers,] and youth clubs.", "도서관, 박물관, 체육관, 청소년 센터에서도 일어납니다."],
+    ["But to get there, you need [bus fare.]", "하지만 거기에 가려면 버스비가 필요합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine a student named Seojun who loves science and wants to visit [the science museum] across the city.", "과학을 좋아해서 도시 반대편 과학관에 가고 싶은 서준이라는 학생을 상상해 보세요."],
+    ["Every round trip costs him [a few thousand won.]", "왕복할 때마다 몇천 원이 듭니다."],
+    ["His family is [having a hard time,] so he decides to [stay home] instead.", "가정 형편이 어려워서 그는 대신 집에 있기로 합니다."],
+    ["His classmate goes [every weekend] and becomes an expert.", "그의 반 친구는 매주 주말마다 가서 전문가가 됩니다."],
+    ["The only difference between them is [a bus ticket.]", "둘의 유일한 차이는 버스표 한 장입니다."],
+    ["This matters because [a child's dreams] should not depend on [how much is on their transport card.]", "아이의 꿈이 교통카드 잔액에 달려서는 안 되기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Argument 2 · Green habits",
+   "t": "1:40–2:40",
+   "l": [
+    ["Moving on to my next point, free transport builds [green habits] for the future.", "다음 논점으로 넘어가서, 무료 교통은 미래를 위한 친환경 습관을 길러 줍니다."],
+    ["The reason is [simple.]", "이유는 간단합니다."],
+    ["Every morning, many parents [drive their children] to school or to hagwons.", "매일 아침 많은 부모님이 아이들을 학교나 학원에 차로 데려다줍니다."],
+    ["That means [traffic jams] near schools and [more pollution] in the air.", "그것은 학교 근처의 교통 체증과 공기 중의 더 많은 오염을 뜻합니다."],
+    ["Let me give you [an example.]", "예를 하나 들겠습니다."],
+    ["Imagine if [half of those car trips] became bus trips instead.", "그 자동차 이동의 절반이 버스 이동으로 바뀐다고 상상해 보세요."],
+    ["The roads in front of school would be [safer and quieter.]", "학교 앞 도로는 더 안전하고 조용해질 것입니다."],
+    ["Parents would have [more free time] in the morning.", "부모님은 아침에 시간 여유가 더 생길 것입니다."],
+    ["And students would learn to [travel on their own] and become more independent.", "그리고 학생들은 혼자 다니는 법을 배워 더 독립적으로 될 것입니다."],
+    ["Most importantly, a child who rides the bus every day is likely to [keep using it] as an adult.", "가장 중요한 것은, 매일 버스를 타는 아이는 어른이 되어서도 계속 이용할 가능성이 크다는 점입니다."],
+    ["This matters because [habits we build today] decide [the air we breathe tomorrow.]", "오늘 만드는 습관이 내일 우리가 마실 공기를 결정하기 때문에 이것이 중요합니다."]
+   ]
+  },
+  {
+   "h": "Pre-rebuttal",
+   "t": "2:40–3:20",
+   "l": [
+    ["Let me now turn to [what the opposition will probably say.]", "이제 상대측이 할 말을 다뤄보겠습니다."],
+    ["They will say, [it is too expensive for the government.]", "상대측은 '정부에 너무 비싸다'고 할 것입니다."],
+    ["[Even if we accept that] it costs money, [students already pay a lower fare.]", "설령 돈이 든다는 걸 인정하더라도, 학생들은 이미 할인된 요금을 냅니다."],
+    ["So the extra cost is [smaller than it sounds.]", "그러니 추가 비용은 들리는 것보다 작습니다."],
+    ["And the city [saves money] in other ways: less traffic, cleaner air, and [fewer road accidents.]", "그리고 시는 교통량 감소, 깨끗한 공기, 교통사고 감소 등 다른 방식으로 돈을 아낍니다."],
+    ["So this is [not a cost,] it is [an investment.]", "그러니 이것은 비용이 아니라 투자입니다."]
+   ]
+  },
+  {
+   "h": "Weighing & Closing",
+   "t": "3:20–4:00",
+   "l": [
+    ["[Even more importantly,] our side helps [the students with the least,] who suffer most from small costs.", "더 중요한 것은, 저희 측은 작은 비용에도 가장 고통받는, 가장 적게 가진 학생들을 돕는다는 점입니다."],
+    ["[This outweighs their concern,] because a small part of the budget is worth much less than [a fair chance for every child.]", "예산의 작은 부분보다 모든 아이에게 주는 공정한 기회가 훨씬 가치 있으므로, 이것이 상대측 우려보다 더 중요합니다."],
+    ["[To sum up,] free transport creates [equal opportunities] and builds [green habits.]", "요약하면, 무료 교통은 동등한 기회를 만들고 친환경 습관을 기릅니다."],
+    ["On balance, [our side brings greater benefits.]", "종합하면 저희 측이 더 큰 이익을 가져옵니다."],
+    ["For all these reasons, [we are proud to propose.] Thank you.", "이러한 모든 이유로 저희는 자신 있게 찬성합니다. 감사합니다."]
+   ]
+  }
+ ]
+}
