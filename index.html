@@ -140,6 +140,7 @@ body.stage-live .wrap{padding-top:8px}
 .news .upd{font-size:11px;color:var(--muted);margin:0 0 2px}
 .nc{display:block;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:inherit;text-decoration:none;overflow-wrap:anywhere}
 .nc:hover{border-color:var(--accent)}
+.news .legal{justify-self:center;margin-top:8px;font-size:11px;color:var(--muted);text-decoration:underline}
 .nc .meta{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--muted);margin-bottom:2px;min-width:0}
 .nc .tg{flex:none;font-weight:700;color:#fff;border-radius:3px;padding:0 4px;line-height:1.5}
 .nc .tg.국내{background:#2F6FD0}.nc .tg.해외{background:#2A7A6C}.nc .tg.예정{background:#D2604F}
@@ -481,6 +482,7 @@ async function renderNews(){
     a.querySelector('b').textContent=n.t; a.querySelector('p').textContent=n.s; a.querySelector('.src').textContent=n.src+" ↗";
     box.appendChild(a);
   });
+  const pv=document.createElement('a'); pv.className="legal"; pv.href="privacy.html"; pv.target="_blank"; pv.rel="noopener"; pv.textContent="개인정보처리방침"; box.appendChild(pv);
 }
 /* 디베이트 무대는 별도 페이지(stage.html), 대회 소식은 기사 목록 — 쉐도잉 목록과 아래 버튼 줄은 숨김 */
 /* 아래 여백은 고정 버튼 줄 높이만큼만 (버튼 줄이 없는 탭에서는 거의 없음) */
