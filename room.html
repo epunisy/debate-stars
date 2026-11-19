@@ -126,7 +126,6 @@ table.st th{color:var(--muted);font-weight:600}
 .castrow.seats3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .castrow.mini{grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
 .cc{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 5px 6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);cursor:pointer;font:inherit;min-width:0}
-.cc.me{border-color:#E0A800;box-shadow:0 0 0 1px #E0A800}
 .cc.sel{border-color:var(--fg);box-shadow:0 0 0 1px var(--fg)}
 .cc.empty .face{background:var(--bg)}
 .face{position:relative;display:block;width:100%;aspect-ratio:5/4;border-radius:6px;overflow:hidden;background:#e4ebfb;margin-bottom:3px}
@@ -140,6 +139,23 @@ table.st th{color:var(--muted);font-weight:600}
 .cc .rl.gov{background:var(--gov)}.cc .rl.opp{background:var(--opp)}
 .cc .badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:800;background:#E0A800;color:#fff;border-radius:5px;padding:0 4px;line-height:1.5}
 .prof{display:flex;align-items:center;gap:10px}
+.me1{display:flex;align-items:center;gap:10px}
+.me1 .t{flex:1;min-width:0;display:flex;flex-direction:column}
+.me1 b{font-size:15px;line-height:1.2}.me1 small{font-size:11.5px;color:var(--muted)}
+.mface.big{width:44px;height:44px;margin:0;flex:none;vertical-align:middle}
+.pen{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);font-size:14px;cursor:pointer;padding:0;flex:none}
+.ttl{font-size:13px}.ttl .cnt{font:500 11px var(--mono);color:var(--muted);margin-left:2px}
+.newroom{display:flex;gap:6px;align-items:center}
+.mlist{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mrow{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:var(--surface);padding:8px 10px;cursor:pointer;color:var(--fg)}
+.mrow:first-child{border-top:0}
+.mrow .mface{width:34px;height:34px;margin:0;flex:none}
+.mrow .t{flex:1;min-width:0;display:flex;flex-direction:column}
+.mrow b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mrow small{font-size:11px;color:var(--muted)}
+.mrow .n{font:500 12px var(--mono);color:var(--muted)}
+.mlist .empty{margin:0;padding:14px 10px;text-align:center;font-size:12px;color:var(--muted)}
+.codeline{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted)}
+.codeline span{flex:1}
 .crop{display:grid;gap:6px;justify-items:center}
 .cropbox{position:relative;width:200px;height:200px;border-radius:10px;overflow:hidden;touch-action:none;background:#e4ebfb}
 .cropbox canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
@@ -191,17 +207,27 @@ html.embed input.code{font-size:20px;min-height:36px}
 
   <section id="vLogin" hidden><div class="card">
     <h2>친구들과 매치를 열어 토론해요</h2>
-    <p class="small muted">공개 방에 들어가거나 방을 직접 만들어요. 모두 준비를 누르면 Go! 여당·야당으로 나눠 토론하고, 마지막에 AI 심판이 승패와 피드백을 알려 줘요.</p>
+    <p class="small muted">친구와 영어 토론 매치! 끝나면 AI 심판이 승패와 피드백을 알려 줘요.</p>
     <button class="btn dark big wide" id="bLogin">Google 계정으로 로그인</button>
     <p class="hint">만 14세 미만은 보호자의 동의를 받은 뒤 로그인해 주세요. 토론 중 말한 내용은 자막(글자)으로 저장되고 AI 판정에 쓰여요. 목소리는 저장하지 않아요. <a href="privacy.html" target="_top">개인정보처리방침</a></p>
     <p class="err" id="loginErr" hidden></p>
   </div></section>
 
-  <section id="vHome" hidden><div class="setup">
-    <div class="opt top"><span class="lab">프로필</span>
-      <div class="prof"><button type="button" class="cc me" id="pCard" aria-label="내 프로필 바꾸기" aria-expanded="false"></button>
-        <div class="pinfo"><b id="pName"></b><span id="pLvl"></span><button type="button" class="pick" id="pEdit">프로필 바꾸기</button></div></div>
-      <div class="editor" id="pEd" hidden>
+  <section id="vHome" hidden>
+    <div class="setup"><div class="me1"><span class="mface big" id="pFace"></span><div class="t"><b id="pName"></b><small id="pLvl"></small></div><button type="button" class="pen" id="pEdit" aria-label="프로필 바꾸기">✎</button></div></div>
+    <div class="setup">
+      <div class="labrow"><b class="ttl">매치 리스트 <span class="cnt" id="openCount"></span></b><button type="button" class="plus" id="bPlus" aria-label="매치 열기" aria-expanded="false">＋</button></div>
+      <div class="newroom" id="newRoom" hidden><button type="button" class="pick dark" id="bCreate">공개 방</button><button type="button" class="pick" id="bCreatePriv">🔒 비밀 방</button><button type="button" class="x" id="bPlusX" aria-label="닫기">✕</button></div>
+      <div class="mlist" id="openList"></div>
+      <div class="codeline"><span>🔒 비밀 방 코드</span><input type="text" class="codein" id="joinCode" maxlength="6" autocomplete="off" autocapitalize="characters" aria-label="비밀 방 참가 코드 6자리"><button type="button" class="pick dark" id="bJoin">입장</button></div>
+      <p class="err" id="joinErr" hidden></p>
+    </div>
+  </section>
+
+  <section id="vProfile" hidden><div class="setup">
+    <div class="labrow"><b class="ttl">프로필</b><button type="button" class="x" id="pClose" aria-label="닫기">✕</button></div>
+    <div class="prof"><div class="cc me" id="pCard"></div></div>
+    <div class="editor" id="pEd">
         <div class="ed-row"><span>모습</span><div class="seg" id="pKind"></div></div>
         <div class="ed-row top" id="pCharRow"><span>캐릭터</span><div class="castrow mini" id="pChars"></div></div>
         <input type="file" id="pFile" accept="image/*" hidden>
@@ -213,32 +239,22 @@ html.embed input.code{font-size:20px;min-height:36px}
         </div>
         <div class="ed-row top"><span>학년</span><div><div class="seg" id="pSchool"></div><div class="seg" id="pGrade" style="margin-top:4px"></div></div></div>
         <div class="ed-row"><span>영어 이름</span><input type="text" id="pEn" maxlength="20" autocomplete="off" placeholder="예: Minji, Leo" aria-label="영어 이름"></div>
-        <div class="ed-row top"><span>영어 수준</span><div><div class="seg" id="pLvls"></div><p class="note">국내부: 한국에서 영어를 배운 학생 · 국제부: 해외 거주·국제학교 등 영어가 익숙한 학생. AI 심판이 수준에 맞춰 피드백해요.</p></div></div>
-        <div class="ed-foot"><span class="small muted">사진은 같은 방 친구에게만 보여요.</span><button type="button" class="pick dark" id="pSave">저장</button></div>
-      </div>
+        <div class="ed-row top"><span>영어 수준</span><div><div class="seg" id="pLvls"></div></div></div>
+        <div class="ed-foot"><span></span><button type="button" class="pick dark" id="pSave">저장</button></div>
     </div>
-    <div class="opt top"><div class="labrow"><span class="lab">매치 리스트 <span id="openCount"></span></span><button type="button" class="plus" id="bPlus" aria-label="매치 열기" aria-expanded="false">＋</button></div>
-      <div class="editor" id="newRoom" hidden>
-        <div class="ed-head"><b>어떤 매치를 열까요?</b><button type="button" class="x" id="bPlusX" aria-label="닫기">✕</button></div>
-        <div class="seg"><button type="button" class="pick dark" id="bCreate">공개 방</button><button type="button" class="pick" id="bCreatePriv">🔒 비밀 방</button></div>
-        <p class="note">공개 방은 매치 리스트에 보여서 누구나 들어올 수 있어요. 비밀 방은 코드를 아는 친구만 들어와요.</p>
-      </div>
-      <div id="openList"></div>
-    </div>
-    <div class="opt"><span class="lab">코드</span><div class="seg"><input type="text" class="codein" id="joinCode" maxlength="6" autocomplete="off" autocapitalize="characters" aria-label="비밀 방 참가 코드 6자리" placeholder="비밀 방 코드"><button type="button" class="pick dark" id="bJoin">참가</button></div></div>
-    <p class="err" id="joinErr" hidden></p>
   </div></section>
 
   <section id="vLobby" hidden><div class="setup">
     <div class="opt"><span class="lab" id="lCodeLab">코드</span><div class="seg"><b class="codetxt" id="lCode"></b><button type="button" class="pick" id="bShare">보내기</button><button type="button" class="pick" id="bCopy">복사</button><span class="small muted" id="lPriv"></span></div></div>
     <div class="opt"><span class="lab">주제</span><select id="sTopic"></select></div>
     <p class="motion" id="lMotion"></p>
-    <div class="opt"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
-    <div class="opt"><span class="lab">준비</span><div class="seg" id="sPrep"></div></div>
-    <div class="opt"><span class="lab">목소리</span><div class="seg"><button type="button" class="pick" id="sVoice">목소리 전송</button><span class="small muted" id="sVoiceHint"></span></div></div>
+    <div class="opt" id="lSumRow"><span class="lab">규칙</span><span class="small" id="lSum"></span></div>
+    <div class="opt hostonly"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
+    <div class="opt hostonly"><span class="lab">준비</span><div class="seg" id="sPrep"></div></div>
+    <div class="opt hostonly"><span class="lab">목소리</span><div class="seg"><button type="button" class="pick" id="sVoice">목소리 전송</button><span class="small muted" id="sVoiceHint"></span></div></div>
     <div class="opt top"><span class="lab">자리 <span id="lHostOnly"></span></span>
       <div class="castrow seats3" id="seatRow"></div>
-      <div class="seg"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button><span class="small muted">자리를 눌러 앉아요. 한 사람이 여러 자리를 맡아도 돼요.</span></div></div>
+      <div class="seg"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
     <div class="opt top"><span class="lab">참가자</span><div class="members" id="lMembers"></div></div>
     <div class="foot"><div class="fl"><div class="seg"><button type="button" class="pick" id="bReady" aria-pressed="false">준비</button><button type="button" class="lnk" id="bLeave">방 나가기</button></div><p class="note" id="startHint"></p></div><button type="button" class="go" id="bGo" disabled>Go!</button></div>
   </div></section>
@@ -273,7 +289,7 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const EMBED = document.documentElement.classList.contains("embed");
 let shown = "";
-const show = v => { ["vSetup", "vLogin", "vHome", "vLobby", "vLive", "vResult"].forEach(id => $(id).hidden = id !== v); if (EMBED && v !== shown) parent.postMessage({ matchTop: 1 }, "*"); shown = v; };
+const show = v => { ["vSetup", "vLogin", "vHome", "vProfile", "vLobby", "vLive", "vResult"].forEach(id => $(id).hidden = id !== v); if (EMBED && v !== shown) parent.postMessage({ matchTop: 1 }, "*"); shown = v; };
 if (EMBED) { const post = () => parent.postMessage({ matchHeight: document.querySelector(".wrap").getBoundingClientRect().height + 4 }, "*"); new ResizeObserver(post).observe(document.querySelector(".wrap")); addEventListener("load", post); }
 const selfURL = q => "room.html" + (q || EMBED || EMU ? "?" : "") + [q, EMBED ? "embed" : "", EMU ? "emu" : ""].filter(Boolean).join("&");
 
@@ -365,7 +381,8 @@ function renderProfile() {
   const pv = edit ? { ...edit, name: ($("pEn").value.trim() || edit.name) } : prof; // 고치는 동안 카드에 바로 보여 줌
   c.querySelector(".en").textContent = pv.name; c.querySelector(".ko").textContent = grKo(pv.gr) || "학년 미정"; c.querySelector(".nick").textContent = lvlKo(pv.lvl);
   fillFace(c.querySelector(".face"), pv);
-  $("pName").textContent = prof.name; $("pLvl").textContent = [grKo(prof.gr), lvlKo(prof.lvl), (prof.k === "char" ? KINDS[0] : KINDS[1])[1]].filter(Boolean).join(" · ");
+  $("pName").textContent = prof.name; $("pLvl").textContent = [grKo(prof.gr), lvlKo(prof.lvl)].filter(Boolean).join(" · ");
+  const pf = $("pFace"); pf.innerHTML = ""; if (prof.ph && prof.k !== "char") { const im = new Image(); im.className = "ph"; im.src = prof.ph; pf.append(im); } else pf.append(charFace(prof.ch, 44, 44));
   $("who").textContent = prof.name;
   if (!edit) return;
   segBtns($("pKind"), KINDS.map(k => k[0]), (edit.k === "char" && !crop) ? "char" : "photo", v => KINDS.find(k => k[0] === v)[1], v => { if (v === "photo") { $("pFile").click(); if (edit.ph) edit.k = "photo"; } else edit.k = "char"; renderProfile(); }, true);
@@ -378,8 +395,13 @@ function renderProfile() {
   if (scDef) segBtns($("pGrade"), Array.from({ length: scDef[2] }, (_, i) => sc + (i + 1)), edit.gr, v => v.slice(1) + "학년", v => { edit.gr = v; renderProfile(); }, true);
   segBtns($("pLvls"), LVLS.map(l => l[0]), edit.lvl, v => LVLS.find(l => l[0] === v)[1], v => { edit.lvl = v; renderProfile(); }, true);
 }
-function openEdit(on) { crop = null; $("pCrop").hidden = true; edit = on ? { ...prof, k: prof.k === "char" ? "char" : "photo" } : null; $("pEd").hidden = !on; $("pCard").setAttribute("aria-expanded", on ? "true" : "false"); $("pEdit").textContent = on ? "닫기" : "프로필 바꾸기"; if (on) $("pEn").value = prof.name; renderProfile(); }
-$("pCard").onclick = $("pEdit").onclick = () => openEdit(!edit);
+function openEdit(on) {
+  crop = null; $("pCrop").hidden = true; edit = on ? { ...prof, k: prof.k === "char" ? "char" : "photo" } : null;
+  if (on) $("pEn").value = prof.name;
+  show(on ? "vProfile" : "vHome"); renderProfile(); // 화면에 보인 뒤 그려야 얼굴 크기가 맞음
+}
+$("pEdit").onclick = () => openEdit(true);
+$("pClose").onclick = () => openEdit(false);
 $("pEn").oninput = () => { if (edit) renderProfile(); };
 // 사진 고르고 위치·크기 맞추기
 let crop = null;
@@ -483,11 +505,11 @@ function watchOpen() {
 }
 function renderOpen() {
   const list = Object.entries(openRooms).filter(([, v]) => v && now() - (v.seen || 0) < 120000).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
-  $("openCount").textContent = list.length ? list.length + "개" : "";
-  $("openList").innerHTML = list.length ? list.map(([c, v]) => { const t = topicOf(v.topic); return `<button class="room" data-c="${esc(c)}">${miniFace({ k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(c), ph: v.ph || "" }).outerHTML}<span class="t"><b>${esc(t[1])}</b><small>방장 ${esc(v.host)} · ${+v.mins || 3}분</small></span><span class="n">${+v.n || 1}명</span></button>`; }).join("")
-    : '<p class="hint" style="margin:0">지금 열린 매치가 없어요. ＋를 눌러 매치를 열고 친구를 기다려 보세요.</p>';
+  $("openCount").textContent = list.length ? list.length : "";
+  $("openList").innerHTML = list.length ? list.map(([c, v]) => { const t = topicOf(v.topic); return `<button class="mrow" data-c="${esc(c)}">${miniFace({ k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(c), ph: v.ph || "" }).outerHTML}<span class="t"><b>${esc(t[1])}</b><small>${esc(v.host)} · ${+v.mins || 3}분</small></span><span class="n">${+v.n || 1}명</span></button>`; }).join("")
+    : '<p class="empty">열린 매치가 없어요 · ＋로 열어 보세요</p>';
   hydrateMini($("openList"));
-  $("openList").querySelectorAll(".room").forEach(b => b.onclick = () => joinRoom(b.dataset.c));
+  $("openList").querySelectorAll(".mrow").forEach(b => b.onclick = () => joinRoom(b.dataset.c));
 }
 setInterval(() => { if (!$("vHome").hidden) renderOpen(); }, 15000);
 // 방장 폰이 공개 방 정보를 목록에 올리고 30초마다 살아 있음을 알림
@@ -728,7 +750,7 @@ function segBtns(el, vals, cur, fmt, onPick, enabled) {
 function seatCard(s) {
   const u = room.seats?.[s], b = document.createElement("button"), side = sideOf(s);
   b.type = "button"; b.className = "cc" + (u === me.uid ? " me" : "") + (u ? "" : " empty");
-  b.innerHTML = `<span class="face"></span><span class="en"></span><span class="ko"></span><span class="rl ${side}">${SIDE_KO[side]} ${SEATS[s]}</span>`;
+  b.innerHTML = `<span class="face"></span><span class="en"></span><span class="ko"></span><span class="rl ${side}">${SIDE_KO[side]} ${SEATS[s]}</span>${u === me.uid ? '<span class="badge">나</span>' : ""}`;
   b.querySelector(".en").textContent = u ? nameOf(u) : "빈자리";
   b.querySelector(".ko").textContent = u ? [grKo(room.members?.[u]?.gr), lvlKo(room.members?.[u]?.lvl)].filter(Boolean).join(" · ") : "눌러서 앉기";
   b.onclick = () => {
@@ -746,14 +768,17 @@ function renderLobby() {
   hydrateMini($("lMembers"));
   // 공개 방은 매치 리스트에서 바로 들어오니 코드를 숨김. 비밀 방만 코드 보이기
   $("lCodeLab").textContent = m.priv ? "코드" : "방"; $("lCode").hidden = $("bCopy").hidden = !m.priv;
-  $("lPriv").textContent = m.priv ? "🔒 비밀 방 · 이 코드를 아는 친구만 들어와요" : "공개 방 · 매치 리스트에서 누구나 들어와요";
+  $("lPriv").textContent = m.priv ? "🔒 비밀 방" : "공개 방";
   $("bShare").textContent = m.priv ? "보내기" : "초대하기";
-  $("lHostOnly").textContent = host ? "" : "· 방장이 정해요";
+  $("lHostOnly").textContent = "";
+  // 방장만 규칙 버튼, 다른 사람은 한 줄 요약
+  document.querySelectorAll("#vLobby .hostonly").forEach(x => x.hidden = !host); $("lSumRow").hidden = host;
+  $("lSum").textContent = [`발언 ${m.mins}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "목소리 전송" : "자막만"].join(" · ");
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
   segBtns($("sPrep"), PREPS, m.prep || 0, v => v ? v + "분" : "없음", v => { save("prep", v); upd("meta", { prep: v }); }, host);
   $("sVoice").setAttribute("aria-pressed", m.voice ? "true" : "false"); $("sVoice").disabled = !host;
-  $("sVoiceHint").textContent = m.voice ? "멀리 있는 친구도 들려요 (이어폰 추천)" : "한곳에 모였을 때: 자막만";
+  $("sVoiceHint").textContent = "";
   const t = topicOf(m.topic); $("lMotion").innerHTML = `${esc(t[2])}<small>${esc(t[3])}</small>`;
   $("sVoice").textContent = m.voice ? "목소리 전송 켜짐" : "목소리 전송 꺼짐";
   const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.gr, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
@@ -766,9 +791,7 @@ function renderLobby() {
   $("bAuto").hidden = $("bClearSeats").hidden = !host;
   $("bGo").hidden = !host; $("bGo").disabled = !allReady;
   const nr = online.filter(([, v]) => v.ready).length;
-  $("startHint").textContent = online.length < 2 ? "친구가 1명 이상 들어와야 시작할 수 있어요."
-    : allReady ? (host ? "모두 준비됐어요! Go!를 누르세요." : "모두 준비됐어요! 방장이 Go!를 누르면 시작해요.")
-    : `준비 ${nr}/${online.length}명 · 모두 '준비'를 누르면 시작할 수 있어요.`;
+  $("startHint").textContent = online.length < 2 ? "친구를 기다리는 중" : allReady ? (host ? "모두 준비! Go!" : "모두 준비! 방장을 기다려요") : `준비 ${nr}/${online.length}`;
   syncOpen();
 }
 $("bAuto").onclick = () => autoSeats();
