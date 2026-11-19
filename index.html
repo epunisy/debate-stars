@@ -175,7 +175,6 @@ body.stage-live .wrap{padding-top:8px}
 <div class="wrap">
   <header>
     <div class="headrow"><a class="logo" href="#" aria-label="Debate Stars 디베이트 스타즈"><picture><source srcset="logo-dark.png" media="(prefers-color-scheme: dark)"><img src="logo.png" alt="Debate Stars 디베이트 스타즈"></picture></a>
-    <a class="frbtn" id="friendBtn" href="room.html" hidden>디베이트 매치</a>
     <div class="spk" id="spk" aria-live="polite"><b></b><small></small></div></div>
     <div class="banners" id="banners" aria-label="영어 디베이트 대회"></div>
     <div class="dots" id="dots" role="group" aria-label="배너 넘기기"></div>
@@ -184,7 +183,8 @@ body.stage-live .wrap{padding-top:8px}
   <div class="tabs" role="tablist">
     <button role="tab" aria-selected="true" data-tab="phrases">핵심 문구</button>
     <button role="tab" aria-selected="false" data-tab="speech">트레이닝</button>
-    <button role="tab" aria-selected="false" data-tab="stage">디베이트 리허설</button>
+    <button role="tab" aria-selected="false" data-tab="stage">리허설</button>
+    <button role="tab" aria-selected="false" data-tab="match" id="matchTab" hidden>매치</button>
     <button role="tab" aria-selected="false" data-tab="news">대회 소식</button>
   </div>
   <div class="topicpick" id="topicBox" hidden>
@@ -571,7 +571,8 @@ $("topic").addEventListener("change",()=>{ topic=$("topic").value; store("topic"
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
 <script type="module">
 // 디베이트 매치 버튼: 공개 스위치가 켜졌거나, 이 폰에서 대회 소식 탭을 빠르게 5번 눌러 테스트 모드를 켠 경우에만 보임
-const fb=document.getElementById("friendBtn"); let cfg=null;
+const fb=document.getElementById("matchTab");
+fb.onclick=()=>{ location.href="room.html"; }; let cfg=null;
 const beta=()=>{ try{ return localStorage.getItem("friendBeta")==="1"; }catch{ return false; } };
 const apply=()=>{ fb.hidden=!(cfg&&cfg.firebaseConfig&&(cfg.FRIEND_PUBLIC||beta())); };
 import("./firebase-config.js").then(m=>{ cfg=m; apply(); }).catch(()=>{});
