@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><head><meta charset=utf8><title>디베이트 스타즈</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#F2F4F1"><meta name="description" content="영어 디베이트 쉐도잉 연습 — 핵심 문구, 실전 토론 20개 주제, 리허설"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="ko"><head><meta charset=utf8><title>디베이트 스타즈</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#F2F4F1"><meta name="description" content="영어 디베이트 쉐도잉 연습 — 핵심 문구, 실전 토론 20개 주제, 디베이트 리허설, 디베이트 매치"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -59,7 +59,7 @@ header .logo img{display:block;height:46px;width:auto}
 .banner.empty b{font-family:var(--display);font-size:17px}
 .banner.empty span{font-size:12px;color:var(--muted)}
 .tabs{display:flex;gap:0;margin:14px 0 8px;border-bottom:1px solid var(--line)}
-.tabs button{flex:1 1 0;min-width:0;text-align:center;font:600 clamp(12px,3.6vw,14.5px) var(--body);letter-spacing:-.02em;background:none;border:0;color:var(--muted);padding:9px 2px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button{flex:1 1 auto;min-width:0;text-align:center;font:600 clamp(12px,3.6vw,14.5px) var(--body);letter-spacing:-.02em;background:none;border:0;color:var(--muted);padding:9px 2px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
 .tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
 :is(.tabs button,.ctl button,.ctl select,.topic select,.line):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .topic{margin:12px 0 4px}
@@ -175,7 +175,7 @@ body.stage-live .wrap{padding-top:8px}
 <div class="wrap">
   <header>
     <div class="headrow"><a class="logo" href="#" aria-label="Debate Stars 디베이트 스타즈"><picture><source srcset="logo-dark.png" media="(prefers-color-scheme: dark)"><img src="logo.png" alt="Debate Stars 디베이트 스타즈"></picture></a>
-    <a class="frbtn" id="friendBtn" href="room.html" hidden>친구 토론</a>
+    <a class="frbtn" id="friendBtn" href="room.html" hidden>디베이트 매치</a>
     <div class="spk" id="spk" aria-live="polite"><b></b><small></small></div></div>
     <div class="banners" id="banners" aria-label="영어 디베이트 대회"></div>
     <div class="dots" id="dots" role="group" aria-label="배너 넘기기"></div>
@@ -184,7 +184,7 @@ body.stage-live .wrap{padding-top:8px}
   <div class="tabs" role="tablist">
     <button role="tab" aria-selected="true" data-tab="phrases">핵심 문구</button>
     <button role="tab" aria-selected="false" data-tab="speech">실전 토론</button>
-    <button role="tab" aria-selected="false" data-tab="stage">리허설</button>
+    <button role="tab" aria-selected="false" data-tab="stage">디베이트 리허설</button>
     <button role="tab" aria-selected="false" data-tab="news">대회 소식</button>
   </div>
   <div class="topicpick" id="topicBox" hidden>
@@ -193,7 +193,7 @@ body.stage-live .wrap{padding-top:8px}
   </div>
   <main id="list"></main>
   <section id="newsBox" class="news" hidden aria-label="토론 대회 소식"></section>
-  <div id="stageBox" hidden><iframe id="stageFrame" title="리허설" allow="autoplay" style="width:100%;height:360px;border:0;display:block;background:transparent"></iframe></div>
+  <div id="stageBox" hidden><iframe id="stageFrame" title="디베이트 리허설" allow="autoplay" style="width:100%;height:360px;border:0;display:block;background:transparent"></iframe></div>
 </div>
 
 <div class="rail" id="rail">
@@ -224,7 +224,7 @@ body.stage-live .wrap{padding-top:8px}
 <script>
 /* 대회 배너: {img:"banner1.jpg", href:"https://…", title:"…"} 를 넣으면 그 자리에 보여요. 비어 있으면 자리 표시만 나와요. */
 const BANNERS = [
-  {img:"banners/speak-your-mind.jpg", title:"Speak your mind. Make your case. — 리허설로 가기", tab:"stage"},
+  {img:"banners/speak-your-mind.jpg", title:"Speak your mind. Make your case. — 디베이트 리허설로 가기", tab:"stage"},
   {title:"YTN·한국외대 청소년 영어토론대회", sub:"국내 · 초등부·중등부", desc:"전국 초·중학생이 팀을 이뤄 겨루는 영어 토론대회", href:"https://www.ytn.co.kr", tone:"a"},
   {title:"World Schools Debating Championship", sub:"WSDC · 세계학교토론대회", desc:"80여 개국 대표팀이 겨루는 세계 최대 학생 토론대회", href:"https://wsdcdebating.org", tone:"c"},
   {title:"Harvard Debate Council", sub:"하버드 토론·스피치 대회", desc:"매년 2월 하버드대에서 열리는 토론·스피치 대회", href:"https://harvarddebate.org/", tone:"b"},
@@ -570,12 +570,12 @@ $("topic").addEventListener("change",()=>{ topic=$("topic").value; store("topic"
 
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
 <script type="module">
-// 친구 토론 버튼: 공개 스위치가 켜졌거나, 이 폰에서 대회 소식 탭을 빠르게 5번 눌러 테스트 모드를 켠 경우에만 보임
+// 디베이트 매치 버튼: 공개 스위치가 켜졌거나, 이 폰에서 대회 소식 탭을 빠르게 5번 눌러 테스트 모드를 켠 경우에만 보임
 const fb=document.getElementById("friendBtn"); let cfg=null;
 const beta=()=>{ try{ return localStorage.getItem("friendBeta")==="1"; }catch{ return false; } };
 const apply=()=>{ fb.hidden=!(cfg&&cfg.firebaseConfig&&(cfg.FRIEND_PUBLIC||beta())); };
 import("./firebase-config.js").then(m=>{ cfg=m; apply(); }).catch(()=>{});
 let taps=[]; document.querySelector('.tabs button[data-tab="news"]').addEventListener("click",()=>{ const t=Date.now(); taps=taps.filter(x=>t-x<3000); taps.push(t);
-  if(taps.length>=5){ taps=[]; const on=!beta(); try{ localStorage.setItem("friendBeta",on?"1":"0"); }catch{} apply(); alert(on?"친구 토론 테스트 모드를 켰어요.":"친구 토론 테스트 모드를 껐어요."); } });
+  if(taps.length>=5){ taps=[]; const on=!beta(); try{ localStorage.setItem("friendBeta",on?"1":"0"); }catch{} apply(); alert(on?"디베이트 매치 테스트 모드를 켰어요.":"디베이트 매치 테스트 모드를 껐어요."); } });
 </script>
 </body></html>
