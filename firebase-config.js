@@ -16,4 +16,4 @@ export const JUDGE_URL = "https://debate-stars-judge.debate-stars-judge.workers.
 // 예: "https://debate-stars-judge.<계정>.workers.dev"
 
 // 앱 홈 화면에 '디베이트 매치' 버튼을 보일지 (false: 숨김. room.html 주소로 직접 들어가면 테스트 가능)
-export const FRIEND_PUBLIC = false;
+export const FRIEND_PUBLIC = true;
