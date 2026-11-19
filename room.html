@@ -140,6 +140,12 @@ table.st th{color:var(--muted);font-weight:600}
 .cc .rl.gov{background:var(--gov)}.cc .rl.opp{background:var(--opp)}
 .cc .badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:800;background:#E0A800;color:#fff;border-radius:5px;padding:0 4px;line-height:1.5}
 .prof{display:flex;align-items:center;gap:10px}
+.crop{display:grid;gap:6px;justify-items:center}
+.cropbox{position:relative;width:200px;height:200px;border-radius:10px;overflow:hidden;touch-action:none;background:#e4ebfb}
+.cropbox canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+.cropbox .ring{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 2px #fff;border-radius:10px}
+.croptools{display:grid;gap:5px;justify-items:center;text-align:center}
+.croptools input[type=range]{width:150px;accent-color:var(--accent)}
 .prof .cc{width:92px;flex:none}
 .pinfo{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
 .pinfo b{font-size:15px}.pinfo span{font-size:11px;color:var(--muted)}
@@ -198,7 +204,13 @@ html.embed input.code{font-size:20px;min-height:36px}
       <div class="editor" id="pEd" hidden>
         <div class="ed-row"><span>모습</span><div class="seg" id="pKind"></div></div>
         <div class="ed-row top" id="pCharRow"><span>캐릭터</span><div class="castrow mini" id="pChars"></div></div>
-        <div class="ed-row" id="pPhotoRow"><span>사진</span><div class="seg"><button type="button" class="pick" id="pPhotoBtn">사진 고르기</button><input type="file" id="pFile" accept="image/*" hidden><span class="small muted" id="pPhotoHint"></span></div></div>
+        <input type="file" id="pFile" accept="image/*" hidden>
+        <div class="crop" id="pCrop" hidden>
+          <div class="cropbox"><canvas id="cropCv" width="480" height="480" aria-label="사진 위치 맞추기"></canvas><span class="ring" aria-hidden="true"></span></div>
+          <div class="croptools"><span class="small muted">끌어서 옮기고, 막대나 두 손가락으로 크기를 맞춰요</span>
+            <div class="seg"><span class="small muted">작게</span><input type="range" id="cropZoom" min="1" max="4" step="0.01" value="1" aria-label="사진 크기"><span class="small muted">크게</span></div>
+            <div class="seg"><button type="button" class="pick" id="cropRe">다른 사진</button><button type="button" class="pick dark" id="cropOk">이대로 쓰기</button></div></div>
+        </div>
         <div class="ed-row top"><span>학년</span><div><div class="seg" id="pSchool"></div><div class="seg" id="pGrade" style="margin-top:4px"></div></div></div>
         <div class="ed-row"><span>영어 이름</span><input type="text" id="pEn" maxlength="20" autocomplete="off" placeholder="예: Minji, Leo" aria-label="영어 이름"></div>
         <div class="ed-row top"><span>영어 수준</span><div><div class="seg" id="pLvls"></div><p class="note">국내부: 한국에서 영어를 배운 학생 · 국제부: 해외 거주·국제학교 등 영어가 익숙한 학생. AI 심판이 수준에 맞춰 피드백해요.</p></div></div>
@@ -308,7 +320,7 @@ let me = null, myName = "", code = null, room = null, offRoom = null, offConn = 
 /* ---------- 프로필 / 얼굴 ---------- */
 const CH = ["oliver", "liam", "chloe", "noah", "olivia", "leo", "ruby"];
 const LVLS = [["domestic", "국내부", "Domestic division (Korean EFL learner)"], ["international", "국제부", "International division (near-native or studied abroad)"]];
-const KINDS = [["char", "캐릭터"], ["photo", "내 사진"], ["photochar", "사진+몸"]];
+const KINDS = [["char", "캐릭터"], ["photo", "내 사진"]];
 const SCHOOLS = [["e", "초등", 6, "elementary school"], ["m", "중등", 3, "middle school"], ["h", "고등", 3, "high school"]];
 const grKo = g => { const s = SCHOOLS.find(x => x[0] === (g || "")[0]); return s ? ({ e: "초", m: "중", h: "고" })[s[0]] + g.slice(1) : ""; };
 const grEn = g => { const s = SCHOOLS.find(x => x[0] === (g || "")[0]); return s ? `grade ${g.slice(1)} of ${s[3]}` : ""; };
@@ -353,12 +365,11 @@ function renderProfile() {
   const pv = edit ? { ...edit, name: ($("pEn").value.trim() || edit.name) } : prof; // 고치는 동안 카드에 바로 보여 줌
   c.querySelector(".en").textContent = pv.name; c.querySelector(".ko").textContent = grKo(pv.gr) || "학년 미정"; c.querySelector(".nick").textContent = lvlKo(pv.lvl);
   fillFace(c.querySelector(".face"), pv);
-  $("pName").textContent = prof.name; $("pLvl").textContent = [grKo(prof.gr), lvlKo(prof.lvl), (KINDS.find(k => k[0] === prof.k) || KINDS[0])[1]].filter(Boolean).join(" · ");
+  $("pName").textContent = prof.name; $("pLvl").textContent = [grKo(prof.gr), lvlKo(prof.lvl), (prof.k === "char" ? KINDS[0] : KINDS[1])[1]].filter(Boolean).join(" · ");
   $("who").textContent = prof.name;
   if (!edit) return;
-  segBtns($("pKind"), KINDS.map(k => k[0]), edit.k, v => KINDS.find(k => k[0] === v)[1], v => { edit.k = v; if (v !== "char" && !edit.ph) $("pFile").click(); renderProfile(); }, true);
-  $("pCharRow").hidden = edit.k === "photo"; $("pPhotoRow").hidden = edit.k === "char";
-  $("pPhotoHint").textContent = edit.ph ? "사진 있음 ✓" : "얼굴이 가운데 오게 찍은 사진이 좋아요";
+  segBtns($("pKind"), KINDS.map(k => k[0]), (edit.k === "char" && !crop) ? "char" : "photo", v => KINDS.find(k => k[0] === v)[1], v => { if (v === "photo") { $("pFile").click(); if (edit.ph) edit.k = "photo"; } else edit.k = "char"; renderProfile(); }, true);
+  $("pCharRow").hidden = edit.k !== "char" || !!crop;
   const row = $("pChars"); row.innerHTML = "";
   CH.forEach(id => { const b = document.createElement("button"); b.type = "button"; b.className = "cc" + (edit.ch === id ? " sel" : ""); b.setAttribute("aria-label", id); b.innerHTML = '<span class="face"></span>'; b.onclick = () => { edit.ch = id; renderProfile(); }; row.append(b); fillFace(b.querySelector(".face"), { k: "char", ch: id }); });
   const sc = (edit.gr || "")[0] || "", scDef = SCHOOLS.find(x => x[0] === sc);
@@ -367,22 +378,53 @@ function renderProfile() {
   if (scDef) segBtns($("pGrade"), Array.from({ length: scDef[2] }, (_, i) => sc + (i + 1)), edit.gr, v => v.slice(1) + "학년", v => { edit.gr = v; renderProfile(); }, true);
   segBtns($("pLvls"), LVLS.map(l => l[0]), edit.lvl, v => LVLS.find(l => l[0] === v)[1], v => { edit.lvl = v; renderProfile(); }, true);
 }
-function openEdit(on) { edit = on ? { ...prof } : null; $("pEd").hidden = !on; $("pCard").setAttribute("aria-expanded", on ? "true" : "false"); $("pEdit").textContent = on ? "닫기" : "프로필 바꾸기"; if (on) $("pEn").value = prof.name; renderProfile(); }
+function openEdit(on) { crop = null; $("pCrop").hidden = true; edit = on ? { ...prof, k: prof.k === "char" ? "char" : "photo" } : null; $("pEd").hidden = !on; $("pCard").setAttribute("aria-expanded", on ? "true" : "false"); $("pEdit").textContent = on ? "닫기" : "프로필 바꾸기"; if (on) $("pEn").value = prof.name; renderProfile(); }
 $("pCard").onclick = $("pEdit").onclick = () => openEdit(!edit);
-$("pPhotoBtn").onclick = () => $("pFile").click();
 $("pEn").oninput = () => { if (edit) renderProfile(); };
+// 사진 고르고 위치·크기 맞추기
+let crop = null;
+function drawCrop() {
+  const c = crop, cv = $("cropCv"), x = cv.getContext("2d"), W = cv.width;
+  const base = W / Math.min(c.bmp.width, c.bmp.height), s = base * c.z, w = c.bmp.width * s, h = c.bmp.height * s;
+  c.ox = Math.min(0, Math.max(W - w, c.ox)); c.oy = Math.min(0, Math.max(W - h, c.oy));   // 빈칸이 안 생기게
+  x.fillStyle = "#e4ebfb"; x.fillRect(0, 0, W, W); x.drawImage(c.bmp, c.ox, c.oy, w, h);
+}
+function zoomTo(z, cx, cy) { // cx,cy: 캔버스 좌표 기준으로 확대
+  const c = crop, W = $("cropCv").width; z = Math.max(1, Math.min(4, z)); cx ??= W / 2; cy ??= W / 2;
+  const k = z / c.z; c.ox = cx - (cx - c.ox) * k; c.oy = cy - (cy - c.oy) * k; c.z = z; $("cropZoom").value = z; drawCrop();
+}
 $("pFile").onchange = async () => {
   const f = $("pFile").files[0]; $("pFile").value = ""; if (!f || !edit) return;
   try {
-    const bmp = await createImageBitmap(f), S = 128, cv = document.createElement("canvas"); cv.width = cv.height = S;
-    const side = Math.min(bmp.width, bmp.height), sx = (bmp.width - side) / 2, sy = Math.max(0, (bmp.height - side) / 2 - side * 0.08);
-    cv.getContext("2d").drawImage(bmp, sx, sy, side, side, 0, 0, S, S);
-    edit.ph = cv.toDataURL("image/jpeg", 0.78); if (edit.k === "char") edit.k = "photo"; renderProfile();
+    const bmp = await createImageBitmap(f), W = $("cropCv").width, base = W / Math.min(bmp.width, bmp.height);
+    crop = { bmp, z: 1, ox: (W - bmp.width * base) / 2, oy: (W - bmp.height * base) / 2 - Math.max(0, bmp.height * base - W) * 0.15 };
+    $("pCrop").hidden = false; $("cropZoom").value = 1; drawCrop(); renderProfile();
   } catch { alert("사진을 불러오지 못했어요. 다른 사진으로 해 주세요."); }
 };
+$("cropZoom").oninput = () => crop && zoomTo(+$("cropZoom").value);
+$("cropRe").onclick = () => $("pFile").click();
+$("cropOk").onclick = () => {
+  if (!crop) return; const S = 160, out = document.createElement("canvas"); out.width = out.height = S;
+  out.getContext("2d").drawImage($("cropCv"), 0, 0, S, S);
+  edit.ph = out.toDataURL("image/jpeg", 0.8); edit.k = "photo"; crop = null; $("pCrop").hidden = true; renderProfile();
+};
+{ // 끌기 + 두 손가락 확대
+  const cv = $("cropCv"), pts = new Map(); let pinch = null;
+  const pos = e => { const b = cv.getBoundingClientRect(), k = cv.width / b.width; return [(e.clientX - b.left) * k, (e.clientY - b.top) * k]; };
+  cv.addEventListener("pointerdown", e => { if (!crop) return; cv.setPointerCapture(e.pointerId); pts.set(e.pointerId, pos(e)); if (pts.size === 2) { const [p, q] = [...pts.values()]; pinch = { d: Math.hypot(p[0] - q[0], p[1] - q[1]), z: crop.z }; } });
+  cv.addEventListener("pointermove", e => {
+    if (!crop || !pts.has(e.pointerId)) return; const now = pos(e), prev = pts.get(e.pointerId); pts.set(e.pointerId, now);
+    if (pts.size === 2 && pinch) { const [p, q] = [...pts.values()]; zoomTo(pinch.z * Math.hypot(p[0] - q[0], p[1] - q[1]) / pinch.d, (p[0] + q[0]) / 2, (p[1] + q[1]) / 2); }
+    else if (pts.size === 1) { crop.ox += now[0] - prev[0]; crop.oy += now[1] - prev[1]; drawCrop(); }
+  });
+  const up = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; };
+  cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+  cv.addEventListener("wheel", e => { if (!crop) return; e.preventDefault(); const [x, y] = pos(e); zoomTo(crop.z * (e.deltaY < 0 ? 1.1 : 0.9), x, y); }, { passive: false });
+}
 $("pSave").onclick = async () => {
   const n = $("pEn").value.trim().replace(/\s+/g, " ").slice(0, 20);
   if (!n) { $("pEn").focus(); return; }
+  if (crop) { alert("사진 위치를 맞춘 뒤 '이대로 쓰기'를 눌러 주세요."); return; }
   if (edit.k !== "char" && !edit.ph) { alert("사진을 먼저 골라 주세요."); return; }
   prof = { ...edit, name: n }; myName = n; save("name", n);
   try { await D.set(R(`users/${me.uid}/profile`), prof); await D.set(R(`users/${me.uid}/name`), n); } catch (e) { alert("저장하지 못했어요. (" + (e.code || e.message) + ")"); return; }
