@@ -1,0 +1,8 @@
+// 친구 토론(room.html) 설정
+// 1) Firebase 콘솔 > 프로젝트 설정 > 내 앱(웹) 의 firebaseConfig 값을 아래에 붙여 넣기 (공개돼도 되는 값)
+// 2) AI 판정 서버(Cloudflare Worker)를 배포하면 주소를 JUDGE_URL 에 넣기
+export const firebaseConfig = null;
+// 예: { apiKey: "...", authDomain: "xxx.firebaseapp.com", databaseURL: "https://xxx-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "xxx", appId: "..." }
+
+export const JUDGE_URL = "";
+// 예: "https://debate-stars-judge.<계정>.workers.dev"
