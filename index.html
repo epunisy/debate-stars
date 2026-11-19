@@ -569,5 +569,5 @@ $("topic").addEventListener("change",()=>{ topic=$("topic").value; store("topic"
 </script>
 
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
-<script type="module">import("./firebase-config.js").then(m=>{ if(m.firebaseConfig) document.getElementById("friendBtn").hidden=false; }).catch(()=>{});</script>
+<script type="module">import("./firebase-config.js").then(m=>{ if(m.firebaseConfig && m.FRIEND_PUBLIC) document.getElementById("friendBtn").hidden=false; }).catch(()=>{});</script>
 </body></html>
