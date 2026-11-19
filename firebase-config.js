@@ -4,7 +4,7 @@
 export const firebaseConfig = null;
 // 예: { apiKey: "...", authDomain: "xxx.firebaseapp.com", databaseURL: "https://xxx-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "xxx", appId: "..." }
 
-export const JUDGE_URL = "";
+export const JUDGE_URL = "https://debate-stars-judge.debate-stars-judge.workers.dev";
 // 예: "https://debate-stars-judge.<계정>.workers.dev"
 
 // 앱 홈 화면에 '친구 토론' 버튼을 보일지 (false: 숨김. room.html 주소로 직접 들어가면 테스트 가능)
