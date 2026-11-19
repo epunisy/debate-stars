@@ -569,5 +569,13 @@ $("topic").addEventListener("change",()=>{ topic=$("topic").value; store("topic"
 </script>
 
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
-<script type="module">import("./firebase-config.js").then(m=>{ if(m.firebaseConfig && m.FRIEND_PUBLIC) document.getElementById("friendBtn").hidden=false; }).catch(()=>{});</script>
+<script type="module">
+// 친구 토론 버튼: 공개 스위치가 켜졌거나, 이 폰에서 대회 소식 탭을 빠르게 5번 눌러 테스트 모드를 켠 경우에만 보임
+const fb=document.getElementById("friendBtn"); let cfg=null;
+const beta=()=>{ try{ return localStorage.getItem("friendBeta")==="1"; }catch{ return false; } };
+const apply=()=>{ fb.hidden=!(cfg&&cfg.firebaseConfig&&(cfg.FRIEND_PUBLIC||beta())); };
+import("./firebase-config.js").then(m=>{ cfg=m; apply(); }).catch(()=>{});
+let taps=[]; document.querySelector('.tabs button[data-tab="news"]').addEventListener("click",()=>{ const t=Date.now(); taps=taps.filter(x=>t-x<3000); taps.push(t);
+  if(taps.length>=5){ taps=[]; const on=!beta(); try{ localStorage.setItem("friendBeta",on?"1":"0"); }catch{} apply(); alert(on?"친구 토론 테스트 모드를 켰어요.":"친구 토론 테스트 모드를 껐어요."); } });
+</script>
 </body></html>
