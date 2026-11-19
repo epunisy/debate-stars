@@ -85,7 +85,9 @@ select{border:1px solid var(--line);background:var(--surface);border-radius:6px;
 .alert{background:var(--cue);color:var(--cue-ink);border-radius:8px;padding:10px;margin-bottom:10px;font-size:14px}
 .alert .row{margin-top:6px}
 .actions{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
-.hostbar{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.hostbar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;align-items:center}
+.hostbar .btn{padding:3px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+.hostbar .lab{grid-column:1/-1}
 .hostbar .lab{font-size:11px;color:var(--muted);margin-right:2px}
 .win{color:#fff;border-radius:8px;padding:14px;margin-bottom:10px;text-align:center}
 .win.gov{background:var(--gov)} .win.opp{background:var(--opp)}
@@ -155,7 +157,21 @@ table.st th{color:var(--muted);font-weight:600}
 .mrow .n{font:500 12px var(--mono);color:var(--muted)}
 .mlist .empty{margin:0;padding:14px 10px;text-align:center;font-size:12px;color:var(--muted)}
 .codeline{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted)}
-.codeline span{flex:1}
+.codeline span{flex:none;white-space:nowrap}.codeline input{flex:1;min-width:0;width:auto}
+.seg.eq{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:5px}
+.seg.eq .pick{padding-left:4px;padding-right:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick.big{min-height:34px;font-size:13px;padding-left:14px;padding-right:14px}
+.pick.wide{width:100%}
+.newroom{display:grid!important;grid-template-columns:1fr 1fr auto;gap:6px;align-items:center}
+.newroom[hidden]{display:none!important}
+.roomhead{display:flex;align-items:center;gap:6px}
+.roomhead .sp{flex:1}
+.lfoot{display:grid;grid-template-columns:64px 1fr 64px;align-items:center;gap:6px;padding-top:4px}
+.lfoot .lnk{justify-self:start}
+.lfoot .mid{display:flex;flex-direction:column;align-items:center;gap:2px}
+.lfoot #bReady{min-width:150px}
+.lfoot .goslot{display:flex;justify-content:flex-end}
+.lfoot .note{text-align:center;margin:0}
 .crop{display:grid;gap:6px;justify-items:center}
 .cropbox{position:relative;width:200px;height:200px;border-radius:10px;overflow:hidden;touch-action:none;background:#e4ebfb}
 .cropbox canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
@@ -217,7 +233,7 @@ html.embed input.code{font-size:20px;min-height:36px}
     <div class="setup"><div class="me1"><span class="mface big" id="pFace"></span><div class="t"><b id="pName"></b><small id="pLvl"></small></div><button type="button" class="pen" id="pEdit" aria-label="프로필 바꾸기">✎</button></div></div>
     <div class="setup">
       <div class="labrow"><b class="ttl">매치 리스트 <span class="cnt" id="openCount"></span></b><button type="button" class="plus" id="bPlus" aria-label="매치 열기" aria-expanded="false">＋</button></div>
-      <div class="newroom" id="newRoom" hidden><button type="button" class="pick dark" id="bCreate">공개 방</button><button type="button" class="pick" id="bCreatePriv">🔒 비밀 방</button><button type="button" class="x" id="bPlusX" aria-label="닫기">✕</button></div>
+      <div class="newroom" id="newRoom" hidden><button type="button" class="pick dark big" id="bCreate">공개 방</button><button type="button" class="pick big" id="bCreatePriv">🔒 비밀 방</button><button type="button" class="x" id="bPlusX" aria-label="닫기">✕</button></div>
       <div class="mlist" id="openList"></div>
       <div class="codeline"><span>🔒 비밀 방 코드</span><input type="text" class="codein" id="joinCode" maxlength="6" autocomplete="off" autocapitalize="characters" aria-label="비밀 방 참가 코드 6자리"><button type="button" class="pick dark" id="bJoin">입장</button></div>
       <p class="err" id="joinErr" hidden></p>
@@ -228,7 +244,7 @@ html.embed input.code{font-size:20px;min-height:36px}
     <div class="labrow"><b class="ttl">프로필</b><button type="button" class="x" id="pClose" aria-label="닫기">✕</button></div>
     <div class="prof"><div class="cc me" id="pCard"></div></div>
     <div class="editor" id="pEd">
-        <div class="ed-row"><span>모습</span><div class="seg" id="pKind"></div></div>
+        <div class="ed-row"><span>모습</span><div class="seg eq" id="pKind"></div></div>
         <div class="ed-row top" id="pCharRow"><span>캐릭터</span><div class="castrow mini" id="pChars"></div></div>
         <input type="file" id="pFile" accept="image/*" hidden>
         <div class="crop" id="pCrop" hidden>
@@ -237,26 +253,26 @@ html.embed input.code{font-size:20px;min-height:36px}
             <div class="seg"><span class="small muted">작게</span><input type="range" id="cropZoom" min="1" max="4" step="0.01" value="1" aria-label="사진 크기"><span class="small muted">크게</span></div>
             <div class="seg"><button type="button" class="pick" id="cropRe">다른 사진</button><button type="button" class="pick dark" id="cropOk">이대로 쓰기</button></div></div>
         </div>
-        <div class="ed-row top"><span>학년</span><div><div class="seg" id="pSchool"></div><div class="seg" id="pGrade" style="margin-top:4px"></div></div></div>
+        <div class="ed-row top"><span>학년</span><div><div class="seg eq" id="pSchool"></div><div class="seg eq" id="pGrade" style="margin-top:4px"></div></div></div>
         <div class="ed-row"><span>영어 이름</span><input type="text" id="pEn" maxlength="20" autocomplete="off" placeholder="예: Minji, Leo" aria-label="영어 이름"></div>
-        <div class="ed-row top"><span>영어 수준</span><div><div class="seg" id="pLvls"></div></div></div>
-        <div class="ed-foot"><span></span><button type="button" class="pick dark" id="pSave">저장</button></div>
+        <div class="ed-row top"><span>영어 수준</span><div><div class="seg eq" id="pLvls"></div></div></div>
+        <button type="button" class="pick dark big wide" id="pSave">저장</button>
     </div>
   </div></section>
 
   <section id="vLobby" hidden><div class="setup">
-    <div class="opt"><span class="lab" id="lCodeLab">코드</span><div class="seg"><b class="codetxt" id="lCode"></b><button type="button" class="pick" id="bShare">보내기</button><button type="button" class="pick" id="bCopy">복사</button><span class="small muted" id="lPriv"></span></div></div>
+    <div class="roomhead"><span class="small muted" id="lCodeLab"></span><span class="small" id="lPriv"></span><b class="codetxt" id="lCode"></b><span class="sp"></span><button type="button" class="pick" id="bShare">보내기</button><button type="button" class="pick" id="bCopy">복사</button></div>
     <div class="opt"><span class="lab">주제</span><select id="sTopic"></select></div>
     <p class="motion" id="lMotion"></p>
     <div class="opt" id="lSumRow"><span class="lab">규칙</span><span class="small" id="lSum"></span></div>
-    <div class="opt hostonly"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
-    <div class="opt hostonly"><span class="lab">준비</span><div class="seg" id="sPrep"></div></div>
-    <div class="opt hostonly"><span class="lab">목소리</span><div class="seg"><button type="button" class="pick" id="sVoice">목소리 전송</button><span class="small muted" id="sVoiceHint"></span></div></div>
+    <div class="opt hostonly"><span class="lab">시간</span><div class="seg eq" id="sMins"></div></div>
+    <div class="opt hostonly"><span class="lab">준비</span><div class="seg eq" id="sPrep"></div></div>
+    <div class="opt hostonly"><span class="lab">목소리</span><div class="seg eq"><button type="button" class="pick" id="sVoice">목소리 전송</button></div><span id="sVoiceHint" hidden></span></div>
     <div class="opt top"><span class="lab">자리 <span id="lHostOnly"></span></span>
       <div class="castrow seats3" id="seatRow"></div>
-      <div class="seg"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
+      <div class="seg eq"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
     <div class="opt top"><span class="lab">참가자</span><div class="members" id="lMembers"></div></div>
-    <div class="foot"><div class="fl"><div class="seg"><button type="button" class="pick" id="bReady" aria-pressed="false">준비</button><button type="button" class="lnk" id="bLeave">방 나가기</button></div><p class="note" id="startHint"></p></div><button type="button" class="go" id="bGo" disabled>Go!</button></div>
+    <div class="lfoot"><button type="button" class="lnk" id="bLeave">나가기</button><div class="mid"><button type="button" class="pick big" id="bReady" aria-pressed="false">준비</button><p class="note" id="startHint"></p></div><div class="goslot"><button type="button" class="go" id="bGo" disabled>Go!</button></div></div>
   </div></section>
 
   <section id="vLive" hidden>
@@ -767,7 +783,7 @@ function renderLobby() {
     .map(([u, v]) => `<span class="${v.on ? "on" : ""}">${miniHTML(u)}${esc(v.name)}${u === m.host ? ' <span class="tag host">방장</span>' : ""}${u === me.uid ? " (나)" : ""}${v.ready ? '<span class="rdy">준비</span>' : ""}</span>`).join("");
   hydrateMini($("lMembers"));
   // 공개 방은 매치 리스트에서 바로 들어오니 코드를 숨김. 비밀 방만 코드 보이기
-  $("lCodeLab").textContent = m.priv ? "코드" : "방"; $("lCode").hidden = $("bCopy").hidden = !m.priv;
+  $("lCodeLab").textContent = ""; $("lCode").hidden = $("bCopy").hidden = !m.priv;
   $("lPriv").textContent = m.priv ? "🔒 비밀 방" : "공개 방";
   $("bShare").textContent = m.priv ? "보내기" : "초대하기";
   $("lHostOnly").textContent = "";
@@ -780,7 +796,7 @@ function renderLobby() {
   $("sVoice").setAttribute("aria-pressed", m.voice ? "true" : "false"); $("sVoice").disabled = !host;
   $("sVoiceHint").textContent = "";
   const t = topicOf(m.topic); $("lMotion").innerHTML = `${esc(t[2])}<small>${esc(t[3])}</small>`;
-  $("sVoice").textContent = m.voice ? "목소리 전송 켜짐" : "목소리 전송 꺼짐";
+  $("sVoice").textContent = m.voice ? "목소리 전송 켜짐 · 멀리서도 들려요" : "꺼짐 · 자막만 (한곳에 모였을 때)";
   const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.gr, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
   if (sk !== seatKey) { seatKey = sk; const row = $("seatRow"); row.innerHTML = "";
     ["g1", "g2", "g3", "o1", "o2", "o3"].forEach(s => { const b = seatCard(s); row.append(b); const u = room.seats?.[s]; if (u) fillFace(b.querySelector(".face"), avOf(u)); }); }
