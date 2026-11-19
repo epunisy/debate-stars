@@ -129,8 +129,8 @@ body.hide-ko .line .ko{display:none}
 .ctl label{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:3px}
 .ctl select{font:500 12px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:2px 4px;min-height:26px}
 /* 디베이트 무대 진행 중: 로고만 남기고 무대가 화면을 채움 */
-body.stage-live :is(.banners,.dots,.tabs,#warn,#friendBtn){display:none!important}
-.frbtn{margin-left:auto;font:600 12px var(--body);color:var(--fg);border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:3px 10px;min-height:26px;line-height:18px;text-decoration:none;white-space:nowrap}
+body.stage-live :is(.banners,.dots,.tabs,#warn,#acctBtn){display:none!important}
+.frbtn{margin-left:auto;cursor:pointer;max-width:42vw;overflow:hidden;text-overflow:ellipsis;font:600 12px var(--body);color:var(--fg);border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:3px 10px;min-height:26px;line-height:18px;text-decoration:none;white-space:nowrap}
 .frbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 body.stage-live .wrap{padding-bottom:0}
 body.stage-live header{margin-bottom:4px}
@@ -175,6 +175,7 @@ body.stage-live .wrap{padding-top:8px}
 <div class="wrap">
   <header>
     <div class="headrow"><a class="logo" href="#" aria-label="Debate Stars 디베이트 스타즈"><picture><source srcset="logo-dark.png" media="(prefers-color-scheme: dark)"><img src="logo.png" alt="Debate Stars 디베이트 스타즈"></picture></a>
+    <button type="button" class="frbtn" id="acctBtn" hidden>로그인</button>
     <div class="spk" id="spk" aria-live="polite"><b></b><small></small></div></div>
     <div class="banners" id="banners" aria-label="영어 디베이트 대회"></div>
     <div class="dots" id="dots" role="group" aria-label="배너 넘기기"></div>
@@ -575,7 +576,21 @@ const fb=document.getElementById("matchTab");
 fb.onclick=()=>{ location.href="room.html"; }; let cfg=null;
 const beta=()=>{ try{ return localStorage.getItem("friendBeta")==="1"; }catch{ return false; } };
 const apply=()=>{ fb.hidden=!(cfg&&cfg.firebaseConfig&&(cfg.FRIEND_PUBLIC||beta())); };
-import("./firebase-config.js").then(m=>{ cfg=m; apply(); }).catch(()=>{});
+import("./firebase-config.js").then(m=>{ cfg=m; apply(); if(m.firebaseConfig) acct(m.firebaseConfig); }).catch(()=>{});
+// 계정: 로고 줄 오른쪽 끝. 로그아웃 상태면 [로그인], 로그인 상태면 이름 (누르면 내 계정 화면)
+async function acct(conf){
+  const ab=document.getElementById("acctBtn"), V="13.2.0";
+  const [{ initializeApp }, A]=await Promise.all([import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`), import(`https://www.gstatic.com/firebasejs/${V}/firebase-auth.js`)]);
+  const auth=A.getAuth(initializeApp(conf)); let user=null;
+  A.onAuthStateChanged(auth,u=>{ user=u; let n=""; try{ n=localStorage.getItem("room.name")||""; }catch{} ab.textContent=u?(n||(u.displayName||"").split(" ")[0]||"내 계정"):"로그인"; ab.setAttribute("aria-label",u?"내 계정":"Google 계정으로 로그인"); ab.hidden=false; });
+  ab.onclick=async()=>{
+    if(user){ location.href="room.html"; return; }
+    const p=new A.GoogleAuthProvider();
+    try{ await A.signInWithPopup(auth,p); }
+    catch(e){ if(e.code==="auth/popup-blocked"||e.code==="auth/operation-not-supported-in-this-environment"){ try{ await A.signInWithRedirect(auth,p); }catch{} }
+      else if(e.code!=="auth/popup-closed-by-user"&&e.code!=="auth/cancelled-popup-request") alert("로그인하지 못했어요. 다시 해 주세요."); }
+  };
+}
 let taps=[]; document.querySelector('.tabs button[data-tab="news"]').addEventListener("click",()=>{ const t=Date.now(); taps=taps.filter(x=>t-x<3000); taps.push(t);
   if(taps.length>=5){ taps=[]; const on=!beta(); try{ localStorage.setItem("friendBeta",on?"1":"0"); }catch{} apply(); alert(on?"디베이트 매치 테스트 모드를 켰어요.":"디베이트 매치 테스트 모드를 껐어요."); } });
 </script>
