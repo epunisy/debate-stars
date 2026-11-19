@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F2F4F1">
 <link rel="manifest" href="manifest.webmanifest">
+<script>if(new URLSearchParams(location.search).has("embed")||window.parent!==window)document.documentElement.classList.add("embed");</script>
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -94,17 +95,42 @@ table.st td,table.st th{border-bottom:1px solid var(--line);padding:3px 4px;text
 table.st th{color:var(--muted);font-weight:600}
 .err{color:var(--warn);font-size:13px}
 .hint{font-size:12px;color:var(--muted);margin:6px 0 0}
+.readyrow{display:flex;align-items:center;justify-content:center;gap:14px;margin:4px 0}
+.readyrow #bReady{min-width:120px}
+.go{width:58px;height:58px;flex:none;border-radius:50%;padding:0;font:800 17px var(--body);background:var(--accent);color:var(--accent-ink);border:0;cursor:pointer;box-shadow:0 4px 12px #1F3E8F40}
+.go:disabled{opacity:.35;cursor:default;box-shadow:none}
+.go:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.room{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 10px;margin-bottom:6px;cursor:pointer;color:var(--fg)}
+.room .t{flex:1;min-width:0}
+.room .t b{display:block;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.room .t small{font-size:11px;color:var(--muted)}
+.room .n{font:500 12px var(--mono);color:var(--muted);white-space:nowrap}
+.rdy{font-size:10px;font-weight:700;color:#fff;background:var(--accent);border-radius:3px;padding:0 4px;margin-left:3px}
+@media (prefers-color-scheme:dark){.rdy{color:var(--accent-ink)}}
+/* 앱 탭 안에 들어갈 때: 리허설과 같은 둥근 흰 상자 양식 */
+html.embed,html.embed body{background:transparent}
+html.embed header{display:none}
+html.embed .wrap{padding:2px 0 12px;max-width:none}
+html.embed .card{border-radius:12px;padding:10px 12px;margin-bottom:10px}
+html.embed .card h2{font-size:13px;margin-bottom:6px}
+html.embed body{font-size:14px}
+html.embed .btn{font-size:12px;min-height:26px;padding:3px 9px}
+html.embed .btn.big{min-height:36px;font-size:14px}
+html.embed .grid2{grid-template-columns:42px minmax(0,1fr)}
+html.embed .grid2 .lab{font-size:11px}
+html.embed select,html.embed input.txt{font-size:12px;min-height:26px}
+html.embed input.code{font-size:20px;min-height:36px}
 </style></head><body>
 <div class="wrap">
-  <header><a class="back" href="index.html">← 홈</a><h1>디베이트 매치</h1><span class="who" id="who"></span></header>
+  <header><a class="back" href="index.html" target="_top">← 홈</a><h1>디베이트 매치</h1><span class="who" id="who"></span></header>
 
   <section id="vSetup" hidden><div class="card"><h2>설정이 필요해요</h2><p class="small muted">아직 Firebase 설정이 연결되지 않았어요. 관리자가 <code>firebase-config.js</code> 를 채우면 쓸 수 있어요.</p></div></section>
 
   <section id="vLogin" hidden><div class="card">
     <h2>친구들과 방을 만들어 토론해요</h2>
-    <p class="small muted">방을 만들면 참가 코드가 나와요. 친구에게 코드를 알려 주면 같은 방에서 여당·야당으로 나눠 토론하고, 마지막에 AI 심판이 승패와 피드백을 알려 줘요.</p>
+    <p class="small muted">공개 방에 들어가거나 방을 직접 만들어요. 모두 준비를 누르면 Go! 여당·야당으로 나눠 토론하고, 마지막에 AI 심판이 승패와 피드백을 알려 줘요.</p>
     <button class="btn dark big wide" id="bLogin">Google 계정으로 로그인</button>
-    <p class="hint">만 14세 미만은 보호자의 동의를 받은 뒤 로그인해 주세요. 토론 중 말한 내용은 자막(글자)으로 저장되고 AI 판정에 쓰여요. 목소리는 저장하지 않아요. <a href="privacy.html">개인정보처리방침</a></p>
+    <p class="hint">만 14세 미만은 보호자의 동의를 받은 뒤 로그인해 주세요. 토론 중 말한 내용은 자막(글자)으로 저장되고 AI 판정에 쓰여요. 목소리는 저장하지 않아요. <a href="privacy.html" target="_top">개인정보처리방침</a></p>
     <p class="err" id="loginErr" hidden></p>
   </div></section>
 
@@ -112,7 +138,9 @@ table.st th{color:var(--muted);font-weight:600}
     <div class="card"><h2>내 이름</h2>
       <div class="row"><input class="txt" id="myName" maxlength="24" style="flex:1" aria-label="토론에서 보일 이름"><button class="btn" id="bSaveName">저장</button></div>
       <p class="hint">친구들 화면과 판정 결과에 이 이름이 보여요.</p></div>
-    <div class="card"><h2>방 만들기</h2><button class="btn dark big wide" id="bCreate">새 방 만들기</button></div>
+    <div class="card"><h2>방 만들기</h2><div class="row"><button class="btn dark big" id="bCreate" style="flex:1">공개 방 만들기</button><button class="btn big" id="bCreatePriv" style="flex:1">🔒 비밀 방 만들기</button></div>
+      <p class="hint">공개 방은 아래 목록에 보여서 누구나 들어올 수 있어요. 비밀 방은 코드를 아는 친구만 들어와요.</p></div>
+    <div class="card"><h2>열린 방 <span class="small muted" id="openCount"></span></h2><div id="openList"></div></div>
     <div class="card"><h2>코드로 참가</h2>
       <div class="row"><input class="txt code" id="joinCode" maxlength="6" autocomplete="off" autocapitalize="characters" style="flex:1" aria-label="참가 코드 6자리" placeholder="ABC123"><button class="btn dark big" id="bJoin">참가</button></div>
       <p class="err" id="joinErr" hidden></p></div>
@@ -121,7 +149,7 @@ table.st th{color:var(--muted);font-weight:600}
   </section>
 
   <section id="vLobby" hidden>
-    <div class="card"><h2>참가 코드</h2><div class="codebox" id="lCode"></div>
+    <div class="card"><h2>참가 코드 <span class="small muted" id="lPriv"></span></h2><div class="codebox" id="lCode"></div>
       <div class="row" style="justify-content:center"><button class="btn" id="bShare">코드 보내기</button><button class="btn" id="bCopy">복사</button></div></div>
     <div class="card"><h2>참가자</h2><div class="members" id="lMembers"></div></div>
     <div class="card" id="lSettings"><h2>토론 설정 <span class="small muted" id="lHostOnly"></span></h2>
@@ -138,7 +166,7 @@ table.st th{color:var(--muted);font-weight:600}
       <div class="seats"><div class="bench" id="benchGov"><h3><span class="tag gov">여당</span> 찬성</h3></div><div class="bench" id="benchOpp"><h3><span class="tag opp">야당</span> 반대</h3></div></div>
       <div class="row" style="margin-top:6px"><button class="btn" id="bAuto">자동 배정</button><button class="btn" id="bClearSeats">자리 비우기</button></div>
     </div>
-    <button class="btn dark big wide" id="bStart">토론 시작</button>
+    <div class="readyrow"><button class="btn big" id="bReady" aria-pressed="false">준비</button><button class="go" id="bGo" disabled>Go!</button></div>
     <p class="hint" id="startHint" style="text-align:center"></p>
     <div class="row" style="justify-content:center;margin-top:12px"><button class="btn" id="bLeave">방 나가기</button></div>
   </section>
@@ -170,7 +198,11 @@ import { firebaseConfig, JUDGE_URL } from "./firebase-config.js";
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const show = v => ["vSetup", "vLogin", "vHome", "vLobby", "vLive", "vResult"].forEach(id => $(id).hidden = id !== v);
+const EMBED = document.documentElement.classList.contains("embed");
+let shown = "";
+const show = v => { ["vSetup", "vLogin", "vHome", "vLobby", "vLive", "vResult"].forEach(id => $(id).hidden = id !== v); if (EMBED && v !== shown) parent.postMessage({ matchTop: 1 }, "*"); shown = v; };
+if (EMBED) { const post = () => parent.postMessage({ matchHeight: document.querySelector(".wrap").getBoundingClientRect().height + 4 }, "*"); new ResizeObserver(post).observe(document.querySelector(".wrap")); addEventListener("load", post); }
+const selfURL = q => "room.html" + (q || EMBED || EMU ? "?" : "") + [q, EMBED ? "embed" : "", EMU ? "emu" : ""].filter(Boolean).join("&");
 
 const TOPICS = [["d01", "초등학교 숙제 폐지", "This House would abolish homework in elementary schools.", "본 의회는 초등학교 숙제를 폐지할 것이다."], ["d02", "16세 미만 SNS 금지", "This House would ban social media for children under 16.", "본 의회는 16세 미만 어린이의 SNS 사용을 금지할 것이다."], ["d03", "일회용 플라스틱 금지", "This House would ban single-use plastics.", "본 의회는 일회용 플라스틱을 금지할 것이다."], ["d04", "학교 과제에 AI 사용 허용", "This House would allow students to use AI for schoolwork.", "본 의회는 학생들이 학교 과제에 AI를 사용하도록 허용할 것이다."], ["d05", "동물원 금지", "This House would ban zoos.", "본 의회는 동물원을 금지할 것이다."], ["d06", "교복 폐지", "This House would abolish school uniforms.", "본 의회는 교복을 폐지할 것이다."], ["d07", "우주 탐사보다 지구 문제 우선", "This House would prioritize solving problems on Earth over space exploration.", "본 의회는 우주 탐사보다 지구의 문제 해결을 우선할 것이다."], ["d08", "어린이 대상 정크푸드 광고 금지", "This House would ban junk food advertising aimed at children.", "본 의회는 어린이를 대상으로 한 정크푸드 광고를 금지할 것이다."], ["d09", "성적이 좋은 학생에게 돈으로 보상", "This House would pay students for good grades.", "본 의회는 성적이 좋은 학생에게 돈으로 보상할 것이다."], ["d10", "투표 연령 16세로 낮추기", "This House would lower the voting age to 16.", "본 의회는 투표 연령을 16세로 낮출 것이다."], ["d11", "화장품 동물실험 금지", "This House would ban animal testing for cosmetics.", "본 의회는 화장품 동물실험을 금지할 것이다."], ["d12", "학교 내 스마트폰 금지", "This House would ban smartphones in schools.", "본 의회는 학교 내 스마트폰 사용을 금지할 것이다."], ["d13", "시험을 프로젝트로 대체", "This House would replace exams with projects.", "본 의회는 시험을 프로젝트로 대체할 것이다."], ["d14", "도심 자동차 통행 금지", "This House would ban cars from city centers.", "본 의회는 도심에서 자동차 통행을 금지할 것이다."], ["d15", "어린이 인플루언서 활동 금지", "This House would ban children from working as online influencers.", "본 의회는 어린이가 온라인 인플루언서로 활동하는 것을 금지할 것이다."], ["d16", "주 4일 수업", "This House would introduce a four-day school week.", "본 의회는 주 4일 수업제를 도입할 것이다."], ["d17", "학교 급식 채식화", "This House would serve only vegetarian meals in school cafeterias.", "본 의회는 학교 급식을 채식으로만 제공할 것이다."], ["d18", "어린이 스포츠에서 점수 없애기", "This House would stop keeping score in children's sports.", "본 의회는 어린이 스포츠에서 점수를 매기지 않을 것이다."], ["d19", "학생 봉사활동 의무화", "This House would make volunteer work mandatory for students.", "본 의회는 학생 봉사활동을 의무화할 것이다."], ["d20", "박물관 문화재 반환", "This House would return museum artifacts to their countries of origin.", "본 의회는 박물관 문화재를 원래 나라로 돌려줄 것이다."]];
 const ORDER = [
@@ -231,6 +263,7 @@ A.onAuthStateChanged(auth, async u => {
   myName = (s && s.val()) || load("name", "") || (u.displayName || "").split(" ")[0] || "친구";
   $("myName").value = myName; $("who").textContent = myName;
   const want = (new URLSearchParams(location.search).get("code") || load("code", "") || "").toUpperCase();
+  watchOpen();
   if (want) { $("joinCode").value = want; if (await joinRoom(want, true)) return; }
   show("vHome");
 });
@@ -256,18 +289,48 @@ $("bDelete").onclick = async () => {
 
 /* ---------- 방 만들기 / 참가 ---------- */
 const CODE_CH = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-$("bCreate").onclick = async () => {
-  $("bCreate").disabled = true;
+$("bCreate").onclick = () => createRoom(false);
+$("bCreatePriv").onclick = () => createRoom(true);
+async function createRoom(priv) {
+  $("bCreate").disabled = $("bCreatePriv").disabled = true;
   try {
     for (let t = 0; t < 6; t++) {
       const c = Array.from(crypto.getRandomValues(new Uint8Array(6)), b => CODE_CH[b % CODE_CH.length]).join("");
       if ((await D.get(R(`rooms/${c}/meta`))).exists()) continue;
-      await D.set(R(`rooms/${c}/meta`), { host: me.uid, createdAt: now(), status: "lobby", topic: load("topic", "d01"), mins: +load("mins", 3), prep: +load("prep", 0), voice: load("voice", "1") === "1", round: 0 });
+      await D.set(R(`rooms/${c}/meta`), { host: me.uid, createdAt: now(), status: "lobby", priv: !!priv, topic: load("topic", "d01"), mins: +load("mins", 3), prep: +load("prep", 0), voice: load("voice", "1") === "1", round: 0 });
       await joinRoom(c); return;
     }
   } catch (e) { alert("방을 만들지 못했어요. (" + (e.code || e.message) + ")"); }
-  finally { $("bCreate").disabled = false; }
-};
+  finally { $("bCreate").disabled = $("bCreatePriv").disabled = false; }
+}
+
+/* ---------- 열린 방 목록 ---------- */
+let offOpen = null, openRooms = {};
+function watchOpen() {
+  if (offOpen) return;
+  offOpen = D.onValue(R("open"), s => { openRooms = s.val() || {}; renderOpen(); }, () => { offOpen = null; });
+}
+function renderOpen() {
+  const list = Object.entries(openRooms).filter(([, v]) => v && now() - (v.seen || 0) < 120000).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
+  $("openCount").textContent = list.length ? list.length + "개" : "";
+  $("openList").innerHTML = list.length ? list.map(([c, v]) => { const t = topicOf(v.topic); return `<button class="room" data-c="${esc(c)}"><span class="t"><b>${esc(t[1])}</b><small>방장 ${esc(v.host)} · ${+v.mins || 3}분</small></span><span class="n">${+v.n || 1}명</span></button>`; }).join("")
+    : '<p class="hint" style="margin:0">지금 열린 방이 없어요. 공개 방을 만들어 친구를 기다려 보세요.</p>';
+  $("openList").querySelectorAll(".room").forEach(b => b.onclick = () => joinRoom(b.dataset.c));
+}
+setInterval(() => { if (!$("vHome").hidden) renderOpen(); }, 15000);
+// 방장 폰이 공개 방 정보를 목록에 올리고 30초마다 살아 있음을 알림
+let openKey = "", openAt = 0;
+function syncOpen() {
+  if (!room || !isHost()) return;
+  const m = room.meta, listed = !m.priv && m.status === "lobby";
+  if (!listed) { if (openKey !== "off") { openKey = "off"; D.remove(R(`open/${code}`)).catch(() => {}); } return; }
+  const n = Object.values(room.members || {}).filter(v => v.on).length;
+  const v = { topic: m.topic, host: nameOf(me.uid), n, mins: m.mins, at: m.createdAt };
+  const key = JSON.stringify(v);
+  if (key === openKey && Date.now() - openAt < 30000) return;
+  openKey = key; openAt = Date.now();
+  D.set(R(`open/${code}`), { ...v, seen: now() }).catch(() => {});
+}
 $("bJoin").onclick = () => joinRoom($("joinCode").value.trim().toUpperCase());
 $("joinCode").addEventListener("keydown", e => { if (e.key === "Enter") $("bJoin").click(); });
 
@@ -290,7 +353,7 @@ async function joinRoom(c, quiet) {
 function enterRoom(c) {
   leaveLocal();
   code = c; save("code", c);
-  history.replaceState(null, "", "room.html?code=" + c + (EMU ? "&emu" : ""));
+  history.replaceState(null, "", selfURL("code=" + c));
   const onRef = R(`rooms/${c}/members/${me.uid}/on`);
   offConn = D.onValue(R(".info/connected"), s => { if (s.val()) { D.onDisconnect(onRef).set(false); D.set(onRef, true).catch(() => {}); } });
   offRoom = D.onValue(R(`rooms/${c}`), s => { room = s.val(); if (!room || !room.meta) { leaveLocal(); save("code", ""); show("vHome"); return; } render(); });
@@ -309,7 +372,7 @@ async function leaveRoom() {
   try {
     if (m && m.status !== "live") {
       const others = Object.entries(room.members || {}).filter(([u]) => u !== me.uid);
-      if (!others.length) await D.remove(R(`rooms/${c}`));
+      if (!others.length) { await D.remove(R(`open/${c}`)).catch(() => {}); await D.remove(R(`rooms/${c}`)); }
       else {
         const up = { [`members/${me.uid}`]: null };
         for (const [s, u] of Object.entries(room.seats || {})) if (u === me.uid) up[`seats/${s}`] = null;
@@ -319,7 +382,7 @@ async function leaveRoom() {
       await D.remove(R(`users/${me.uid}/rooms/${c}`));
     } else await D.set(R(`rooms/${c}/members/${me.uid}/on`), false);
   } catch {}
-  leaveLocal(); save("code", ""); history.replaceState(null, "", "room.html" + (EMU ? "?emu" : "")); show("vHome");
+  leaveLocal(); save("code", ""); history.replaceState(null, "", selfURL("")); show("vHome");
 }
 $("bLeave").onclick = leaveRoom; $("bLeave2").onclick = leaveRoom;
 
@@ -483,7 +546,8 @@ function renderLobby() {
   const m = room.meta, host = isHost();
   $("lCode").textContent = code;
   $("lMembers").innerHTML = Object.entries(room.members || {}).sort((a, b) => (a[1].joinedAt || 0) - (b[1].joinedAt || 0))
-    .map(([u, v]) => `<span class="${v.on ? "on" : ""}"><i class="dot"></i>${esc(v.name)}${u === m.host ? ' <span class="tag host">방장</span>' : ""}${u === me.uid ? " (나)" : ""}</span>`).join("");
+    .map(([u, v]) => `<span class="${v.on ? "on" : ""}"><i class="dot"></i>${esc(v.name)}${u === m.host ? ' <span class="tag host">방장</span>' : ""}${u === me.uid ? " (나)" : ""}${v.ready ? '<span class="rdy">준비</span>' : ""}</span>`).join("");
+  $("lPriv").textContent = m.priv ? "· 🔒 비밀 방 (코드로만 참가)" : "· 공개 방 (목록에 보여요)";
   $("lHostOnly").textContent = host ? "" : "· 방장이 정해요";
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
@@ -495,26 +559,38 @@ function renderLobby() {
   g.querySelectorAll(".seat").forEach(x => x.remove()); o.querySelectorAll(".seat").forEach(x => x.remove());
   ["g1", "g2", "g3"].forEach(s => g.append(seatBtn(s))); ["o1", "o2", "o3"].forEach(s => o.append(seatBtn(s)));
   $("bAuto").hidden = $("bClearSeats").hidden = !host;
-  const full = Object.keys(SEATS).every(s => room.seats?.[s] && room.members?.[room.seats[s]]);
-  $("bStart").hidden = !host; $("bStart").disabled = !full;
-  $("startHint").textContent = host ? (full ? "" : "6자리가 모두 차면 시작할 수 있어요.") : "방장이 시작하면 토론이 열려요.";
+  const online = Object.entries(room.members || {}).filter(([, v]) => v.on), allReady = online.length >= 2 && online.every(([, v]) => v.ready);
+  const meReady = !!room.members?.[me.uid]?.ready;
+  $("bReady").setAttribute("aria-pressed", meReady ? "true" : "false"); $("bReady").textContent = meReady ? "준비 완료 ✓" : "준비";
+  $("bGo").hidden = !host; $("bGo").disabled = !allReady;
+  const nr = online.filter(([, v]) => v.ready).length;
+  $("startHint").textContent = online.length < 2 ? "친구가 1명 이상 들어와야 시작할 수 있어요."
+    : allReady ? (host ? "모두 준비됐어요! Go!를 누르세요." : "모두 준비됐어요! 방장이 Go!를 누르면 시작해요.")
+    : `준비 ${nr}/${online.length}명 · 모두 '준비'를 누르면 시작할 수 있어요.`;
+  syncOpen();
 }
-$("bAuto").onclick = () => {
+$("bAuto").onclick = () => autoSeats();
+function autoSeats() {
+  if (!room) return;
   const ms = Object.entries(room.members || {}).filter(([, v]) => v.on).sort((a, b) => (a[1].joinedAt || 0) - (b[1].joinedAt || 0)).map(([u]) => u);
   if (!ms.length) return;
   const half = Math.ceil(ms.length / 2), gov = ms.slice(0, half), opp = ms.slice(half).length ? ms.slice(half) : gov;
   const seats = {}; ["g1", "g2", "g3"].forEach((s, i) => seats[s] = gov[i % gov.length]); ["o1", "o2", "o3"].forEach((s, i) => seats[s] = opp[i % opp.length]);
-  D.set(R(`rooms/${code}/seats`), seats);
-};
+  return D.set(R(`rooms/${code}/seats`), seats);
+}
 $("bClearSeats").onclick = () => D.remove(R(`rooms/${code}/seats`));
 $("bCopy").onclick = async () => { try { await navigator.clipboard.writeText(code); $("bCopy").textContent = "복사됨"; setTimeout(() => $("bCopy").textContent = "복사", 1200); } catch {} };
 $("bShare").onclick = async () => {
-  const url = location.origin + location.pathname + "?code=" + code, text = `디베이트 스타즈 디베이트 매치에 들어와! 참가 코드: ${code}`;
+  const url = location.origin + location.pathname.replace(/room.html$/, "") + "?code=" + code, text = `디베이트 스타즈 디베이트 매치에 들어와! 참가 코드: ${code}`;
   if (navigator.share) { try { await navigator.share({ title: "디베이트 매치", text, url }); } catch {} }
   else { try { await navigator.clipboard.writeText(text + "\n" + url); $("bShare").textContent = "링크 복사됨"; setTimeout(() => $("bShare").textContent = "코드 보내기", 1500); } catch {} }
 };
-$("bStart").onclick = async () => {
+$("bReady").onclick = () => upd(`members/${me.uid}`, { ready: !room.members?.[me.uid]?.ready });
+$("bGo").onclick = async () => {
   audioCtx();
+  // 빈자리나 나간 사람 자리가 있으면 접속 중인 사람으로 자동 배정
+  const full = Object.keys(SEATS).every(s => room.seats?.[s] && room.members?.[room.seats[s]]?.on);
+  if (!full) await autoSeats();
   await D.update(R(`rooms/${code}`), { "meta/status": "live", "meta/startedAt": now(), live: { idx: 0, phase: "opening" }, tx: null, stats: null, result: null, chair: null, iv: null });
 };
 
@@ -523,6 +599,7 @@ let engineTimer = 0, busy = false, nudged = -1, hostGoneAt = 0;
 async function tick() {
   if (!room || !me) return;
   takeOver();
+  if (room.meta.status === "lobby") syncOpen();
   if (!isHost() || busy) return;
   const m = room.meta, L = room.live || {};
   try {
@@ -790,7 +867,7 @@ function renderResult() {
   $("bAgain").hidden = !isHost() || m.status !== "done";
   $("bRejudge").hidden = !isHost() || !r || !!r.verdict;
 }
-$("bAgain").onclick = () => D.update(R(`rooms/${code}`), { "meta/status": "lobby", "meta/round": (room.meta.round || 0) + 1, live: null, tx: null, stats: null, result: null, chair: null, iv: null });
+$("bAgain").onclick = () => D.update(R(`rooms/${code}`), { ...Object.fromEntries(Object.keys(room.members || {}).map(u => [`members/${u}/ready`, false])), "meta/status": "lobby", "meta/round": (room.meta.round || 0) + 1, live: null, tx: null, stats: null, result: null, chair: null, iv: null });
 $("bRejudge").onclick = async () => { if (busy) return; busy = true; try { await runJudge(); } finally { busy = false; } };
 </script>
 </body></html>

@@ -129,7 +129,12 @@ body.hide-ko .line .ko{display:none}
 .ctl label{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:3px}
 .ctl select{font:500 12px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:2px 4px;min-height:26px}
 /* 디베이트 무대 진행 중: 로고만 남기고 무대가 화면을 채움 */
-body.stage-live :is(.banners,.dots,.tabs,#warn,#acctBtn){display:none!important}
+body.stage-live :is(.banners,.dots,.tabs,#warn,#acct){display:none!important}
+.acct{margin-left:auto;display:flex;align-items:center;gap:6px;min-width:0}
+.acct .mail{font-size:11px;color:var(--muted);max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acctbtn{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;padding:0;cursor:pointer}
+.acctbtn.on{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.acctbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .frbtn{margin-left:auto;cursor:pointer;max-width:42vw;overflow:hidden;text-overflow:ellipsis;font:600 12px var(--body);color:var(--fg);border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:3px 10px;min-height:26px;line-height:18px;text-decoration:none;white-space:nowrap}
 .frbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 body.stage-live .wrap{padding-bottom:0}
@@ -175,7 +180,7 @@ body.stage-live .wrap{padding-top:8px}
 <div class="wrap">
   <header>
     <div class="headrow"><a class="logo" href="#" aria-label="Debate Stars 디베이트 스타즈"><picture><source srcset="logo-dark.png" media="(prefers-color-scheme: dark)"><img src="logo.png" alt="Debate Stars 디베이트 스타즈"></picture></a>
-    <button type="button" class="frbtn" id="acctBtn" hidden>로그인</button>
+    <div class="acct" id="acct" hidden><span class="mail" id="acctMail"></span><button type="button" class="acctbtn" id="acctBtn" aria-label="Google 계정으로 로그인"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button></div>
     <div class="spk" id="spk" aria-live="polite"><b></b><small></small></div></div>
     <div class="banners" id="banners" aria-label="영어 디베이트 대회"></div>
     <div class="dots" id="dots" role="group" aria-label="배너 넘기기"></div>
@@ -194,6 +199,7 @@ body.stage-live .wrap{padding-top:8px}
   </div>
   <main id="list"></main>
   <section id="newsBox" class="news" hidden aria-label="토론 대회 소식"></section>
+  <div id="matchBox" hidden><iframe id="matchFrame" title="디베이트 매치" allow="microphone; autoplay; clipboard-write; web-share" style="width:100%;height:420px;border:0;display:block;background:transparent"></iframe></div>
   <div id="stageBox" hidden><iframe id="stageFrame" title="디베이트 리허설" allow="autoplay" style="width:100%;height:360px;border:0;display:block;background:transparent"></iframe></div>
 </div>
 
@@ -493,10 +499,11 @@ async function renderNews(){
 function padForRail(){ const r=$("rail"); document.querySelector(".wrap").style.paddingBottom=(r.hidden?24:r.offsetHeight+16)+"px"; }
 addEventListener("resize",padForRail);
 function showTab(){
-  const st = tab==="stage", nw = tab==="news", other = st||nw;
-  $("stageBox").hidden=!st; $("newsBox").hidden=!nw; $("list").hidden=other; $("rail").hidden=other;
+  const st = tab==="stage", nw = tab==="news", mt = tab==="match", other = st||nw||mt;
+  $("stageBox").hidden=!st; $("newsBox").hidden=!nw; $("matchBox").hidden=!mt; $("list").hidden=other; $("rail").hidden=other;
   if(other){ stop(); $("topicBox").hidden=true; }
   if(st && !$("stageFrame").getAttribute("src")) $("stageFrame").src="stage.html";
+  if(mt && !$("matchFrame").getAttribute("src")) $("matchFrame").src="room.html?embed"+(new URLSearchParams(location.search).get("code")?"&code="+new URLSearchParams(location.search).get("code"):"");
   if(nw) renderNews();
   if(!other) openDoc();
   requestAnimationFrame(padForRail);
@@ -516,6 +523,7 @@ addEventListener("message",e=>{
   if(!stageLive && e.data.stageHeight) $("stageFrame").style.height=Math.ceil(e.data.stageHeight)+"px";
 });
 addEventListener("resize",()=>{ if(stageLive) fitStage(); });
+addEventListener("message",e=>{ const f=$("matchFrame"); if(e.source!==f.contentWindow||!e.data) return; if(e.data.matchHeight) f.style.height=Math.ceil(e.data.matchHeight)+"px"; if(e.data.matchTop) f.scrollIntoView({block:"start"}); });
 
 function toggle(btn,cls,inv){ const on=!document.body.classList.contains(cls); document.body.classList.toggle(cls,on); btn.setAttribute("aria-pressed",inv?!on:on); store(cls,on?"1":"0"); }
 $("hideKo").onclick=()=>toggle($("hideKo"),"hide-ko",true); /* 채워짐 = 한글 보임 */
@@ -562,7 +570,7 @@ $("topic").addEventListener("change",()=>{ topic=$("topic").value; store("topic"
   const sv=load("topic"); if(TOPICS.some(t=>t[0]===sv)) topic=sv; $("topic").value=topic;
   for(const [k,key] of [["rate","rate"],["rep","rep"],["gap","gap"],["unit","unit"],["voice","voice2"]]){ const v=load(key); if(v && [...$(k).options].some(o=>o.value===v)) $(k).value=v; }
   for(const [id,cls,inv] of [["hideKo","hide-ko",1],["hideEn","hide-en",1],["dict","dict",0]]) if(load(cls)==="1"){ document.body.classList.add(cls); $(id).setAttribute("aria-pressed",inv?"false":"true"); }
-  const savedTab=load("tab"); if(["speech","stage","news"].includes(savedTab)){ tab=savedTab; document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x.dataset.tab===tab?"true":"false")); }
+  const savedTab=load("tab"); if(["speech","stage","news","match"].includes(savedTab)){ tab=savedTab; document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x.dataset.tab===tab?"true":"false")); }
   renderBanners();
   syncCycle();
   showTab();
@@ -573,18 +581,21 @@ $("topic").addEventListener("change",()=>{ topic=$("topic").value; store("topic"
 <script type="module">
 // 디베이트 매치 버튼: 공개 스위치가 켜졌거나, 이 폰에서 대회 소식 탭을 빠르게 5번 눌러 테스트 모드를 켠 경우에만 보임
 const fb=document.getElementById("matchTab");
-fb.onclick=()=>{ location.href="room.html"; }; let cfg=null;
+let cfg=null;
 const beta=()=>{ try{ return localStorage.getItem("friendBeta")==="1"; }catch{ return false; } };
 const apply=()=>{ fb.hidden=!(cfg&&cfg.firebaseConfig&&(cfg.FRIEND_PUBLIC||beta())); };
-import("./firebase-config.js").then(m=>{ cfg=m; apply(); if(m.firebaseConfig) acct(m.firebaseConfig); }).catch(()=>{});
+import("./firebase-config.js").then(m=>{ cfg=m; apply(); if(m.firebaseConfig) acct(m.firebaseConfig);
+  // 공유 링크(?code=XXXXXX)로 들어오면 매치 탭을 바로 엶
+  if(new URLSearchParams(location.search).get("code") && !fb.hidden) fb.click();
+}).catch(()=>{});
 // 계정: 로고 줄 오른쪽 끝. 로그아웃 상태면 [로그인], 로그인 상태면 이름 (누르면 내 계정 화면)
 async function acct(conf){
-  const ab=document.getElementById("acctBtn"), V="13.2.0";
+  const ab=document.getElementById("acctBtn"), box=document.getElementById("acct"), mail=document.getElementById("acctMail"), V="13.2.0";
   const [{ initializeApp }, A]=await Promise.all([import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`), import(`https://www.gstatic.com/firebasejs/${V}/firebase-auth.js`)]);
   const auth=A.getAuth(initializeApp(conf)); let user=null;
-  A.onAuthStateChanged(auth,u=>{ user=u; let n=""; try{ n=localStorage.getItem("room.name")||""; }catch{} ab.textContent=u?(n||(u.displayName||"").split(" ")[0]||"내 계정"):"로그인"; ab.setAttribute("aria-label",u?"내 계정":"Google 계정으로 로그인"); ab.hidden=false; });
+  A.onAuthStateChanged(auth,u=>{ user=u; mail.textContent=u?(u.email||""):""; ab.classList.toggle("on",!!u); ab.setAttribute("aria-label",u?"내 계정 ("+(u.email||"")+")":"Google 계정으로 로그인"); box.hidden=false; });
   ab.onclick=async()=>{
-    if(user){ location.href="room.html"; return; }
+    if(user){ const mtab=document.querySelector('.tabs button[data-tab="match"]'); if(mtab&&!mtab.hidden) mtab.click(); return; }
     const p=new A.GoogleAuthProvider();
     try{ await A.signInWithPopup(auth,p); }
     catch(e){ if(e.code==="auth/popup-blocked"||e.code==="auth/operation-not-supported-in-this-environment"){ try{ await A.signInWithRedirect(auth,p); }catch{} }
