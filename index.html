@@ -135,6 +135,10 @@ body.stage-live :is(.banners,.dots,.tabs,#warn,#acct){display:none!important}
 .amenu button{border:0;border-top:1px solid var(--line);background:none;color:var(--fg);font:600 13px var(--body);text-align:left;padding:9px 14px;cursor:pointer}
 .amenu button:first-child{border-top:0}
 .amenu button.danger{color:#C2412D;font-weight:500;font-size:12px}
+.pmodal{position:fixed;inset:0;z-index:60;background:#0008;display:grid;place-items:center;padding:16px}
+.pmodal[hidden]{display:none!important}
+.pbox{width:min(100%,420px);max-height:calc(100dvh - 32px);overflow:auto;border-radius:14px;background:var(--surface);box-shadow:0 12px 40px #0005}
+.pbox iframe{display:block;width:100%;height:420px;border:0;background:transparent}
 .acct .mail{font-size:11px;color:var(--muted);max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acctbtn{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;padding:0;cursor:pointer}
 .acctbtn.on{background:var(--fg);color:var(--surface);border-color:var(--fg)}
@@ -204,6 +208,7 @@ body.stage-live .wrap{padding-top:8px}
   </div>
   <main id="list"></main>
   <section id="newsBox" class="news" hidden aria-label="토론 대회 소식"></section>
+  <div class="pmodal" id="pModal" hidden><div class="pbox"><iframe id="profFrame" title="프로필 설정" allow="camera"></iframe></div></div>
   <div id="matchBox" hidden><iframe id="matchFrame" title="디베이트 매치" allow="microphone; autoplay; clipboard-write; web-share" style="width:100%;height:420px;border:0;display:block;background:transparent"></iframe></div>
   <div id="stageBox" hidden><iframe id="stageFrame" title="디베이트 리허설" allow="autoplay" style="width:100%;height:360px;border:0;display:block;background:transparent"></iframe></div>
 </div>
@@ -600,7 +605,13 @@ async function acct(conf){
   const [{ initializeApp }, A]=await Promise.all([import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`), import(`https://www.gstatic.com/firebasejs/${V}/firebase-auth.js`)]);
   const auth=A.getAuth(initializeApp(conf)); let user=null; const menu=document.getElementById("amenu");
   // 계정 메뉴: 프로필 설정 / 로그아웃 / 계정 삭제
-  const openMatch=cmd=>{ const mt=document.querySelector('.tabs button[data-tab="match"]'); if(mt.getAttribute("aria-selected")!=="true") mt.click(); document.getElementById("matchFrame").src="room.html?embed&cmd="+cmd; };
+  // 프로필 설정·계정 삭제는 화면 가운데 팝업으로 (매치 탭으로 넘어가지 않음)
+  const pm=document.getElementById("pModal"), pf=document.getElementById("profFrame");
+  document.body.appendChild(pm); // 다른 화면 요소(아래 재생 막대 등)보다 위에 뜨게
+  const openMatch=cmd=>{ pf.style.height="420px"; pf.src="room.html?embed&modal&cmd="+cmd; pm.hidden=false; document.body.style.overflow="hidden"; };
+  const closeModal=()=>{ pm.hidden=true; pf.src="about:blank"; document.body.style.overflow=""; };
+  pm.addEventListener("click",e=>{ if(e.target===pm) closeModal(); });
+  addEventListener("message",e=>{ if(e.source!==pf.contentWindow||!e.data) return; if(e.data.closeProfile) closeModal(); if(e.data.matchHeight) pf.style.height=Math.ceil(e.data.matchHeight)+"px"; });
   menu.onclick=async e=>{ const a=e.target.dataset.a; if(!a) return; menu.hidden=true;
     if(a==="profile") openMatch("profile");
     else if(a==="logout"){ try{ await A.signOut(auth); }catch{} }

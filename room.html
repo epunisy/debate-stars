@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F2F4F1">
 <link rel="manifest" href="manifest.webmanifest">
-<script>if(new URLSearchParams(location.search).has("embed")||window.parent!==window)document.documentElement.classList.add("embed");</script>
+<script>if(new URLSearchParams(location.search).has("embed")||window.parent!==window)document.documentElement.classList.add("embed");if(new URLSearchParams(location.search).has("modal"))document.documentElement.classList.add("modal");</script>
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -141,6 +141,23 @@ table.st th{color:var(--muted);font-weight:600}
 .cc .rl.gov{background:var(--gov)}.cc .rl.opp{background:var(--opp)}
 .cc .badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:800;background:#E0A800;color:#fff;border-radius:5px;padding:0 4px;line-height:1.5}
 .prof{display:flex;align-items:center;gap:10px}
+/* 프로필 설정 팝업: 왼쪽 카드(리허설 카드 크기), 오른쪽 설정 */
+html.modal .wrap{padding:0}
+html.modal .setup{margin:0;border:0;border-radius:0}
+.pbody{display:grid;grid-template-columns:78px minmax(0,1fr);gap:10px;align-items:start}
+.pbody>.cc{cursor:default}
+.pfields{display:grid;gap:8px;min-width:0}
+.pf{display:grid;gap:3px}
+.pf>span{font-size:11px;color:var(--muted)}
+.pf input[type=text]{width:100%}
+#pChars{grid-template-columns:repeat(4,minmax(0,1fr))}
+#vProfile .pick{background:var(--surface);color:var(--fg);border-color:var(--line)}
+#vProfile .pick[aria-pressed="true"]{background:#E6E9EE;color:var(--fg);border-color:#C9CFD8;font-weight:700}
+@media (prefers-color-scheme:dark){#vProfile .pick[aria-pressed="true"]{background:#2F3846;border-color:#3A4556}}
+#vProfile .cc.sel{border-color:#9AA4B1;box-shadow:0 0 0 1px #9AA4B1;background:#F1F3F6}
+.navy{width:100%;min-height:38px;border:0;border-radius:8px;background:#1F3E8F;color:#fff;font:700 14px var(--body);cursor:pointer}
+.navy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#vProfile .cropbox{width:180px;height:180px}
 .me1{display:flex;align-items:center;gap:10px}
 .me1 .t{flex:1;min-width:0;display:flex;flex-direction:column}
 .me1 b{font-size:15px;line-height:1.2}.me1 small{font-size:11.5px;color:var(--muted)}
@@ -248,24 +265,26 @@ html.embed input.code{font-size:20px;min-height:36px}
     <button type="button" class="lnk" id="delNo">취소</button>
   </div></section>
 
-  <section id="vProfile" hidden><div class="setup">
-    <div class="labrow"><b class="ttl">프로필</b><button type="button" class="x" id="pClose" aria-label="닫기">✕</button></div>
-    <div class="prof"><div class="cc me" id="pCard"></div></div>
-    <div class="editor" id="pEd">
-        <div class="ed-row"><span>모습</span><div class="seg eq" id="pKind"></div></div>
-        <div class="ed-row top" id="pCharRow"><span>캐릭터</span><div class="castrow mini" id="pChars"></div></div>
-        <input type="file" id="pFile" accept="image/*" hidden>
-        <div class="crop" id="pCrop" hidden>
-          <div class="cropbox"><canvas id="cropCv" width="480" height="480" aria-label="사진 위치 맞추기"></canvas><span class="ring" aria-hidden="true"></span></div>
-          <div class="croptools"><span class="small muted">끌어서 옮기고, 막대나 두 손가락으로 크기를 맞춰요</span>
-            <div class="seg"><span class="small muted">작게</span><input type="range" id="cropZoom" min="1" max="4" step="0.01" value="1" aria-label="사진 크기"><span class="small muted">크게</span></div>
-            <div class="seg"><button type="button" class="pick" id="cropRe">다른 사진</button><button type="button" class="pick dark" id="cropOk">이대로 쓰기</button></div></div>
-        </div>
-        <div class="ed-row top"><span>학년</span><div><div class="seg eq" id="pSchool"></div><div class="seg eq" id="pGrade" style="margin-top:4px"></div></div></div>
-        <div class="ed-row"><span>영어 이름</span><input type="text" id="pEn" maxlength="20" autocomplete="off" placeholder="예: Minji, Leo" aria-label="영어 이름"></div>
-        <div class="ed-row top"><span>영어 수준</span><div><div class="seg eq" id="pLvls"></div></div></div>
-        <button type="button" class="pick dark big wide" id="pSave">저장</button>
+  <section id="vProfile" hidden><div class="setup psheet">
+    <div class="labrow"><b class="ttl">프로필 설정</b><button type="button" class="x" id="pClose" aria-label="닫기">✕</button></div>
+    <div class="pbody">
+      <div class="cc" id="pCard"></div>
+      <div class="pfields" id="pEd">
+        <div class="pf"><span>모습</span><div class="seg eq" id="pKind"></div></div>
+        <div class="pf" id="pCharRow"><span>캐릭터</span><div class="castrow mini" id="pChars"></div></div>
+        <div class="pf"><span>영어 이름</span><input type="text" id="pEn" maxlength="20" autocomplete="off" placeholder="예: Minji, Leo" aria-label="영어 이름"></div>
+        <div class="pf"><span>학년</span><div class="seg eq" id="pSchool"></div><div class="seg eq" id="pGrade"></div></div>
+        <div class="pf"><span>영어 수준</span><div class="seg eq" id="pLvls"></div></div>
+      </div>
     </div>
+    <input type="file" id="pFile" accept="image/*" hidden>
+    <div class="crop" id="pCrop" hidden>
+      <div class="cropbox"><canvas id="cropCv" width="480" height="480" aria-label="사진 위치 맞추기"></canvas><span class="ring" aria-hidden="true"></span></div>
+      <div class="croptools"><span class="small muted">끌어서 옮기고, 막대나 두 손가락으로 크기를 맞춰요</span>
+        <div class="seg"><span class="small muted">작게</span><input type="range" id="cropZoom" min="1" max="4" step="0.01" value="1" aria-label="사진 크기"><span class="small muted">크게</span></div>
+        <div class="seg eq" style="width:100%"><button type="button" class="pick" id="cropRe">다른 사진</button><button type="button" class="pick" id="cropOk">이대로 쓰기</button></div></div>
+    </div>
+    <button type="button" class="navy" id="pSave">저장</button>
   </div></section>
 
   <section id="vLobby" hidden><div class="setup">
@@ -311,7 +330,7 @@ import { firebaseConfig, JUDGE_URL } from "./firebase-config.js";
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const EMBED = document.documentElement.classList.contains("embed");
+const EMBED = document.documentElement.classList.contains("embed"), MODAL = document.documentElement.classList.contains("modal");
 let shown = "";
 const show = v => { ["vSetup", "vLogin", "vHome", "vDel", "vProfile", "vLobby", "vLive", "vResult"].forEach(id => $(id).hidden = id !== v); if (EMBED && v !== shown) parent.postMessage({ matchTop: 1 }, "*"); shown = v; };
 if (EMBED) { const post = () => parent.postMessage({ matchHeight: document.querySelector(".wrap").getBoundingClientRect().height + 4 }, "*"); new ResizeObserver(post).observe(document.querySelector(".wrap")); addEventListener("load", post); }
@@ -419,6 +438,7 @@ function renderProfile() {
   segBtns($("pLvls"), LVLS.map(l => l[0]), edit.lvl, v => LVLS.find(l => l[0] === v)[1], v => { edit.lvl = v; renderProfile(); }, true);
 }
 function openEdit(on) {
+  if (!on && MODAL) { parent.postMessage({ closeProfile: 1 }, "*"); return; }
   crop = null; $("pCrop").hidden = true; edit = on ? { ...prof, k: prof.k === "char" ? "char" : "photo" } : null;
   if (on) $("pEn").value = prof.name;
   show(on ? "vProfile" : room ? "vLobby" : "vHome"); renderProfile(); // 화면에 보인 뒤 그려야 얼굴 크기가 맞음
@@ -473,6 +493,7 @@ $("pSave").onclick = async () => {
   if (edit.k !== "char" && !edit.ph) { alert("사진을 먼저 골라 주세요."); return; }
   prof = { ...edit, name: n }; myName = n; save("name", n);
   try { await D.set(R(`users/${me.uid}/profile`), prof); await D.set(R(`users/${me.uid}/name`), n); } catch (e) { alert("저장하지 못했어요. (" + (e.code || e.message) + ")"); return; }
+  if (room && code) upd(`members/${me.uid}`, memberProfile()).catch(() => {});
   openEdit(false);
 };
 // 상단 + 버튼: 공개/비밀 방 고르기
@@ -500,6 +521,7 @@ A.onAuthStateChanged(auth, async u => {
   if (cmd) history.replaceState(null, "", selfURL(""));
   if (cmd === "profile") { openEdit(true); return; }
   if (cmd === "delete") { deleteAccount(); return; }
+  if (MODAL) return;
   // 공유 링크로 왔으면 그 방으로, 아니면 토론이 진행 중인 방에만 다시 들어감 (대기실이면 프로필·매치 리스트부터)
   if (want) { if (await joinRoom(want, !urlCode, !urlCode, urlPin)) return; }
   show("vHome");
@@ -540,14 +562,14 @@ async function deleteAccount(again) {
     for (const c of Object.keys(rs)) await D.remove(R(`rooms/${c}/members/${u.uid}`)).catch(() => {});
     await D.remove(R(`users/${u.uid}`)).catch(() => {});
     await A.deleteUser(u);
-    save("code", ""); save("name", ""); alert("계정을 삭제했어요.");
+    save("code", ""); save("name", ""); alert("계정을 삭제했어요."); if (MODAL) parent.postMessage({ closeProfile: 1 }, "*");
   } catch (e) {
     if (e.code === "auth/requires-recent-login" && !again) { show("vDel"); return; }
     alert("삭제하지 못했어요. 다시 해 주세요. (" + (e.code || e.message) + ")"); show("vHome");
   }
 }
 $("delGo").onclick = async () => { try { await A.reauthenticateWithPopup(auth.currentUser, new A.GoogleAuthProvider()); await deleteAccount(true); } catch (e) { if (e.code !== "auth/popup-closed-by-user") alert("삭제하지 못했어요. (" + (e.code || e.message) + ")"); } };
-$("delNo").onclick = () => show("vHome");
+$("delNo").onclick = () => MODAL ? parent.postMessage({ closeProfile: 1 }, "*") : show("vHome");
 
 /* ---------- 열린 방 목록 ---------- */
 let offOpen = null, openRooms = {};
