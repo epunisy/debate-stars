@@ -135,11 +135,12 @@ table.st th{color:var(--muted);font-weight:600}
 .face img.ph{inset:0;width:100%;height:100%;object-fit:cover}
 .cc .en{font-size:12px;font-weight:700;line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cc .ko{font-size:10px;color:var(--muted);line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc .nick{font:500 8.5px var(--mono);color:#2e5bd8;line-height:1.3;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .cc .rl{margin-top:2px;font-size:9px;line-height:1.3;color:#fff;border-radius:4px;padding:0 4px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;background:var(--host)}
 .cc .rl.gov{background:var(--gov)}.cc .rl.opp{background:var(--opp)}
 .cc .badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:800;background:#E0A800;color:#fff;border-radius:5px;padding:0 4px;line-height:1.5}
 .prof{display:flex;align-items:center;gap:10px}
-.prof .cc{width:96px;flex:none}
+.prof .cc{width:92px;flex:none}
 .pinfo{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
 .pinfo b{font-size:15px}.pinfo span{font-size:11px;color:var(--muted)}
 .mface{display:inline-block;position:relative;width:22px;height:22px;border-radius:50%;overflow:hidden;vertical-align:-6px;background:#e4ebfb;margin-right:4px}
@@ -191,13 +192,14 @@ html.embed input.code{font-size:20px;min-height:36px}
   </div></section>
 
   <section id="vHome" hidden><div class="setup">
-    <div class="opt top"><span class="lab">내 프로필</span>
+    <div class="opt top"><span class="lab">프로필</span>
       <div class="prof"><button type="button" class="cc me" id="pCard" aria-label="내 프로필 바꾸기" aria-expanded="false"></button>
         <div class="pinfo"><b id="pName"></b><span id="pLvl"></span><button type="button" class="pick" id="pEdit">프로필 바꾸기</button></div></div>
       <div class="editor" id="pEd" hidden>
         <div class="ed-row"><span>모습</span><div class="seg" id="pKind"></div></div>
         <div class="ed-row top" id="pCharRow"><span>캐릭터</span><div class="castrow mini" id="pChars"></div></div>
         <div class="ed-row" id="pPhotoRow"><span>사진</span><div class="seg"><button type="button" class="pick" id="pPhotoBtn">사진 고르기</button><input type="file" id="pFile" accept="image/*" hidden><span class="small muted" id="pPhotoHint"></span></div></div>
+        <div class="ed-row top"><span>학년</span><div><div class="seg" id="pSchool"></div><div class="seg" id="pGrade" style="margin-top:4px"></div></div></div>
         <div class="ed-row"><span>영어 이름</span><input type="text" id="pEn" maxlength="20" autocomplete="off" placeholder="예: Minji, Leo" aria-label="영어 이름"></div>
         <div class="ed-row top"><span>영어 수준</span><div><div class="seg" id="pLvls"></div><p class="note">국내부: 한국에서 영어를 배운 학생 · 국제부: 해외 거주·국제학교 등 영어가 익숙한 학생. AI 심판이 수준에 맞춰 피드백해요.</p></div></div>
         <div class="ed-foot"><span class="small muted">사진은 같은 방 친구에게만 보여요.</span><button type="button" class="pick dark" id="pSave">저장</button></div>
@@ -307,9 +309,12 @@ let me = null, myName = "", code = null, room = null, offRoom = null, offConn = 
 const CH = ["oliver", "liam", "chloe", "noah", "olivia", "leo", "ruby"];
 const LVLS = [["domestic", "국내부", "Domestic division (Korean EFL learner)"], ["international", "국제부", "International division (near-native or studied abroad)"]];
 const KINDS = [["char", "캐릭터"], ["photo", "내 사진"], ["photochar", "사진+몸"]];
+const SCHOOLS = [["e", "초등", 6, "elementary school"], ["m", "중등", 3, "middle school"], ["h", "고등", 3, "high school"]];
+const grKo = g => { const s = SCHOOLS.find(x => x[0] === (g || "")[0]); return s ? ({ e: "초", m: "중", h: "고" })[s[0]] + g.slice(1) : ""; };
+const grEn = g => { const s = SCHOOLS.find(x => x[0] === (g || "")[0]); return s ? `grade ${g.slice(1)} of ${s[3]}` : ""; };
 const lvlKo = l => (LVLS.find(x => x[0] === l) || LVLS[0])[1];
 const hashCh = s => CH[[...String(s)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7) % CH.length];
-let prof = { name: "", lvl: "domestic", k: "char", ch: "", ph: "" };
+let prof = { name: "", gr: "", lvl: "domestic", k: "char", ch: "", ph: "" };
 const avOf = u => { const v = room?.members?.[u] || {}; return { k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(u), ph: v.ph || "" }; };
 function charFace(id, bw, bh) { // 리허설 카드와 같은 방식: 머리 전체가 칸에 들어오게
   const g = window.RIG?.[id] || (typeof RIG !== "undefined" ? RIG[id] : null); if (!g) return document.createElement("span");
@@ -338,16 +343,17 @@ function bodyFig(el, av) { // 발언자 전신: 캐릭터 몸 / 사진+몸 / 사
 async function loadProfile(u) {
   const s = await D.get(R(`users/${u.uid}`)).catch(() => null), v = (s && s.val()) || {};
   const p = v.profile || {};
-  prof = { name: p.name || v.name || load("name", "") || (u.displayName || "").split(" ")[0] || "Friend", lvl: LVLS.some(l => l[0] === p.lvl) ? p.lvl : "domestic", k: p.k || "char", ch: CH.includes(p.ch) ? p.ch : hashCh(u.uid), ph: p.ph || "" };
+  prof = { name: p.name || v.name || load("name", "") || (u.displayName || "").split(" ")[0] || "Friend", gr: /^(e[1-6]|m[1-3]|h[1-3])$/.test(p.gr || "") ? p.gr : "", lvl: LVLS.some(l => l[0] === p.lvl) ? p.lvl : "domestic", k: p.k || "char", ch: CH.includes(p.ch) ? p.ch : hashCh(u.uid), ph: p.ph || "" };
   myName = prof.name; save("name", myName);
 }
-const memberProfile = () => ({ name: prof.name, lvl: prof.lvl, k: prof.k, ch: prof.ch, ph: prof.k === "char" ? "" : (prof.ph || "") });
+const memberProfile = () => ({ name: prof.name, gr: prof.gr || "", lvl: prof.lvl, k: prof.k, ch: prof.ch, ph: prof.k === "char" ? "" : (prof.ph || "") });
 let edit = null;
 function renderProfile() {
-  const c = $("pCard"); c.innerHTML = '<span class="face"></span><span class="en"></span><span class="ko"></span><span class="badge">나</span>';
-  c.querySelector(".en").textContent = prof.name; c.querySelector(".ko").textContent = lvlKo(prof.lvl);
-  fillFace(c.querySelector(".face"), prof);
-  $("pName").textContent = prof.name; $("pLvl").textContent = "영어 수준: " + lvlKo(prof.lvl) + " · " + (KINDS.find(k => k[0] === prof.k) || KINDS[0])[1];
+  const c = $("pCard"); c.innerHTML = '<span class="face"></span><span class="en"></span><span class="ko"></span><span class="nick"></span><span class="badge">나</span>';
+  const pv = edit ? { ...edit, name: ($("pEn").value.trim() || edit.name) } : prof; // 고치는 동안 카드에 바로 보여 줌
+  c.querySelector(".en").textContent = pv.name; c.querySelector(".ko").textContent = grKo(pv.gr) || "학년 미정"; c.querySelector(".nick").textContent = lvlKo(pv.lvl);
+  fillFace(c.querySelector(".face"), pv);
+  $("pName").textContent = prof.name; $("pLvl").textContent = [grKo(prof.gr), lvlKo(prof.lvl), (KINDS.find(k => k[0] === prof.k) || KINDS[0])[1]].filter(Boolean).join(" · ");
   $("who").textContent = prof.name;
   if (!edit) return;
   segBtns($("pKind"), KINDS.map(k => k[0]), edit.k, v => KINDS.find(k => k[0] === v)[1], v => { edit.k = v; if (v !== "char" && !edit.ph) $("pFile").click(); renderProfile(); }, true);
@@ -355,11 +361,16 @@ function renderProfile() {
   $("pPhotoHint").textContent = edit.ph ? "사진 있음 ✓" : "얼굴이 가운데 오게 찍은 사진이 좋아요";
   const row = $("pChars"); row.innerHTML = "";
   CH.forEach(id => { const b = document.createElement("button"); b.type = "button"; b.className = "cc" + (edit.ch === id ? " sel" : ""); b.setAttribute("aria-label", id); b.innerHTML = '<span class="face"></span>'; b.onclick = () => { edit.ch = id; renderProfile(); }; row.append(b); fillFace(b.querySelector(".face"), { k: "char", ch: id }); });
+  const sc = (edit.gr || "")[0] || "", scDef = SCHOOLS.find(x => x[0] === sc);
+  segBtns($("pSchool"), SCHOOLS.map(x => x[0]), sc, v => SCHOOLS.find(x => x[0] === v)[1], v => { const n = Math.min(+(edit.gr || "").slice(1) || 1, SCHOOLS.find(x => x[0] === v)[2]); edit.gr = v + n; renderProfile(); }, true);
+  $("pGrade").hidden = !scDef;
+  if (scDef) segBtns($("pGrade"), Array.from({ length: scDef[2] }, (_, i) => sc + (i + 1)), edit.gr, v => v.slice(1) + "학년", v => { edit.gr = v; renderProfile(); }, true);
   segBtns($("pLvls"), LVLS.map(l => l[0]), edit.lvl, v => LVLS.find(l => l[0] === v)[1], v => { edit.lvl = v; renderProfile(); }, true);
 }
 function openEdit(on) { edit = on ? { ...prof } : null; $("pEd").hidden = !on; $("pCard").setAttribute("aria-expanded", on ? "true" : "false"); $("pEdit").textContent = on ? "닫기" : "프로필 바꾸기"; if (on) $("pEn").value = prof.name; renderProfile(); }
 $("pCard").onclick = $("pEdit").onclick = () => openEdit(!edit);
 $("pPhotoBtn").onclick = () => $("pFile").click();
+$("pEn").oninput = () => { if (edit) renderProfile(); };
 $("pFile").onchange = async () => {
   const f = $("pFile").files[0]; $("pFile").value = ""; if (!f || !edit) return;
   try {
@@ -675,7 +686,7 @@ function seatCard(s) {
   b.type = "button"; b.className = "cc" + (u === me.uid ? " me" : "") + (u ? "" : " empty");
   b.innerHTML = `<span class="face"></span><span class="en"></span><span class="ko"></span><span class="rl ${side}">${SIDE_KO[side]} ${SEATS[s]}</span>`;
   b.querySelector(".en").textContent = u ? nameOf(u) : "빈자리";
-  b.querySelector(".ko").textContent = u ? lvlKo(room.members?.[u]?.lvl) : "눌러서 앉기";
+  b.querySelector(".ko").textContent = u ? [grKo(room.members?.[u]?.gr), lvlKo(room.members?.[u]?.lvl)].filter(Boolean).join(" · ") : "눌러서 앉기";
   b.onclick = () => {
     if (u === me.uid) upd("seats", { [s]: null });
     else if (!u || isHost() || !room.members?.[u]?.on) upd("seats", { [s]: me.uid });
@@ -698,7 +709,7 @@ function renderLobby() {
   $("sVoiceHint").textContent = m.voice ? "멀리 있는 친구도 들려요 (이어폰 추천)" : "한곳에 모였을 때: 자막만";
   const t = topicOf(m.topic); $("lMotion").innerHTML = `${esc(t[2])}<small>${esc(t[3])}</small>`;
   $("sVoice").textContent = m.voice ? "목소리 전송 켜짐" : "목소리 전송 꺼짐";
-  const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
+  const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.gr, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
   if (sk !== seatKey) { seatKey = sk; const row = $("seatRow"); row.innerHTML = "";
     ["g1", "g2", "g3", "o1", "o2", "o3"].forEach(s => { const b = seatCard(s); row.append(b); const u = room.seats?.[s]; if (u) fillFace(b.querySelector(".face"), avOf(u)); }); }
   $("bAuto").hidden = $("bClearSeats").hidden = !host;
@@ -807,7 +818,7 @@ async function runJudge() {
   await D.update(R(`rooms/${code}`), { "meta/status": "judging", result: null });
   const speeches = ORDER.map((o, i) => {
     const ents = Object.values(tx[i] || {});
-    return { seat: o.seat, side: o.side, role: o.en, level: (LVLS.find(l => l[0] === room.members?.[room.seats?.[o.seat]]?.lvl) || [0, 0, ""])[2], secs: st[i]?.secs || 0,
+    return { seat: o.seat, side: o.side, role: o.en, level: [(LVLS.find(l => l[0] === room.members?.[room.seats?.[o.seat]]?.lvl) || [0, 0, ""])[2], grEn(room.members?.[room.seats?.[o.seat]]?.gr)].filter(Boolean).join(", "), secs: st[i]?.secs || 0,
       text: ents.filter(e => e.k === "s").map(e => e.t).join(" "),
       poiAcc: ents.filter(e => e.k === "pa").length, poiDec: ents.filter(e => e.k === "pd").length,
       pois: ents.reduce((q, e) => { if (e.k === "pa") q.push({ seat: e.seat, text: "" }); else if (e.k === "p") { if (!q.length) q.push({ seat: e.seat, text: "" }); q[q.length - 1].text += (q[q.length - 1].text ? " " : "") + e.t; } return q; }, []) };
