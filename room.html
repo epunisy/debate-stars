@@ -218,7 +218,7 @@ html.embed input.code{font-size:20px;min-height:36px}
   </div></section>
 
   <section id="vLobby" hidden><div class="setup">
-    <div class="opt"><span class="lab">코드</span><div class="seg"><b class="codetxt" id="lCode"></b><button type="button" class="pick" id="bShare">보내기</button><button type="button" class="pick" id="bCopy">복사</button><span class="small muted" id="lPriv"></span></div></div>
+    <div class="opt"><span class="lab" id="lCodeLab">코드</span><div class="seg"><b class="codetxt" id="lCode"></b><button type="button" class="pick" id="bShare">보내기</button><button type="button" class="pick" id="bCopy">복사</button><span class="small muted" id="lPriv"></span></div></div>
     <div class="opt"><span class="lab">주제</span><select id="sTopic"></select></div>
     <p class="motion" id="lMotion"></p>
     <div class="opt"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
@@ -407,9 +407,10 @@ A.onAuthStateChanged(auth, async u => {
   me = u;
   if (!u) { leaveLocal(); $("who").textContent = ""; show("vLogin"); return; }
   await loadProfile(u); renderProfile();
-  const want = (new URLSearchParams(location.search).get("code") || load("code", "") || "").toUpperCase();
+  const urlCode = (new URLSearchParams(location.search).get("code") || "").toUpperCase(), want = urlCode || (load("code", "") || "").toUpperCase();
   watchOpen();
-  if (want) { $("joinCode").value = want; if (await joinRoom(want, true)) return; }
+  // 공유 링크로 왔으면 그 방으로, 아니면 토론이 진행 중인 방에만 다시 들어감 (대기실이면 프로필·매치 리스트부터)
+  if (want) { if (urlCode) $("joinCode").value = want; if (await joinRoom(want, true, !urlCode)) return; }
   show("vHome");
 });
 
@@ -463,7 +464,7 @@ function syncOpen() {
 $("bJoin").onclick = () => joinRoom($("joinCode").value.trim().toUpperCase());
 $("joinCode").addEventListener("keydown", e => { if (e.key === "Enter") $("bJoin").click(); });
 
-async function joinRoom(c, quiet) {
+async function joinRoom(c, quiet, onlyLive) {
   const err = m => { if (!quiet) { $("joinErr").textContent = m; $("joinErr").hidden = false; } return false; };
   $("joinErr").hidden = true;
   if (!/^[A-Z0-9]{6}$/.test(c)) return err("코드 6자리를 입력해 주세요.");
@@ -472,6 +473,7 @@ async function joinRoom(c, quiet) {
   if (!meta) { save("code", ""); return err("방을 찾을 수 없어요. 코드를 확인해 주세요."); }
   const mine = (await D.get(R(`users/${me.uid}/rooms/${c}`)).catch(() => null))?.val();
   if (meta.status !== "lobby" && !mine) return err("이미 토론이 시작된 방이에요.");
+  if (onlyLive && meta.status === "lobby") return false;
   try {
     await D.update(R(`rooms/${c}/members/${me.uid}`), { ...memberProfile(), on: true, joinedAt: mine ? mine : now() });
     await D.set(R(`users/${me.uid}/rooms/${c}`), mine || now());
@@ -482,7 +484,7 @@ async function joinRoom(c, quiet) {
 function enterRoom(c) {
   leaveLocal();
   code = c; save("code", c);
-  history.replaceState(null, "", selfURL("code=" + c));
+  history.replaceState(null, "", selfURL(""));
   const onRef = R(`rooms/${c}/members/${me.uid}/on`);
   offConn = D.onValue(R(".info/connected"), s => { if (s.val()) { D.onDisconnect(onRef).set(false); D.set(onRef, true).catch(() => {}); } });
   offRoom = D.onValue(R(`rooms/${c}`), s => { room = s.val(); if (!room || !room.meta) { leaveLocal(); save("code", ""); show("vHome"); return; } render(); });
@@ -700,7 +702,10 @@ function renderLobby() {
   $("lMembers").innerHTML = Object.entries(room.members || {}).sort((a, b) => (a[1].joinedAt || 0) - (b[1].joinedAt || 0))
     .map(([u, v]) => `<span class="${v.on ? "on" : ""}">${miniHTML(u)}${esc(v.name)}${u === m.host ? ' <span class="tag host">방장</span>' : ""}${u === me.uid ? " (나)" : ""}${v.ready ? '<span class="rdy">준비</span>' : ""}</span>`).join("");
   hydrateMini($("lMembers"));
-  $("lPriv").textContent = m.priv ? "🔒 비밀 방" : "공개 방";
+  // 공개 방은 매치 리스트에서 바로 들어오니 코드를 숨김. 비밀 방만 코드 보이기
+  $("lCodeLab").textContent = m.priv ? "코드" : "방"; $("lCode").hidden = $("bCopy").hidden = !m.priv;
+  $("lPriv").textContent = m.priv ? "🔒 비밀 방 · 이 코드를 아는 친구만 들어와요" : "공개 방 · 매치 리스트에서 누구나 들어와요";
+  $("bShare").textContent = m.priv ? "보내기" : "초대하기";
   $("lHostOnly").textContent = host ? "" : "· 방장이 정해요";
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
@@ -736,7 +741,7 @@ function autoSeats() {
 $("bClearSeats").onclick = () => D.remove(R(`rooms/${code}/seats`));
 $("bCopy").onclick = async () => { try { await navigator.clipboard.writeText(code); $("bCopy").textContent = "복사됨"; setTimeout(() => $("bCopy").textContent = "복사", 1200); } catch {} };
 $("bShare").onclick = async () => {
-  const url = location.origin + location.pathname.replace(/room.html$/, "") + "?code=" + code, text = `디베이트 스타즈 디베이트 매치에 들어와! 참가 코드: ${code}`;
+  const url = location.origin + location.pathname.replace(/room.html$/, "") + "?code=" + code, text = room.meta.priv ? `디베이트 스타즈 비밀 매치에 들어와! 참가 코드: ${code}` : `디베이트 스타즈 매치에 들어와! 링크를 누르면 바로 들어올 수 있어.`;
   if (navigator.share) { try { await navigator.share({ title: "디베이트 매치", text, url }); } catch {} }
   else { try { await navigator.clipboard.writeText(text + "\n" + url); $("bShare").textContent = "링크 복사됨"; setTimeout(() => $("bShare").textContent = "코드 보내기", 1500); } catch {} }
 };
