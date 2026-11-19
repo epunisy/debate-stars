@@ -443,10 +443,11 @@ function onChair() {
 
 /* ---------- 음성 인식 (자막) ---------- */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-let rec = null, recOn = false, recKind = "s", recIdx = 0, ivTimer = 0, sttErr = "";
+let rec = null, recOn = false, recKind = "s", recIdx = 0, ivTimer = 0, sttErr = "", sttState = "", sttHeardAt = 0, sttStartAt = 0, voiceDropped = false;
+const setStt = (s, err) => { sttState = s; if (err !== undefined) sttErr = err; if (room && room.meta.status === "live") render(); };
 function sttStart(kind, idx) {
   if (!SR) { sttErr = "이 브라우저는 자막(음성 인식)을 지원하지 않아요. Chrome을 써 주세요."; return; }
-  recKind = kind; recIdx = idx; recOn = true; sttErr = "";
+  recKind = kind; recIdx = idx; recOn = true; sttErr = ""; sttState = "starting"; sttStartAt = Date.now(); sttHeardAt = 0;
   const r = new SR(); rec = r; r.lang = "en-US"; r.continuous = false; r.interimResults = true; r.maxAlternatives = 1;
   r.onresult = e => {
     let im = "";
@@ -454,13 +455,31 @@ function sttStart(kind, idx) {
       const x = e.results[i];
       if (x.isFinal) { const t = x[0].transcript.trim(); if (t) pushFinal(t); } else im += x[0].transcript;
     }
+    sttHeardAt = Date.now(); if (sttState !== "listening") setStt("listening");
     sendInterim(im.trim());
   };
-  r.onerror = e => { if (e.error === "not-allowed" || e.error === "service-not-allowed" || e.error === "audio-capture") { recOn = false; sttErr = e.error === "audio-capture" ? "마이크를 자막과 목소리 전송이 같이 못 쓰고 있어요. 방장이 '목소리'를 끄면 자막은 잘 돼요." : "마이크 권한을 허용해 주세요."; render(); } };
+  r.onaudiostart = () => { if (sttState !== "listening") setStt("listening"); };
+  r.onerror = e => {
+    if (e.error === "audio-capture" && micStream) { dropVoice(); return; }   // 마이크 충돌: 목소리 전송을 끄고 자막만
+    if (e.error === "not-allowed" || e.error === "service-not-allowed") { recOn = false; setStt("error", "마이크 권한이 꺼져 있어요. 휴대폰 설정 > 앱(또는 Chrome) > 권한에서 마이크를 허용해 주세요."); }
+    else if (e.error === "audio-capture") { recOn = false; setStt("error", "마이크를 찾지 못했어요. 다른 앱이 마이크를 쓰고 있지 않은지 확인해 주세요."); }
+    else if (e.error === "network") setStt("error", "자막(음성 인식)에 인터넷 연결이 필요해요. 와이파이나 데이터를 확인해 주세요.");
+  };
   r.onend = () => { if (recOn && rec === r) setTimeout(() => { if (recOn && rec === r) { try { r.start(); } catch {} } }, 120); };
   try { r.start(); } catch {}
 }
-function sttStop() { recOn = false; try { rec && rec.stop(); } catch {} rec = null; sendInterim("", true); }
+function sttStop() { recOn = false; sttState = ""; try { rec && rec.stop(); } catch {} rec = null; sendInterim("", true); }
+// 목소리 전송과 자막이 마이크를 같이 못 쓰는 폰: 목소리 전송을 끄고 자막을 다시 시작
+function dropVoice() {
+  if (voiceDropped && !micStream) return;
+  voiceDropped = true;
+  outPCs.forEach(o => { o.offs.forEach(f => f()); try { o.pc.close(); } catch {} D.remove(R(o.base)).catch(() => {}); }); outPCs = [];
+  micStream && micStream.getTracks().forEach(t => t.stop()); micStream = null;
+  const k = recKind, i = recIdx; try { rec && rec.stop(); } catch {} rec = null;
+  setTimeout(() => { if (micOn) sttStart(k, i); render(); }, 300);
+}
+// 10초 동안 자막이 하나도 안 잡히는데 목소리 전송 중이면 충돌로 보고 자막을 살림
+setInterval(() => { if (micOn && recOn && micStream && !sttHeardAt && Date.now() - sttStartAt > 10000) dropVoice(); }, 2000);
 function pushFinal(t) {
   const seat = recKind === "p" ? (mySeats().find(s => sideOf(s) !== ORDER[recIdx].side) || null) : ORDER[recIdx].seat;
   D.push(R(`rooms/${code}/tx/${recIdx}`), { k: recKind, u: me.uid, seat, t }).catch(() => {});
@@ -476,14 +495,15 @@ const ICE = { iceServers: [{ urls: ["stun:stun.l.google.com:19302", "stun:stun1.
 let micOn = false, micStream = null, outPCs = [];
 async function startMic(kind, idx) {
   if (micOn) return; micOn = true;
-  if (room.meta.voice) {
+  sttStart(kind, idx);
+  if (room.meta.voice && !voiceDropped) {
+    await new Promise(res => setTimeout(res, 1200)); if (!micOn) return;
     try {
       micStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
       const targets = Object.entries(room.members || {}).filter(([u, m]) => u !== me.uid && m.on).map(([u]) => u);
       for (const to of targets) call(to).catch(() => {});
-    } catch { sttErr = "마이크 권한을 허용해 주세요."; }
+    } catch { /* 목소리 전송 실패 → 자막만 */ }
   }
-  sttStart(kind, idx);
 }
 async function call(to) {
   const sid = D.push(R(`sig/${code}/${to}`)).key, base = `sig/${code}/${to}/${sid}`;
@@ -742,7 +762,7 @@ function renderLive() {
     al = p.by === me.uid ? `<div class="alert"><b>질문하세요!</b> 15초 안에 짧게 영어로 질문해요. <span id="poiLeft"></span><div class="row"><button class="btn dark" id="aPoiEnd">질문 끝</button></div></div>`
       : `<div class="alert">${esc(nameOf(p.by))} 님이 질문하고 있어요.</div>`;
   }
-  if (sttErr && (localRole || amSpk)) al += `<div class="alert">${esc(sttErr)}</div>`;
+  if (sttErr && sttState === "error" && (localRole || amSpk)) al += `<div class="alert">${esc(sttErr)}</div>`;
   $("vAlert").innerHTML = al;
   if ($("aAcc")) { $("aAcc").onclick = () => poiResolve("accepted"); $("aDec").onclick = () => poiResolve("declined"); }
   if ($("aPoiEnd")) $("aPoiEnd").onclick = poiDone;
@@ -752,7 +772,7 @@ function renderLive() {
   if (L.phase === "call" && amSpk) act = `<button class="btn dark big wide" id="aStart">🎙 발언 시작</button><p class="hint" style="text-align:center">누르면 시간이 흐르고 마이크가 켜져요.</p>`;
   else if (L.phase === "call") act = `<p class="hint" style="text-align:center">${esc(nameOf(su))} 님이 발언을 시작하길 기다려요.</p>`;
   else if (L.phase === "speaking" && amSpk && localRole !== "speaker" && !(p && p.state === "accepted")) act = `<button class="btn dark big wide" id="aResume">🎙 마이크 다시 켜기</button>`;
-  else if (L.phase === "speaking" && amSpk) act = `<button class="btn big wide" id="aEnd">발언 끝</button>`;
+  else if (L.phase === "speaking" && amSpk) act = `<button class="btn big wide" id="aEnd">발언 끝</button><p class="hint" style="text-align:center">${sttState === "listening" ? "🎙 듣고 있어요 · 영어로 말하면 자막이 나와요" : sttState === "starting" ? "🎙 마이크 켜는 중…" : ""}${voiceDropped ? " · 이 폰은 자막만 보내요 (목소리 전송 꺼짐)" : micStream ? " · 목소리 전송 중" : ""}</p>`;
   if (L.phase === "speaking" && !amSpk && canPoi()) act += `<button class="btn dark big wide" id="aPoi" ${poiReady() ? "" : "disabled"}>✋ 질문하기 (POI)</button>`;
   $("vActions").innerHTML = act;
   if ($("aStart")) $("aStart").onclick = startSpeech;
