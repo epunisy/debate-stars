@@ -95,6 +95,62 @@ table.st td,table.st th{border-bottom:1px solid var(--line);padding:3px 4px;text
 table.st th{color:var(--muted);font-weight:600}
 .err{color:var(--warn);font-size:13px}
 .hint{font-size:12px;color:var(--muted);margin:6px 0 0}
+/* ---- 리허설 탭과 같은 양식 ---- */
+.setup,.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px}
+.setup{display:grid;gap:9px}
+.opt{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:center;gap:6px}
+.opt.top{grid-template-columns:1fr;gap:5px}
+.opt .lab,.labrow .lab{font-size:11px;color:var(--muted)}
+.labrow{display:flex;align-items:center;justify-content:space-between}
+.pick{font:600 12px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:3px 9px;cursor:pointer;min-height:26px}
+.pick[aria-pressed="true"],.pick.dark{border-color:var(--fg);color:var(--surface);background:var(--fg)}
+.pick:disabled{opacity:.4;cursor:default}
+.lnk{border:0;background:none;color:var(--muted);font-size:11.5px;text-decoration:underline;cursor:pointer;padding:2px 4px}
+.setup select,.setup input[type=text]{font:500 12px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:2px 6px;min-height:26px;max-width:100%}
+.setup .opt select{justify-self:start}
+.codein{width:120px;font-family:var(--mono)!important;letter-spacing:.12em;text-transform:uppercase}
+.codetxt{font:500 17px var(--mono);letter-spacing:.14em}
+.setup .motion{font-size:15px;margin:-2px 0 0 48px}
+.plus{width:28px;height:28px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font:700 18px/1 var(--body);cursor:pointer;display:grid;place-items:center;padding:0}
+.plus[aria-expanded="true"]{background:var(--fg);color:var(--surface)}
+.editor{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:8px 10px;display:grid;gap:7px}
+.ed-head{display:flex;align-items:center;justify-content:space-between;font-size:12px}
+.x{border:0;background:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 6px}
+.ed-row{display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.ed-row.top{align-items:start}.ed-row.top>span{padding-top:5px}
+.ed-row input{width:100%}
+.ed-foot,.foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.foot .fl{min-width:0}
+.note{font-size:11px;line-height:1.45;color:var(--muted);margin:2px 0 0}
+.castrow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;max-width:420px}
+.castrow.seats3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.castrow.mini{grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cc{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 5px 6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);cursor:pointer;font:inherit;min-width:0}
+.cc.me{border-color:#E0A800;box-shadow:0 0 0 1px #E0A800}
+.cc.sel{border-color:var(--fg);box-shadow:0 0 0 1px var(--fg)}
+.cc.empty .face{background:var(--bg)}
+.face{position:relative;display:block;width:100%;aspect-ratio:5/4;border-radius:6px;overflow:hidden;background:#e4ebfb;margin-bottom:3px}
+.castrow.mini .cc{padding:2px}.castrow.mini .face{aspect-ratio:1;margin:0}
+.face img{position:absolute;max-width:none}
+.face img.ph{inset:0;width:100%;height:100%;object-fit:cover}
+.cc .en{font-size:12px;font-weight:700;line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc .ko{font-size:10px;color:var(--muted);line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc .rl{margin-top:2px;font-size:9px;line-height:1.3;color:#fff;border-radius:4px;padding:0 4px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;background:var(--host)}
+.cc .rl.gov{background:var(--gov)}.cc .rl.opp{background:var(--opp)}
+.cc .badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:800;background:#E0A800;color:#fff;border-radius:5px;padding:0 4px;line-height:1.5}
+.prof{display:flex;align-items:center;gap:10px}
+.prof .cc{width:96px;flex:none}
+.pinfo{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
+.pinfo b{font-size:15px}.pinfo span{font-size:11px;color:var(--muted)}
+.mface{display:inline-block;position:relative;width:22px;height:22px;border-radius:50%;overflow:hidden;vertical-align:-6px;background:#e4ebfb;margin-right:4px}
+.mface img{position:absolute;max-width:none}.mface img.ph{inset:0;width:100%;height:100%;object-fit:cover}
+.fig{flex:none;width:92px;height:150px;position:relative;display:flex;align-items:flex-end;justify-content:center}
+.fig img.body{height:150px;width:auto;display:block}
+.fig .head{position:absolute;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 1px 3px #0003}
+.fig .solo{width:84px;height:84px;border-radius:50%;object-fit:cover;align-self:center}
+.stagein{display:flex;gap:10px;align-items:center}.stagein .info{flex:1;min-width:0}
+.go{width:58px;height:58px;flex:none;border-radius:50%;padding:0;font:800 17px var(--body);background:var(--accent);color:var(--accent-ink);border:0;cursor:pointer;box-shadow:0 4px 12px #1F3E8F40}
+.go:disabled{opacity:.35;cursor:default;box-shadow:none}
 .readyrow{display:flex;align-items:center;justify-content:center;gap:14px;margin:4px 0}
 .readyrow #bReady{min-width:120px}
 .go{width:58px;height:58px;flex:none;border-radius:50%;padding:0;font:800 17px var(--body);background:var(--accent);color:var(--accent-ink);border:0;cursor:pointer;box-shadow:0 4px 12px #1F3E8F40}
@@ -134,51 +190,53 @@ html.embed input.code{font-size:20px;min-height:36px}
     <p class="err" id="loginErr" hidden></p>
   </div></section>
 
-  <section id="vHome" hidden>
-    <div class="card"><h2>내 이름</h2>
-      <div class="row"><input class="txt" id="myName" maxlength="24" style="flex:1" aria-label="토론에서 보일 이름"><button class="btn" id="bSaveName">저장</button></div>
-      <p class="hint">친구들 화면과 판정 결과에 이 이름이 보여요.</p></div>
-    <div class="card"><h2>방 만들기</h2><div class="row"><button class="btn dark big" id="bCreate" style="flex:1">공개 방 만들기</button><button class="btn big" id="bCreatePriv" style="flex:1">🔒 비밀 방 만들기</button></div>
-      <p class="hint">공개 방은 아래 목록에 보여서 누구나 들어올 수 있어요. 비밀 방은 코드를 아는 친구만 들어와요.</p></div>
-    <div class="card"><h2>열린 방 <span class="small muted" id="openCount"></span></h2><div id="openList"></div></div>
-    <div class="card"><h2>코드로 참가</h2>
-      <div class="row"><input class="txt code" id="joinCode" maxlength="6" autocomplete="off" autocapitalize="characters" style="flex:1" aria-label="참가 코드 6자리" placeholder="ABC123"><button class="btn dark big" id="bJoin">참가</button></div>
-      <p class="err" id="joinErr" hidden></p></div>
-    <div class="card"><div class="row"><button class="btn" id="bLogout">로그아웃</button><button class="btn" id="bDelete">계정 삭제</button></div>
-      <p class="hint">계정을 삭제하면 이름과 참가 기록이 지워져요.</p></div>
-  </section>
-
-  <section id="vLobby" hidden>
-    <div class="card"><h2>참가 코드 <span class="small muted" id="lPriv"></span></h2><div class="codebox" id="lCode"></div>
-      <div class="row" style="justify-content:center"><button class="btn" id="bShare">코드 보내기</button><button class="btn" id="bCopy">복사</button></div></div>
-    <div class="card"><h2>참가자</h2><div class="members" id="lMembers"></div></div>
-    <div class="card" id="lSettings"><h2>토론 설정 <span class="small muted" id="lHostOnly"></span></h2>
-      <div class="grid2">
-        <span class="lab">주제</span><select id="sTopic"></select>
-        <span class="lab">발언 시간</span><div class="seg" id="sMins"></div>
-        <span class="lab">준비 시간</span><div class="seg" id="sPrep"></div>
-        <span class="lab">목소리 전송</span><div class="seg"><button class="btn" id="sVoice">목소리</button><span class="small muted" id="sVoiceHint"></span></div>
+  <section id="vHome" hidden><div class="setup">
+    <div class="opt top"><span class="lab">내 프로필</span>
+      <div class="prof"><button type="button" class="cc me" id="pCard" aria-label="내 프로필 바꾸기" aria-expanded="false"></button>
+        <div class="pinfo"><b id="pName"></b><span id="pLvl"></span><button type="button" class="pick" id="pEdit">프로필 바꾸기</button></div></div>
+      <div class="editor" id="pEd" hidden>
+        <div class="ed-row"><span>모습</span><div class="seg" id="pKind"></div></div>
+        <div class="ed-row top" id="pCharRow"><span>캐릭터</span><div class="castrow mini" id="pChars"></div></div>
+        <div class="ed-row" id="pPhotoRow"><span>사진</span><div class="seg"><button type="button" class="pick" id="pPhotoBtn">사진 고르기</button><input type="file" id="pFile" accept="image/*" hidden><span class="small muted" id="pPhotoHint"></span></div></div>
+        <div class="ed-row"><span>영어 이름</span><input type="text" id="pEn" maxlength="20" autocomplete="off" placeholder="예: Minji, Leo" aria-label="영어 이름"></div>
+        <div class="ed-row top"><span>영어 수준</span><div><div class="seg" id="pLvls"></div><p class="note">국내부: 한국에서 영어를 배운 학생 · 국제부: 해외 거주·국제학교 등 영어가 익숙한 학생. AI 심판이 수준에 맞춰 피드백해요.</p></div></div>
+        <div class="ed-foot"><span class="small muted">사진은 같은 방 친구에게만 보여요.</span><button type="button" class="pick dark" id="pSave">저장</button></div>
       </div>
-      <p class="motion" id="lMotion" style="margin-top:10px"></p>
     </div>
-    <div class="card"><h2>자리 정하기</h2>
-      <p class="hint" style="margin:0 0 8px">자리를 눌러 앉아요. 사람이 적으면 한 사람이 여러 자리를 맡아도 돼요. 마무리 발언은 총리·대표가 해요.</p>
-      <div class="seats"><div class="bench" id="benchGov"><h3><span class="tag gov">여당</span> 찬성</h3></div><div class="bench" id="benchOpp"><h3><span class="tag opp">야당</span> 반대</h3></div></div>
-      <div class="row" style="margin-top:6px"><button class="btn" id="bAuto">자동 배정</button><button class="btn" id="bClearSeats">자리 비우기</button></div>
+    <div class="opt top"><div class="labrow"><span class="lab">열린 방 <span id="openCount"></span></span><button type="button" class="plus" id="bPlus" aria-label="방 만들기" aria-expanded="false">＋</button></div>
+      <div class="editor" id="newRoom" hidden>
+        <div class="ed-head"><b>어떤 방을 만들까요?</b><button type="button" class="x" id="bPlusX" aria-label="닫기">✕</button></div>
+        <div class="seg"><button type="button" class="pick dark" id="bCreate">공개 방</button><button type="button" class="pick" id="bCreatePriv">🔒 비밀 방</button></div>
+        <p class="note">공개 방은 이 목록에 보여서 누구나 들어올 수 있어요. 비밀 방은 코드를 아는 친구만 들어와요.</p>
+      </div>
+      <div id="openList"></div>
     </div>
-    <div class="readyrow"><button class="btn big" id="bReady" aria-pressed="false">준비</button><button class="go" id="bGo" disabled>Go!</button></div>
-    <p class="hint" id="startHint" style="text-align:center"></p>
-    <div class="row" style="justify-content:center;margin-top:12px"><button class="btn" id="bLeave">방 나가기</button></div>
-  </section>
+    <div class="opt"><span class="lab">코드</span><div class="seg"><input type="text" class="codein" id="joinCode" maxlength="6" autocomplete="off" autocapitalize="characters" aria-label="비밀 방 참가 코드 6자리" placeholder="비밀 방 코드"><button type="button" class="pick dark" id="bJoin">참가</button></div></div>
+    <p class="err" id="joinErr" hidden></p>
+  </div></section>
+
+  <section id="vLobby" hidden><div class="setup">
+    <div class="opt"><span class="lab">코드</span><div class="seg"><b class="codetxt" id="lCode"></b><button type="button" class="pick" id="bShare">보내기</button><button type="button" class="pick" id="bCopy">복사</button><span class="small muted" id="lPriv"></span></div></div>
+    <div class="opt"><span class="lab">주제</span><select id="sTopic"></select></div>
+    <p class="motion" id="lMotion"></p>
+    <div class="opt"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
+    <div class="opt"><span class="lab">준비</span><div class="seg" id="sPrep"></div></div>
+    <div class="opt"><span class="lab">목소리</span><div class="seg"><button type="button" class="pick" id="sVoice">목소리 전송</button><span class="small muted" id="sVoiceHint"></span></div></div>
+    <div class="opt top"><span class="lab">자리 <span id="lHostOnly"></span></span>
+      <div class="castrow seats3" id="seatRow"></div>
+      <div class="seg"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button><span class="small muted">자리를 눌러 앉아요. 한 사람이 여러 자리를 맡아도 돼요.</span></div></div>
+    <div class="opt top"><span class="lab">참가자</span><div class="members" id="lMembers"></div></div>
+    <div class="foot"><div class="fl"><div class="seg"><button type="button" class="pick" id="bReady" aria-pressed="false">준비</button><button type="button" class="lnk" id="bLeave">방 나가기</button></div><p class="note" id="startHint"></p></div><button type="button" class="go" id="bGo" disabled>Go!</button></div>
+  </div></section>
 
   <section id="vLive" hidden>
     <div class="card"><p class="motion" id="vMotion"></p><div class="order" id="vOrder"></div>
       <div class="chair"><span class="tag host">사회자</span><span id="vChair"></span></div></div>
-    <div class="card stage" id="vStage">
+    <div class="card stage" id="vStage"><div class="stagein"><div class="fig" id="vFig"></div><div class="info">
       <div class="spkline"><span class="role" id="vRole"></span><span class="en" id="vRoleEn"></span></div>
       <div class="small" id="vName"></div>
       <div class="timer" id="vTimer">0:00</div><div class="zone" id="vZone"></div>
-    </div>
+    </div></div></div>
     <div id="vAlert"></div>
     <div class="actions" id="vActions"></div>
     <div class="card"><h2>자막 <span class="small muted" id="vSubsHint"></span></h2><div class="subs" id="vSubs" aria-live="polite"></div></div>
@@ -193,6 +251,7 @@ html.embed input.code{font-size:20px;min-height:36px}
   </section>
 </div>
 
+<script src="stage/rig.js"></script>
 <script type="module">
 import { firebaseConfig, JUDGE_URL } from "./firebase-config.js";
 
@@ -244,6 +303,84 @@ const now = () => Date.now() + skew;
 
 let me = null, myName = "", code = null, room = null, offRoom = null, offConn = null, offSig = null, offSigRm = null;
 
+/* ---------- 프로필 / 얼굴 ---------- */
+const CH = ["oliver", "liam", "chloe", "noah", "olivia", "leo", "ruby"];
+const LVLS = [["domestic", "국내부", "Domestic division (Korean EFL learner)"], ["international", "국제부", "International division (near-native or studied abroad)"]];
+const KINDS = [["char", "캐릭터"], ["photo", "내 사진"], ["photochar", "사진+몸"]];
+const lvlKo = l => (LVLS.find(x => x[0] === l) || LVLS[0])[1];
+const hashCh = s => CH[[...String(s)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7) % CH.length];
+let prof = { name: "", lvl: "domestic", k: "char", ch: "", ph: "" };
+const avOf = u => { const v = room?.members?.[u] || {}; return { k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(u), ph: v.ph || "" }; };
+function charFace(id, bw, bh) { // 리허설 카드와 같은 방식: 머리 전체가 칸에 들어오게
+  const g = window.RIG?.[id] || (typeof RIG !== "undefined" ? RIG[id] : null); if (!g) return document.createElement("span");
+  const h = g.h * bh / (g.chin + 40), sc = h / g.h, im = new Image();
+  im.src = g.src; im.alt = ""; im.style.height = h + "px"; im.style.left = (bw / 2 - g.mouth[0] * sc) + "px"; im.style.top = (bh - (g.chin + 40) * sc + 4) + "px"; return im;
+}
+function fillFace(el, av) { // el 이 화면에 붙은 뒤에 호출
+  el.innerHTML = "";
+  if (av.ph && av.k !== "char") { const im = new Image(); im.className = "ph"; im.alt = ""; im.src = av.ph; el.append(im); return; }
+  el.append(charFace(av.ch, el.clientWidth || 70, el.clientHeight || 56));
+}
+function miniFace(av) { const s = document.createElement("span"); s.className = "mface"; s.dataset.av = JSON.stringify(av); return s; }
+function hydrateMini(root) { root.querySelectorAll(".mface[data-av]").forEach(s => { const av = JSON.parse(s.dataset.av); s.removeAttribute("data-av"); s.innerHTML = ""; if (av.ph && av.k !== "char") { const im = new Image(); im.className = "ph"; im.src = av.ph; s.append(im); } else s.append(charFace(av.ch, 22, 22)); }); }
+const miniHTML = u => miniFace(avOf(u)).outerHTML;
+function bodyFig(el, av) { // 발언자 전신: 캐릭터 몸 / 사진+몸 / 사진만
+  el.innerHTML = "";
+  const g = typeof RIG !== "undefined" ? RIG[av.ch] : null;
+  if (av.k === "photo" && av.ph) { const im = new Image(); im.className = "solo"; im.src = av.ph; im.alt = ""; el.append(im); return; }
+  if (!g) return;
+  const body = new Image(); body.className = "body"; body.src = g.src; body.alt = ""; el.append(body);
+  if (av.k === "photochar" && av.ph) {
+    const H = 150, sc = H / g.h, w = g.w * sc, ox = (92 - w) / 2, cx = ox + ((g.eyes[0][0] + g.eyes[1][0]) / 2) * sc, cy = g.chin * 0.5 * sc, d = g.chin * 0.98 * sc;
+    const hd = new Image(); hd.className = "head"; hd.src = av.ph; hd.alt = ""; Object.assign(hd.style, { width: d + "px", height: d + "px", left: (cx - d / 2) + "px", top: (cy - d / 2 + (150 - H)) + "px" }); el.append(hd);
+  }
+}
+async function loadProfile(u) {
+  const s = await D.get(R(`users/${u.uid}`)).catch(() => null), v = (s && s.val()) || {};
+  const p = v.profile || {};
+  prof = { name: p.name || v.name || load("name", "") || (u.displayName || "").split(" ")[0] || "Friend", lvl: LVLS.some(l => l[0] === p.lvl) ? p.lvl : "domestic", k: p.k || "char", ch: CH.includes(p.ch) ? p.ch : hashCh(u.uid), ph: p.ph || "" };
+  myName = prof.name; save("name", myName);
+}
+const memberProfile = () => ({ name: prof.name, lvl: prof.lvl, k: prof.k, ch: prof.ch, ph: prof.k === "char" ? "" : (prof.ph || "") });
+let edit = null;
+function renderProfile() {
+  const c = $("pCard"); c.innerHTML = '<span class="face"></span><span class="en"></span><span class="ko"></span><span class="badge">나</span>';
+  c.querySelector(".en").textContent = prof.name; c.querySelector(".ko").textContent = lvlKo(prof.lvl);
+  fillFace(c.querySelector(".face"), prof);
+  $("pName").textContent = prof.name; $("pLvl").textContent = "영어 수준: " + lvlKo(prof.lvl) + " · " + (KINDS.find(k => k[0] === prof.k) || KINDS[0])[1];
+  $("who").textContent = prof.name;
+  if (!edit) return;
+  segBtns($("pKind"), KINDS.map(k => k[0]), edit.k, v => KINDS.find(k => k[0] === v)[1], v => { edit.k = v; if (v !== "char" && !edit.ph) $("pFile").click(); renderProfile(); }, true);
+  $("pCharRow").hidden = edit.k === "photo"; $("pPhotoRow").hidden = edit.k === "char";
+  $("pPhotoHint").textContent = edit.ph ? "사진 있음 ✓" : "얼굴이 가운데 오게 찍은 사진이 좋아요";
+  const row = $("pChars"); row.innerHTML = "";
+  CH.forEach(id => { const b = document.createElement("button"); b.type = "button"; b.className = "cc" + (edit.ch === id ? " sel" : ""); b.setAttribute("aria-label", id); b.innerHTML = '<span class="face"></span>'; b.onclick = () => { edit.ch = id; renderProfile(); }; row.append(b); fillFace(b.querySelector(".face"), { k: "char", ch: id }); });
+  segBtns($("pLvls"), LVLS.map(l => l[0]), edit.lvl, v => LVLS.find(l => l[0] === v)[1], v => { edit.lvl = v; renderProfile(); }, true);
+}
+function openEdit(on) { edit = on ? { ...prof } : null; $("pEd").hidden = !on; $("pCard").setAttribute("aria-expanded", on ? "true" : "false"); $("pEdit").textContent = on ? "닫기" : "프로필 바꾸기"; if (on) $("pEn").value = prof.name; renderProfile(); }
+$("pCard").onclick = $("pEdit").onclick = () => openEdit(!edit);
+$("pPhotoBtn").onclick = () => $("pFile").click();
+$("pFile").onchange = async () => {
+  const f = $("pFile").files[0]; $("pFile").value = ""; if (!f || !edit) return;
+  try {
+    const bmp = await createImageBitmap(f), S = 128, cv = document.createElement("canvas"); cv.width = cv.height = S;
+    const side = Math.min(bmp.width, bmp.height), sx = (bmp.width - side) / 2, sy = Math.max(0, (bmp.height - side) / 2 - side * 0.08);
+    cv.getContext("2d").drawImage(bmp, sx, sy, side, side, 0, 0, S, S);
+    edit.ph = cv.toDataURL("image/jpeg", 0.78); if (edit.k === "char") edit.k = "photo"; renderProfile();
+  } catch { alert("사진을 불러오지 못했어요. 다른 사진으로 해 주세요."); }
+};
+$("pSave").onclick = async () => {
+  const n = $("pEn").value.trim().replace(/\s+/g, " ").slice(0, 20);
+  if (!n) { $("pEn").focus(); return; }
+  if (edit.k !== "char" && !edit.ph) { alert("사진을 먼저 골라 주세요."); return; }
+  prof = { ...edit, name: n }; myName = n; save("name", n);
+  try { await D.set(R(`users/${me.uid}/profile`), prof); await D.set(R(`users/${me.uid}/name`), n); } catch (e) { alert("저장하지 못했어요. (" + (e.code || e.message) + ")"); return; }
+  openEdit(false);
+};
+// 상단 + 버튼: 공개/비밀 방 고르기
+$("bPlus").onclick = () => { const on = $("newRoom").hidden; $("newRoom").hidden = !on; $("bPlus").setAttribute("aria-expanded", on ? "true" : "false"); };
+$("bPlusX").onclick = () => { $("newRoom").hidden = true; $("bPlus").setAttribute("aria-expanded", "false"); };
+
 /* ---------- 로그인 ---------- */
 $("bLogin").onclick = async () => {
   $("loginErr").hidden = true;
@@ -254,44 +391,24 @@ $("bLogin").onclick = async () => {
     if (e.code !== "auth/popup-closed-by-user" && e.code !== "auth/cancelled-popup-request") { $("loginErr").textContent = "로그인하지 못했어요. 다시 해 주세요. (" + (e.code || e.message) + ")"; $("loginErr").hidden = false; }
   }
 };
-$("bLogout").onclick = () => A.signOut(auth);
 
 A.onAuthStateChanged(auth, async u => {
   me = u;
   if (!u) { leaveLocal(); $("who").textContent = ""; show("vLogin"); return; }
-  const s = await D.get(R(`users/${u.uid}/name`)).catch(() => null);
-  myName = (s && s.val()) || load("name", "") || (u.displayName || "").split(" ")[0] || "친구";
-  $("myName").value = myName; $("who").textContent = myName;
+  await loadProfile(u); renderProfile();
   const want = (new URLSearchParams(location.search).get("code") || load("code", "") || "").toUpperCase();
   watchOpen();
   if (want) { $("joinCode").value = want; if (await joinRoom(want, true)) return; }
   show("vHome");
 });
 
-$("bSaveName").onclick = async () => {
-  const n = $("myName").value.trim().slice(0, 24); if (!n) return;
-  myName = n; save("name", n); $("who").textContent = n;
-  await D.set(R(`users/${me.uid}/name`), n).catch(() => {});
-  $("bSaveName").textContent = "저장됨"; setTimeout(() => $("bSaveName").textContent = "저장", 1200);
-};
-
-$("bDelete").onclick = async () => {
-  if (!confirm("계정을 삭제할까요? 이름과 참가 기록이 모두 지워지고 되돌릴 수 없어요.")) return;
-  try {
-    const rs = (await D.get(R(`users/${me.uid}/rooms`))).val() || {};
-    for (const c of Object.keys(rs)) await D.remove(R(`rooms/${c}/members/${me.uid}`)).catch(() => {});
-    await D.remove(R(`users/${me.uid}`));
-    try { await A.deleteUser(me); }
-    catch (e) { if (e.code === "auth/requires-recent-login") { await A.reauthenticateWithPopup(me, new A.GoogleAuthProvider()); await A.deleteUser(auth.currentUser); } else throw e; }
-    save("code", ""); save("name", ""); alert("계정을 삭제했어요.");
-  } catch (e) { alert("삭제하지 못했어요. 다시 해 주세요. (" + (e.code || e.message) + ")"); }
-};
 
 /* ---------- 방 만들기 / 참가 ---------- */
 const CODE_CH = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 $("bCreate").onclick = () => createRoom(false);
 $("bCreatePriv").onclick = () => createRoom(true);
 async function createRoom(priv) {
+  $("newRoom").hidden = true; $("bPlus").setAttribute("aria-expanded", "false");
   $("bCreate").disabled = $("bCreatePriv").disabled = true;
   try {
     for (let t = 0; t < 6; t++) {
@@ -313,8 +430,9 @@ function watchOpen() {
 function renderOpen() {
   const list = Object.entries(openRooms).filter(([, v]) => v && now() - (v.seen || 0) < 120000).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
   $("openCount").textContent = list.length ? list.length + "개" : "";
-  $("openList").innerHTML = list.length ? list.map(([c, v]) => { const t = topicOf(v.topic); return `<button class="room" data-c="${esc(c)}"><span class="t"><b>${esc(t[1])}</b><small>방장 ${esc(v.host)} · ${+v.mins || 3}분</small></span><span class="n">${+v.n || 1}명</span></button>`; }).join("")
+  $("openList").innerHTML = list.length ? list.map(([c, v]) => { const t = topicOf(v.topic); return `<button class="room" data-c="${esc(c)}">${miniFace({ k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(c), ph: v.ph || "" }).outerHTML}<span class="t"><b>${esc(t[1])}</b><small>방장 ${esc(v.host)} · ${+v.mins || 3}분</small></span><span class="n">${+v.n || 1}명</span></button>`; }).join("")
     : '<p class="hint" style="margin:0">지금 열린 방이 없어요. 공개 방을 만들어 친구를 기다려 보세요.</p>';
+  hydrateMini($("openList"));
   $("openList").querySelectorAll(".room").forEach(b => b.onclick = () => joinRoom(b.dataset.c));
 }
 setInterval(() => { if (!$("vHome").hidden) renderOpen(); }, 15000);
@@ -325,7 +443,7 @@ function syncOpen() {
   const m = room.meta, listed = !m.priv && m.status === "lobby";
   if (!listed) { if (openKey !== "off") { openKey = "off"; D.remove(R(`open/${code}`)).catch(() => {}); } return; }
   const n = Object.values(room.members || {}).filter(v => v.on).length;
-  const v = { topic: m.topic, host: nameOf(me.uid), n, mins: m.mins, at: m.createdAt };
+  const a = avOf(me.uid), v = { topic: m.topic, host: nameOf(me.uid), n, mins: m.mins, at: m.createdAt, k: a.k === "char" ? "char" : "char", ch: a.ch };
   const key = JSON.stringify(v);
   if (key === openKey && Date.now() - openAt < 30000) return;
   openKey = key; openAt = Date.now();
@@ -344,7 +462,7 @@ async function joinRoom(c, quiet) {
   const mine = (await D.get(R(`users/${me.uid}/rooms/${c}`)).catch(() => null))?.val();
   if (meta.status !== "lobby" && !mine) return err("이미 토론이 시작된 방이에요.");
   try {
-    await D.update(R(`rooms/${c}/members/${me.uid}`), { name: myName, on: true, joinedAt: mine ? mine : now() });
+    await D.update(R(`rooms/${c}/members/${me.uid}`), { ...memberProfile(), on: true, joinedAt: mine ? mine : now() });
     await D.set(R(`users/${me.uid}/rooms/${c}`), mine || now());
   } catch (e) { save("code", ""); return err("참가하지 못했어요. (" + (e.code || e.message) + ")"); }
   enterRoom(c); return true;
@@ -550,24 +668,28 @@ $("sTopic").innerHTML = TOPICS.map(([id, ko], i) => `<option value="${id}">${Str
 $("sTopic").onchange = () => { save("topic", $("sTopic").value); upd("meta", { topic: $("sTopic").value }); };
 $("sVoice").onclick = () => { const v = !room.meta.voice; save("voice", v ? "1" : "0"); upd("meta", { voice: v }); };
 function segBtns(el, vals, cur, fmt, onPick, enabled) {
-  el.innerHTML = ""; vals.forEach(v => { const b = document.createElement("button"); b.className = "btn"; b.textContent = fmt(v); b.setAttribute("aria-pressed", v === cur ? "true" : "false"); b.disabled = !enabled; b.onclick = () => onPick(v); el.append(b); });
+  el.innerHTML = ""; vals.forEach(v => { const b = document.createElement("button"); b.className = "pick"; b.type = "button"; b.textContent = fmt(v); b.setAttribute("aria-pressed", v === cur ? "true" : "false"); b.disabled = !enabled; b.onclick = () => onPick(v); el.append(b); });
 }
-function seatBtn(s) {
-  const u = room.seats?.[s], b = document.createElement("button");
-  b.className = "seat" + (u === me.uid ? " mine" : "");
-  b.innerHTML = `<b>${SEATS[s]}</b><span>${u ? esc(nameOf(u)) : "빈자리"}</span>`;
+function seatCard(s) {
+  const u = room.seats?.[s], b = document.createElement("button"), side = sideOf(s);
+  b.type = "button"; b.className = "cc" + (u === me.uid ? " me" : "") + (u ? "" : " empty");
+  b.innerHTML = `<span class="face"></span><span class="en"></span><span class="ko"></span><span class="rl ${side}">${SIDE_KO[side]} ${SEATS[s]}</span>`;
+  b.querySelector(".en").textContent = u ? nameOf(u) : "빈자리";
+  b.querySelector(".ko").textContent = u ? lvlKo(room.members?.[u]?.lvl) : "눌러서 앉기";
   b.onclick = () => {
     if (u === me.uid) upd("seats", { [s]: null });
     else if (!u || isHost() || !room.members?.[u]?.on) upd("seats", { [s]: me.uid });
   };
   return b;
 }
+let seatKey = "";
 function renderLobby() {
   const m = room.meta, host = isHost();
   $("lCode").textContent = code;
   $("lMembers").innerHTML = Object.entries(room.members || {}).sort((a, b) => (a[1].joinedAt || 0) - (b[1].joinedAt || 0))
-    .map(([u, v]) => `<span class="${v.on ? "on" : ""}"><i class="dot"></i>${esc(v.name)}${u === m.host ? ' <span class="tag host">방장</span>' : ""}${u === me.uid ? " (나)" : ""}${v.ready ? '<span class="rdy">준비</span>' : ""}</span>`).join("");
-  $("lPriv").textContent = m.priv ? "· 🔒 비밀 방 (코드로만 참가)" : "· 공개 방 (목록에 보여요)";
+    .map(([u, v]) => `<span class="${v.on ? "on" : ""}">${miniHTML(u)}${esc(v.name)}${u === m.host ? ' <span class="tag host">방장</span>' : ""}${u === me.uid ? " (나)" : ""}${v.ready ? '<span class="rdy">준비</span>' : ""}</span>`).join("");
+  hydrateMini($("lMembers"));
+  $("lPriv").textContent = m.priv ? "🔒 비밀 방" : "공개 방";
   $("lHostOnly").textContent = host ? "" : "· 방장이 정해요";
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
@@ -575,13 +697,15 @@ function renderLobby() {
   $("sVoice").setAttribute("aria-pressed", m.voice ? "true" : "false"); $("sVoice").disabled = !host;
   $("sVoiceHint").textContent = m.voice ? "멀리 있는 친구도 들려요 (이어폰 추천)" : "한곳에 모였을 때: 자막만";
   const t = topicOf(m.topic); $("lMotion").innerHTML = `${esc(t[2])}<small>${esc(t[3])}</small>`;
-  const g = $("benchGov"), o = $("benchOpp");
-  g.querySelectorAll(".seat").forEach(x => x.remove()); o.querySelectorAll(".seat").forEach(x => x.remove());
-  ["g1", "g2", "g3"].forEach(s => g.append(seatBtn(s))); ["o1", "o2", "o3"].forEach(s => o.append(seatBtn(s)));
+  $("sVoice").textContent = m.voice ? "목소리 전송 켜짐" : "목소리 전송 꺼짐";
+  const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
+  if (sk !== seatKey) { seatKey = sk; const row = $("seatRow"); row.innerHTML = "";
+    ["g1", "g2", "g3", "o1", "o2", "o3"].forEach(s => { const b = seatCard(s); row.append(b); const u = room.seats?.[s]; if (u) fillFace(b.querySelector(".face"), avOf(u)); }); }
   $("bAuto").hidden = $("bClearSeats").hidden = !host;
   const online = Object.entries(room.members || {}).filter(([, v]) => v.on), allReady = online.length >= 2 && online.every(([, v]) => v.ready);
   const meReady = !!room.members?.[me.uid]?.ready;
   $("bReady").setAttribute("aria-pressed", meReady ? "true" : "false"); $("bReady").textContent = meReady ? "준비 완료 ✓" : "준비";
+  $("bAuto").hidden = $("bClearSeats").hidden = !host;
   $("bGo").hidden = !host; $("bGo").disabled = !allReady;
   const nr = online.filter(([, v]) => v.ready).length;
   $("startHint").textContent = online.length < 2 ? "친구가 1명 이상 들어와야 시작할 수 있어요."
@@ -683,7 +807,7 @@ async function runJudge() {
   await D.update(R(`rooms/${code}`), { "meta/status": "judging", result: null });
   const speeches = ORDER.map((o, i) => {
     const ents = Object.values(tx[i] || {});
-    return { seat: o.seat, side: o.side, role: o.en, secs: st[i]?.secs || 0,
+    return { seat: o.seat, side: o.side, role: o.en, level: (LVLS.find(l => l[0] === room.members?.[room.seats?.[o.seat]]?.lvl) || [0, 0, ""])[2], secs: st[i]?.secs || 0,
       text: ents.filter(e => e.k === "s").map(e => e.t).join(" "),
       poiAcc: ents.filter(e => e.k === "pa").length, poiDec: ents.filter(e => e.k === "pd").length,
       pois: ents.reduce((q, e) => { if (e.k === "pa") q.push({ seat: e.seat, text: "" }); else if (e.k === "p") { if (!q.length) q.push({ seat: e.seat, text: "" }); q[q.length - 1].text += (q[q.length - 1].text ? " " : "") + e.t; } return q; }, []) };
@@ -727,7 +851,7 @@ async function poiResolve(state, auto) {
 }
 
 /* ---------- 화면 그리기 ---------- */
-let localRole = "";   // "speaker" | "poi" | ""
+let localRole = "", figKey = "";   // "speaker" | "poi" | ""
 function render() {
   if (!room) return;
   const s = room.meta.status;
@@ -740,6 +864,8 @@ function renderLive() {
   $("vMotion").innerHTML = `${esc(t[2])}<small>${esc(t[1])}</small>`;
   $("vOrder").innerHTML = ORDER.map((x, k) => `<i class="${x.side} ${k < i || L.phase === "done" ? "done" : k === i && L.phase !== "opening" && L.phase !== "prep" ? "now" : ""}" title="${x.ko}"></i>`).join("");
   const su = speakerUid(i), amSpk = su === me.uid, p = L.poi;
+  const fk = (L.phase === "opening" || L.phase === "prep") ? "chair" : su + JSON.stringify(avOf(su)).length;
+  if (fk !== figKey) { figKey = fk; if (fk === "chair") bodyFig($("vFig"), { k: "char", ch: "oliver" }); else bodyFig($("vFig"), avOf(su)); }
   $("vStage").className = "card stage " + (L.phase === "opening" || L.phase === "prep" ? "" : o.side);
   if (L.phase === "opening") { $("vRole").textContent = "개회"; $("vRoleEn").textContent = "Opening"; $("vName").textContent = "사회자가 토론을 소개하고 있어요."; }
   else if (L.phase === "prep") { $("vRole").textContent = "준비 시간"; $("vRoleEn").textContent = "Preparation"; $("vName").textContent = "팀끼리 작전을 짜요."; }
@@ -873,7 +999,7 @@ function renderResult() {
     if (resultSeen !== r.at) { resultSeen = r.at; applause(); }
     h += `<div class="win ${v.winner}"><span class="small">${MARGIN[v.margin] || ""}</span><b>${SIDE_KO[v.winner]} 승리!</b></div>`;
     h += `<div class="card"><h2>심판 한마디</h2><p style="margin:0">${esc(v.summary_ko)}</p></div>`;
-    h += `<div class="card"><h2>베스트 스피커</h2><p style="margin:0"><span class="tag ${sideOf(v.best_speaker_seat)}">${SIDE_KO[sideOf(v.best_speaker_seat)]} ${SEATS[v.best_speaker_seat]}</span> <b>${esc(nameOf(bs))}</b></p></div>`;
+    h += `<div class="card"><h2>베스트 스피커</h2><p style="margin:0">${bs ? miniHTML(bs) : ""}<span class="tag ${sideOf(v.best_speaker_seat)}">${SIDE_KO[sideOf(v.best_speaker_seat)]} ${SEATS[v.best_speaker_seat]}</span> <b>${esc(nameOf(bs))}</b></p></div>`;
     h += `<div class="card"><h2><span class="tag gov">여당</span> 피드백</h2><p style="margin:0">${esc(v.gov_feedback_ko)}</p></div>`;
     h += `<div class="card"><h2><span class="tag opp">야당</span> 피드백</h2><p style="margin:0">${esc(v.opp_feedback_ko)}</p></div>`;
     if (v.speaker_notes?.length) h += `<div class="card"><h2>한 사람씩</h2>${v.speaker_notes.map(n => `<p style="margin:0 0 4px"><span class="tag ${sideOf(n.seat)}">${SEATS[n.seat]}</span> ${esc(nameOf(room.seats?.[n.seat]))} — ${esc(n.note_ko)}</p>`).join("")}</div>`;
@@ -883,7 +1009,7 @@ function renderResult() {
     const e = Object.values(tx[i] || {}), w = e.filter(x => x.k === "s").map(x => x.t).join(" ").split(/\s+/).filter(Boolean).length;
     return `<tr><td><span class="tag ${o.side}">${o.ko.replace(/^(여당|야당) /, "")}</span></td><td>${esc(nameOf(room.seats?.[o.seat]))}</td><td>${st[i] ? mmss(st[i].secs * 1000) : "-"}</td><td>${w}</td><td>${e.filter(x => x.k === "pa").length}/${e.filter(x => x.k === "pa" || x.k === "pd").length}</td></tr>`;
   }).join("")}</table></div>`;
-  $("rBody").innerHTML = h;
+  $("rBody").innerHTML = h; hydrateMini($("rBody"));
   $("bAgain").hidden = !isHost() || m.status !== "done";
   $("bRejudge").hidden = !isHost() || !r || !!r.verdict;
 }

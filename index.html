@@ -545,7 +545,8 @@ $("topic").addEventListener("change",()=>{ topic=$("topic").value; store("topic"
 /* 시작 화면 재생 */
 (function splash(){
   const el=$("splash"); let skip=false;
-  try{ if(sessionStorage.getItem("dbs_nosplash")){ sessionStorage.removeItem("dbs_nosplash"); el.remove(); return; } }catch(e){}
+  // 시작 화면은 앱을 처음 열 때만 (같은 실행 중 새로고침·로고 누르기·탭 이동 후 돌아오기에는 안 나옴)
+  try{ if(sessionStorage.getItem("dbs_nosplash")||sessionStorage.getItem("dbs_splashed")){ sessionStorage.removeItem("dbs_nosplash"); el.remove(); return; } sessionStorage.setItem("dbs_splashed","1"); }catch(e){}
   const done=()=>{ if(skip) return; skip=true; el.classList.add("out"); setTimeout(()=>el.remove(),500); };
   el.addEventListener("click",done); setTimeout(done,4500);
   const wait=ms=>new Promise(r=>setTimeout(r,ms));
@@ -595,7 +596,7 @@ async function acct(conf){
   const auth=A.getAuth(initializeApp(conf)); let user=null;
   A.onAuthStateChanged(auth,u=>{ user=u; mail.textContent=u?(u.email||""):""; ab.classList.toggle("on",!!u); ab.setAttribute("aria-label",u?"내 계정 ("+(u.email||"")+")":"Google 계정으로 로그인"); box.hidden=false; });
   ab.onclick=async()=>{
-    if(user){ const mtab=document.querySelector('.tabs button[data-tab="match"]'); if(mtab&&!mtab.hidden) mtab.click(); return; }
+    if(user){ if(confirm((user.email||"")+" 계정에서 로그아웃할까요?")){ try{ await A.signOut(auth); }catch{} } return; }
     const p=new A.GoogleAuthProvider();
     try{ await A.signInWithPopup(auth,p); }
     catch(e){ if(e.code==="auth/popup-blocked"||e.code==="auth/operation-not-supported-in-this-environment"){ try{ await A.signInWithRedirect(auth,p); }catch{} }
