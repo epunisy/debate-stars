@@ -147,8 +147,7 @@ body.embedded .wrap.live .lower{display:none}
 <div class="wrap" id="wrap">
   <section class="setup" id="setup">
     <div class="opt"><span class="lab">형식</span><div class="seg">
-      <button class="pick" data-fmt="oneone">1:1 디베이트</button>
-      <button class="pick" data-fmt="team">팀 디베이트 3:3</button></div></div>
+            <button class="pick" data-fmt="team">아시안 의회식 3:3</button></div></div>
     <div class="opt"><span class="lab">주제</span><select id="topic" aria-label="주제"></select></div>
     <div class="opt"><span class="lab">보기</span><div class="seg">
       <button class="pick" data-mode="watch">관전하기</button>
@@ -193,7 +192,7 @@ body.embedded .wrap.live .lower{display:none}
 
 <script src="stage/rig.js"></script>
 <script>
-const STAGE_TOPICS = [["t01","AI를 학생회 임원으로","AI on the Student Council","This house would make AI a member of the school student council.","AI를 학교 학생회 임원으로 두어야 한다."],["t07","교실 스마트폰 금지","Ban Smartphones in Class","This house would ban smartphones in classrooms.","교실에서 스마트폰 사용을 금지해야 한다."]];
+const STAGE_TOPICS = [["d01", "초등학교 숙제 폐지", "Abolish Elementary Homework", "This House would abolish homework in elementary schools.", "본 의회는 초등학교 숙제를 폐지할 것이다."], ["d02", "16세 미만 SNS 금지", "Ban Social Media Under 16", "This House would ban social media for children under 16.", "본 의회는 16세 미만 어린이의 SNS 사용을 금지할 것이다."], ["d03", "일회용 플라스틱 금지", "Ban Single-Use Plastics", "This House would ban single-use plastics.", "본 의회는 일회용 플라스틱을 금지할 것이다."], ["d04", "학교 과제에 AI 사용 허용", "Allow AI for Schoolwork", "This House would allow students to use AI for schoolwork.", "본 의회는 학생들이 학교 과제에 AI를 사용하도록 허용할 것이다."], ["d05", "동물원 금지", "Ban Zoos", "This House would ban zoos.", "본 의회는 동물원을 금지할 것이다."], ["d06", "교복 폐지", "Abolish School Uniforms", "This House would abolish school uniforms.", "본 의회는 교복을 폐지할 것이다."], ["d07", "우주 탐사보다 지구 문제 우선", "Earth Before Space", "This House would prioritize solving problems on Earth over space exploration.", "본 의회는 우주 탐사보다 지구의 문제 해결을 우선할 것이다."], ["d08", "어린이 대상 정크푸드 광고 금지", "Ban Junk Food Ads for Kids", "This House would ban junk food advertising aimed at children.", "본 의회는 어린이를 대상으로 한 정크푸드 광고를 금지할 것이다."], ["d09", "성적이 좋은 학생에게 돈으로 보상", "Pay Students for Grades", "This House would pay students for good grades.", "본 의회는 성적이 좋은 학생에게 돈으로 보상할 것이다."], ["d10", "투표 연령 16세로 낮추기", "Lower the Voting Age to 16", "This House would lower the voting age to 16.", "본 의회는 투표 연령을 16세로 낮출 것이다."]];
 const W=1600,H=900,K=.6,GX=44,GY=60;
 const $=s=>document.getElementById(s);
 const stage=$('stage'),bgw=$('bgw'),fgw=$('fgw'),glc=$('gl');
@@ -401,8 +400,8 @@ function buildSet(d){
   bgw.innerHTML=`<div class="bg-wall"></div><div class="led"></div>
     <div class="screen"><div class="lab">MOTION · ${f==="team"?"TEAM DEBATE":"ONE-ON-ONE"}</div><div class="txt">${esc(d.motion)}</div><div class="ko">${esc(d.ko)}</div></div><div class="floor"></div>`;
   const [pl,pw]=DESK[f].P,[ol,ow]=DESK[f].O;
-  fgw.innerHTML=`<div class="desk" style="left:${pl}px;width:${pw}px;--team:#D94F8C"><div class="side">PROPOSITION</div><div class="team">찬성</div></div>
-    <div class="desk" style="left:${ol}px;width:${ow}px;--team:#2F6FD0"><div class="side">OPPOSITION</div><div class="team">반대</div></div>
+  fgw.innerHTML=`<div class="desk" style="left:${pl}px;width:${pw}px;--team:#D94F8C"><div class="side">GOVERNMENT</div><div class="team">여당</div></div>
+    <div class="desk" style="left:${ol}px;width:${ow}px;--team:#2F6FD0"><div class="side">OPPOSITION</div><div class="team">야당</div></div>
     <div class="desk chair" style="left:${CHAIRX-80}px;width:160px;--team:#6B7280"><div class="side">CHAIR</div><div class="team">사회자</div></div>
     <div class="mic"></div><div class="lectern"><span>EN</span></div>`;
   const mb=$('mbar'); mb.querySelector('.lab').textContent=`MOTION · ${f==="team"?"TEAM DEBATE":"ONE-ON-ONE"}`; mb.querySelector('.en').textContent=d.motion; mb.querySelector('.ko').textContent=d.ko;
@@ -421,12 +420,13 @@ const CAST={oliver:{name:"Oliver",ko:"올리버",g:"m",acc:"gb"},liam:{name:"Lia
   noah:{name:"Noah",ko:"노아",g:"m",acc:"in"},olivia:{name:"Olivia",ko:"올리비아",g:"f",acc:"ca"},leo:{name:"Leo",ko:"레오",g:"m",acc:"nz"},ruby:{name:"Ruby",ko:"루비",g:"f",acc:"ie"}};
 const SEATS={oneone:{P1:"liam",PR:"liam",O1:"olivia",OR:"olivia"},team:{P1:"liam",P2:"chloe",P3:"noah",PR:"liam",O1:"olivia",O2:"leo",O3:"ruby",OR:"olivia"}};
 const ORDERS={oneone:["P1","O1","PR","OR"],team:["P1","O1","P2","O2","P3","O3","OR","PR"]};
-const ROLES={oneone:{oliver:"사회자",liam:"찬성",olivia:"반대"},team:{oliver:"사회자",liam:"찬성 1",chloe:"찬성 2",noah:"찬성 3",olivia:"반대 1",leo:"반대 2",ruby:"반대 3"}};
+const ROLES={oneone:{oliver:"사회자",liam:"찬성",olivia:"반대"},team:{oliver:"사회자",liam:"여당 총리",chloe:"여당 부총리",noah:"여당 원내총무",olivia:"야당 대표",leo:"야당 부대표",ruby:"야당 원내총무"}};
 const STORE="dstage_v1";
-const defaults=()=>({fmt:"oneone",topic:STAGE_TOPICS[0][0],mode:"watch",me:null,names:{},acc:{}});
+const defaults=()=>({fmt:"team",topic:STAGE_TOPICS[0][0],mode:"watch",me:null,names:{},acc:{}});
 let cfg=defaults(), keep=false;
 try{const s=JSON.parse(localStorage.getItem(STORE)||"null"); if(s){cfg={...defaults(),...s}; keep=true;}}catch(e){}
 if(!STAGE_TOPICS.some(t=>t[0]===cfg.topic)) cfg.topic=STAGE_TOPICS[0][0];
+cfg.fmt="team"; /* 지금은 아시안 의회식 팀 토론만 있어요 */
 function save(){try{ if(keep) localStorage.setItem(STORE,JSON.stringify(cfg)); else localStorage.removeItem(STORE); }catch(e){}}
 const accOf=id=>cfg.acc[id]||CAST[id].acc;
 const shortName=id=>cfg.names[id]||CAST[id].ko;
@@ -567,7 +567,7 @@ async function startDebate(){
   const {prop,opp}=buildSet(data);
   [...prop,...opp,CHAIR].forEach(k=>{const c=chars[k];c.x=c.home<800?-200:1800;});
   shot.wide(0);
-  card(fmt==="team"?"TEAM DEBATE · 3 vs 3":"ONE-ON-ONE DEBATE", data.motion, data.ko, true); chime();
+  card(fmt==="team"?"ASIAN PARLIAMENTARY · 3 vs 3":"ONE-ON-ONE DEBATE", data.motion, data.ko, true); chime();
   await wait(2.6,id); card("","","",false);
   [...prop,...opp,CHAIR].forEach((k,i)=>setTimeout(()=>{const c=chars[k];c.walkTo=c.home;c.speed=420;},i*160));
   await wait(3.2,id);
@@ -603,7 +603,7 @@ async function startDebate(){
   if(id!==run) return;
   $('bar').style.width="100%"; setStatus("토론 끝!");
   Object.values(chars).filter(c=>c.visible).forEach((c,i)=>setTimeout(()=>c.react.push({k:'cheer',s:simT,d:2.6}),i*90)); applause(3.4);
-  await wait(3,id); card("THE END","수고했어요!","다른 형식이나 자리로 다시 해 보세요",true);
+  await wait(3,id); card("THE END","수고했어요!","다른 주제나 자리로 다시 해 보세요",true);
   await wait(2.5,id); if(id===run){ card("","","",false); $('setup').hidden=false; setLive(false); preview(); }
 }
 
