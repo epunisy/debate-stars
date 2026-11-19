@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><head><meta charset=utf8><title>디베이트 스타즈</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#F2F4F1"><meta name="description" content="영어 디베이트 쉐도잉 연습 — 핵심 문구, 실전 토론 20개 주제, 디베이트 무대"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="ko"><head><meta charset=utf8><title>디베이트 스타즈</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#F2F4F1"><meta name="description" content="영어 디베이트 쉐도잉 연습 — 핵심 문구, 실전 토론 20개 주제, 리허설"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -184,7 +184,7 @@ body.stage-live .wrap{padding-top:8px}
   <div class="tabs" role="tablist">
     <button role="tab" aria-selected="true" data-tab="phrases">핵심 문구</button>
     <button role="tab" aria-selected="false" data-tab="speech">실전 토론</button>
-    <button role="tab" aria-selected="false" data-tab="stage">디베이트 무대</button>
+    <button role="tab" aria-selected="false" data-tab="stage">리허설</button>
     <button role="tab" aria-selected="false" data-tab="news">대회 소식</button>
   </div>
   <div class="topicpick" id="topicBox" hidden>
@@ -193,7 +193,7 @@ body.stage-live .wrap{padding-top:8px}
   </div>
   <main id="list"></main>
   <section id="newsBox" class="news" hidden aria-label="토론 대회 소식"></section>
-  <div id="stageBox" hidden><iframe id="stageFrame" title="디베이트 무대" allow="autoplay" style="width:100%;height:360px;border:0;display:block;background:transparent"></iframe></div>
+  <div id="stageBox" hidden><iframe id="stageFrame" title="리허설" allow="autoplay" style="width:100%;height:360px;border:0;display:block;background:transparent"></iframe></div>
 </div>
 
 <div class="rail" id="rail">
@@ -224,7 +224,7 @@ body.stage-live .wrap{padding-top:8px}
 <script>
 /* 대회 배너: {img:"banner1.jpg", href:"https://…", title:"…"} 를 넣으면 그 자리에 보여요. 비어 있으면 자리 표시만 나와요. */
 const BANNERS = [
-  {img:"banners/speak-your-mind.jpg", title:"Speak your mind. Make your case. — 디베이트 무대로 가기", tab:"stage"},
+  {img:"banners/speak-your-mind.jpg", title:"Speak your mind. Make your case. — 리허설로 가기", tab:"stage"},
   {title:"YTN·한국외대 청소년 영어토론대회", sub:"국내 · 초등부·중등부", desc:"전국 초·중학생이 팀을 이뤄 겨루는 영어 토론대회", href:"https://www.ytn.co.kr", tone:"a"},
   {title:"World Schools Debating Championship", sub:"WSDC · 세계학교토론대회", desc:"80여 개국 대표팀이 겨루는 세계 최대 학생 토론대회", href:"https://wsdcdebating.org", tone:"c"},
   {title:"Harvard Debate Council", sub:"하버드 토론·스피치 대회", desc:"매년 2월 하버드대에서 열리는 토론·스피치 대회", href:"https://harvarddebate.org/", tone:"b"},
