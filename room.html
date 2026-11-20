@@ -198,7 +198,10 @@ html.modal .setup{margin:0;border:0;border-radius:0}
 .lfoot{display:grid;grid-template-columns:64px 1fr 64px;align-items:center;gap:6px;padding-top:4px}
 .lfoot .lnk{justify-self:start}
 .lfoot .mid{display:flex;flex-direction:column;align-items:center;gap:2px}
-.lfoot #bReady{min-width:72px}
+.rdybtn{width:58px;height:58px;border-radius:50%;padding:0;flex:none;border:2px solid #C9CFD8;background:var(--surface);color:var(--fg);font:800 14px/1.15 var(--body);cursor:pointer;white-space:pre-line;box-shadow:0 2px 8px #0001}
+.rdybtn[aria-pressed="true"]{background:#E6E9EE;border-color:#9AA4B1}
+@media (prefers-color-scheme:dark){.rdybtn[aria-pressed="true"]{background:#2F3846;border-color:#3A4556}}
+.rdybtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .lfoot .goslot{display:flex;justify-content:flex-end}
 .lfoot .note{text-align:center;margin:0}
 .crop{display:grid;gap:6px;justify-items:center}
@@ -313,7 +316,7 @@ html.embed input.code{font-size:20px;min-height:36px}
       <div class="seatpick" id="seatPick" hidden></div>
       <div class="seg indent"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
     <div class="opt top"><span class="lab">참가자</span><div class="members" id="lMembers"></div></div>
-    <div class="lfoot"><button type="button" class="lnk" id="bLeave">나가기</button><div class="mid"><button type="button" class="pick" id="bReady" aria-pressed="false">준비</button><p class="note" id="startHint"></p></div><div class="goslot"><button type="button" class="go" id="bGo" disabled>Go!</button></div></div>
+    <div class="lfoot"><button type="button" class="lnk" id="bLeave">나가기</button><div class="mid"><button type="button" class="rdybtn" id="bReady" aria-pressed="false">준비</button><p class="note" id="startHint"></p></div><div class="goslot"><button type="button" class="go" id="bGo" disabled>Go!</button></div></div>
   </div></section>
 
   <section id="vLive" hidden>
@@ -902,7 +905,7 @@ function renderLobby() {
   $("bAuto").hidden = $("bClearSeats").hidden = !host;
   const online = Object.entries(room.members || {}).filter(([, v]) => v.on), allReady = online.length >= 2 && online.every(([, v]) => v.ready);
   const meReady = !!room.members?.[me.uid]?.ready;
-  $("bReady").setAttribute("aria-pressed", meReady ? "true" : "false"); $("bReady").textContent = meReady ? "준비 완료 ✓" : "준비";
+  $("bReady").setAttribute("aria-pressed", meReady ? "true" : "false"); $("bReady").textContent = meReady ? "준비\n완료 ✓" : "준비";
   $("bAuto").hidden = $("bClearSeats").hidden = !host;
   $("bGo").hidden = !host; $("bGo").disabled = !allReady;
   const nr = online.filter(([, v]) => v.ready).length;
