@@ -103,6 +103,7 @@ table.st th{color:var(--muted);font-weight:600}
 .opt{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:center;gap:6px}
 .opt.top{grid-template-columns:1fr;gap:5px}
 .seg.indent{margin-left:calc(min(100%,420px) / 8 + 1px);margin-top:4px}
+.seats4 ~ .seg.indent,.seats4 ~ .seatpick{margin-left:0;margin-right:0}
 .seatpick{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-left:calc(min(100%,420px) / 8 + 1px);margin-right:calc(min(100%,420px) / 8 + 1px);padding:7px 8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
 .seatpick[hidden]{display:none}
 .seatpick .t{width:100%;font-size:11px;color:var(--muted)}
@@ -134,6 +135,7 @@ table.st th{color:var(--muted);font-weight:600}
 .note{font-size:11px;line-height:1.45;color:var(--muted);margin:2px 0 0}
 .castrow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;max-width:420px}
 .castrow.seats3{grid-template-columns:repeat(3,calc((100% - 18px) / 4));justify-content:center}
+.castrow.seats3.seats4{grid-template-columns:repeat(4,calc((100% - 18px) / 4))}
 .castrow.mini{grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
 .cc{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 5px 6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);cursor:pointer;font:inherit;min-width:0}
 .cc.sel{border-color:var(--fg);box-shadow:0 0 0 1px var(--fg)}
@@ -302,6 +304,7 @@ html.embed input.code{font-size:20px;min-height:36px}
     <div class="opt"><span class="lab">주제</span><select id="sTopic"></select></div>
     <p class="motion" id="lMotion"></p>
     <div class="opt" id="lSumRow"><span class="lab">규칙</span><span class="small" id="lSum"></span></div>
+    <div class="opt hostonly"><span class="lab">형식</span><div class="seg" id="sFmt"></div></div>
     <div class="opt hostonly"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
     <div class="opt hostonly"><span class="lab">준비</span><div class="seg" id="sPrep"></div></div>
     <div class="opt hostonly"><span class="lab">친구들</span><div class="seg" id="sVoice"></div></div>
@@ -360,6 +363,19 @@ const ORDER = [
 ];
 const SEATS = { g1: "PM", g2: "DPM", g3: "Gov Whip", o1: "LO", o2: "DLO", o3: "Opp Whip" };
 const SEAT_EN = { g1: "Prime Minister", g2: "Deputy Prime Minister", g3: "Government Whip", o1: "Leader of the Opposition", o2: "Deputy Leader of the Opposition", o3: "Opposition Whip" };
+const FMTS = [["m33", "중등부 3:3"], ["e44", "초등부 4:4"]];
+let fmtNow = "m33";
+const is44 = () => fmtNow === "e44";
+const seatIds = () => is44() ? ["g1", "g2", "g3", "g4", "o1", "o2", "o3", "o4"] : ["g1", "g2", "g3", "o1", "o2", "o3"];
+function applyFmt(f) { // 초등부 4:4: 4번 선수가 Reply만 맡음 (발언 순서 8개는 같음)
+  fmtNow = f === "e44" ? "e44" : "m33";
+  if (is44()) { SEATS.g4 = "Gov Reply"; SEATS.o4 = "Opp Reply"; SEAT_EN.g4 = "Government Reply Speaker"; SEAT_EN.o4 = "Opposition Reply Speaker"; }
+  else { delete SEATS.g4; delete SEATS.o4; delete SEAT_EN.g4; delete SEAT_EN.o4; }
+  ORDER[6].seat = is44() ? "o4" : "o1"; ORDER[7].seat = is44() ? "g4" : "g1";
+  ORDER[6].call = is44() ? "I now call upon the reply speaker for the Opposition." : "I now call upon the Leader of the Opposition to give the reply speech for the Opposition.";
+  ORDER[7].call = is44() ? "Finally, I call upon the reply speaker for the Government." : "Finally, I call upon the Prime Minister to give the reply speech for the Government.";
+}
+const replyMins = m => fmtNow === "e44" ? Math.max(2, (m.mins || 4) - 1) : Math.ceil((m.mins || 3) / 2);
 const sideOf = s => s[0] === "g" ? "gov" : "opp";
 const SIDE_KO = { gov: "Government", opp: "Opposition" };
 const GRACE = 20000, POI_ASK = 10000, POI_LEN = 15000, POI_COOLDOWN = 30000, SILENCE = 20000;
@@ -552,7 +568,7 @@ async function createRoom(priv) {
     for (let t = 0; t < 6; t++) {
       const c = Array.from(crypto.getRandomValues(new Uint8Array(6)), b => CODE_CH[b % CODE_CH.length]).join("");
       if ((await D.get(R(`rooms/${c}/meta`))).exists()) continue;
-      await D.set(R(`rooms/${c}/meta`), { host: me.uid, createdAt: now(), status: "lobby", priv: !!priv, topic: load("topic", "d01"), mins: +load("mins", 3), prep: +load("prep", 0), voice: load("voice", "1") === "1", round: 0 });
+      await D.set(R(`rooms/${c}/meta`), { host: me.uid, createdAt: now(), status: "lobby", priv: !!priv, topic: load("topic", "d01"), fmt: load("fmt", "m33"), mins: +load("mins", 3), prep: +load("prep", 0), voice: load("voice", "1") === "1", round: 0 });
       const pin = priv ? String(crypto.getRandomValues(new Uint32Array(1))[0] % 9000 + 1000) : "";
       if (pin) await D.set(R(`rooms/${c}/secret/pin`), pin);
       await joinRoom(c, false, false, pin); return;
@@ -637,7 +653,7 @@ function enterRoom(c) {
   history.replaceState(null, "", selfURL(""));
   const onRef = R(`rooms/${c}/members/${me.uid}/on`);
   offConn = D.onValue(R(".info/connected"), s => { if (s.val()) { D.onDisconnect(onRef).set(false); D.set(onRef, true).catch(() => {}); } });
-  offRoom = D.onValue(R(`rooms/${c}`), s => { room = s.val(); if (!room || !room.meta) { leaveLocal(); save("code", ""); show("vHome"); return; } render(); });
+  offRoom = D.onValue(R(`rooms/${c}`), s => { room = s.val(); if (!room || !room.meta) { leaveLocal(); save("code", ""); show("vHome"); return; } applyFmt(room.meta.fmt); render(); });
   listenIncoming();
   engineTimer = setInterval(tick, 400);
 }
@@ -671,7 +687,7 @@ $("bLeave").onclick = leaveRoom; $("bLeave2").onclick = leaveRoom;
 const isHost = () => room?.meta?.host === me?.uid;
 const nameOf = u => room?.members?.[u]?.name || "?";
 const topicOf = id => TOPICS.find(t => t[0] === id) || TOPICS[0];
-const lim = i => { const m = room.meta.mins || 3; const base = (ORDER[i].reply ? Math.ceil(m / 2) : m) * 60000; return base + (room.live?.extra || 0); };
+const lim = i => { const m = room.meta.mins || 3; const base = (ORDER[i].reply ? replyMins(room.meta) : m) * 60000; return base + (room.live?.extra || 0); };
 const prot = () => (room.meta.mins >= 5 ? 60000 : 30000);
 const elapsed = () => { const L = room.live || {}; if (!L.t0) return 0; return ((L.paused || now()) - L.t0 - (L.pauseAcc || 0)); };
 const upd = (p, v) => D.update(R(`rooms/${code}/${p}`), v);
@@ -826,7 +842,7 @@ function closeIncoming() { Object.keys(inPCs).forEach(closeIn); }
 $("bSound").onclick = () => { Object.values(inPCs).forEach(x => x.audio && x.audio.play().catch(() => {})); $("bSound").hidden = true; };
 
 /* ---------- 대기실 ---------- */
-const MINS = [3, 5, 7], PREPS = [0, 3, 5, 10];
+const MINS = [3, 4, 5, 7], PREPS = [0, 3, 5, 10];
 $("sTopic").innerHTML = TOPICS.map(([id, ko], i) => `<option value="${id}">${String(i + 1).padStart(2, "0")}. ${esc(ko)}</option>`).join("");
 $("sTopic").onchange = () => { save("topic", $("sTopic").value); upd("meta", { topic: $("sTopic").value }); };
 function segBtns(el, vals, cur, fmt, onPick, enabled) {
@@ -872,15 +888,17 @@ function renderLobby() {
   $("lHostOnly").textContent = "";
   // 방장만 규칙 버튼, 다른 사람은 한 줄 요약
   document.querySelectorAll("#vLobby .hostonly").forEach(x => x.hidden = !host); $("lSumRow").hidden = host;
-  $("lSum").textContent = [`발언 ${m.mins}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "같이 · 자막만"].join(" · ");
+  $("lSum").textContent = [FMTS.find(x => x[0] === fmtNow)[1], `발언 ${m.mins}분 · Reply ${replyMins(m)}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "같이 · 자막만"].join(" · ");
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
+  segBtns($("sFmt"), FMTS.map(x => x[0]), is44() ? "e44" : "m33", v => FMTS.find(x => x[0] === v)[1], v => { save("fmt", v); const u = { fmt: v }; if (v === "e44") { u.mins = 4; save("mins", 4); } upd("meta", u); if (v !== "e44") { upd("seats", { g4: null, o4: null }); } }, host);
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
   segBtns($("sPrep"), PREPS, m.prep || 0, v => v ? v + "분" : "없음", v => { save("prep", v); upd("meta", { prep: v }); }, host);
   segBtns($("sVoice"), [false, true], !!m.voice, v => v ? "따로 있어요 (목소리)" : "같이 있어요 (자막만)", v => { save("voice", v ? "1" : "0"); upd("meta", { voice: v }); }, host);
   const t = topicOf(m.topic); $("lMotion").innerHTML = `${esc(t[2])}<small>${esc(t[3])}</small>`;
   const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.gr, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
   if (sk !== seatKey) { seatKey = sk; const row = $("seatRow"); row.innerHTML = "";
-    ["g1", "g2", "g3", "o1", "o2", "o3"].forEach(s => { const b = seatCard(s); row.append(b); const u = room.seats?.[s]; if (u) fillFace(b.querySelector(".face"), avOf(u)); }); }
+    row.classList.toggle("seats4", is44());
+    seatIds().forEach(s => { const b = seatCard(s); row.append(b); const u = room.seats?.[s]; if (u) fillFace(b.querySelector(".face"), avOf(u)); }); }
   $("bAuto").hidden = $("bClearSeats").hidden = !host;
   const online = Object.entries(room.members || {}).filter(([, v]) => v.on), allReady = online.length >= 2 && online.every(([, v]) => v.ready);
   const meReady = !!room.members?.[me.uid]?.ready;
@@ -897,7 +915,8 @@ function autoSeats() {
   const ms = Object.entries(room.members || {}).filter(([, v]) => v.on).sort((a, b) => (a[1].joinedAt || 0) - (b[1].joinedAt || 0)).map(([u]) => u);
   if (!ms.length) return;
   const half = Math.ceil(ms.length / 2), gov = ms.slice(0, half), opp = ms.slice(half).length ? ms.slice(half) : gov;
-  const seats = {}; ["g1", "g2", "g3"].forEach((s, i) => seats[s] = gov[i % gov.length]); ["o1", "o2", "o3"].forEach((s, i) => seats[s] = opp[i % opp.length]);
+  const seats = {}, gs = seatIds().filter(s => s[0] === "g"), os = seatIds().filter(s => s[0] === "o");
+  gs.forEach((s, i) => seats[s] = gov[i % gov.length]); os.forEach((s, i) => seats[s] = opp[i % opp.length]);
   return D.set(R(`rooms/${code}/seats`), seats);
 }
 $("bClearSeats").onclick = () => D.remove(R(`rooms/${code}/seats`));
@@ -955,7 +974,7 @@ function takeOver() {
   if (first && first[0] === me.uid) { hostGoneAt = 0; upd("meta", { host: me.uid }); }
 }
 async function runOpening() {
-  const m = room.meta, t = topicOf(m.topic), rm = Math.ceil(m.mins / 2);
+  const m = room.meta, t = topicOf(m.topic), rm = replyMins(m);
   const h = new Date().getHours(), part = h < 12 ? "morning" : h < 18 ? "afternoon" : "evening";
   const pt = m.mins >= 5 ? "the first minute and before the last minute" : "the first thirty seconds and before the last thirty seconds";
   await chair(`Good ${part}, everyone, and welcome to today's debate. The motion before the House is: ${t[2]} The Government will propose the motion, and the Opposition will oppose it.`);
@@ -996,7 +1015,7 @@ async function runJudge() {
     try {
       const tok = await me.getIdToken();
       const r = await fetch(JUDGE_URL, { method: "POST", headers: { "Authorization": "Bearer " + tok, "Content-Type": "application/json" },
-        body: JSON.stringify({ room: code, round: m.round || 0, motion: t[2], mins: m.mins, replyMins: Math.ceil(m.mins / 2), speeches }) });
+        body: JSON.stringify({ room: code, round: m.round || 0, motion: t[2], mins: m.mins, replyMins: replyMins(m), format: is44() ? "Elementary 4 vs 4: the 4th speaker on each side gives only the reply speech" : "Middle school 3 vs 3: the 1st speaker also gives the reply speech", speeches }) });
       const j = await r.json().catch(() => ({}));
       result = j.verdict ? { verdict: j.verdict, remaining: j.remaining ?? null, at: now() } : { err: j.ko || "판정하지 못했어요. 다시 눌러 주세요.", at: now() };
     } catch { result = { err: "판정 서버에 연결하지 못했어요. 다시 눌러 주세요.", at: now() }; }
@@ -1185,7 +1204,7 @@ function renderResult() {
   } else h += `<div class="card"><h2>판정 결과를 받지 못했어요</h2><p class="err">${esc(r.err)}</p></div>`;
   h += `<div class="card"><h2>발언 기록</h2><table class="st"><tr><th>순서</th><th>이름</th><th>시간</th><th>단어</th><th>질문 받음</th></tr>${ORDER.map((o, i) => {
     const e = Object.values(tx[i] || {}), w = e.filter(x => x.k === "s").map(x => x.t).join(" ").split(/\s+/).filter(Boolean).length;
-    return `<tr><td><span class="tag ${o.side}">${SEATS[o.seat]}${o.reply ? " Reply" : ""}</span></td><td>${esc(nameOf(room.seats?.[o.seat]))}</td><td>${st[i] ? mmss(st[i].secs * 1000) : "-"}</td><td>${w}</td><td>${e.filter(x => x.k === "pa").length}/${e.filter(x => x.k === "pa" || x.k === "pd").length}</td></tr>`;
+    return `<tr><td><span class="tag ${o.side}">${SEATS[o.seat]}${o.reply && !is44() ? " Reply" : ""}</span></td><td>${esc(nameOf(room.seats?.[o.seat]))}</td><td>${st[i] ? mmss(st[i].secs * 1000) : "-"}</td><td>${w}</td><td>${e.filter(x => x.k === "pa").length}/${e.filter(x => x.k === "pa" || x.k === "pd").length}</td></tr>`;
   }).join("")}</table></div>`;
   $("rBody").innerHTML = h; hydrateMini($("rBody"));
   $("bAgain").hidden = !isHost() || m.status !== "done";
