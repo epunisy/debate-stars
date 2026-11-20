@@ -203,6 +203,8 @@ html.modal .setup{margin:0;border:0;border-radius:0}
 .roomhead{display:flex;align-items:center;gap:6px}
 .roomhead .sp{flex:1}
 .labrow2{display:flex;align-items:center;gap:8px}
+.subsh{display:flex;align-items:center;gap:6px}.subsh #bVoiceMe{margin-left:auto}
+#bVoiceMe[aria-pressed="false"]{background:#E6E9EE}
 .inv.del{color:#C2412D;border-color:#E9C4BD}
 .tag.mine{background:#E6E9EE;color:var(--fg);font-size:10px;margin-left:4px;vertical-align:1px}
 .inv{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;font:600 11.5px var(--body);padding:2px 10px;cursor:pointer}
@@ -332,7 +334,6 @@ html.embed input.code{font-size:20px;min-height:36px}
     <div class="opt hostonly"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
     <div class="opt hostonly"><span class="lab">준비</span><div class="seg" id="sPrep"></div></div>
     <div class="opt hostonly"><span class="lab">시작</span><div class="seg"><button type="button" class="pick" id="sAtNow">모두 Ready 하면</button><input type="time" id="sAt" aria-label="시작 시간"></div></div>
-    <div class="opt hostonly"><span class="lab">친구들</span><div class="seg" id="sVoice"></div></div>
     <div class="opt top"><span class="lab">자리 <span id="lHostOnly"></span></span>
       <div class="castrow seats3" id="seatRow"></div>
       <div class="seatpick" id="seatPick" hidden></div>
@@ -351,7 +352,7 @@ html.embed input.code{font-size:20px;min-height:36px}
     </div></div></div>
     <div id="vAlert"></div>
     <div class="actions" id="vActions"></div>
-    <div class="card"><h2>자막 <span class="small muted" id="vSubsHint"></span></h2><div class="subs" id="vSubs" aria-live="polite"></div></div>
+    <div class="card"><h2 class="subsh">자막 <span class="small muted" id="vSubsHint"></span><button type="button" class="inv" id="bVoiceMe" aria-pressed="true">🔊 목소리 켜짐</button></h2><div class="subs" id="vSubs" aria-live="polite"></div></div>
     <div class="card" id="vHost" hidden><div class="hostbar"><span class="lab">방장</span>
       <button class="btn" id="hPause">일시정지</button><button class="btn" id="hPlus">+30초</button><button class="btn" id="hNext">다음 순서로</button><button class="btn" id="hStop">토론 끝내기</button></div></div>
     <div class="row" style="justify-content:space-between"><span class="small muted" id="vOnline"></span><button class="btn" id="bSound" hidden>🔊 소리 켜기</button></div>
@@ -593,7 +594,7 @@ async function createRoom(priv) {
     for (let t = 0; t < 6; t++) {
       const c = Array.from(crypto.getRandomValues(new Uint8Array(6)), b => CODE_CH[b % CODE_CH.length]).join("");
       if ((await D.get(R(`rooms/${c}/meta`))).exists()) continue;
-      await D.set(R(`rooms/${c}/meta`), { host: me.uid, createdAt: now(), status: "lobby", priv: !!priv, topic: load("topic", "d01"), fmt: load("fmt", "m33"), mins: +load("mins", 3), prep: +load("prep", 0), voice: load("voice", "1") === "1", round: 0 });
+      await D.set(R(`rooms/${c}/meta`), { host: me.uid, createdAt: now(), status: "lobby", priv: !!priv, topic: load("topic", "d01"), fmt: load("fmt", "m33"), mins: +load("mins", 3), prep: +load("prep", 0), voice: true, round: 0 });
       const pin = priv ? String(crypto.getRandomValues(new Uint32Array(1))[0] % 9000 + 1000) : "";
       if (pin) await D.set(R(`rooms/${c}/secret/pin`), pin);
       setMine([...mine(), c]); await joinRoom(c, false, false, pin); return;
@@ -847,10 +848,17 @@ function sendInterim(t, force) {
 /* ---------- 목소리 전송 (WebRTC, Firebase 로 연결 정보 교환) ---------- */
 const ICE = { iceServers: [{ urls: ["stun:stun.l.google.com:19302", "stun:stun1.l.google.com:19302"] }] };
 let micOn = false, micStream = null, outPCs = [];
+let myVoice = load("myVoice", "1") === "1";
+$("bVoiceMe").onclick = () => {
+  myVoice = !myVoice; save("myVoice", myVoice ? "1" : "0");
+  Object.values(inPCs).forEach(x => { if (x.audio) x.audio.muted = !myVoice; });          // 친구 목소리
+  if (micStream) micStream.getAudioTracks().forEach(t => t.enabled = myVoice);            // 내 목소리
+  if (room) render();
+};
 async function startMic(kind, idx) {
   if (micOn) return; micOn = true;
   sttStart(kind, idx);
-  if (room.meta.voice && !voiceDropped) {
+  if (room.meta.voice !== false && myVoice && !voiceDropped) {
     await new Promise(res => setTimeout(res, 1200)); if (!micOn) return;
     try {
       micStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
@@ -883,7 +891,7 @@ function listenIncoming() {
     const v = s.val(), key = s.key, base = `sig/${code}/${me.uid}/${key}`;
     if (!v || !v.offer || now() - v.at > 90000) { D.remove(s.ref).catch(() => {}); return; }
     const pc = new RTCPeerConnection(ICE), x = { pc, offs: [], audio: null }; inPCs[key] = x;
-    pc.ontrack = e => { const a = new Audio(); a.autoplay = true; a.srcObject = e.streams[0]; x.audio = a; a.play().catch(() => { $("bSound").hidden = false; }); };
+    pc.ontrack = e => { const a = new Audio(); a.autoplay = true; a.srcObject = e.streams[0]; x.audio = a; a.muted = !myVoice; a.play().catch(() => { $("bSound").hidden = false; }); };
     pc.onicecandidate = e => { if (e.candidate) D.push(R(base + "/ca"), e.candidate.toJSON()).catch(() => {}); };
     try {
       await pc.setRemoteDescription(v.offer);
@@ -944,7 +952,7 @@ function renderLobby() {
   $("lHostOnly").textContent = ""; $("bDelRoom").hidden = !host;
   // 방장만 규칙 버튼, 다른 사람은 한 줄 요약
   document.querySelectorAll("#vLobby .hostonly").forEach(x => x.hidden = !host); $("lSumRow").hidden = host;
-  $("lSum").textContent = [m.startAt ? hhmm(m.startAt) + " 시작" : "", FMTS.find(x => x[0] === fmtNow)[1], `발언 ${m.mins}분 · Reply ${replyMins(m)}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "같이 · 자막만"].filter(Boolean).join(" · ");
+  $("lSum").textContent = [m.startAt ? hhmm(m.startAt) + " 시작" : "", FMTS.find(x => x[0] === fmtNow)[1], `발언 ${m.mins}분 · Reply ${replyMins(m)}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음"].filter(Boolean).join(" · ");
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
   segBtns($("sPriv"), [false, true], !!m.priv, v => v ? "🔒 비밀 방" : "공개 방", async v => {
     save("priv", v ? "1" : "0");
@@ -954,7 +962,6 @@ function renderLobby() {
   segBtns($("sFmt"), FMTS.map(x => x[0]), is44() ? "e44" : "m33", v => FMTS.find(x => x[0] === v)[1], v => { save("fmt", v); const u = { fmt: v }; if (v === "e44") { u.mins = 4; save("mins", 4); } upd("meta", u); if (v !== "e44") { upd("seats", { g4: null, o4: null }); } }, host);
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
   segBtns($("sPrep"), PREPS, m.prep || 0, v => v ? v + "분" : "없음", v => { save("prep", v); upd("meta", { prep: v }); }, host);
-  segBtns($("sVoice"), [false, true], !!m.voice, v => v ? "따로 있어요 (목소리)" : "같이 있어요 (자막만)", v => { save("voice", v ? "1" : "0"); upd("meta", { voice: v }); }, host);
   const t = topicOf(m.topic); $("lMotion").innerHTML = `${esc(t[2])}<small>${esc(t[3])}</small>`;
   const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.gr, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
   if (sk !== seatKey) { seatKey = sk; const row = $("seatRow"); row.innerHTML = "";
@@ -1194,7 +1201,8 @@ function renderLive() {
   const box = $("vSubs"), atEnd = box.scrollTop + box.clientHeight >= box.scrollHeight - 30;
   box.innerHTML = html || '<span class="muted small">발언이 자막으로 여기에 나와요.</span>';
   if (atEnd) box.scrollTop = box.scrollHeight;
-  $("vSubsHint").textContent = m.voice ? "· 목소리 켜짐" : "· 자막만";
+  $("vSubsHint").textContent = "";
+  $("bVoiceMe").setAttribute("aria-pressed", myVoice ? "true" : "false"); $("bVoiceMe").textContent = myVoice ? "🔊 목소리 켜짐" : "🔇 자막만";
 
   // 방장 도구
   $("vHost").hidden = !isHost();
