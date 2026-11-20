@@ -52,7 +52,14 @@ select{border:1px solid var(--line);background:var(--surface);border-radius:6px;
 .tag{display:inline-block;color:#fff;font-size:12px;font-weight:700;line-height:1.3;padding:0 5px;border-radius:3px}
 .tag.gov{background:var(--gov)} .tag.opp{background:var(--opp)} .tag.host{background:var(--host)}
 .codebox{font:500 30px var(--mono);letter-spacing:.2em;text-align:center;padding:4px 0}
-.members{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px}
+.members{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px}
+.members .mem{display:inline-flex;align-items:center;gap:5px}
+.members .mem.off{opacity:.45}
+.members .mem.me .nm{font-weight:800}
+.members .av{position:relative;display:inline-block;line-height:0}
+.members .av .mface{margin:0}
+.members .crown{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:10px;font-style:normal;line-height:1}
+.members .ok{position:absolute;right:-4px;bottom:-3px;width:13px;height:13px;border-radius:50%;background:var(--accent);color:#fff;font:800 9px/13px var(--body);text-align:center;font-style:normal}
 .members .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--line);margin-right:4px;vertical-align:1px}
 .members .on .dot{background:var(--accent)}
 .seats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -929,7 +936,7 @@ function renderLobby() {
   const m = room.meta, host = isHost();
   $("lCode").textContent = code;
   $("lMembers").innerHTML = Object.entries(room.members || {}).sort((a, b) => (a[1].joinedAt || 0) - (b[1].joinedAt || 0))
-    .map(([u, v]) => `<span class="${v.on ? "on" : ""}">${miniHTML(u)}${esc(v.name)}${u === m.host ? ' <span class="tag host">방장</span>' : ""}${u === me.uid ? " (나)" : ""}${v.ready ? '<span class="rdy">준비</span>' : ""}</span>`).join("");
+    .map(([u, v]) => `<span class="mem${v.on ? " on" : " off"}${u === me.uid ? " me" : ""}" title="${esc(v.name)}${u === m.host ? " · 방장" : ""}${v.ready ? " · Ready" : ""}"><span class="av">${miniHTML(u)}${u === m.host ? '<i class="crown" aria-label="방장">👑</i>' : ""}${v.ready ? '<i class="ok" aria-label="Ready">✓</i>' : ""}</span><span class="nm">${esc(v.name)}</span></span>`).join("");
   hydrateMini($("lMembers"));
   // 공개 방은 매치 리스트에서 바로 들어오니 코드를 숨김. 비밀 방만 코드 보이기
   $("lCodeLab").textContent = ""; $("lCode").hidden = $("bCopy").hidden = true;
