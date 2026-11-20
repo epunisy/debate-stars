@@ -146,7 +146,7 @@ table.st th{color:var(--muted);font-weight:600}
 /* 프로필 설정 팝업: 왼쪽 카드(리허설 카드 크기), 오른쪽 설정 */
 html.modal .wrap{padding:0}
 html.modal .setup{margin:0;border:0;border-radius:0}
-.pbody{display:grid;grid-template-columns:79px minmax(0,1fr);gap:10px;align-items:start}
+.pbody{display:block}
 .pbody>.cc{cursor:default}
 .pfields{display:grid;gap:8px;min-width:0}
 .pf{display:grid;gap:3px}
@@ -197,6 +197,9 @@ html.modal .setup{margin:0;border:0;border-radius:0}
 .cropbox{position:relative;width:200px;height:200px;border-radius:10px;overflow:hidden;touch-action:none;background:#e4ebfb}
 .cropbox canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
 .cropbox .ring{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 2px #fff;border-radius:10px}
+.zbtns{position:absolute;right:8px;bottom:8px;display:flex;gap:6px}
+.zb{width:34px;height:34px;border-radius:50%;border:0;background:#000a;color:#fff;font:700 18px/1 var(--body);cursor:pointer;padding:0}
+.zb:focus-visible{outline:2px solid #fff;outline-offset:1px}
 .croptools{display:grid;gap:5px;justify-items:center;text-align:center}
 .croptools input[type=range]{width:150px;accent-color:var(--accent)}
 .prof .cc{width:79px;flex:none}
@@ -270,7 +273,7 @@ html.embed input.code{font-size:20px;min-height:36px}
   <section id="vProfile" hidden><div class="setup psheet">
     <div class="labrow"><b class="ttl">프로필 설정</b><button type="button" class="x" id="pClose" aria-label="닫기">✕</button></div>
     <div class="pbody">
-      <div class="cc" id="pCard"></div>
+      <div class="cc" id="pCard" hidden></div>
       <div class="pfields" id="pEd">
         <div class="pf"><span>모습</span><div class="seg eq" id="pKind"></div></div>
         <div class="pf" id="pCharRow"><span>캐릭터</span><div class="castrow mini" id="pChars"></div></div>
@@ -281,10 +284,9 @@ html.embed input.code{font-size:20px;min-height:36px}
     </div>
     <input type="file" id="pFile" accept="image/*" hidden>
     <div class="crop" id="pCrop" hidden>
-      <div class="cropbox"><canvas id="cropCv" width="480" height="480" aria-label="사진 위치 맞추기"></canvas><span class="ring" aria-hidden="true"></span></div>
-      <div class="croptools"><span class="small muted">끌어서 옮기고, 막대나 두 손가락으로 크기를 맞춰요</span>
-        <div class="seg"><span class="small muted">작게</span><input type="range" id="cropZoom" min="1" max="4" step="0.01" value="1" aria-label="사진 크기"><span class="small muted">크게</span></div>
-        <div class="seg eq" style="width:100%"><button type="button" class="pick" id="cropRe">다른 사진</button><button type="button" class="pick" id="cropOk">이대로 쓰기</button></div></div>
+      <div class="cropbox"><canvas id="cropCv" width="480" height="480" aria-label="사진 위치 맞추기"></canvas><span class="ring" aria-hidden="true"></span><span class="zbtns"><button type="button" class="zb" id="cropOut" aria-label="작게">－</button><button type="button" class="zb" id="cropIn" aria-label="크게">＋</button></span></div>
+      <div class="croptools"><input type="range" id="cropZoom" min="1" max="4" step="0.01" value="1" hidden>
+        <button type="button" class="pick" id="cropRe">다른 사진</button><button type="button" id="cropOk" hidden></button></div>
     </div>
     <button type="button" class="navy" id="pSave">저장</button>
   </div></section>
@@ -469,6 +471,8 @@ $("pFile").onchange = async () => {
   } catch { alert("사진을 불러오지 못했어요. 다른 사진으로 해 주세요."); }
 };
 $("cropZoom").oninput = () => crop && zoomTo(+$("cropZoom").value);
+$("cropIn").onclick = () => crop && zoomTo(crop.z * 1.25);
+$("cropOut").onclick = () => crop && zoomTo(crop.z / 1.25);
 $("cropRe").onclick = () => $("pFile").click();
 $("cropOk").onclick = () => {
   if (!crop) return; const S = 160, out = document.createElement("canvas"); out.width = out.height = S;
@@ -491,7 +495,7 @@ $("cropOk").onclick = () => {
 $("pSave").onclick = async () => {
   const n = $("pEn").value.trim().replace(/\s+/g, " ").slice(0, 20);
   if (!n) { $("pEn").focus(); return; }
-  if (crop) { alert("사진 위치를 맞춘 뒤 '이대로 쓰기'를 눌러 주세요."); return; }
+  if (crop) $("cropOk").click();
   if (edit.k !== "char" && !edit.ph) { alert("사진을 먼저 골라 주세요."); return; }
   prof = { ...edit, name: n }; myName = n; save("name", n);
   try { await D.set(R(`users/${me.uid}/profile`), prof); await D.set(R(`users/${me.uid}/name`), n); } catch (e) { alert("저장하지 못했어요. (" + (e.code || e.message) + ")"); return; }
