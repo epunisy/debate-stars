@@ -102,6 +102,12 @@ table.st th{color:var(--muted);font-weight:600}
 .setup{display:grid;gap:9px}
 .opt{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:center;gap:6px}
 .opt.top{grid-template-columns:1fr;gap:5px}
+.seg.indent{margin-left:48px}
+.seatpick{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-left:48px;padding:7px 8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.seatpick[hidden]{display:none}
+.seatpick .t{width:100%;font-size:11px;color:var(--muted)}
+.seatpick .x{margin-left:auto}
+.seats3 .cc.sel{border-color:#9AA4B1;box-shadow:0 0 0 1px #9AA4B1}
 .opt .lab,.labrow .lab{font-size:11px;color:var(--muted)}
 .labrow{display:flex;align-items:center;justify-content:space-between}
 .pick{font:600 12px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:3px 9px;cursor:pointer;min-height:26px}
@@ -301,7 +307,8 @@ html.embed input.code{font-size:20px;min-height:36px}
     <div class="opt hostonly"><span class="lab">친구들</span><div class="seg" id="sVoice"></div></div>
     <div class="opt top"><span class="lab">자리 <span id="lHostOnly"></span></span>
       <div class="castrow seats3" id="seatRow"></div>
-      <div class="seg"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
+      <div class="seatpick" id="seatPick" hidden></div>
+      <div class="seg indent"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
     <div class="opt top"><span class="lab">참가자</span><div class="members" id="lMembers"></div></div>
     <div class="lfoot"><button type="button" class="lnk" id="bLeave">나가기</button><div class="mid"><button type="button" class="pick" id="bReady" aria-pressed="false">준비</button><p class="note" id="startHint"></p></div><div class="goslot"><button type="button" class="go" id="bGo" disabled>Go!</button></div></div>
   </div></section>
@@ -831,13 +838,27 @@ function seatCard(s) {
   b.innerHTML = `<span class="face"></span><span class="en"></span><span class="ko"></span><span class="rl ${side}">${SEATS[s]}</span>${u === me.uid ? '<span class="badge">나</span>' : ""}`;
   b.querySelector(".en").textContent = u ? nameOf(u) : "빈자리";
   b.querySelector(".ko").textContent = u ? [grKo(room.members?.[u]?.gr), lvlKo(room.members?.[u]?.lvl)].filter(Boolean).join(" · ") : "눌러서 앉기";
+  if (seatPickFor === s) b.classList.add("sel");
   b.onclick = () => {
+    if (isHost()) { openSeatPick(s); return; }
     if (u === me.uid) upd("seats", { [s]: null });
     else if (!u || isHost() || !room.members?.[u]?.on) upd("seats", { [s]: me.uid });
   };
   return b;
 }
-let seatKey = "";
+let seatKey = "", seatPickFor = null;
+function openSeatPick(s) {
+  const box = $("seatPick");
+  if (seatPickFor === s || !s) { seatPickFor = null; box.hidden = true; seatKey = ""; renderLobby(); return; }
+  seatPickFor = s; const cur = room.seats?.[s];
+  const mem = Object.entries(room.members || {}).filter(([, v]) => v.on);
+  box.innerHTML = `<span class="t">${SEATS[s]} 자리에 앉힐 사람</span>`;
+  mem.forEach(([uid]) => { const b = document.createElement("button"); b.type = "button"; b.className = "pick"; b.textContent = nameOf(uid) + (uid === me.uid ? " (나)" : "");
+    b.setAttribute("aria-pressed", uid === cur ? "true" : "false"); b.onclick = () => { upd("seats", { [s]: uid }); openSeatPick(null); }; box.append(b); });
+  if (cur) { const b = document.createElement("button"); b.type = "button"; b.className = "pick"; b.textContent = "비우기"; b.onclick = () => { upd("seats", { [s]: null }); openSeatPick(null); }; box.append(b); }
+  const x = document.createElement("button"); x.type = "button"; x.className = "x"; x.textContent = "✕"; x.setAttribute("aria-label", "닫기"); x.onclick = () => openSeatPick(null); box.append(x);
+  box.hidden = false; seatKey = ""; renderLobby();
+}
 function renderLobby() {
   const m = room.meta, host = isHost();
   $("lCode").textContent = code;
