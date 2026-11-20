@@ -195,6 +195,15 @@ html.modal .setup{margin:0;border:0;border-radius:0}
 .newroom[hidden]{display:none!important}
 .roomhead{display:flex;align-items:center;gap:6px}
 .roomhead .sp{flex:1}
+.labrow2{display:flex;align-items:center;gap:8px}
+.inv{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;font:600 11.5px var(--body);padding:2px 10px;cursor:pointer}
+.exitbtn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;padding:0;cursor:pointer}
+.exitbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#sAt{font:600 13px var(--body);border:1px solid var(--line);border-radius:6px;padding:3px 6px;background:var(--surface);color:var(--fg);min-height:28px}
+#sAt.on{background:#E6E9EE;border-color:#C9CFD8}
+@keyframes rdyPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 #1F3E8F66}50%{transform:scale(1.08);box-shadow:0 0 0 10px #1F3E8F00}}
+.go.rdy2.pulse{animation:rdyPulse 1.1s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.go.rdy2.pulse{animation:none;background:var(--cue);color:var(--cue-ink)}}
 .lfoot{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;padding-top:4px}
 .lfoot .lnk{justify-self:start}
 .lfoot .mid{display:flex;flex-direction:column;align-items:center;gap:2px}
@@ -305,20 +314,21 @@ html.embed input.code{font-size:20px;min-height:36px}
   </div></section>
 
   <section id="vLobby" hidden><div class="setup">
-    <div class="roomhead"><span class="small muted" id="lCodeLab"></span><span class="small" id="lPriv"></span><b class="codetxt" id="lCode"></b><span class="sp"></span><button type="button" class="pick" id="bShare">보내기</button><button type="button" class="pick" id="bCopy">복사</button></div>
+    <div class="roomhead"><span class="small muted" id="lCodeLab"></span><span class="small" id="lPriv"></span><b class="codetxt" id="lCode"></b><span class="sp"></span><button type="button" id="bCopy" hidden></button></div>
     <div class="opt"><span class="lab">주제</span><select id="sTopic"></select></div>
     <p class="motion" id="lMotion"></p>
     <div class="opt" id="lSumRow"><span class="lab">규칙</span><span class="small" id="lSum"></span></div>
     <div class="opt hostonly"><span class="lab">형식</span><div class="seg" id="sFmt"></div></div>
     <div class="opt hostonly"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
     <div class="opt hostonly"><span class="lab">준비</span><div class="seg" id="sPrep"></div></div>
+    <div class="opt hostonly"><span class="lab">시작</span><div class="seg"><button type="button" class="pick" id="sAtNow">모두 Ready 하면</button><input type="time" id="sAt" aria-label="시작 시간"></div></div>
     <div class="opt hostonly"><span class="lab">친구들</span><div class="seg" id="sVoice"></div></div>
     <div class="opt top"><span class="lab">자리 <span id="lHostOnly"></span></span>
       <div class="castrow seats3" id="seatRow"></div>
       <div class="seatpick" id="seatPick" hidden></div>
       <div class="seg indent"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
-    <div class="opt top"><span class="lab">참가자</span><div class="members" id="lMembers"></div></div>
-    <div class="lfoot"><button type="button" class="lnk" id="bLeave">나가기</button><p class="note" id="startHint"></p><div class="goslot"><button type="button" class="go rdy2" id="bReady" aria-pressed="false">Ready!</button><button type="button" class="go" id="bGo" disabled>Go!</button></div></div>
+    <div class="opt top"><span class="lab labrow2">참가자 <button type="button" class="inv" id="bShare">＋ 초대하기</button></span><div class="members" id="lMembers"></div></div>
+    <div class="lfoot"><button type="button" class="exitbtn" id="bLeave" aria-label="방 나가기" title="방 나가기"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h8"/><path d="M10 12h10"/><path d="M17 9l3 3-3 3"/><circle cx="11" cy="12" r=".6" fill="currentColor"/></svg></button><p class="note" id="startHint"></p><div class="goslot"><button type="button" class="go rdy2" id="bReady" aria-pressed="false">Ready!</button><button type="button" class="go" id="bGo" disabled>Go!</button></div></div>
   </div></section>
 
   <section id="vLive" hidden>
@@ -889,11 +899,10 @@ function renderLobby() {
   // 공개 방은 매치 리스트에서 바로 들어오니 코드를 숨김. 비밀 방만 코드 보이기
   $("lCodeLab").textContent = ""; $("lCode").hidden = $("bCopy").hidden = true;
   $("lPriv").textContent = m.priv ? `🔒 비밀 방 · 비밀번호 ${room.secret?.pin || "-"}` : "공개 방";
-  $("bShare").textContent = m.priv ? "보내기" : "초대하기";
   $("lHostOnly").textContent = "";
   // 방장만 규칙 버튼, 다른 사람은 한 줄 요약
   document.querySelectorAll("#vLobby .hostonly").forEach(x => x.hidden = !host); $("lSumRow").hidden = host;
-  $("lSum").textContent = [FMTS.find(x => x[0] === fmtNow)[1], `발언 ${m.mins}분 · Reply ${replyMins(m)}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "같이 · 자막만"].join(" · ");
+  $("lSum").textContent = [m.startAt ? hhmm(m.startAt) + " 시작" : "", FMTS.find(x => x[0] === fmtNow)[1], `발언 ${m.mins}분 · Reply ${replyMins(m)}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "같이 · 자막만"].filter(Boolean).join(" · ");
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
   segBtns($("sFmt"), FMTS.map(x => x[0]), is44() ? "e44" : "m33", v => FMTS.find(x => x[0] === v)[1], v => { save("fmt", v); const u = { fmt: v }; if (v === "e44") { u.mins = 4; save("mins", 4); } upd("meta", u); if (v !== "e44") { upd("seats", { g4: null, o4: null }); } }, host);
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
@@ -910,11 +919,32 @@ function renderLobby() {
   $("bReady").setAttribute("aria-pressed", meReady ? "true" : "false"); $("bReady").textContent = meReady ? "Ready ✓" : "Ready!";
   $("bAuto").hidden = $("bClearSeats").hidden = !host;
   $("bGo").hidden = !host; $("bGo").disabled = !allReady;
-  const nr = online.filter(([, v]) => v.ready).length;
-  $("startHint").textContent = online.length < 2 ? "친구를 기다리는 중" : allReady ? (host ? "모두 준비! Go!" : "모두 준비! 방장을 기다려요") : `준비 ${nr}/${online.length}`;
+  // 자리가 다 차면 아직 Ready 안 한 사람의 버튼이 반짝임
+  const seatsFull = seatIds().every(s => room.seats?.[s] && room.members?.[room.seats[s]]?.on);
+  $("bReady").classList.toggle("pulse", seatsFull && !meReady);
+  $("sAtNow").setAttribute("aria-pressed", m.startAt ? "false" : "true"); $("sAtNow").disabled = !host; $("sAt").disabled = !host;
+  $("sAt").classList.toggle("on", !!m.startAt);
+  if (document.activeElement !== $("sAt")) $("sAt").value = m.startAt ? hhmm(m.startAt) : "";
+  startHint();
   syncOpen();
 }
 $("bAuto").onclick = () => autoSeats();
+const hhmm = t => { const d = new Date(t); return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); };
+function startHint() {
+  if (!room || room.meta.status !== "lobby") return;
+  const m = room.meta, host = isHost(), online = Object.entries(room.members || {}).filter(([, v]) => v.on);
+  const nr = online.filter(([, v]) => v.ready).length, allReady = online.length >= 2 && nr === online.length;
+  let t = online.length < 2 ? "" : allReady ? (host ? "모두 Ready! Go!" : "모두 Ready! 방장을 기다려요") : `Ready ${nr}/${online.length}`;
+  if (m.startAt) { const left = m.startAt - now(); t = left > 0 ? `${hhmm(m.startAt)} 시작 · ${mmss(left)} 남음` : (online.length < 2 ? "시작 시간 · 친구를 기다려요" : "곧 시작해요"); }
+  if ($("startHint").textContent !== t) $("startHint").textContent = t;
+}
+$("sAtNow").onclick = () => upd("meta", { startAt: null });
+$("sAt").onchange = () => {
+  const v = $("sAt").value; if (!/^\d\d:\d\d$/.test(v)) return;
+  const d = new Date(now()); d.setHours(+v.slice(0, 2), +v.slice(3, 5), 0, 0);
+  if (d.getTime() < now() - 60000) d.setDate(d.getDate() + 1);   // 지난 시각이면 다음 날
+  upd("meta", { startAt: d.getTime() });
+};
 function autoSeats() {
   if (!room) return;
   const ms = Object.entries(room.members || {}).filter(([, v]) => v.on).sort((a, b) => (a[1].joinedAt || 0) - (b[1].joinedAt || 0)).map(([u]) => u);
@@ -929,24 +959,26 @@ $("bCopy").onclick = async () => { try { await navigator.clipboard.writeText(cod
 $("bShare").onclick = async () => {
   const url = location.origin + location.pathname.replace(/room.html$/, "") + "?code=" + code + (room.meta.priv && room.secret?.pin ? "&pin=" + room.secret.pin : ""), text = room.meta.priv ? `디베이트 스타즈 비밀 매치에 들어와! 비밀번호: ${room.secret?.pin || ""}` : `디베이트 스타즈 매치에 들어와! 링크를 누르면 바로 들어올 수 있어.`;
   if (navigator.share) { try { await navigator.share({ title: "디베이트 매치", text, url }); } catch {} }
-  else { try { await navigator.clipboard.writeText(text + "\n" + url); $("bShare").textContent = "링크 복사됨"; setTimeout(() => $("bShare").textContent = "코드 보내기", 1500); } catch {} }
+  else { try { await navigator.clipboard.writeText(text + "\n" + url); $("bShare").textContent = "링크 복사됨"; setTimeout(() => $("bShare").textContent = "＋ 초대하기", 1500); } catch {} }
 };
 $("bReady").onclick = () => upd(`members/${me.uid}`, { ready: !room.members?.[me.uid]?.ready });
-$("bGo").onclick = async () => {
-  audioCtx();
+$("bGo").onclick = () => { audioCtx(); goLive(); };
+async function goLive() {
   // 빈자리나 나간 사람 자리가 있으면 접속 중인 사람으로 자동 배정
   const full = Object.keys(SEATS).every(s => room.seats?.[s] && room.members?.[room.seats[s]]?.on);
   if (!full) await autoSeats();
-  await D.update(R(`rooms/${code}`), { "meta/status": "live", "meta/startedAt": now(), live: { idx: 0, phase: "opening" }, tx: null, stats: null, result: null, chair: null, iv: null });
-};
+  await D.update(R(`rooms/${code}`), { "meta/status": "live", "meta/startedAt": now(), "meta/startAt": null, live: { idx: 0, phase: "opening" }, tx: null, stats: null, result: null, chair: null, iv: null });
+}
 
 /* ---------- 진행 엔진 (방장 폰에서만 돌아감) ---------- */
 let engineTimer = 0, busy = false, nudged = -1, hostGoneAt = 0;
 async function tick() {
   if (!room || !me) return;
   takeOver();
-  if (room.meta.status === "lobby") syncOpen();
+  if (room.meta.status === "lobby") { syncOpen(); startHint(); }
   if (!isHost() || busy) return;
+  if (room.meta.status === "lobby" && room.meta.startAt && now() >= room.meta.startAt
+      && Object.values(room.members || {}).filter(v => v.on).length >= 2) { busy = true; try { await goLive(); } finally { busy = false; } return; }
   const m = room.meta, L = room.live || {};
   try {
     if (m.status === "live") {
