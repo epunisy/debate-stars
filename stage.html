@@ -444,10 +444,12 @@ const debaters=()=>castIds().filter(k=>k!==CHAIR);
 /* ================= runner ================= */
 let run=0, data=null, me=null, seg=null, segIdx=0, skipLine=null, cur=null, curOn=false;
 const sub=$('sub'), players={}, dataCache={};
-const fileFmt=f=>f==="team44"?"team":f;
-function getData(tid,fmt){const k=tid+"/"+fmt; return dataCache[k]||(dataCache[k]=fetch(`stage/${tid}/${fileFmt(fmt)}.json`).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{ if(fmt!=="team44") return d;
-  const who={OR:"sophia",PR:"ethan"}; return {...d,fmt:"team44",seats:SEATS.team44,segs:d.segs.map(s=>who[s.key]?{...s,who:who[s.key]}:s)}; }))}
-function playerFor(id,tid,fmt){const k=`stage/${tid}/${fileFmt(fmt)}.${accOf(id)}.${CAST[id].g}.mp3`; if(!players[k]){const a=new Audio(k);a.preload="auto";players[k]=a;} return players[k]}
+/* 초등부 4:4 는 따로 쓴 대본·녹음(team44) */
+const audioFmt={}; /* 4:4 녹음이 아직 없는 주제는 3:3 대본·녹음으로 (Reply 만 Sophia·Ethan) */
+const getJSON=u=>fetch(u).then(r=>{if(!r.ok)throw 0;return r.json()});
+function getData(tid,fmt){const k=tid+"/"+fmt; return dataCache[k]||(dataCache[k]=getJSON(`stage/${k}.json`).then(d=>{audioFmt[k]=fmt;return d},e=>{ if(fmt!=="team44") throw e;
+  return getJSON(`stage/${tid}/team.json`).then(d=>{ audioFmt[k]="team"; const who={OR:"sophia",PR:"ethan"}; return {...d,fmt:"team44",seats:SEATS.team44,segs:d.segs.map(s=>who[s.key]?{...s,who:who[s.key]}:s)}; }); }))}
+function playerFor(id,tid,fmt){const k=`stage/${tid}/${audioFmt[tid+"/"+fmt]||fmt}.${accOf(id)}.${CAST[id].g}.mp3`; if(!players[k]){const a=new Audio(k);a.preload="auto";players[k]=a;} return players[k]}
 function segTime(d,si,id){return d.timing[`${accOf(id)}.${CAST[id].g}`][si]}
 function seekPlay(a,t){return new Promise(res=>{const go=()=>{a.currentTime=t;const p=a.play();if(p)p.catch(()=>{setStatus("재생 버튼을 눌러 주세요");setPlay(false)});res()};
   if(a.readyState>=1)go();else a.addEventListener('loadedmetadata',go,{once:true})})}
