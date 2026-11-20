@@ -63,6 +63,12 @@ header .logo img{display:block;height:46px;width:auto}
 .tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
 :is(.tabs button,.ctl button,.ctl select,.topic select,.line):focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .topic{margin:12px 0 4px}
+.divseg{display:flex;align-items:center;gap:6px;margin-top:10px;flex-wrap:wrap}
+.divseg[hidden]{display:none}
+.divseg button{font:600 12.5px var(--body);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer}
+.divseg button[aria-pressed="true"]{background:#E6E9EE;border-color:#C9CFD8;font-weight:700}
+@media (prefers-color-scheme:dark){.divseg button[aria-pressed="true"]{background:#2F3846;border-color:#3A4556}}
+.divseg #divNote{font-size:11.5px;color:var(--muted)}
 .topicpick{position:relative;display:flex;align-items:flex-start;gap:10px;margin-top:10px;background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:9px 12px}
 .topicpick .motion{margin:0;flex:1;min-width:0}
 /* 주제 문장: 글자 높이에 딱 맞는 색 블록 (줄이 바뀌어도 줄마다 블록) */
@@ -206,6 +212,7 @@ body.stage-live .wrap{padding-top:8px}
     <button role="tab" aria-selected="false" data-tab="match" id="matchTab" hidden>매치</button>
     <button role="tab" aria-selected="false" data-tab="news">대회 소식</button>
   </div>
+  <div class="divseg" id="divBox" hidden role="group" aria-label="부문"><button type="button" data-div="m33">중등부 3:3</button><button type="button" data-div="e44">초등부 4:4</button><span id="divNote"></span></div>
   <div class="topicpick" id="topicBox" hidden>
     <p class="motion" id="motion"></p><span class="caret" aria-hidden="true">▼</span>
     <select id="topic" aria-label="토론 주제 고르기"></select>
@@ -335,16 +342,23 @@ async function loadAudio(){
   catch(e){ showWarn("음성 정보를 불러오지 못했어요. 새로고침해 주세요."); }
 }
 
+let div = load("div")==="e44" ? "e44" : "m33";
+function syncDiv(){ document.querySelectorAll("#divBox button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.div===div)); $("divNote").textContent = div==="e44" ? "4번 선수가 마무리 발언만 해요" : "1번 선수가 마무리 발언까지 해요"; }
+document.querySelectorAll("#divBox button").forEach(b=>b.onclick=()=>{ if(div===b.dataset.div) return; div=b.dataset.div; store("div",div); render(); });
 function render(){
   const list=$("list"); list.innerHTML=""; flat=[]; secs=[];
   const done = new Set(JSON.parse(load("done_"+docId())||"[]"));
   const sp = tab==="speech";
-  $("topicBox").hidden = !sp;
+  $("topicBox").hidden = !sp; $("divBox").hidden = !sp; syncDiv();
   if(sp){ const n=TOPICS.findIndex(x=>x[0]===topic), tp=TOPICS[n]; $("motion").innerHTML = `<small></small>`; $("motion").querySelector("small").textContent=`Motion · ${String(n+1).padStart(2,"0")}/${TOPICS.length}`; $("motion").append(Object.assign(document.createElement("span"),{className:"mt",textContent:doc.motion})); const mk=document.createElement("span"); mk.className="mk"; mk.textContent=tp?tp[3]:""; $("motion").append(mk); }
   doc.sections.forEach((sec,si)=>{
     const s=document.createElement("section"); s.className="section";
     s.innerHTML=`<div class="sec-head"><h2></h2><span class="tag"></span></div><div class="lines"></div>`;
-    s.querySelector("h2").textContent=sec.h; s.querySelector(".tag").textContent=sec.t;
+    let h=sec.h, t=sec.t;
+    if(sp && /Reply$/.test(t)){ const opp=/^Opposition/.test(t);
+      if(div==="e44"){ h=h.replace(/마무리 발언$/,"4번 · 마무리 발언"); t=t+" · 4th speaker"; }
+      else t=t+(opp?" · by Leader of Opposition":" · by Prime Minister"); }
+    s.querySelector("h2").textContent=h; s.querySelector(".tag").textContent=t;
     const box=s.querySelector(".lines"), first=flat.length;
     sec.l.forEach(([raw,ko])=>{
       const i=flat.length, words=parseWords(raw);
@@ -516,7 +530,7 @@ addEventListener("resize",padForRail);
 function showTab(){
   const st = tab==="stage", nw = tab==="news", mt = tab==="match", other = st||nw||mt;
   $("stageBox").hidden=!st; $("newsBox").hidden=!nw; $("matchBox").hidden=!mt; $("list").hidden=other; $("rail").hidden=other;
-  if(other){ stop(); $("topicBox").hidden=true; }
+  if(other){ stop(); $("topicBox").hidden=true; $("divBox").hidden=true; }
   if(!st && $("stageFrame").getAttribute("src")) try{ $("stageFrame").contentWindow.postMessage({hush:1},"*"); }catch(e){}
   if(st && !$("stageFrame").getAttribute("src")) $("stageFrame").src="stage.html";
   if(mt && !$("matchFrame").getAttribute("src")) { const q=new URLSearchParams(location.search); $("matchFrame").src="room.html?embed"+(q.get("code")?"&code="+encodeURIComponent(q.get("code"))+(q.get("pin")?"&pin="+encodeURIComponent(q.get("pin")):""):""); }
