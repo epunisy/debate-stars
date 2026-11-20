@@ -620,6 +620,10 @@ function frame(now){
 function setPlay(p){playing=p;$('play').textContent=p?'일시정지':'재생';stage.classList.toggle('paused',!p);
   if(cur){ if(!p) cur.pause(); else if(curOn) cur.play().catch(()=>{}); }}
 $('play').onclick=()=>setPlay(!playing);
+/* 다른 탭으로 가거나 앱을 내리면 소리를 모두 멈춤 */
+function hush(){ if(clipA) clipA.pause(); if(playing && $('setup').hidden) setPlay(false); }
+addEventListener('message',e=>{ if(e.source===parent&&e.data&&e.data.hush) hush(); });
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) hush(); });
 $('skip').onclick=()=>skipLine&&skipLine();
 $('hear').onclick=hearExample;
 function setSubDark(on){ sub.classList.toggle('dark',on); $('subBtn').textContent=on?'자막 색: 검정':'자막 색: 흰색'; try{localStorage.setItem('dstage_subdark',on?'1':'0')}catch(e){} }

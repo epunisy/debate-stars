@@ -257,6 +257,7 @@ const TOPICS = [["d01", "초등학교 숙제 폐지", "This House would abolish 
 
 const $ = id => document.getElementById(id);
 const player = new Audio(); player.preload = "auto";
+player.addEventListener("play", () => { const f = document.getElementById("stageFrame"); if (f && f.getAttribute("src")) try { f.contentWindow.postMessage({ hush: 1 }, "*"); } catch (e) {} }); // 소리는 한 번에 하나만
 let tab = "phrases", topic = "d01", doc = null, timing = null, flat = [], secs = [], idx = 0;
 let playing = false, single = false, runId = 0, gapTimer = null, barTimer = null, raf = 0;
 const cache = {};
@@ -516,6 +517,7 @@ function showTab(){
   const st = tab==="stage", nw = tab==="news", mt = tab==="match", other = st||nw||mt;
   $("stageBox").hidden=!st; $("newsBox").hidden=!nw; $("matchBox").hidden=!mt; $("list").hidden=other; $("rail").hidden=other;
   if(other){ stop(); $("topicBox").hidden=true; }
+  if(!st && $("stageFrame").getAttribute("src")) try{ $("stageFrame").contentWindow.postMessage({hush:1},"*"); }catch(e){}
   if(st && !$("stageFrame").getAttribute("src")) $("stageFrame").src="stage.html";
   if(mt && !$("matchFrame").getAttribute("src")) { const q=new URLSearchParams(location.search); $("matchFrame").src="room.html?embed"+(q.get("code")?"&code="+encodeURIComponent(q.get("code"))+(q.get("pin")?"&pin="+encodeURIComponent(q.get("pin")):""):""); }
   if(nw) renderNews();
