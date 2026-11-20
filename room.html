@@ -268,8 +268,8 @@ html.embed input.code{font-size:20px;min-height:36px}
   <section id="vSetup" hidden><div class="card"><h2>설정이 필요해요</h2><p class="small muted">아직 Firebase 설정이 연결되지 않았어요. 관리자가 <code>firebase-config.js</code> 를 채우면 쓸 수 있어요.</p></div></section>
 
   <section id="vLogin" hidden><div class="card">
-    <h2>친구들과 매치를 열어 토론해요</h2>
-    <p class="small muted">친구와 영어 토론 매치! 끝나면 AI 심판이 승패와 피드백을 알려 줘요.</p>
+    <h2>친구들과 토론배틀을 열어 토론해요</h2>
+    <p class="small muted">친구와 영어 토론배틀! 끝나면 AI 심판이 승패와 피드백을 알려 줘요.</p>
     <button class="btn dark big wide" id="bLogin">Google 계정으로 로그인</button>
     <p class="hint">만 14세 미만은 보호자의 동의를 받은 뒤 로그인해 주세요. 토론 중 말한 내용은 자막(글자)으로 저장되고 AI 판정에 쓰여요. 목소리는 저장하지 않아요. <a href="privacy.html" target="_top">개인정보처리방침</a></p>
     <p class="err" id="loginErr" hidden></p>
@@ -277,7 +277,7 @@ html.embed input.code{font-size:20px;min-height:36px}
 
   <section id="vHome" hidden>
     <div class="setup">
-      <div class="labrow"><b class="ttl">매치 리스트 <span class="cnt" id="openCount"></span></b><button type="button" class="plus" id="bPlus" aria-label="매치 열기" aria-expanded="false">＋</button></div>
+      <div class="labrow"><b class="ttl">토론배틀 리스트 <span class="cnt" id="openCount"></span></b><button type="button" class="plus" id="bPlus" aria-label="토론배틀 열기" aria-expanded="false">＋</button></div>
       <div class="newroom" id="newRoom" hidden><button type="button" class="pick" id="bCreate">공개 방</button><button type="button" class="pick" id="bCreatePriv">🔒 비밀 방</button><button type="button" class="x" id="bPlusX" aria-label="닫기">✕</button></div>
       <div class="mlist" id="openList"></div>
       <div class="pinbox" id="pinBox" hidden><span>🔒 비밀번호</span><input type="text" id="pinIn" maxlength="4" inputmode="numeric" autocomplete="off" aria-label="비밀 방 비밀번호 4자리"><button type="button" class="pick dark" id="pinGo">입장</button><button type="button" class="x" id="pinX" aria-label="닫기">✕</button></div>
@@ -625,7 +625,7 @@ function renderOpen() {
   const list = Object.entries(openRooms).filter(([, v]) => v && now() - (v.seen || 0) < 120000).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
   $("openCount").textContent = list.length ? list.length : "";
   $("openList").innerHTML = list.length ? list.map(([c, v]) => { const t = topicOf(v.topic); return `<button class="mrow" data-c="${esc(c)}">${miniFace({ k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(c), ph: v.ph || "" }).outerHTML}<span class="t"><b>${v.priv ? "🔒 " : ""}${esc(t[1])}</b><small>${esc(v.host)} · ${+v.mins || 3}분</small></span><span class="n">${+v.n || 1}명</span></button>`; }).join("")
-    : '<p class="empty">열린 매치가 없어요 · ＋로 열어 보세요</p>';
+    : '<p class="empty">열린 토론배틀이 없어요 · ＋로 열어 보세요</p>';
   hydrateMini($("openList"));
   $("openList").querySelectorAll(".mrow").forEach(b => b.onclick = () => joinRoom(b.dataset.c));
 }
@@ -957,7 +957,7 @@ function autoSeats() {
 $("bClearSeats").onclick = () => D.remove(R(`rooms/${code}/seats`));
 $("bCopy").onclick = async () => { try { await navigator.clipboard.writeText(code); $("bCopy").textContent = "복사됨"; setTimeout(() => $("bCopy").textContent = "복사", 1200); } catch {} };
 $("bShare").onclick = async () => {
-  const url = location.origin + location.pathname.replace(/room.html$/, "") + "?code=" + code + (room.meta.priv && room.secret?.pin ? "&pin=" + room.secret.pin : ""), text = room.meta.priv ? `디베이트 스타즈 비밀 매치에 들어와! 비밀번호: ${room.secret?.pin || ""}` : `디베이트 스타즈 매치에 들어와! 링크를 누르면 바로 들어올 수 있어.`;
+  const url = location.origin + location.pathname.replace(/room.html$/, "") + "?code=" + code + (room.meta.priv && room.secret?.pin ? "&pin=" + room.secret.pin : ""), text = room.meta.priv ? `디베이트 스타즈 비밀 토론배틀에 들어와! 비밀번호: ${room.secret?.pin || ""}` : `디베이트 스타즈 토론배틀에 들어와! 링크를 누르면 바로 들어올 수 있어.`;
   if (navigator.share) { try { await navigator.share({ title: "토론배틀", text, url }); } catch {} }
   else { try { await navigator.clipboard.writeText(text + "\n" + url); $("bShare").textContent = "링크 복사됨"; setTimeout(() => $("bShare").textContent = "＋ 초대하기", 1500); } catch {} }
 };
