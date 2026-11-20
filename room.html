@@ -181,14 +181,14 @@ html.modal .setup{margin:0;border:0;border-radius:0}
 .seg.eq .pick{padding-left:4px;padding-right:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pick.big{min-height:34px;font-size:13px;padding-left:14px;padding-right:14px}
 .pick.wide{width:100%}
-.newroom{display:grid!important;grid-template-columns:1fr 1fr auto;gap:6px;align-items:center}
+.newroom{display:flex!important;gap:6px;align-items:center}.newroom .x{margin-left:auto}
 .newroom[hidden]{display:none!important}
 .roomhead{display:flex;align-items:center;gap:6px}
 .roomhead .sp{flex:1}
 .lfoot{display:grid;grid-template-columns:64px 1fr 64px;align-items:center;gap:6px;padding-top:4px}
 .lfoot .lnk{justify-self:start}
 .lfoot .mid{display:flex;flex-direction:column;align-items:center;gap:2px}
-.lfoot #bReady{min-width:150px}
+.lfoot #bReady{min-width:72px}
 .lfoot .goslot{display:flex;justify-content:flex-end}
 .lfoot .note{text-align:center;margin:0}
 .crop{display:grid;gap:6px;justify-items:center}
@@ -251,7 +251,7 @@ html.embed input.code{font-size:20px;min-height:36px}
   <section id="vHome" hidden>
     <div class="setup">
       <div class="labrow"><b class="ttl">매치 리스트 <span class="cnt" id="openCount"></span></b><button type="button" class="plus" id="bPlus" aria-label="매치 열기" aria-expanded="false">＋</button></div>
-      <div class="newroom" id="newRoom" hidden><button type="button" class="pick dark big" id="bCreate">공개 방</button><button type="button" class="pick big" id="bCreatePriv">🔒 비밀 방</button><button type="button" class="x" id="bPlusX" aria-label="닫기">✕</button></div>
+      <div class="newroom" id="newRoom" hidden><button type="button" class="pick dark" id="bCreate">공개 방</button><button type="button" class="pick" id="bCreatePriv">🔒 비밀 방</button><button type="button" class="x" id="bPlusX" aria-label="닫기">✕</button></div>
       <div class="mlist" id="openList"></div>
       <div class="pinbox" id="pinBox" hidden><span>🔒 비밀번호</span><input type="text" id="pinIn" maxlength="4" inputmode="numeric" autocomplete="off" aria-label="비밀 방 비밀번호 4자리"><button type="button" class="pick dark" id="pinGo">입장</button><button type="button" class="x" id="pinX" aria-label="닫기">✕</button></div>
       <p class="err" id="joinErr" hidden></p>
@@ -292,14 +292,14 @@ html.embed input.code{font-size:20px;min-height:36px}
     <div class="opt"><span class="lab">주제</span><select id="sTopic"></select></div>
     <p class="motion" id="lMotion"></p>
     <div class="opt" id="lSumRow"><span class="lab">규칙</span><span class="small" id="lSum"></span></div>
-    <div class="opt hostonly"><span class="lab">시간</span><div class="seg eq" id="sMins"></div></div>
-    <div class="opt hostonly"><span class="lab">준비</span><div class="seg eq" id="sPrep"></div></div>
-    <div class="opt hostonly"><span class="lab">목소리</span><div class="seg eq"><button type="button" class="pick" id="sVoice">목소리 전송</button></div><span id="sVoiceHint" hidden></span></div>
+    <div class="opt hostonly"><span class="lab">시간</span><div class="seg" id="sMins"></div></div>
+    <div class="opt hostonly"><span class="lab">준비</span><div class="seg" id="sPrep"></div></div>
+    <div class="opt hostonly"><span class="lab">친구들</span><div class="seg" id="sVoice"></div></div>
     <div class="opt top"><span class="lab">자리 <span id="lHostOnly"></span></span>
       <div class="castrow seats3" id="seatRow"></div>
-      <div class="seg eq"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
+      <div class="seg"><button type="button" class="pick" id="bAuto">자동 배정</button><button type="button" class="pick" id="bClearSeats">자리 비우기</button></div></div>
     <div class="opt top"><span class="lab">참가자</span><div class="members" id="lMembers"></div></div>
-    <div class="lfoot"><button type="button" class="lnk" id="bLeave">나가기</button><div class="mid"><button type="button" class="pick big" id="bReady" aria-pressed="false">준비</button><p class="note" id="startHint"></p></div><div class="goslot"><button type="button" class="go" id="bGo" disabled>Go!</button></div></div>
+    <div class="lfoot"><button type="button" class="lnk" id="bLeave">나가기</button><div class="mid"><button type="button" class="pick" id="bReady" aria-pressed="false">준비</button><p class="note" id="startHint"></p></div><div class="goslot"><button type="button" class="go" id="bGo" disabled>Go!</button></div></div>
   </div></section>
 
   <section id="vLive" hidden>
@@ -816,7 +816,6 @@ $("bSound").onclick = () => { Object.values(inPCs).forEach(x => x.audio && x.aud
 const MINS = [3, 5, 7], PREPS = [0, 3, 5, 10];
 $("sTopic").innerHTML = TOPICS.map(([id, ko], i) => `<option value="${id}">${String(i + 1).padStart(2, "0")}. ${esc(ko)}</option>`).join("");
 $("sTopic").onchange = () => { save("topic", $("sTopic").value); upd("meta", { topic: $("sTopic").value }); };
-$("sVoice").onclick = () => { const v = !room.meta.voice; save("voice", v ? "1" : "0"); upd("meta", { voice: v }); };
 function segBtns(el, vals, cur, fmt, onPick, enabled) {
   el.innerHTML = ""; vals.forEach(v => { const b = document.createElement("button"); b.className = "pick"; b.type = "button"; b.textContent = fmt(v); b.setAttribute("aria-pressed", v === cur ? "true" : "false"); b.disabled = !enabled; b.onclick = () => onPick(v); el.append(b); });
 }
@@ -846,14 +845,12 @@ function renderLobby() {
   $("lHostOnly").textContent = "";
   // 방장만 규칙 버튼, 다른 사람은 한 줄 요약
   document.querySelectorAll("#vLobby .hostonly").forEach(x => x.hidden = !host); $("lSumRow").hidden = host;
-  $("lSum").textContent = [`발언 ${m.mins}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "목소리 전송" : "자막만"].join(" · ");
+  $("lSum").textContent = [`발언 ${m.mins}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "한곳에 · 자막만"].join(" · ");
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
   segBtns($("sPrep"), PREPS, m.prep || 0, v => v ? v + "분" : "없음", v => { save("prep", v); upd("meta", { prep: v }); }, host);
-  $("sVoice").setAttribute("aria-pressed", m.voice ? "true" : "false"); $("sVoice").disabled = !host;
-  $("sVoiceHint").textContent = "";
+  segBtns($("sVoice"), [false, true], !!m.voice, v => v ? "따로 있어요 (목소리)" : "한곳에 모여요 (자막만)", v => { save("voice", v ? "1" : "0"); upd("meta", { voice: v }); }, host);
   const t = topicOf(m.topic); $("lMotion").innerHTML = `${esc(t[2])}<small>${esc(t[3])}</small>`;
-  $("sVoice").textContent = m.voice ? "목소리 전송 켜짐 · 멀리서도 들려요" : "꺼짐 · 자막만 (한곳에 모였을 때)";
   const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.gr, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
   if (sk !== seatKey) { seatKey = sk; const row = $("seatRow"); row.innerHTML = "";
     ["g1", "g2", "g3", "o1", "o2", "o3"].forEach(s => { const b = seatCard(s); row.append(b); const u = room.seats?.[s]; if (u) fillFace(b.querySelector(".face"), avOf(u)); }); }
