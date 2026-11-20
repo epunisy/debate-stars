@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><head><meta charset=utf8><title>디베이트 스타즈</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#F2F4F1"><meta name="description" content="영어 디베이트 쉐도잉 연습 — 핵심 문구, 트레이닝 20개 주제, 디베이트 리허설, 디베이트 매치"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="ko"><head><meta charset=utf8><title>디베이트 스타즈</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#F2F4F1"><meta name="description" content="영어 디베이트 쉐도잉 연습 — 표현 학습, 말하기 20개 주제, 모의토론, 토론배틀"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -221,7 +221,7 @@ body.stage-live .wrap{padding-top:8px}
     <select id="topic" aria-label="토론 주제 고르기"></select>
   </div>
   <main id="list"></main>
-  <section id="newsBox" class="news" hidden aria-label="토론 대회 소식"></section>
+  <section id="newsBox" class="news" hidden aria-label="토론 대회정보"></section>
   <div class="pmodal" id="pModal" hidden><div class="pbox"><iframe id="profFrame" title="프로필 설정" allow="camera"></iframe></div></div>
   <div id="matchBox" hidden><iframe id="matchFrame" title="토론배틀" allow="microphone; autoplay; clipboard-write; web-share" style="width:100%;height:420px;border:0;display:block;background:transparent"></iframe></div>
   <div id="stageBox" hidden><iframe id="stageFrame" title="모의토론" allow="autoplay" style="width:100%;height:360px;border:0;display:block;background:transparent"></iframe></div>
@@ -652,6 +652,6 @@ async function acct(conf){
   };
 }
 let taps=[]; document.querySelector('.tabs button[data-tab="news"]').addEventListener("click",()=>{ const t=Date.now(); taps=taps.filter(x=>t-x<3000); taps.push(t);
-  if(taps.length>=5){ taps=[]; const on=!beta(); try{ localStorage.setItem("friendBeta",on?"1":"0"); }catch{} apply(); alert(on?"디베이트 매치 테스트 모드를 켰어요.":"디베이트 매치 테스트 모드를 껐어요."); } });
+  if(taps.length>=5){ taps=[]; const on=!beta(); try{ localStorage.setItem("friendBeta",on?"1":"0"); }catch{} apply(); alert(on?"토론배틀 테스트 모드를 켰어요.":"토론배틀 테스트 모드를 껐어요."); } });
 </script>
 </body></html>
