@@ -492,9 +492,12 @@ function myTurn(si,s,id){
     c.speaking=false; c.talkUntil=-1; skipLine=null; seg=null; $('skip').hidden=true; $('hear').hidden=true; res();
   });
 }
+let clipA=null; // 듣기는 한 번에 하나만 (앞의 소리를 멈추고 새로 재생)
 function playClip(id,d,si,n){
   const a=playerFor(id,d.id,d.fmt), [s0,,lt]=segTime(d,si,id), st=s0+lt[n][0], du=lt[n][1];
-  seekPlay(a,st); const stopAt=()=>{ if(a.currentTime>=st+du-.02||a.paused) a.pause(); else requestAnimationFrame(stopAt); }; requestAnimationFrame(stopAt);
+  if(clipA&&clipA!==a) clipA.pause(); clipA=a;
+  seekPlay(a,st); let started=false; a.addEventListener("playing",()=>{started=true},{once:true});
+  const stopAt=()=>{ if(clipA!==a||a.currentTime>=st+du-.02){ a.pause(); return; } if(a.paused&&started) return; requestAnimationFrame(stopAt); }; requestAnimationFrame(stopAt);
 }
 function hearExample(){ if(seg) playClip(seg.s.who,data,seg.si,seg.n); }
 
