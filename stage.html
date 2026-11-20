@@ -419,15 +419,15 @@ const shot={wide:(d=1.2)=>camTo(800,450,1,d),lect:(d=1.4)=>camTo(800,585,1.75,d)
 const ACC={us:["미국","🇺🇸"],gb:["영국","🇬🇧"],au:["호주","🇦🇺"],in:["인도","🇮🇳"],ca:["캐나다","🇨🇦"],ie:["아일랜드","🇮🇪"],nz:["뉴질랜드","🇳🇿"],za:["남아공","🇿🇦"]};
 const CAST={oliver:{name:"Oliver",ko:"올리버",g:"m",acc:"gb"},liam:{name:"Liam",ko:"리암",g:"m",acc:"us"},chloe:{name:"Chloe",ko:"클로이",g:"f",acc:"au"},
   noah:{name:"Noah",ko:"노아",g:"m",acc:"us"},olivia:{name:"Olivia",ko:"올리비아",g:"f",acc:"ca"},leo:{name:"Leo",ko:"레오",g:"m",acc:"nz"},ruby:{name:"Ruby",ko:"루비",g:"f",acc:"ie"},
-  jack:{name:"Jack",ko:"잭",g:"m",acc:"au"},mia:{name:"Mia",ko:"미아",g:"f",acc:"us"}};
+  ethan:{name:"Ethan",ko:"에단",g:"m",acc:"au"},sophia:{name:"Sophia",ko:"소피아",g:"f",acc:"us"}};
 const SEATS={oneone:{P1:"liam",PR:"liam",O1:"olivia",OR:"olivia"},team:{P1:"liam",P2:"chloe",P3:"noah",PR:"liam",O1:"olivia",O2:"leo",O3:"ruby",OR:"olivia"},
-  team44:{P1:"liam",P2:"chloe",P3:"noah",PR:"jack",O1:"olivia",O2:"leo",O3:"ruby",OR:"mia"}}; /* 초등부: 4번 선수가 Reply만 */
+  team44:{P1:"liam",P2:"chloe",P3:"noah",PR:"ethan",O1:"olivia",O2:"leo",O3:"ruby",OR:"sophia"}}; /* 초등부: 4번 선수가 Reply만 */
 const ORDERS={oneone:["P1","O1","PR","OR"],team:["P1","O1","P2","O2","P3","O3","OR","PR"],team44:["P1","O1","P2","O2","P3","O3","OR","PR"]};
 /* 역할 이름은 영어로: 카드엔 짧게, 발언 자막엔 전체 이름 */
 const ROLES={oneone:{oliver:"Chair",liam:"Affirmative",olivia:"Negative"},team:{oliver:"Chair",liam:"PM",chloe:"DPM",noah:"Gov Whip",olivia:"LO",leo:"DLO",ruby:"Opp Whip"}};
-ROLES.team44={...ROLES.team,jack:"Gov Reply",mia:"Opp Reply"};
+ROLES.team44={...ROLES.team,ethan:"Gov Reply",sophia:"Opp Reply"};
 const ROLES_FULL={oneone:ROLES.oneone,team:{oliver:"Speaker of the House",liam:"Prime Minister",chloe:"Deputy Prime Minister",noah:"Government Whip",olivia:"Leader of the Opposition",leo:"Deputy Leader of the Opposition",ruby:"Opposition Whip"}};
-ROLES_FULL.team44={...ROLES_FULL.team,jack:"Government Reply Speaker",mia:"Opposition Reply Speaker"};
+ROLES_FULL.team44={...ROLES_FULL.team,ethan:"Government Reply Speaker",sophia:"Opposition Reply Speaker"};
 const STORE="dstage_v1";
 const defaults=()=>({fmt:"team",topic:STAGE_TOPICS[0][0],mode:"watch",me:null,names:{},acc:{}});
 let cfg=defaults(), keep=false;
@@ -446,7 +446,7 @@ let run=0, data=null, me=null, seg=null, segIdx=0, skipLine=null, cur=null, curO
 const sub=$('sub'), players={}, dataCache={};
 const fileFmt=f=>f==="team44"?"team":f;
 function getData(tid,fmt){const k=tid+"/"+fmt; return dataCache[k]||(dataCache[k]=fetch(`stage/${tid}/${fileFmt(fmt)}.json`).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{ if(fmt!=="team44") return d;
-  const who={OR:"mia",PR:"jack"}; return {...d,fmt:"team44",seats:SEATS.team44,segs:d.segs.map(s=>who[s.key]?{...s,who:who[s.key]}:s)}; }))}
+  const who={OR:"sophia",PR:"ethan"}; return {...d,fmt:"team44",seats:SEATS.team44,segs:d.segs.map(s=>who[s.key]?{...s,who:who[s.key]}:s)}; }))}
 function playerFor(id,tid,fmt){const k=`stage/${tid}/${fileFmt(fmt)}.${accOf(id)}.${CAST[id].g}.mp3`; if(!players[k]){const a=new Audio(k);a.preload="auto";players[k]=a;} return players[k]}
 function segTime(d,si,id){return d.timing[`${accOf(id)}.${CAST[id].g}`][si]}
 function seekPlay(a,t){return new Promise(res=>{const go=()=>{a.currentTime=t;const p=a.play();if(p)p.catch(()=>{setStatus("재생 버튼을 눌러 주세요");setPlay(false)});res()};

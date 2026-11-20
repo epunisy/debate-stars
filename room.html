@@ -404,14 +404,14 @@ const now = () => Date.now() + skew;
 let me = null, myName = "", code = null, room = null, offRoom = null, offConn = null, offSig = null, offSigRm = null;
 
 /* ---------- 프로필 / 얼굴 ---------- */
-const CH = ["oliver", "liam", "chloe", "noah", "olivia", "leo", "ruby", "jack", "mia"];
+const CH = ["oliver", "liam", "chloe", "noah", "olivia", "leo", "ruby", "ethan", "sophia"];
 const LVLS = [["domestic", "국내부", "Domestic division (Korean EFL learner)"], ["international", "국제부", "International division (near-native or studied abroad)"]];
 const KINDS = [["char", "캐릭터"], ["photo", "내 사진"]];
 const SCHOOLS = [["e", "초등", 6, "elementary school"], ["m", "중등", 3, "middle school"], ["h", "고등", 3, "high school"]];
 const grKo = g => { const s = SCHOOLS.find(x => x[0] === (g || "")[0]); return s ? ({ e: "초", m: "중", h: "고" })[s[0]] + g.slice(1) : ""; };
 const grEn = g => { const s = SCHOOLS.find(x => x[0] === (g || "")[0]); return s ? `grade ${g.slice(1)} of ${s[3]}` : ""; };
 const lvlKo = l => (LVLS.find(x => x[0] === l) || LVLS[0])[1];
-const hashCh = s => CH[[...String(s)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7) % CH.length];
+const hashCh = s => CH[[...String(s)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7) % 7]; // 기본 얼굴은 원래 7명 중에서 (새 캐릭터가 생겨도 바뀌지 않게)
 let prof = { name: "", gr: "", lvl: "domestic", k: "char", ch: "", ph: "" };
 const avOf = u => { const v = room?.members?.[u] || {}; return { k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(u), ph: v.ph || "" }; };
 function charFace(id, bw, bh) { // 리허설 카드와 같은 방식: 머리 전체가 칸에 들어오게
