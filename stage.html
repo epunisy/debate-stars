@@ -147,7 +147,7 @@ body.embedded .wrap.live .lower{display:none}
 <div class="wrap" id="wrap">
   <section class="setup" id="setup">
     <div class="opt"><span class="lab">형식</span><div class="seg">
-            <button class="pick" data-fmt="team">아시안 의회식 3:3</button></div></div>
+            <button class="pick" data-fmt="team">중등부 3:3</button><button class="pick" data-fmt="team44">초등부 4:4</button></div></div>
     <div class="opt"><span class="lab">주제</span><select id="topic" aria-label="주제"></select></div>
     <div class="opt"><span class="lab">보기</span><div class="seg">
       <button class="pick" data-mode="watch">관전하기</button>
@@ -390,21 +390,22 @@ function render(dt){
 
 /* ================= stage set ================= */
 const CHAIR="oliver", CHAIRX=1500;
-const POS={oneone:{P:[430],O:[1170]}, team:{P:[300,430,560],O:[1040,1170,1300]}};
-const DESK={oneone:{P:[300,260],O:[1040,260]}, team:{P:[200,460],O:[940,460]}};
+const POS={oneone:{P:[430],O:[1170]}, team:{P:[300,430,560],O:[1040,1170,1300]}, team44:{P:[230,345,460,575],O:[965,1080,1195,1310]}};
+const DESK={oneone:{P:[300,260],O:[1040,260]}, team:{P:[200,460],O:[940,460]}, team44:{P:[140,530],O:[880,530]}};
+const FMT_LAB={oneone:"ONE-ON-ONE",team:"TEAM DEBATE · 3 vs 3",team44:"TEAM DEBATE · 4 vs 4"};
 const esc=s=>s.replace(/[&<>"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[ch]);
 function place(id,x,floor,z){const c=chars[id];c.visible=true;c.x=x;c.home=x;c.floor=floor;c.z=z||0;c.walkTo=null;c.walkAmp=0;c.look=0;c.react=[];c.talkUntil=-1;c.mouth=-1;c.speaking=false}
 function buildSet(d){
   Object.values(chars).forEach(c=>c.visible=false);
   const f=d.fmt, prop=[...new Set(d.order.filter(k=>k[0]==="P").map(k=>d.seats[k]))], opp=[...new Set(d.order.filter(k=>k[0]==="O").map(k=>d.seats[k]))];
   bgw.innerHTML=`<div class="bg-wall"></div><div class="led"></div>
-    <div class="screen"><div class="lab">MOTION · ${f==="team"?"TEAM DEBATE":"ONE-ON-ONE"}</div><div class="txt">${esc(d.motion)}</div><div class="ko">${esc(d.ko)}</div></div><div class="floor"></div>`;
+    <div class="screen"><div class="lab">MOTION · ${FMT_LAB[f]}</div><div class="txt">${esc(d.motion)}</div><div class="ko">${esc(d.ko)}</div></div><div class="floor"></div>`;
   const [pl,pw]=DESK[f].P,[ol,ow]=DESK[f].O;
   fgw.innerHTML=`<div class="desk" style="left:${pl}px;width:${pw}px;--team:#D94F8C"><div class="side">GOVERNMENT</div><div class="team">여당</div></div>
     <div class="desk" style="left:${ol}px;width:${ow}px;--team:#2F6FD0"><div class="side">OPPOSITION</div><div class="team">야당</div></div>
     <div class="desk chair" style="left:${CHAIRX-80}px;width:160px;--team:#6B7280"><div class="side">CHAIR</div><div class="team">사회자</div></div>
     <div class="mic"></div><div class="lectern"><span>EN</span></div>`;
-  const mb=$('mbar'); mb.querySelector('.lab').textContent=`MOTION · ${f==="team"?"TEAM DEBATE":"ONE-ON-ONE"}`; mb.querySelector('.en').textContent=d.motion; mb.querySelector('.ko').textContent=d.ko;
+  const mb=$('mbar'); mb.querySelector('.lab').textContent=`MOTION · ${FMT_LAB[f]}`; mb.querySelector('.en').textContent=d.motion; mb.querySelector('.ko').textContent=d.ko;
   stage.style.setProperty('--mtop',(vh>vw?mb.offsetHeight:0)+'px');
   Object.values(chars).forEach(c=>bgw.appendChild(c.shadow));
   prop.forEach((id,i)=>place(id,POS[f].P[i],850,i));
@@ -417,18 +418,22 @@ const shot={wide:(d=1.2)=>camTo(800,450,1,d),lect:(d=1.4)=>camTo(800,585,1.75,d)
 /* ================= cast settings (이름·발음, 원하면 저장) ================= */
 const ACC={us:["미국","🇺🇸"],gb:["영국","🇬🇧"],au:["호주","🇦🇺"],in:["인도","🇮🇳"],ca:["캐나다","🇨🇦"],ie:["아일랜드","🇮🇪"],nz:["뉴질랜드","🇳🇿"],za:["남아공","🇿🇦"]};
 const CAST={oliver:{name:"Oliver",ko:"올리버",g:"m",acc:"gb"},liam:{name:"Liam",ko:"리암",g:"m",acc:"us"},chloe:{name:"Chloe",ko:"클로이",g:"f",acc:"au"},
-  noah:{name:"Noah",ko:"노아",g:"m",acc:"us"},olivia:{name:"Olivia",ko:"올리비아",g:"f",acc:"ca"},leo:{name:"Leo",ko:"레오",g:"m",acc:"nz"},ruby:{name:"Ruby",ko:"루비",g:"f",acc:"ie"}};
-const SEATS={oneone:{P1:"liam",PR:"liam",O1:"olivia",OR:"olivia"},team:{P1:"liam",P2:"chloe",P3:"noah",PR:"liam",O1:"olivia",O2:"leo",O3:"ruby",OR:"olivia"}};
-const ORDERS={oneone:["P1","O1","PR","OR"],team:["P1","O1","P2","O2","P3","O3","OR","PR"]};
+  noah:{name:"Noah",ko:"노아",g:"m",acc:"us"},olivia:{name:"Olivia",ko:"올리비아",g:"f",acc:"ca"},leo:{name:"Leo",ko:"레오",g:"m",acc:"nz"},ruby:{name:"Ruby",ko:"루비",g:"f",acc:"ie"},
+  jack:{name:"Jack",ko:"잭",g:"m",acc:"au"},mia:{name:"Mia",ko:"미아",g:"f",acc:"us"}};
+const SEATS={oneone:{P1:"liam",PR:"liam",O1:"olivia",OR:"olivia"},team:{P1:"liam",P2:"chloe",P3:"noah",PR:"liam",O1:"olivia",O2:"leo",O3:"ruby",OR:"olivia"},
+  team44:{P1:"liam",P2:"chloe",P3:"noah",PR:"jack",O1:"olivia",O2:"leo",O3:"ruby",OR:"mia"}}; /* 초등부: 4번 선수가 Reply만 */
+const ORDERS={oneone:["P1","O1","PR","OR"],team:["P1","O1","P2","O2","P3","O3","OR","PR"],team44:["P1","O1","P2","O2","P3","O3","OR","PR"]};
 /* 역할 이름은 영어로: 카드엔 짧게, 발언 자막엔 전체 이름 */
 const ROLES={oneone:{oliver:"Chair",liam:"Affirmative",olivia:"Negative"},team:{oliver:"Chair",liam:"PM",chloe:"DPM",noah:"Gov Whip",olivia:"LO",leo:"DLO",ruby:"Opp Whip"}};
+ROLES.team44={...ROLES.team,jack:"Gov Reply",mia:"Opp Reply"};
 const ROLES_FULL={oneone:ROLES.oneone,team:{oliver:"Speaker of the House",liam:"Prime Minister",chloe:"Deputy Prime Minister",noah:"Government Whip",olivia:"Leader of the Opposition",leo:"Deputy Leader of the Opposition",ruby:"Opposition Whip"}};
+ROLES_FULL.team44={...ROLES_FULL.team,jack:"Government Reply Speaker",mia:"Opposition Reply Speaker"};
 const STORE="dstage_v1";
 const defaults=()=>({fmt:"team",topic:STAGE_TOPICS[0][0],mode:"watch",me:null,names:{},acc:{}});
 let cfg=defaults(), keep=false;
 try{const s=JSON.parse(localStorage.getItem(STORE)||"null"); if(s){cfg={...defaults(),...s}; keep=true;}}catch(e){}
 if(!STAGE_TOPICS.some(t=>t[0]===cfg.topic)) cfg.topic=STAGE_TOPICS[0][0];
-cfg.fmt="team"; /* 지금은 아시안 의회식 팀 토론만 있어요 */
+if(cfg.fmt!=="team44") cfg.fmt="team"; /* 중등부 3:3 / 초등부 4:4 */
 function save(){try{ if(keep) localStorage.setItem(STORE,JSON.stringify(cfg)); else localStorage.removeItem(STORE); }catch(e){}}
 const accOf=id=>cfg.acc[id]||CAST[id].acc;
 const shortName=id=>cfg.names[id]||CAST[id].ko;
@@ -439,8 +444,10 @@ const debaters=()=>castIds().filter(k=>k!==CHAIR);
 /* ================= runner ================= */
 let run=0, data=null, me=null, seg=null, segIdx=0, skipLine=null, cur=null, curOn=false;
 const sub=$('sub'), players={}, dataCache={};
-function getData(tid,fmt){const k=tid+"/"+fmt; return dataCache[k]||(dataCache[k]=fetch(`stage/${k}.json`).then(r=>{if(!r.ok)throw 0;return r.json()}))}
-function playerFor(id,tid,fmt){const k=`stage/${tid}/${fmt}.${accOf(id)}.${CAST[id].g}.mp3`; if(!players[k]){const a=new Audio(k);a.preload="auto";players[k]=a;} return players[k]}
+const fileFmt=f=>f==="team44"?"team":f;
+function getData(tid,fmt){const k=tid+"/"+fmt; return dataCache[k]||(dataCache[k]=fetch(`stage/${tid}/${fileFmt(fmt)}.json`).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{ if(fmt!=="team44") return d;
+  const who={OR:"mia",PR:"jack"}; return {...d,fmt:"team44",seats:SEATS.team44,segs:d.segs.map(s=>who[s.key]?{...s,who:who[s.key]}:s)}; }))}
+function playerFor(id,tid,fmt){const k=`stage/${tid}/${fileFmt(fmt)}.${accOf(id)}.${CAST[id].g}.mp3`; if(!players[k]){const a=new Audio(k);a.preload="auto";players[k]=a;} return players[k]}
 function segTime(d,si,id){return d.timing[`${accOf(id)}.${CAST[id].g}`][si]}
 function seekPlay(a,t){return new Promise(res=>{const go=()=>{a.currentTime=t;const p=a.play();if(p)p.catch(()=>{setStatus("재생 버튼을 눌러 주세요");setPlay(false)});res()};
   if(a.readyState>=1)go();else a.addEventListener('loadedmetadata',go,{once:true})})}
@@ -572,7 +579,7 @@ async function startDebate(){
   const {prop,opp}=buildSet(data);
   [...prop,...opp,CHAIR].forEach(k=>{const c=chars[k];c.x=c.home<800?-200:1800;});
   shot.wide(0);
-  card(fmt==="team"?"ASIAN PARLIAMENTARY · 3 vs 3":"ONE-ON-ONE DEBATE", data.motion, data.ko, true); chime();
+  card(fmt==="team"?"ASIAN PARLIAMENTARY · 3 vs 3":fmt==="team44"?"ASIAN PARLIAMENTARY · 4 vs 4":"ONE-ON-ONE DEBATE", data.motion, data.ko, true); chime();
   await wait(2.6,id); card("","","",false);
   [...prop,...opp,CHAIR].forEach((k,i)=>setTimeout(()=>{const c=chars[k];c.walkTo=c.home;c.speed=420;},i*160));
   await wait(3.2,id);
