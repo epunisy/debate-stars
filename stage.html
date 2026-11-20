@@ -420,7 +420,9 @@ const CAST={oliver:{name:"Oliver",ko:"올리버",g:"m",acc:"gb"},liam:{name:"Lia
   noah:{name:"Noah",ko:"노아",g:"m",acc:"us"},olivia:{name:"Olivia",ko:"올리비아",g:"f",acc:"ca"},leo:{name:"Leo",ko:"레오",g:"m",acc:"nz"},ruby:{name:"Ruby",ko:"루비",g:"f",acc:"ie"}};
 const SEATS={oneone:{P1:"liam",PR:"liam",O1:"olivia",OR:"olivia"},team:{P1:"liam",P2:"chloe",P3:"noah",PR:"liam",O1:"olivia",O2:"leo",O3:"ruby",OR:"olivia"}};
 const ORDERS={oneone:["P1","O1","PR","OR"],team:["P1","O1","P2","O2","P3","O3","OR","PR"]};
-const ROLES={oneone:{oliver:"사회자",liam:"찬성",olivia:"반대"},team:{oliver:"사회자",liam:"여당 총리",chloe:"여당 부총리",noah:"여당 원내총무",olivia:"야당 대표",leo:"야당 부대표",ruby:"야당 원내총무"}};
+/* 역할 이름은 영어로: 카드엔 짧게, 발언 자막엔 전체 이름 */
+const ROLES={oneone:{oliver:"Chair",liam:"Affirmative",olivia:"Negative"},team:{oliver:"Chair",liam:"PM",chloe:"DPM",noah:"Gov Whip",olivia:"LO",leo:"DLO",ruby:"Opp Whip"}};
+const ROLES_FULL={oneone:ROLES.oneone,team:{oliver:"Speaker of the House",liam:"Prime Minister",chloe:"Deputy Prime Minister",noah:"Government Whip",olivia:"Leader of the Opposition",leo:"Deputy Leader of the Opposition",ruby:"Opposition Whip"}};
 const STORE="dstage_v1";
 const defaults=()=>({fmt:"team",topic:STAGE_TOPICS[0][0],mode:"watch",me:null,names:{},acc:{}});
 let cfg=defaults(), keep=false;
@@ -583,7 +585,7 @@ async function startDebate(){
     if(s.key==="chair"){
       setStatus("사회자 진행");
       shot.on(CHAIR,1,2.1); Object.values(chars).forEach(x=>x.look= x.id===CHAIR?0:(x.x<CHAIRX?.6:0));
-      lower(fullName(CHAIR),`사회자 · ${accL}`,"#6B7280");
+      lower(fullName(CHAIR),`Speaker of the House · ${accL}`,"#6B7280");
       if(segIdx===0) gavel();
       await wait(.9,id); await speak(segIdx,s,id); lowerOff(); await wait(.5,id);
     }else{
@@ -592,7 +594,7 @@ async function startDebate(){
       shot.wide(1); c.z=5; c.walkTo=800; c.speed=330; sub.classList.remove('on');
       Object.values(chars).forEach(x=>x.look= x.id===s.who?0:(x.x<800?.5:-.5));
       await wait(1.9,id); shot.lect(1.4);
-      lower(fullName(s.who)+(mine?" (나)":""),`${ROLES[cfg.fmt][s.who]} · ${accL}`,team);
+      lower(fullName(s.who)+(mine?" (나)":""),`${ROLES_FULL[cfg.fmt][s.who]} · ${accL}`,team);
       clockT=0; clockOn=true; $('clock').hidden=false;
       const nodder=setInterval(()=>{ if(!playing) return; const mates=Object.values(chars).filter(x=>x.visible&&x.id!==s.who&&x.id!==CHAIR);
         const m=mates[Math.random()*mates.length|0]; if(m) m.react.push({k:(m.x<800)===(s.key[0]==="P")?'nod':(Math.random()<.5?'shake':'nod'),s:simT,d:1}); },3800);
@@ -651,7 +653,7 @@ function renderCast(){
     b.insertAdjacentHTML('beforeend','<span class="en"></span><span class="ko"></span><span class="nick"></span><span class="rl"></span>');
     b.querySelector('.en').textContent=cfg.names[id]||CAST[id].name; b.querySelector('.ko').textContent=cfg.names[id]?CAST[id].ko:CAST[id].ko;
     b.querySelector('.nick').textContent=NICK[id];
-    b.querySelector('.rl').textContent=`${ROLES[cfg.fmt][id]} · ${ACC[accOf(id)][1]} ${ACC[accOf(id)][0]}`;
+    b.querySelector('.rl').textContent=`${ROLES[cfg.fmt][id]} ${ACC[accOf(id)][1]}`;
     if(mine) b.insertAdjacentHTML('beforeend','<span class="badge">나</span>');
     b.onclick=()=>{ if(cfg.mode==="seat" && id!==CHAIR && cfg.me!==id){ cfg.me=id; save(); renderCast(); openEditor(id); return; } openEditor(editing===id?null:id); };
     row.appendChild(b);
