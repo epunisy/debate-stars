@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>디베이트 매치</title>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>토론배틀</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F2F4F1">
 <link rel="manifest" href="manifest.webmanifest">
@@ -263,7 +263,7 @@ html.embed select,html.embed input.txt{font-size:12px;min-height:26px}
 html.embed input.code{font-size:20px;min-height:36px}
 </style></head><body>
 <div class="wrap">
-  <header><a class="back" href="index.html" target="_top">← 홈</a><h1>디베이트 매치</h1><span class="who" id="who"></span></header>
+  <header><a class="back" href="index.html" target="_top">← 홈</a><h1>토론배틀</h1><span class="who" id="who"></span></header>
 
   <section id="vSetup" hidden><div class="card"><h2>설정이 필요해요</h2><p class="small muted">아직 Firebase 설정이 연결되지 않았어요. 관리자가 <code>firebase-config.js</code> 를 채우면 쓸 수 있어요.</p></div></section>
 
@@ -958,7 +958,7 @@ $("bClearSeats").onclick = () => D.remove(R(`rooms/${code}/seats`));
 $("bCopy").onclick = async () => { try { await navigator.clipboard.writeText(code); $("bCopy").textContent = "복사됨"; setTimeout(() => $("bCopy").textContent = "복사", 1200); } catch {} };
 $("bShare").onclick = async () => {
   const url = location.origin + location.pathname.replace(/room.html$/, "") + "?code=" + code + (room.meta.priv && room.secret?.pin ? "&pin=" + room.secret.pin : ""), text = room.meta.priv ? `디베이트 스타즈 비밀 매치에 들어와! 비밀번호: ${room.secret?.pin || ""}` : `디베이트 스타즈 매치에 들어와! 링크를 누르면 바로 들어올 수 있어.`;
-  if (navigator.share) { try { await navigator.share({ title: "디베이트 매치", text, url }); } catch {} }
+  if (navigator.share) { try { await navigator.share({ title: "토론배틀", text, url }); } catch {} }
   else { try { await navigator.clipboard.writeText(text + "\n" + url); $("bShare").textContent = "링크 복사됨"; setTimeout(() => $("bShare").textContent = "＋ 초대하기", 1500); } catch {} }
 };
 $("bReady").onclick = () => upd(`members/${me.uid}`, { ready: !room.members?.[me.uid]?.ready });

@@ -1,7 +1,7 @@
 /* 디베이트 스타즈 서비스 워커
    - 페이지(html)·소식(news.json): 인터넷 먼저, 안 되면 저장본
    - 음성·대본·그림: 한 번 받은 건 휴대폰에 저장해 두고 다음부턴 바로 재생 (오프라인에서도) */
-const V = "dbs-v27";
+const V = "dbs-v28";
 const SHELL = ["./", "index.html", "stage.html", "room.html", "firebase-config.js", "stage/rig.js?v=3", "manifest.webmanifest", "icon.png", "logo.png", "logo-dark.png"];
 
 self.addEventListener("install", e => {
