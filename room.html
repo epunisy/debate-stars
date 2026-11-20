@@ -196,6 +196,8 @@ html.modal .setup{margin:0;border:0;border-radius:0}
 .roomhead{display:flex;align-items:center;gap:6px}
 .roomhead .sp{flex:1}
 .labrow2{display:flex;align-items:center;gap:8px}
+.inv.del{color:#C2412D;border-color:#E9C4BD}
+.tag.mine{background:#E6E9EE;color:var(--fg);font-size:10px;margin-left:4px;vertical-align:1px}
 .inv{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;font:600 11.5px var(--body);padding:2px 10px;cursor:pointer}
 .exitbtn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;padding:0;cursor:pointer}
 .exitbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -314,7 +316,7 @@ html.embed input.code{font-size:20px;min-height:36px}
   </div></section>
 
   <section id="vLobby" hidden><div class="setup">
-    <div class="roomhead"><span class="small muted" id="lCodeLab"></span><span class="small" id="lPriv"></span><b class="codetxt" id="lCode"></b><span class="sp"></span><button type="button" id="bCopy" hidden></button></div>
+    <div class="roomhead"><button type="button" class="inv" id="bToList" aria-label="방을 열어 둔 채 목록으로">← Rooms</button><span class="small muted" id="lCodeLab"></span><span class="small" id="lPriv"></span><b class="codetxt" id="lCode"></b><span class="sp"></span><button type="button" class="inv del" id="bDelRoom">방 삭제</button><button type="button" id="bCopy" hidden></button></div>
     <div class="opt"><span class="lab">주제</span><select id="sTopic"></select></div>
     <p class="motion" id="lMotion"></p>
     <div class="opt" id="lSumRow"><span class="lab">규칙</span><span class="small" id="lSum"></span></div>
@@ -587,7 +589,7 @@ async function createRoom(priv) {
       await D.set(R(`rooms/${c}/meta`), { host: me.uid, createdAt: now(), status: "lobby", priv: !!priv, topic: load("topic", "d01"), fmt: load("fmt", "m33"), mins: +load("mins", 3), prep: +load("prep", 0), voice: load("voice", "1") === "1", round: 0 });
       const pin = priv ? String(crypto.getRandomValues(new Uint32Array(1))[0] % 9000 + 1000) : "";
       if (pin) await D.set(R(`rooms/${c}/secret/pin`), pin);
-      await joinRoom(c, false, false, pin); return;
+      setMine([...mine(), c]); await joinRoom(c, false, false, pin); return;
     }
   } catch (e) { alert("방을 만들지 못했어요. (" + (e.code || e.message) + ")"); }
   finally { $("bCreate").disabled = $("bCreatePriv").disabled = $("bPlus").disabled = false; }
@@ -625,12 +627,44 @@ function watchOpen() {
 function renderOpen() {
   const list = Object.entries(openRooms).filter(([, v]) => v && now() - (v.seen || 0) < 120000).sort((a, b) => (b[1].at || 0) - (a[1].at || 0));
   $("openCount").textContent = list.length ? list.length : "";
-  $("openList").innerHTML = list.length ? list.map(([c, v]) => { const t = topicOf(v.topic); return `<button class="mrow" data-c="${esc(c)}">${miniFace({ k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(c), ph: v.ph || "" }).outerHTML}<span class="t"><b>${v.priv ? "🔒 " : ""}${esc(t[1])}</b><small>${esc(v.host)} · ${+v.mins || 3}분</small></span><span class="n">${+v.n || 1}명</span></button>`; }).join("")
+  $("openList").innerHTML = list.length ? list.map(([c, v]) => { const t = topicOf(v.topic); return `<button class="mrow" data-c="${esc(c)}">${miniFace({ k: v.k || "char", ch: CH.includes(v.ch) ? v.ch : hashCh(c), ph: v.ph || "" }).outerHTML}<span class="t"><b>${v.priv ? "🔒 " : ""}${esc(t[1])}${mine().includes(c) ? ' <span class="tag mine">내 방</span>' : ""}</b><small>${esc(v.host)} · ${+v.mins || 3}분</small></span><span class="n">${+v.n || 1}명</span></button>`; }).join("")
     : '<p class="empty">열린 토론배틀이 없어요 · ＋로 열어 보세요</p>';
   hydrateMini($("openList"));
   $("openList").querySelectorAll(".mrow").forEach(b => b.onclick = () => joinRoom(b.dataset.c));
 }
 setInterval(() => { if (!$("vHome").hidden) renderOpen(); }, 15000);
+/* 방을 여러 개: 대기실에서 '← Rooms' 로 나와도 내가 방장인 방은 계속 목록에 남김 */
+const mine = () => { try { return JSON.parse(load("mine", "[]")) || []; } catch { return []; } };
+const setMine = a => save("mine", JSON.stringify([...new Set(a)].slice(-10)));
+async function keepMine() {
+  if (!me) return;
+  const keep = [];
+  for (const c of mine()) {
+    if (c === code) { keep.push(c); continue; }
+    try {
+      const m = (await D.get(R(`rooms/${c}/meta`))).val();
+      if (!m || m.status !== "lobby" || m.host !== me.uid) continue;
+      keep.push(c); await D.update(R(`open/${c}`), { seen: now() });
+    } catch { }
+  }
+  setMine(keep);
+}
+setInterval(keepMine, 30000);
+$("bDelRoom").onclick = async () => {
+  if (!room || !isHost() || !confirm("이 방을 삭제할까요? 들어와 있는 친구들도 모두 나가게 돼요.")) return;
+  const c = code; setMine(mine().filter(x => x !== c));
+  leaveLocal(); save("code", "");
+  try { await D.remove(R(`open/${c}`)); await D.remove(R(`rooms/${c}`)); } catch (e) { alert("삭제하지 못했어요. (" + (e.code || e.message) + ")"); }
+  show("vHome"); watchOpen(); renderOpen();
+};
+$("bToList").onclick = () => {
+  if (!room || room.meta.status !== "lobby") return;
+  if (isHost()) setMine([...mine(), code]);
+  openKey = ""; syncOpen();
+  // 내가 자리를 비우면(on:false) 들어온 친구가 15초 뒤 방장을 넘겨받아 진행할 수 있음
+  D.set(R(`rooms/${code}/members/${me.uid}/on`), false).catch(() => {});
+  leaveLocal(); save("code", ""); show("vHome"); watchOpen(); renderOpen(); keepMine();
+};
 // 방장 폰이 공개 방 정보를 목록에 올리고 30초마다 살아 있음을 알림
 let openKey = "", openAt = 0;
 function syncOpen() {
@@ -669,7 +703,7 @@ function enterRoom(c) {
   history.replaceState(null, "", selfURL(""));
   const onRef = R(`rooms/${c}/members/${me.uid}/on`);
   offConn = D.onValue(R(".info/connected"), s => { if (s.val()) { D.onDisconnect(onRef).set(false); D.set(onRef, true).catch(() => {}); } });
-  offRoom = D.onValue(R(`rooms/${c}`), s => { room = s.val(); if (!room || !room.meta) { leaveLocal(); save("code", ""); show("vHome"); return; } applyFmt(room.meta.fmt); render(); });
+  offRoom = D.onValue(R(`rooms/${c}`), s => { room = s.val(); if (!room || !room.meta) { leaveLocal(); save("code", ""); show("vHome"); return; } applyFmt(room.meta.fmt); render(); }, () => { /* 방이 삭제돼 더 볼 수 없음 */ leaveLocal(); save("code", ""); show("vHome"); watchOpen(); renderOpen(); });
   listenIncoming();
   engineTimer = setInterval(tick, 400);
 }
@@ -900,7 +934,7 @@ function renderLobby() {
   // 공개 방은 매치 리스트에서 바로 들어오니 코드를 숨김. 비밀 방만 코드 보이기
   $("lCodeLab").textContent = ""; $("lCode").hidden = $("bCopy").hidden = true;
   $("lPriv").textContent = m.priv ? `🔒 비밀 방 · 비밀번호 ${room.secret?.pin || "-"}` : "공개 방";
-  $("lHostOnly").textContent = "";
+  $("lHostOnly").textContent = ""; $("bDelRoom").hidden = !host;
   // 방장만 규칙 버튼, 다른 사람은 한 줄 요약
   document.querySelectorAll("#vLobby .hostonly").forEach(x => x.hidden = !host); $("lSumRow").hidden = host;
   $("lSum").textContent = [m.startAt ? hhmm(m.startAt) + " 시작" : "", FMTS.find(x => x[0] === fmtNow)[1], `발언 ${m.mins}분 · Reply ${replyMins(m)}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "같이 · 자막만"].filter(Boolean).join(" · ");
