@@ -342,19 +342,19 @@ const selfURL = q => "room.html" + (q || EMBED || EMU ? "?" : "") + [q, EMBED ? 
 
 const TOPICS = [["d01", "초등학교 숙제 폐지", "This House would abolish homework in elementary schools.", "본 의회는 초등학교 숙제를 폐지할 것이다."], ["d02", "16세 미만 SNS 금지", "This House would ban social media for children under 16.", "본 의회는 16세 미만 어린이의 SNS 사용을 금지할 것이다."], ["d03", "일회용 플라스틱 금지", "This House would ban single-use plastics.", "본 의회는 일회용 플라스틱을 금지할 것이다."], ["d04", "학교 과제에 AI 사용 허용", "This House would allow students to use AI for schoolwork.", "본 의회는 학생들이 학교 과제에 AI를 사용하도록 허용할 것이다."], ["d05", "동물원 금지", "This House would ban zoos.", "본 의회는 동물원을 금지할 것이다."], ["d06", "교복 폐지", "This House would abolish school uniforms.", "본 의회는 교복을 폐지할 것이다."], ["d07", "우주 탐사보다 지구 문제 우선", "This House would prioritize solving problems on Earth over space exploration.", "본 의회는 우주 탐사보다 지구의 문제 해결을 우선할 것이다."], ["d08", "어린이 대상 정크푸드 광고 금지", "This House would ban junk food advertising aimed at children.", "본 의회는 어린이를 대상으로 한 정크푸드 광고를 금지할 것이다."], ["d09", "성적이 좋은 학생에게 돈으로 보상", "This House would pay students for good grades.", "본 의회는 성적이 좋은 학생에게 돈으로 보상할 것이다."], ["d10", "투표 연령 16세로 낮추기", "This House would lower the voting age to 16.", "본 의회는 투표 연령을 16세로 낮출 것이다."], ["d11", "화장품 동물실험 금지", "This House would ban animal testing for cosmetics.", "본 의회는 화장품 동물실험을 금지할 것이다."], ["d12", "학교 내 스마트폰 금지", "This House would ban smartphones in schools.", "본 의회는 학교 내 스마트폰 사용을 금지할 것이다."], ["d13", "시험을 프로젝트로 대체", "This House would replace exams with projects.", "본 의회는 시험을 프로젝트로 대체할 것이다."], ["d14", "도심 자동차 통행 금지", "This House would ban cars from city centers.", "본 의회는 도심에서 자동차 통행을 금지할 것이다."], ["d15", "어린이 인플루언서 활동 금지", "This House would ban children from working as online influencers.", "본 의회는 어린이가 온라인 인플루언서로 활동하는 것을 금지할 것이다."], ["d16", "주 4일 수업", "This House would introduce a four-day school week.", "본 의회는 주 4일 수업제를 도입할 것이다."], ["d17", "학교 급식 채식화", "This House would serve only vegetarian meals in school cafeterias.", "본 의회는 학교 급식을 채식으로만 제공할 것이다."], ["d18", "어린이 스포츠에서 점수 없애기", "This House would stop keeping score in children's sports.", "본 의회는 어린이 스포츠에서 점수를 매기지 않을 것이다."], ["d19", "학생 봉사활동 의무화", "This House would make volunteer work mandatory for students.", "본 의회는 학생 봉사활동을 의무화할 것이다."], ["d20", "박물관 문화재 반환", "This House would return museum artifacts to their countries of origin.", "본 의회는 박물관 문화재를 원래 나라로 돌려줄 것이다."]];
 const ORDER = [
-  { seat: "g1", side: "gov", ko: "여당 총리", en: "Prime Minister", call: "I now call upon the Prime Minister to open the case for the Government." },
-  { seat: "o1", side: "opp", ko: "야당 대표", en: "Leader of the Opposition", call: "I now call upon the Leader of the Opposition to open the case for the Opposition." },
-  { seat: "g2", side: "gov", ko: "여당 부총리", en: "Deputy Prime Minister", call: "I call upon the Deputy Prime Minister to continue the case for the Government." },
-  { seat: "o2", side: "opp", ko: "야당 부대표", en: "Deputy Leader of the Opposition", call: "I call upon the Deputy Leader of the Opposition to continue the case for the Opposition." },
-  { seat: "g3", side: "gov", ko: "여당 원내총무", en: "Government Whip", call: "I call upon the Government Whip." },
-  { seat: "o3", side: "opp", ko: "야당 원내총무", en: "Opposition Whip", call: "I call upon the Opposition Whip." },
-  { seat: "o1", side: "opp", ko: "야당 마무리 발언", en: "Opposition Reply", reply: true, call: "I now call upon the Leader of the Opposition to give the reply speech for the Opposition." },
-  { seat: "g1", side: "gov", ko: "여당 마무리 발언", en: "Government Reply", reply: true, call: "Finally, I call upon the Prime Minister to give the reply speech for the Government." },
+  { seat: "g1", side: "gov", ko: "Prime Minister", en: "Prime Minister", call: "I now call upon the Prime Minister to open the case for the Government." },
+  { seat: "o1", side: "opp", ko: "Leader of the Opposition", en: "Leader of the Opposition", call: "I now call upon the Leader of the Opposition to open the case for the Opposition." },
+  { seat: "g2", side: "gov", ko: "Deputy Prime Minister", en: "Deputy Prime Minister", call: "I call upon the Deputy Prime Minister to continue the case for the Government." },
+  { seat: "o2", side: "opp", ko: "Deputy Leader of the Opposition", en: "Deputy Leader of the Opposition", call: "I call upon the Deputy Leader of the Opposition to continue the case for the Opposition." },
+  { seat: "g3", side: "gov", ko: "Government Whip", en: "Government Whip", call: "I call upon the Government Whip." },
+  { seat: "o3", side: "opp", ko: "Opposition Whip", en: "Opposition Whip", call: "I call upon the Opposition Whip." },
+  { seat: "o1", side: "opp", ko: "Opposition Reply", en: "Opposition Reply", reply: true, call: "I now call upon the Leader of the Opposition to give the reply speech for the Opposition." },
+  { seat: "g1", side: "gov", ko: "Government Reply", en: "Government Reply", reply: true, call: "Finally, I call upon the Prime Minister to give the reply speech for the Government." },
 ];
-const SEATS = { g1: "총리", g2: "부총리", g3: "원내총무", o1: "대표", o2: "부대표", o3: "원내총무" };
+const SEATS = { g1: "PM", g2: "DPM", g3: "Gov Whip", o1: "LO", o2: "DLO", o3: "Opp Whip" };
 const SEAT_EN = { g1: "Prime Minister", g2: "Deputy Prime Minister", g3: "Government Whip", o1: "Leader of the Opposition", o2: "Deputy Leader of the Opposition", o3: "Opposition Whip" };
 const sideOf = s => s[0] === "g" ? "gov" : "opp";
-const SIDE_KO = { gov: "여당", opp: "야당" };
+const SIDE_KO = { gov: "Government", opp: "Opposition" };
 const GRACE = 20000, POI_ASK = 10000, POI_LEN = 15000, POI_COOLDOWN = 30000, SILENCE = 20000;
 const mmss = ms => { const neg = ms < 0; ms = Math.abs(ms); const s = Math.floor(ms / 1000); return (neg ? "-" : "") + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
 const load = (k, d) => { try { return localStorage.getItem("room." + k) ?? d; } catch { return d; } };
@@ -828,7 +828,7 @@ function segBtns(el, vals, cur, fmt, onPick, enabled) {
 function seatCard(s) {
   const u = room.seats?.[s], b = document.createElement("button"), side = sideOf(s);
   b.type = "button"; b.className = "cc" + (u === me.uid ? " me" : "") + (u ? "" : " empty");
-  b.innerHTML = `<span class="face"></span><span class="en"></span><span class="ko"></span><span class="rl ${side}">${SIDE_KO[side]} ${SEATS[s]}</span>${u === me.uid ? '<span class="badge">나</span>' : ""}`;
+  b.innerHTML = `<span class="face"></span><span class="en"></span><span class="ko"></span><span class="rl ${side}">${SEATS[s]}</span>${u === me.uid ? '<span class="badge">나</span>' : ""}`;
   b.querySelector(".en").textContent = u ? nameOf(u) : "빈자리";
   b.querySelector(".ko").textContent = u ? [grKo(room.members?.[u]?.gr), lvlKo(room.members?.[u]?.lvl)].filter(Boolean).join(" · ") : "눌러서 앉기";
   b.onclick = () => {
@@ -851,11 +851,11 @@ function renderLobby() {
   $("lHostOnly").textContent = "";
   // 방장만 규칙 버튼, 다른 사람은 한 줄 요약
   document.querySelectorAll("#vLobby .hostonly").forEach(x => x.hidden = !host); $("lSumRow").hidden = host;
-  $("lSum").textContent = [`발언 ${m.mins}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "한곳에 · 자막만"].join(" · ");
+  $("lSum").textContent = [`발언 ${m.mins}분`, m.prep ? `준비 ${m.prep}분` : "준비 시간 없음", m.voice ? "따로 · 목소리+자막" : "같이 · 자막만"].join(" · ");
   $("sTopic").value = m.topic; $("sTopic").disabled = !host;
   segBtns($("sMins"), MINS, m.mins, v => v + "분", v => { save("mins", v); upd("meta", { mins: v }); }, host);
   segBtns($("sPrep"), PREPS, m.prep || 0, v => v ? v + "분" : "없음", v => { save("prep", v); upd("meta", { prep: v }); }, host);
-  segBtns($("sVoice"), [false, true], !!m.voice, v => v ? "따로 있어요 (목소리)" : "한곳에 모여요 (자막만)", v => { save("voice", v ? "1" : "0"); upd("meta", { voice: v }); }, host);
+  segBtns($("sVoice"), [false, true], !!m.voice, v => v ? "따로 있어요 (목소리)" : "같이 있어요 (자막만)", v => { save("voice", v ? "1" : "0"); upd("meta", { voice: v }); }, host);
   const t = topicOf(m.topic); $("lMotion").innerHTML = `${esc(t[2])}<small>${esc(t[3])}</small>`;
   const sk = JSON.stringify([room.seats, Object.fromEntries(Object.entries(room.members || {}).map(([u, v]) => [u, [v.name, v.gr, v.lvl, v.k, v.ch, (v.ph || "").length]])), me.uid]);
   if (sk !== seatKey) { seatKey = sk; const row = $("seatRow"); row.innerHTML = "";
@@ -1026,7 +1026,7 @@ function renderLive() {
   $("vStage").className = "card stage " + (L.phase === "opening" || L.phase === "prep" ? "" : o.side);
   if (L.phase === "opening") { $("vRole").textContent = "개회"; $("vRoleEn").textContent = "Opening"; $("vName").textContent = "사회자가 토론을 소개하고 있어요."; }
   else if (L.phase === "prep") { $("vRole").textContent = "준비 시간"; $("vRoleEn").textContent = "Preparation"; $("vName").textContent = "팀끼리 작전을 짜요."; }
-  else { $("vRole").textContent = o.ko; $("vRoleEn").textContent = o.en; $("vName").innerHTML = `<span class="tag ${o.side}">${SIDE_KO[o.side]}</span> ${esc(nameOf(su))}${amSpk ? " (나)" : ""}${room.members?.[su]?.on ? "" : ' <span class="muted">· 연결 끊김</span>'}`; }
+  else { $("vRole").textContent = o.en; $("vRoleEn").textContent = ""; $("vName").innerHTML = `<span class="tag ${o.side}">${SIDE_KO[o.side]}</span> ${esc(nameOf(su))}${amSpk ? " (나)" : ""}${room.members?.[su]?.on ? "" : ' <span class="muted">· 연결 끊김</span>'}`; }
 
   // 내 역할에 따라 마이크 켜고 끄기
   const myPoi = p && p.by === me.uid && p.state === "accepted" && L.phase === "speaking";
@@ -1156,15 +1156,15 @@ function renderResult() {
     if (resultSeen !== r.at) { resultSeen = r.at; applause(); }
     h += `<div class="win ${v.winner}"><span class="small">${MARGIN[v.margin] || ""}</span><b>${SIDE_KO[v.winner]} 승리!</b></div>`;
     h += `<div class="card"><h2>심판 한마디</h2><p style="margin:0">${esc(v.summary_ko)}</p></div>`;
-    h += `<div class="card"><h2>베스트 스피커</h2><p style="margin:0">${bs ? miniHTML(bs) : ""}<span class="tag ${sideOf(v.best_speaker_seat)}">${SIDE_KO[sideOf(v.best_speaker_seat)]} ${SEATS[v.best_speaker_seat]}</span> <b>${esc(nameOf(bs))}</b></p></div>`;
-    h += `<div class="card"><h2><span class="tag gov">여당</span> 피드백</h2><p style="margin:0">${esc(v.gov_feedback_ko)}</p></div>`;
-    h += `<div class="card"><h2><span class="tag opp">야당</span> 피드백</h2><p style="margin:0">${esc(v.opp_feedback_ko)}</p></div>`;
+    h += `<div class="card"><h2>베스트 스피커</h2><p style="margin:0">${bs ? miniHTML(bs) : ""}<span class="tag ${sideOf(v.best_speaker_seat)}">${SEATS[v.best_speaker_seat]}</span> <b>${esc(nameOf(bs))}</b></p></div>`;
+    h += `<div class="card"><h2><span class="tag gov">Government</span> 피드백</h2><p style="margin:0">${esc(v.gov_feedback_ko)}</p></div>`;
+    h += `<div class="card"><h2><span class="tag opp">Opposition</span> 피드백</h2><p style="margin:0">${esc(v.opp_feedback_ko)}</p></div>`;
     if (v.speaker_notes?.length) h += `<div class="card"><h2>한 사람씩</h2>${v.speaker_notes.map(n => `<p style="margin:0 0 4px"><span class="tag ${sideOf(n.seat)}">${SEATS[n.seat]}</span> ${esc(nameOf(room.seats?.[n.seat]))} — ${esc(n.note_ko)}</p>`).join("")}</div>`;
     if (r.remaining != null && isHost()) h += `<p class="hint" style="text-align:center">오늘 남은 무료 판정: ${r.remaining}회</p>`;
   } else h += `<div class="card"><h2>판정 결과를 받지 못했어요</h2><p class="err">${esc(r.err)}</p></div>`;
   h += `<div class="card"><h2>발언 기록</h2><table class="st"><tr><th>순서</th><th>이름</th><th>시간</th><th>단어</th><th>질문 받음</th></tr>${ORDER.map((o, i) => {
     const e = Object.values(tx[i] || {}), w = e.filter(x => x.k === "s").map(x => x.t).join(" ").split(/\s+/).filter(Boolean).length;
-    return `<tr><td><span class="tag ${o.side}">${o.ko.replace(/^(여당|야당) /, "")}</span></td><td>${esc(nameOf(room.seats?.[o.seat]))}</td><td>${st[i] ? mmss(st[i].secs * 1000) : "-"}</td><td>${w}</td><td>${e.filter(x => x.k === "pa").length}/${e.filter(x => x.k === "pa" || x.k === "pd").length}</td></tr>`;
+    return `<tr><td><span class="tag ${o.side}">${SEATS[o.seat]}${o.reply ? " Reply" : ""}</span></td><td>${esc(nameOf(room.seats?.[o.seat]))}</td><td>${st[i] ? mmss(st[i].secs * 1000) : "-"}</td><td>${w}</td><td>${e.filter(x => x.k === "pa").length}/${e.filter(x => x.k === "pa" || x.k === "pd").length}</td></tr>`;
   }).join("")}</table></div>`;
   $("rBody").innerHTML = h; hydrateMini($("rBody"));
   $("bAgain").hidden = !isHost() || m.status !== "done";

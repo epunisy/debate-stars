@@ -140,6 +140,9 @@ body.stage-live :is(.banners,.dots,.tabs,#warn,#acct){display:none!important}
 .pmodal.wait{visibility:hidden}
 .pbox{width:min(100%,420px);max-height:calc(100dvh - 32px);overflow:auto;border-radius:14px;background:var(--surface);box-shadow:0 12px 40px #0005}
 .pbox iframe{display:block;width:100%;height:420px;border:0;background:transparent}
+.mailcol{display:flex;flex-direction:column;align-items:flex-end;min-width:0;line-height:1.25}
+.proflnk{border:0;background:none;padding:0;font:600 11px var(--body,inherit);color:#1F3E8F;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+@media (prefers-color-scheme:dark){.proflnk{color:#8FB0FF}}
 .acct .mail{font-size:11px;color:var(--muted);max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acctbtn{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:grid;place-items:center;padding:0;cursor:pointer}
 .acctbtn.on{background:var(--fg);color:var(--surface);border-color:var(--fg)}
@@ -189,7 +192,7 @@ body.stage-live .wrap{padding-top:8px}
 <div class="wrap">
   <header>
     <div class="headrow"><a class="logo" href="#" aria-label="Debate Stars 디베이트 스타즈"><picture><source srcset="logo-dark.png" media="(prefers-color-scheme: dark)"><img src="logo.png" alt="Debate Stars 디베이트 스타즈"></picture></a>
-    <div class="acct" id="acct" hidden><span class="mail" id="acctMail"></span><button type="button" class="acctbtn" id="acctBtn" aria-label="Google 계정으로 로그인"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button>
+    <div class="acct" id="acct" hidden><span class="mailcol"><span class="mail" id="acctMail"></span><button type="button" class="proflnk" id="acctProf" hidden>프로필 설정</button></span><button type="button" class="acctbtn" id="acctBtn" aria-label="Google 계정으로 로그인"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button>
       <div class="amenu" id="amenu" hidden><button type="button" data-a="profile">프로필 설정</button><button type="button" data-a="logout">로그아웃</button><button type="button" data-a="delete" class="danger">계정 삭제</button></div></div>
     <div class="spk" id="spk" aria-live="polite"><b></b><small></small></div></div>
     <div class="banners" id="banners" aria-label="영어 디베이트 대회"></div>
@@ -613,13 +616,14 @@ async function acct(conf){
   const openMatch=cmd=>{ pf.src="room.html?embed&modal&cmd="+cmd; clearTimeout(readyT); pm.classList.add("wait"); pm.hidden=false; readyT=setTimeout(()=>pm.classList.remove("wait"),4000); document.body.style.overflow="hidden"; };
   const closeModal=()=>{ clearTimeout(readyT); pm.hidden=true; pf.src="about:blank"; document.body.style.overflow=""; };
   pm.addEventListener("click",e=>{ if(e.target===pm) closeModal(); });
+  document.getElementById("acctProf").onclick=()=>openMatch("profile");
   addEventListener("message",e=>{ if(e.source!==pf.contentWindow||!e.data) return; if(e.data.closeProfile) closeModal(); if(e.data.matchHeight) pf.style.height=Math.ceil(e.data.matchHeight)+"px"; if(e.data.modalReady){ clearTimeout(readyT); pm.classList.remove("wait"); } });
   menu.onclick=async e=>{ const a=e.target.dataset.a; if(!a) return; menu.hidden=true;
     if(a==="profile") openMatch("profile");
     else if(a==="logout"){ try{ await A.signOut(auth); }catch{} }
     else if(a==="delete" && confirm("계정을 삭제할까요?\n프로필·사진·참가 기록이 모두 지워지고 되돌릴 수 없어요.")) openMatch("delete"); };
   document.addEventListener("click",e=>{ if(!menu.hidden && !e.target.closest("#acct")) menu.hidden=true; });
-  A.onAuthStateChanged(auth,u=>{ user=u; if(!u) menu.hidden=true; mail.textContent=u?(u.email||""):""; ab.classList.toggle("on",!!u); ab.setAttribute("aria-label",u?"내 계정 ("+(u.email||"")+")":"Google 계정으로 로그인"); box.hidden=false; });
+  A.onAuthStateChanged(auth,u=>{ user=u; if(!u) menu.hidden=true; mail.textContent=u?(u.email||""):""; document.getElementById("acctProf").hidden=!u; ab.classList.toggle("on",!!u); ab.setAttribute("aria-label",u?"내 계정 ("+(u.email||"")+")":"Google 계정으로 로그인"); box.hidden=false; });
   ab.onclick=async()=>{
     if(user){ menu.hidden=!menu.hidden; return; }
     const p=new A.GoogleAuthProvider();
