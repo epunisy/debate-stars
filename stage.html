@@ -190,7 +190,7 @@ body.embedded .wrap.live .lower{display:none}
   </div>
 </div>
 
-<script src="stage/rig.js"></script>
+<script src="stage/rig.js?v=3"></script>
 <script>
 const STAGE_TOPICS = [["d01", "초등학교 숙제 폐지", "Abolish Elementary Homework", "This House would abolish homework in elementary schools.", "본 의회는 초등학교 숙제를 폐지할 것이다."], ["d02", "16세 미만 SNS 금지", "Ban Social Media Under 16", "This House would ban social media for children under 16.", "본 의회는 16세 미만 어린이의 SNS 사용을 금지할 것이다."], ["d03", "일회용 플라스틱 금지", "Ban Single-Use Plastics", "This House would ban single-use plastics.", "본 의회는 일회용 플라스틱을 금지할 것이다."], ["d04", "학교 과제에 AI 사용 허용", "Allow AI for Schoolwork", "This House would allow students to use AI for schoolwork.", "본 의회는 학생들이 학교 과제에 AI를 사용하도록 허용할 것이다."], ["d05", "동물원 금지", "Ban Zoos", "This House would ban zoos.", "본 의회는 동물원을 금지할 것이다."], ["d06", "교복 폐지", "Abolish School Uniforms", "This House would abolish school uniforms.", "본 의회는 교복을 폐지할 것이다."], ["d07", "우주 탐사보다 지구 문제 우선", "Earth Before Space", "This House would prioritize solving problems on Earth over space exploration.", "본 의회는 우주 탐사보다 지구의 문제 해결을 우선할 것이다."], ["d08", "어린이 대상 정크푸드 광고 금지", "Ban Junk Food Ads for Kids", "This House would ban junk food advertising aimed at children.", "본 의회는 어린이를 대상으로 한 정크푸드 광고를 금지할 것이다."], ["d09", "성적이 좋은 학생에게 돈으로 보상", "Pay Students for Grades", "This House would pay students for good grades.", "본 의회는 성적이 좋은 학생에게 돈으로 보상할 것이다."], ["d10", "투표 연령 16세로 낮추기", "Lower the Voting Age to 16", "This House would lower the voting age to 16.", "본 의회는 투표 연령을 16세로 낮출 것이다."], ["d11", "화장품 동물실험 금지", "Ban Animal Testing for Cosmetics", "This House would ban animal testing for cosmetics.", "본 의회는 화장품 동물실험을 금지할 것이다."], ["d12", "학교 내 스마트폰 금지", "Ban Smartphones in Schools", "This House would ban smartphones in schools.", "본 의회는 학교 내 스마트폰 사용을 금지할 것이다."], ["d13", "시험을 프로젝트로 대체", "Replace Exams with Projects", "This House would replace exams with projects.", "본 의회는 시험을 프로젝트로 대체할 것이다."], ["d14", "도심 자동차 통행 금지", "Car-Free City Centers", "This House would ban cars from city centers.", "본 의회는 도심에서 자동차 통행을 금지할 것이다."], ["d15", "어린이 인플루언서 활동 금지", "Ban Child Influencers", "This House would ban children from working as online influencers.", "본 의회는 어린이가 온라인 인플루언서로 활동하는 것을 금지할 것이다."], ["d16", "주 4일 수업", "Four-Day School Week", "This House would introduce a four-day school week.", "본 의회는 주 4일 수업제를 도입할 것이다."], ["d17", "학교 급식 채식화", "Vegetarian School Lunches", "This House would serve only vegetarian meals in school cafeterias.", "본 의회는 학교 급식을 채식으로만 제공할 것이다."], ["d18", "어린이 스포츠에서 점수 없애기", "No Scores in Kids' Sports", "This House would stop keeping score in children's sports.", "본 의회는 어린이 스포츠에서 점수를 매기지 않을 것이다."], ["d19", "학생 봉사활동 의무화", "Mandatory Volunteering", "This House would make volunteer work mandatory for students.", "본 의회는 학생 봉사활동을 의무화할 것이다."], ["d20", "박물관 문화재 반환", "Return Museum Artifacts", "This House would return museum artifacts to their countries of origin.", "본 의회는 박물관 문화재를 원래 나라로 돌려줄 것이다."]];
 const W=1600,H=900,K=.6,GX=44,GY=60;
@@ -202,6 +202,8 @@ let simT=0, playing=true;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ================= characters (rig engine from Debate Stars) ================= */
+/* 폰에 예전 캐릭터 파일이 남아 있어도 4:4 캐릭터가 없어서 멈추지 않게 */
+if(!RIG.ethan) RIG.ethan=Object.assign({},RIG.noah); if(!RIG.sophia) RIG.sophia=Object.assign({},RIG.chloe);
 const chars={};
 function makeChar(id){
   const r=RIG[id], c={id,r,x:-500,floor:850,visible:false,z:0,jumpY:0,flip:1,seed:Math.random()*10,
@@ -701,7 +703,7 @@ function syncPicks(){
   renderCast();
 }
 document.querySelectorAll('.pick[data-fmt],.pick[data-mode]').forEach(b=>b.onclick=()=>{
-  if(b.dataset.fmt){ cfg.fmt=b.dataset.fmt; if(editing && !castIds().includes(editing)) editing=null; preview(); }
+  if(b.dataset.fmt){ cfg.fmt=b.dataset.fmt; if(editing && !castIds().includes(editing)) editing=null; try{ preview(); }catch(e){ console.error(e); } }
   else cfg.mode=b.dataset.mode;
   save(); syncPicks(); openEditor(editing);
 });
